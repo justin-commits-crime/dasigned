@@ -397,6 +397,10 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .foot-sign img{width:50%;height:auto;opacity:.92}
 .foot-base{max-width:1536px;margin:0 auto;padding:var(--space-8) var(--gut);display:flex;justify-content:space-between;align-items:center;gap:var(--space-6);border-top:1px solid rgba(255,255,255,.14);margin-top:var(--space-8)}
 .foot-base small{font-size:var(--fs-small);color:rgba(255,255,255,.5)}
+.foot-social{list-style:none;margin:0;padding:0;display:flex;gap:var(--space-2)}
+.foot-social a{display:grid;place-items:center;width:40px;height:40px;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.2);transition:color var(--dur-fast) var(--ease-out),background-color var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out)}
+.foot-social a:hover{color:var(--ink);background:var(--white);border-color:var(--white)}
+.foot-social a:focus-visible{outline:2px solid var(--white);outline-offset:2px}
 .foot-top{display:inline-flex;gap:.5em;font-size:14px;color:rgba(255,255,255,.7);text-decoration:none}
 .foot-top:hover{color:var(--white)}
 .foot-top .arr{display:inline-block;transition:transform var(--dur-slow) var(--ease-out)}
