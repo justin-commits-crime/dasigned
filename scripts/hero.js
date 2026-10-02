@@ -14,7 +14,7 @@
   const WIN_R = (SCR.w * IMG_R) / SCR.h;                      // shop window aspect (~1.195)
   const WIN_PHOTO_H = 1 / (SCR.w * IMG_R);                    // photo height per px of window width
   const Z0 = .7;
-  const STACK_W = 900, STACK_CROP = .115;                    // phones: layout width of the window, photo cropped above the sign band                                             // opening size of the window vs. final
+  const STACK_W = 900, STACK_CROP = .115, BELOW_GAP = 72;                    // phones: layout width of the window, photo cropped above the sign band                                             // opening size of the window vs. final
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -52,7 +52,7 @@
       we = STACK_W;                                           // window laid out at a desktop width…
       // …shown at ~86% of the screen, but small enough that the CTAs stay above the fold
       const photoH = (1 - STACK_CROP) * (STACK_W / SCR.w / IMG_R);
-      const fit = (vh - HDR - 28 - below.offsetHeight - 24) / photoH;
+      const fit = (vh - HDR - BELOW_GAP - below.offsetHeight - 24) / photoH;
       s = Math.max(Math.min(vw * .86 / we, fit), vw * .62 / we);
     } else {
       we = Math.min(vw * .92, Ah * .88 * WIN_R);
@@ -78,8 +78,8 @@
       // Whole shopfront from the sign down to the pavement, then the statement + CTAs beneath it.
       const top = HDR - STACK_CROP * BH * s, bottom = top + BH * s;
       Y = top + s * cy;
-      below.style.top = Math.round(bottom + 28) + 'px';
-      const h = Math.ceil(bottom + 28 + below.offsetHeight + 32);
+      below.style.top = Math.round(bottom + BELOW_GAP) + 'px';  // clears the bags and their captions
+      const h = Math.ceil(bottom + BELOW_GAP + below.offsetHeight + 32);
       scroller.style.height = stage.style.height = h + 'px';
     } else if (mode === 'still') {
       s = clamp(Math.max(we * Z0, vw * SCR.w), 0, we) / we;
@@ -98,8 +98,14 @@
   }
   const req = () => { if (!raf) raf = requestAnimationFrame(update); };
   update();
-  addEventListener('scroll', req, { passive: true });
-  addEventListener('resize', () => { jump = true; req(); });
+  // Only the zoom layout depends on scroll. Elsewhere, ignore the resizes a phone fires when its
+  // address bar shows/hides (height-only) — re-laying the hero on those caused visible jumps.
+  let lastW = innerWidth;
+  addEventListener('scroll', () => { if (mode === 'zoom') req(); else if (zoom) placeZoom(); }, { passive: true });
+  addEventListener('resize', () => {
+    if (mode !== 'zoom' && innerWidth === lastW) return;
+    lastW = innerWidth; jump = true; req();
+  });
   if (document.fonts) document.fonts.ready.then(req);
 
   /* ── Touching an object: a bag turns slightly under the cursor, then settles ── */
