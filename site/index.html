@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dasigned — Design &amp; E-commerce Studio</title>
+<meta name="description" content="We design and build narrative-driven Shopify storefronts for brands with something to say — and something to sell.">
+<meta name="theme-color" content="#111113">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="preload" as="image" href="assets/storefront-hero.jpg">
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/hero.css">
+<script src="scripts/hero.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ── Site header (real navigation) ─────────────────────────── -->
+<header class="site-header" data-header>
+  <a class="brand" href="#top"><img src="assets/wordmark-white-longslash.png" width="2504" height="552" alt="Dasigned"></a>
+  <nav class="nav" aria-label="Primary">
+    <a href="#idea">Studio</a>
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+  </nav>
+  <a class="hdr-cta" href="#start">Start a project <span aria-hidden="true">→</span></a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-open>
+    <span class="sr">Menu</span><i></i><i></i>
+  </button>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" data-menu>
+  <div class="menu-top">
+    <img src="assets/wordmark-white-longslash.png" alt="Dasigned">
+    <button class="menu-close" type="button" data-menu-close><span class="sr">Close menu</span><i></i><i></i></button>
+  </div>
+  <nav class="menu-links" aria-label="Menu">
+    <a href="#idea">Studio</a>
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+  </nav>
+  <a class="btn btn-light menu-cta" href="#start">Start a project <span aria-hidden="true">→</span></a>
+</div>
+
+<main id="main">
+<!-- ── Hero: the physical storefront is the digital storefront ── -->
+<section class="scroller" id="top" data-hero aria-labelledby="hero-title">
+  <div class="stage" data-stage>
+    <div class="world" data-world>
+      <img class="world-photo" src="assets/storefront-hero.jpg" width="1678" height="937" alt="The Dasigned storefront: a modern shopfront whose window displays the studio's website">
+      <div class="upper-blur" aria-hidden="true"></div>
+      <div class="fascia" aria-hidden="true"><img src="assets/wordmark-white-longslash.png" alt=""></div>
+
+      <!-- Paper bags on the pavement: hover, focus or tap to preview the project in the window -->
+      <button class="street-bag street-bag-l" type="button" data-bag="side" aria-label="Preview Interiorem homepage">
+        <img src="assets/bag-sideboard.webp" alt="">
+        <img class="street-bag-refl" src="assets/bag-sideboard.webp" alt="">
+        <span class="bag-cap" aria-hidden="true"><b>01</b>Interiorem</span>
+      </button>
+      <button class="street-bag street-bag-r" type="button" data-bag="chair" aria-label="Preview Chair Label campaign">
+        <img src="assets/bag-portrait.webp" alt="">
+        <img class="street-bag-refl" src="assets/bag-portrait.webp" alt="">
+        <span class="bag-cap" aria-hidden="true"><b>02</b>Chair Label</span>
+      </button>
+
+      <!-- The shop window: the website -->
+      <div class="screen" data-screen>
+        <div class="win">
+          <p class="win-eye"><span>Design &amp; E-commerce Studio</span></p>
+          <div class="win-main">
+            <h1 class="win-h" id="hero-title">
+              <span class="ln"><span>Storefronts</span></span>
+              <span class="ln win-in"><span>that refuse <b aria-hidden="true">/</b></span></span>
+              <span class="ln"><span>the template.</span></span>
+            </h1>
+            <p class="win-lede">We design and build narrative-driven Shopify storefronts for brands with something to say — and something to sell.</p>
+            <div class="win-cta">
+              <a class="btn btn-primary" href="#start">Start a project <span class="arr" aria-hidden="true">→</span></a>
+              <a class="link" href="#work">See the work</a>
+            </div>
+          </div>
+        </div>
+        <div class="glass" data-glass></div>
+      </div>
+    </div>
+
+    <div class="hero-actions" aria-label="Get started">
+      <a class="btn btn-light" href="#start">Start a project <span class="arr" aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost-light" href="#work">See the work</a>
+    </div>
+    <div class="hint" data-hint aria-hidden="true"><span>Scroll</span><i></i></div>
+  </div>
+  <div class="vh-probe" data-probe></div>
+</section>
+
+<!-- ── The idea + services ───────────────────────────────────── -->
+<section class="section idea" id="idea" aria-labelledby="idea-title">
+  <div class="idea-grid">
+    <h2 class="eyebrow" id="idea-title">The idea</h2>
+    <p class="idea-p" data-reveal>Most storefronts are assembled from the same fifty themes. Yours shouldn’t be. We art-direct commerce like an editorial — every scroll a *spread*, every product a *story* — then engineer it on Shopify to load fast, convert hard and scale without apology.</p>
+  </div>
+  <div class="services" id="services">
+    <h2 class="sr">Services</h2>
+    <ul>
+      <li><code>01</code><span>Art direction</span></li>
+      <li><code>02</code><span>Interactive storytelling</span></li>
+      <li><code>03</code><span>Commerce engineering</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── Selected work ─────────────────────────────────────────── -->
+<section class="section work" id="work" aria-labelledby="work-title">
+  <div class="work-head">
+    <h2 class="eyebrow" id="work-title">Selected work</h2>
+    <code>02</code>
+  </div>
+  <div class="work-grid">
+    <figure class="tile">
+      <div class="tile-img"><img src="assets/interiorem-window.jpg" width="1440" height="1200" loading="lazy" alt="Interiorem homepage featuring a mid-century teak sideboard"></div>
+      <figcaption><span>Interiorem</span><span>Homepage</span></figcaption>
+    </figure>
+    <figure class="tile">
+      <div class="tile-img"><img src="assets/chair-label-campaign.jpg" width="1800" height="992" loading="lazy" alt="Chair Label Collection 01 campaign: two models in black and white Chair Label shirts"></div>
+      <figcaption><span>Chair Label</span><span>Collection 01 campaign</span></figcaption>
+    </figure>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="tagline"><span>Designed</span><span class="tagline-slash">/</span><span class="tagline-bold">Differently</span></div>
+  <small>© 2026 Dasigned</small>
+</footer>
+
+<!-- Project previews dissolved into the shop window while a bag is hovered -->
+<template id="bag-previews">
+  <img data-key="side" class="pos-top" src="assets/interiorem-window.jpg" alt="">
+  <img data-key="chair" src="assets/chair-label-campaign.jpg" alt="">
+</template>
+</body>
+</html>
