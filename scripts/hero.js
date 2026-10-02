@@ -3,7 +3,8 @@
      The website is laid out at its final on-screen size; scrolling zooms the world about
      the window from ~66% up to exactly 100%, so the copy is legible and the CTAs live
      from the first frame, and nothing is ever upscaled.
-   - Paper bags turn slightly toward the cursor; hover / focus / tap previews that project in the window.
+   - Paper bags turn slightly under the cursor; hover / focus / tap previews the project in the window,
+     click (or a second tap) walks to it.
    - The window glass wipes away along the slash angle as you zoom: physical → digital.
    - Header menu (small screens) and an on-view word reveal for "The idea". */
 (() => {
@@ -23,7 +24,7 @@
     hint = $('[data-hint]'), probe = $('[data-probe]');
 
   /* ── Layout + scroll zoom ────────────────────────────────── */
-  let mode = '', raf = 0, zoom = null, zoomKey = null, zoomTimer = 0;
+  let mode = '', raf = 0, eNow = 0, jump = true, zoom = null, zoomKey = null, zoomTimer = 0;
   function setMode(m) {
     if (m === mode) return;
     root.classList.remove('m-' + mode); root.classList.add('m-' + m); mode = m;
@@ -36,10 +37,11 @@
     const Ah = vh - HDR, portrait = vh > vw;
     const fitW = Math.min(vw, Ah * WIN_R);                    // window fitted below the header
 
-    setMode(fitW >= 720 && !(portrait && vw < 900) ? 'zoom' : portrait ? 'stacked' : 'static');
+    // Reduced motion: the opening framing, held still — same content, no camera move.
+    setMode(fitW >= 720 && !(portrait && vw < 900) ? (reduce ? 'still' : 'zoom') : portrait ? 'stacked' : 'static');
 
     let we, s = 1, Y;
-    if (mode === 'zoom') {
+    if (mode === 'zoom' || mode === 'still') {
       we = fitW;
     } else if (mode === 'stacked') {
       // full width, unless that would push the CTA bar below the fold (tablets)
@@ -55,7 +57,11 @@
       const s0 = ws / we;
       const range = scroller.offsetHeight - vh;
       const p = clamp(-scroller.getBoundingClientRect().top / range, 0, 1);
-      const e = ease(clamp(p / .72, 0, 1));
+      // Natural momentum: the camera follows the scroll position instead of being bolted to it.
+      const target = ease(clamp(p / .72, 0, 1));
+      eNow = jump ? target : eNow + (target - eNow) * .16;
+      if (Math.abs(target - eNow) > .0005) req(); else eNow = target;
+      const e = eNow;
       s = s0 * Math.pow(1 / s0, e);
       Y = HDR + Ah / 2;
       if (!reduce) screen.style.setProperty('--g', clamp((e - .12) / .7, 0, 1));
@@ -65,6 +71,9 @@
       Y = top + cy;
       const h = Math.ceil(top + BH + 128);                    // photo, then the CTA bar
       scroller.style.height = stage.style.height = h + 'px';
+    } else if (mode === 'still') {
+      s = clamp(Math.max(we * Z0, vw * SCR.w), 0, we) / we;
+      Y = HDR + Ah / 2;
     } else {
       Y = HDR + Ah / 2;
     }
@@ -74,27 +83,26 @@
     world.style.fontSize = BH / 100 + 'px';                   // 1em = 1% of the photo height (bag captions)
     world.style.transform = `translate(${vw / 2 - s * cx}px,${Y - s * cy}px) scale(${s})`;
     placeZoom();
+    jump = false;
   }
   const req = () => { if (!raf) raf = requestAnimationFrame(update); };
   update();
   addEventListener('scroll', req, { passive: true });
-  addEventListener('resize', req);
+  addEventListener('resize', () => { jump = true; req(); });
   if (document.fonts) document.fonts.ready.then(req);
 
-  /* ── Bag depth: a subtle turn toward the cursor, then still ── */
-  if (!reduce && !coarse) {
-    let tx = 0, ty = 0, mx = 0, my = 0, loop = 0;
-    const tick = () => {
-      mx += (tx - mx) * .08; my += (ty - my) * .08;
-      world.style.setProperty('--bry', mx * 7 + 'deg');
-      world.style.setProperty('--brx', -my * 3 + 'deg');
-      loop = Math.abs(tx - mx) + Math.abs(ty - my) > .002 ? requestAnimationFrame(tick) : 0;
-    };
-    addEventListener('pointermove', ev => {
-      tx = ev.clientX / innerWidth * 2 - 1; ty = ev.clientY / innerHeight * 2 - 1;
-      if (!loop) loop = requestAnimationFrame(tick);
-    }, { passive: true });
-  }
+  /* ── Touching an object: a bag turns slightly under the cursor, then settles ── */
+  const bagEls = document.querySelectorAll('[data-bag]');
+  if (!reduce) bagEls.forEach(bag => {
+    bag.addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse') return;
+      const r = bag.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width * 2 - 1, y = (e.clientY - r.top) / r.height * 2 - 1;
+      bag.style.setProperty('--bry', x * 9 + 'deg');
+      bag.style.setProperty('--brx', -y * 4 + 'deg');
+    });
+    bag.addEventListener('pointerleave', () => { bag.style.removeProperty('--bry'); bag.style.removeProperty('--brx'); });
+  });
 
   /* ── Bag → project dissolves into the shop window ────────── */
   const previews = $('#bag-previews').content;
@@ -171,6 +179,12 @@
   menuBtn.addEventListener('click', () => setMenu(true));
   $('[data-menu-close]').addEventListener('click', () => setMenu(false));
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  menu.addEventListener('keydown', e => {                    // modal: Tab cycles within the menu
+    if (e.key !== 'Tab') return;
+    const f = [...menu.querySelectorAll('a, button')], first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
   addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
     if (menu.classList.contains('open')) setMenu(false); else closeZoom();
@@ -204,7 +218,7 @@
   idea.innerHTML = idea.textContent.trim().split(/\s+/)
     .map((w, i) => `<span class="w" style="--i:${i}">${w.replace(/\*([^*]+)\*/g, '<em>$1</em>')}</span>`).join(' ');
   if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver(([en]) => { if (en.isIntersecting) { idea.classList.add('in'); io.disconnect(); } }, { threshold: .35 });
+    const io = new IntersectionObserver(([en]) => { if (en.isIntersecting) { idea.classList.add('in'); io.disconnect(); } }, { threshold: .2 });
     io.observe(idea);
   } else idea.classList.add('in');
 })();
