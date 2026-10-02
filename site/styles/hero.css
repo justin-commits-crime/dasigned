@@ -207,10 +207,16 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 /* Services: a shelf of three */
 .services{margin-top:clamp(72px,9vw,128px)}
 .services .sign-row{margin-bottom:0}
-.services ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
-.services li{position:relative;display:flex;flex-direction:column;gap:clamp(28px,4vw,56px);padding:var(--space-6) var(--space-6) var(--space-8) 0;border-right:var(--rule-thin);font-size:clamp(20px,1.9vw,28px);font-weight:500;letter-spacing:-.02em;line-height:1.15}
-.services li+li{padding-left:var(--space-6)}
-.services li:last-child{border-right:0}
+.svc{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(4,auto)}
+/* each service spans the four rows (index, name, description, tags) so they line up across columns */
+.svc>li{display:grid;grid-row:span 4;grid-template-rows:subgrid;align-content:start;padding:var(--space-6) var(--space-6) var(--space-10) 0;border-right:var(--rule-thin)}
+.svc>li+li{padding-left:var(--space-6)}
+.svc>li:last-child{border-right:0;padding-right:0}
+.svc h3{margin:clamp(28px,4vw,56px) 0 var(--space-4);font-size:clamp(22px,1.9vw,28px);font-weight:500;letter-spacing:-.02em;line-height:1.12}
+.svc p{margin:0 0 var(--space-8);max-width:32ch;font-size:15px;line-height:1.55;color:var(--text-secondary)}
+.tags{list-style:none;margin:0;align-self:start;padding:var(--space-4) 0 0;border-top:var(--rule-thin);display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-4)}
+.tags li{font-family:var(--font-wide);font-stretch:125%;font-size:11px;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--ink)}
+.tags li:not(:last-child)::after{content:"/";margin-left:var(--space-4);color:var(--blue-600)}
 .services code{font-family:var(--font-mono);font-size:13px;font-weight:400;letter-spacing:0;color:var(--text-tertiary)}
 
 /* ── Work: inside the storefronts ─────────────────────────────
@@ -315,8 +321,10 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 @media (max-width:900px){
   .idea-grid{grid-template-columns:1fr;gap:var(--space-8)}
   .idea-grid .eyebrow,.idea-p{grid-column:auto}
-  .services ul{grid-template-columns:1fr}
-  .services li,.services li+li{flex-direction:row;align-items:baseline;gap:var(--space-6);padding:var(--space-5) 0;border-right:0;border-bottom:var(--rule-thin)}
+  .svc{grid-template-columns:1fr 1fr}
+  .svc>li,.svc>li+li{padding:var(--space-6) var(--space-6) var(--space-8) 0;border-bottom:var(--rule-thin)}
+  .svc>li:nth-child(2n){border-right:0;padding-left:var(--space-6);padding-right:0}
+  .svc>li:nth-child(2n+1){padding-left:0}
   .proj-head,.proj-info{grid-column:1 / -1}
   .proj-info{margin-top:var(--space-8)}
   .opener-win{aspect-ratio:4/3;clip-path:inset(calc((1 - var(--k)) * 9%) calc((1 - var(--k)) * 10%))}
@@ -330,6 +338,9 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
   .work-end{flex-direction:column;align-items:flex-start}
 }
 @media (max-width:600px){
+  .svc{grid-template-columns:1fr}
+  .svc>li,.svc>li+li,.svc>li:nth-child(2n){padding:var(--space-6) 0 var(--space-8);border-right:0}
+  .svc h3{margin-top:var(--space-4)}
   .site-footer{flex-direction:column;align-items:flex-start}
   .tagline{font-size:11px}
 }
