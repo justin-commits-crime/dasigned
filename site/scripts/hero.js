@@ -232,4 +232,38 @@
     io.observe(idea);
   } else idea.classList.add('in');
   }
+
+  /* ── Contact form ─────────────────────────────────────────
+     Posts to a form service if <form action> is set; otherwise opens an email
+     to data-email; with neither, it says plainly that it isn't connected yet. */
+  const form = $('[data-contact]');
+  if (form) {
+    const to = (form.dataset.email || '').trim(), status = form.querySelector('[data-status]');
+    if (to) {
+      const alt = $('[data-email-alt]'), link = $('[data-email-link]');
+      link.href = 'mailto:' + to; link.textContent = to; alt.hidden = false;
+    }
+    form.addEventListener('submit', e => {
+      form.classList.add('checked');                         // show errors only after a send attempt
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        form.querySelector(':invalid').focus();
+        status.textContent = 'Please fill in the highlighted fields.';
+        return;
+      }
+      if (form.getAttribute('action')) return;               // a form service handles it
+      e.preventDefault();
+      if (!to) { status.textContent = 'This form isn’t connected yet — please check back soon.'; return; }
+      const d = new FormData(form), v = k => (d.get(k) || '').toString().trim();
+      const lines = ['Name: ' + v('name'), 'Email: ' + v('email')];
+      if (v('company')) lines.push('Brand: ' + v('company'));
+      if (v('website')) lines.push('Website: ' + v('website'));
+      if (d.getAll('services').length) lines.push('Services: ' + d.getAll('services').join(', '));
+      if (v('timeline')) lines.push('Timeline: ' + v('timeline'));
+      lines.push('', v('message'));
+      location.href = 'mailto:' + to + '?subject=' + encodeURIComponent('New project — ' + (v('company') || v('name'))) +
+        '&body=' + encodeURIComponent(lines.join('\n'));
+      status.textContent = 'Your email app should open with the enquiry filled in. If it doesn’t, write to ' + to + '.';
+    });
+  }
 })();
