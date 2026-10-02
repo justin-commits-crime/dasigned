@@ -75,12 +75,12 @@
       </div>
 
       <!-- Paper bags = the work. Hover / focus previews it in the window; click (or a second tap) walks to it. -->
-      <button class="street-bag street-bag-l" type="button" data-bag="side" aria-label="Storefront 01, Interiorem — preview in the window, select to view" data-target="storefront-01">
+      <button class="street-bag street-bag-l" type="button" data-bag="side" aria-label="Storefront 01, Interiorem — preview in the window, select to open the project" data-href="work/interiorem.html">
         <img src="assets/bag-sideboard.webp" alt="">
         <img class="street-bag-refl" src="assets/bag-sideboard.webp" alt="">
         <span class="bag-cap" aria-hidden="true"><b>01</b>Interiorem<i>↗</i></span>
       </button>
-      <button class="street-bag street-bag-r" type="button" data-bag="chair" aria-label="Storefront 02, Chair Label — preview in the window, select to view" data-target="storefront-02">
+      <button class="street-bag street-bag-r" type="button" data-bag="chair" aria-label="Storefront 02, Chair Label — preview in the window, select to open the project" data-href="work/chair-label.html">
         <img src="assets/bag-portrait.webp" alt="">
         <img class="street-bag-refl" src="assets/bag-portrait.webp" alt="">
         <span class="bag-cap" aria-hidden="true"><b>02</b>Chair Label<i>↗</i></span>
@@ -96,84 +96,41 @@
   <div class="vh-probe" data-probe></div>
 </section>
 
-<!-- ── Work: from the shop window, inside the storefronts ───────
-     The first project arrives in a window the shape of the hero's shop window,
-     then opens out to a full-bleed browser as you scroll: physical → digital. -->
+<!-- ── Work: a directory of storefronts. Each entry is a window you can walk into. ── -->
 <section class="work" id="work" aria-labelledby="work-title">
   <div class="work-in">
     <div class="sign-row sign-row-dark">
       <h2 class="eyebrow" id="work-title">Selected work</h2>
       <code>02</code>
     </div>
+    <div class="dir">
+      <a class="dir-item dir-1" href="work/interiorem.html">
+        <div class="tile-win dir-win" data-reveal-win>
+          <div class="chrome" aria-hidden="true"><i></i><span>interiorem — homepage</span></div>
+          <img src="assets/work-interiorem-home.webp" width="2200" height="1118" alt="" loading="lazy">
+          <span class="glass" aria-hidden="true"></span><span class="glass-edge" aria-hidden="true"></span>
+        </div>
+        <div class="dir-cap">
+          <span class="tile-no">Storefront <i>/</i> 01</span>
+          <h3 class="dir-name">Interiorem</h3>
+          <p class="dir-desc">A marketplace storefront for furniture with a previous life, listed by Melbourne dealers and collectors.</p>
+          <span class="dir-go">View storefront <span class="arr" aria-hidden="true">→</span></span>
+        </div>
+      </a>
+      <a class="dir-item dir-2" href="work/chair-label.html">
+        <div class="tile-win dir-win" data-reveal-win>
+          <img src="assets/work-chairlabel-portrait.webp" width="768" height="1365" alt="" loading="lazy">
+          <span class="glass" aria-hidden="true"></span><span class="glass-edge" aria-hidden="true"></span>
+        </div>
+        <div class="dir-cap">
+          <span class="tile-no">Storefront <i>/</i> 02</span>
+          <h3 class="dir-name">Chair Label</h3>
+          <p class="dir-desc">Collection 01, launched as a campaign you can shop.</p>
+          <span class="dir-go">View storefront <span class="arr" aria-hidden="true">→</span></span>
+        </div>
+      </a>
+    </div>
   </div>
-
-  <article class="proj" id="storefront-01" data-tile aria-labelledby="p1-name">
-    <div class="opener" data-open>
-      <div class="opener-win">
-        <div class="chrome" aria-hidden="true"><i></i><span>interiorem — homepage</span></div>
-        <img src="assets/work-interiorem-home.webp" width="2200" height="1118" alt="Interiorem homepage: a teak sideboard with the headline “Furniture with a previous life”, navigation for Shop all, Journal and Makers">
-        <span class="glass" aria-hidden="true"></span><span class="glass-edge" aria-hidden="true"></span>
-      </div>
-    </div>
-    <div class="work-in proj-body">
-      <header class="proj-head">
-        <span class="tile-no">Storefront <i>/</i> 01</span>
-        <h3 class="proj-name" id="p1-name">Interiorem</h3>
-      </header>
-      <div class="proj-info">
-        <p class="proj-desc">A storefront for furniture with a previous life — mid-century teak, Italian glass and Anatolian wool, listed by Melbourne dealers and collectors.</p>
-        <dl class="proj-meta">
-          <div><dt>Type</dt><dd>Marketplace storefront</dd></div>
-          <div><dt>Discipline</dt><dd>Art direction, Commerce engineering</dd></div>
-        </dl>
-      </div>
-      <div class="proj-details">
-        <figure class="detail detail-crop">
-          <div class="tile-win" data-reveal-win>
-          <img src="assets/work-interiorem-home.webp" alt="" loading="lazy">
-          <span class="glass" aria-hidden="true"></span><span class="glass-edge" aria-hidden="true"></span></div>
-          <figcaption>Merchandising — one object, one price, one action</figcaption>
-        </figure>
-        <figure class="detail detail-object">
-          <div class="tile-win" data-reveal-win>
-          <img src="assets/bag-sideboard.webp" alt="White tote bag printed with the same teak sideboard" loading="lazy">
-          <span class="glass" aria-hidden="true"></span><span class="glass-edge" aria-hidden="true"></span></div>
-          <figcaption>The same object, carried out of the store</figcaption>
-        </figure>
-      </div>
-    </div>
-  </article>
-
-  <article class="proj proj-alt" id="storefront-02" data-tile aria-labelledby="p2-name">
-    <div class="work-in proj-body">
-      <header class="proj-head">
-        <span class="tile-no">Storefront <i>/</i> 02</span>
-        <h3 class="proj-name" id="p2-name">Chair Label</h3>
-      </header>
-      <div class="proj-info">
-        <p class="proj-desc">Collection 01, launched as a campaign you can shop — the lookbook and the store are the same page.</p>
-        <dl class="proj-meta">
-          <div><dt>Type</dt><dd>Fashion collection launch</dd></div>
-          <div><dt>Discipline</dt><dd>Art direction, Interactive storytelling</dd></div>
-        </dl>
-      </div>
-      <div class="proj-pair">
-        <figure class="detail detail-portrait">
-          <div class="tile-win" data-reveal-win>
-          <img src="assets/work-chairlabel-portrait.webp" width="768" height="1365" alt="Chair Label campaign portrait: a model in a black Chair Label shirt against concrete" loading="lazy">
-          <span class="glass" aria-hidden="true"></span><span class="glass-edge" aria-hidden="true"></span></div>
-          <figcaption>Campaign art direction</figcaption>
-        </figure>
-        <figure class="detail detail-browser">
-          <div class="tile-win" data-reveal-win>
-          <div class="chrome" aria-hidden="true"><i></i><span>chair label — collection 01</span></div>
-          <img src="assets/work-chairlabel-campaign.webp" width="2200" height="1212" alt="Chair Label storefront: two models in black and white Chair Label shirts with a Shop the collection button" loading="lazy">
-          <span class="glass" aria-hidden="true"></span><span class="glass-edge" aria-hidden="true"></span></div>
-          <figcaption>Collection page — the campaign is the storefront</figcaption>
-        </figure>
-      </div>
-    </div>
-  </article>
 
   <div class="work-in work-end">
     <p>Built from the brand outwards.</p>
