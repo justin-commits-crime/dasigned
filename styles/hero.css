@@ -89,9 +89,9 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 /* (a cheap overlay with a window-shaped hole — a huge box-shadow here made mobile browsers flicker) */
 
 /* ── Paper bags = selected work ───────────────────────────────── */
-.street-bag{position:absolute;z-index:20;bottom:13%;height:15.5%;aspect-ratio:900/999;padding:0;border:0;background:none;font:inherit;color:var(--white);perspective:600px;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.street-bag-l{left:18%}
-.street-bag-r{left:74.2%}
+.street-bag{position:absolute;z-index:20;bottom:13%;height:21%;aspect-ratio:900/999;padding:0;border:0;background:none;font:inherit;color:var(--white);perspective:600px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.street-bag-l{left:18.9%}
+.street-bag-r{left:70.4%}
 .street-bag img{position:absolute;inset:0;width:100%;height:100%;max-width:none;filter:brightness(.95) saturate(.95);transition:filter var(--dur-slow) var(--ease-out)}
 .street-bag>img:not(.street-bag-refl){transform-origin:50% 100%;transform:rotateY(var(--bry,0deg)) rotateX(var(--brx,0deg));transition:transform .7s var(--ease-out),filter var(--dur-slow) var(--ease-out)}
 .street-bag-l>img:not(.street-bag-refl){transform:rotateY(calc(var(--bry,0deg) * -1 + 4deg)) rotateX(var(--brx,0deg))}
@@ -108,10 +108,10 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .street-bag:hover .bag-cap::after,.street-bag:focus-visible .bag-cap::after,.street-bag.is-on .bag-cap::after{transform:scaleX(1)}
 
 /* Plain bags: a step further back (smaller, higher, a touch dimmer), behind the project bags */
-.street-bag-plain{z-index:19;height:13.2%;bottom:14.6%;pointer-events:none}
+.street-bag-plain{z-index:19;height:17.5%;bottom:14.6%;pointer-events:none}
 .street-bag-plain img{filter:brightness(.9) saturate(.9)}
-.street-bag-pl{left:11%}
-.street-bag-pr{left:82.6%}
+.street-bag-pl{left:11.1%}
+.street-bag-pr{left:79.9%}
 .street-bag-pr>img:not(.street-bag-refl){transform:rotateY(-6deg)}
 .street-bag-pl>img:not(.street-bag-refl){transform:rotateY(6deg)}
 /* On squarer screens the outer pavement is cropped — show the plain bags only where they fit whole */
