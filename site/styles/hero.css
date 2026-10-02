@@ -394,7 +394,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .foot-cols a:hover{color:var(--blue-500)}
 .foot-plain li{color:rgba(255,255,255,.62)}
 .foot-sign{max-width:1536px;margin:clamp(72px,9vw,128px) auto 0;padding:0 var(--gut)}
-.foot-sign img{width:100%;height:auto;opacity:.92}
+.foot-sign img{width:50%;height:auto;opacity:.92}
 .foot-base{max-width:1536px;margin:0 auto;padding:var(--space-8) var(--gut);display:flex;justify-content:space-between;align-items:center;gap:var(--space-6);border-top:1px solid rgba(255,255,255,.14);margin-top:var(--space-8)}
 .foot-base small{font-size:var(--fs-small);color:rgba(255,255,255,.5)}
 .foot-top{display:inline-flex;gap:.5em;font-size:14px;color:rgba(255,255,255,.7);text-decoration:none}
