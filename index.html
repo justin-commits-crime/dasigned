@@ -54,13 +54,13 @@
       <div class="dim" aria-hidden="true"></div>
       <div class="fascia" aria-hidden="true"><img src="assets/wordmark-white-longslash.png" alt=""></div>
 
-      <!-- Paper bags on the pavement: hover, focus or tap to preview the project in the window -->
-      <button class="street-bag street-bag-l" type="button" data-bag="side" aria-label="Preview Interiorem homepage">
+      <!-- Paper bags = the work. Hover / focus previews it in the window; click (or a second tap) walks to it. -->
+      <button class="street-bag street-bag-l" type="button" data-bag="side" aria-label="Storefront 01, Interiorem — preview in the window, select to view" data-target="storefront-01">
         <img src="assets/bag-sideboard.webp" alt="">
         <img class="street-bag-refl" src="assets/bag-sideboard.webp" alt="">
         <span class="bag-cap" aria-hidden="true"><b>01</b>Interiorem<i>↗</i></span>
       </button>
-      <button class="street-bag street-bag-r" type="button" data-bag="chair" aria-label="Preview Chair Label campaign">
+      <button class="street-bag street-bag-r" type="button" data-bag="chair" aria-label="Storefront 02, Chair Label — preview in the window, select to view" data-target="storefront-02">
         <img src="assets/bag-portrait.webp" alt="">
         <img class="street-bag-refl" src="assets/bag-portrait.webp" alt="">
         <span class="bag-cap" aria-hidden="true"><b>02</b>Chair Label<i>↗</i></span>
@@ -103,7 +103,10 @@
     <p class="idea-p" data-reveal>Most storefronts are assembled from the same fifty themes. Yours shouldn’t be. We art-direct commerce like an editorial — every scroll a *spread*, every product a *story* — then engineer it to load fast, convert hard and scale without apology.</p>
   </div>
   <div class="services" id="services">
-    <h2 class="sr">Services</h2>
+    <div class="sign-row">
+      <h2 class="eyebrow">Services</h2>
+      <code>03</code>
+    </div>
     <ul>
       <li><code>01</code><span>Art direction</span></li>
       <li><code>02</code><span>Interactive storytelling</span></li>
@@ -112,21 +115,35 @@
   </div>
 </section>
 
-<!-- ── Selected work ─────────────────────────────────────────── -->
+<!-- ── Selected work: each project is a window you walk up to ─── -->
 <section class="section work" id="work" aria-labelledby="work-title">
-  <div class="work-head">
+  <div class="sign-row">
     <h2 class="eyebrow" id="work-title">Selected work</h2>
     <code>02</code>
   </div>
   <div class="work-grid">
-    <figure class="tile">
-      <div class="tile-img"><img src="assets/interiorem-window.jpg" width="1440" height="1200" loading="lazy" alt="Interiorem homepage featuring a mid-century teak sideboard"></div>
-      <figcaption><span>Interiorem</span><span>Homepage</span></figcaption>
-    </figure>
-    <figure class="tile">
-      <div class="tile-img"><img src="assets/chair-label-campaign.jpg" width="1800" height="992" loading="lazy" alt="Chair Label Collection 01 campaign: two models in black and white Chair Label shirts"></div>
-      <figcaption><span>Chair Label</span><span>Collection 01 campaign</span></figcaption>
-    </figure>
+    <article class="tile" id="storefront-01" data-tile>
+      <div class="tile-win">
+        <img src="assets/interiorem-window.jpg" width="1440" height="1200" loading="lazy" alt="Interiorem homepage featuring a mid-century teak sideboard">
+        <span class="glass" aria-hidden="true"></span><span class="glass-edge" aria-hidden="true"></span>
+      </div>
+      <div class="tile-cap">
+        <span class="tile-no">Storefront <i>/</i> 01</span>
+        <h3 class="tile-name">Interiorem</h3>
+        <span class="tile-meta">Homepage</span>
+      </div>
+    </article>
+    <article class="tile" id="storefront-02" data-tile>
+      <div class="tile-win">
+        <img src="assets/chair-label-campaign.jpg" width="1800" height="992" loading="lazy" alt="Chair Label Collection 01 campaign: two models in black and white Chair Label shirts">
+        <span class="glass" aria-hidden="true"></span><span class="glass-edge" aria-hidden="true"></span>
+      </div>
+      <div class="tile-cap">
+        <span class="tile-no">Storefront <i>/</i> 02</span>
+        <h3 class="tile-name">Chair Label</h3>
+        <span class="tile-meta">Collection 01 campaign</span>
+      </div>
+    </article>
   </div>
 </section>
 </main>
