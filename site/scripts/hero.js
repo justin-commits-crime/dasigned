@@ -133,13 +133,31 @@
     bag.addEventListener('pointerleave', e => e.pointerType === 'mouse' && closeZoom());
     bag.addEventListener('focus', () => bag.matches(':focus-visible') && openZoom(key));   // keyboard only
     bag.addEventListener('blur', closeZoom);
-    bag.addEventListener('click', e => {                     // touch: tap toggles; mouse is already open
+    bag.addEventListener('click', e => {
+      // The bag is an entrance: mouse / keyboard select walks to the project;
+      // on touch the first tap previews it in the window, the second walks in.
       e.stopPropagation();
       const showing = zoom && zoomKey === key && !zoom.classList.contains('fade');
-      if (showing && e.pointerType !== 'mouse' && e.detail) closeZoom(); else openZoom(key);
+      if (e.pointerType === 'touch' && !showing) openZoom(key); else enterTile(bag.dataset.target);
     });
   });
   document.addEventListener('click', closeZoom);
+
+  /* ── Window → product: walking from a bag to its project ─── */
+  const tiles = [...document.querySelectorAll('[data-tile]')];
+  function enterTile(id) {
+    const tile = document.getElementById(id);
+    if (!tile) return;
+    closeZoom();
+    tiles.forEach(t => t.classList.remove('is-target'));
+    tile.classList.add('is-target');
+    tile.classList.remove('in'); void tile.offsetWidth;      // replay its glass as you arrive
+    tile.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    history.replaceState(null, '', '#' + id);
+    const seen = new IntersectionObserver(([en]) => { if (en.isIntersecting) { tile.classList.add('in'); seen.disconnect(); } }, { threshold: .6 });
+    seen.observe(tile);
+    setTimeout(() => tile.classList.remove('is-target'), 3000);
+  }
 
   /* ── Menu (small screens) ────────────────────────────────── */
   const menu = $('[data-menu]'), menuBtn = $('[data-menu-open]');
@@ -157,6 +175,29 @@
     if (e.key !== 'Escape') return;
     if (menu.classList.contains('open')) setMenu(false); else closeZoom();
   });
+
+  /* ── Display → discovery: project windows clear as they come into view ── */
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    }), { threshold: .35 });
+    tiles.forEach(t => io.observe(t));
+
+    /* Directory: the header marks the section you're standing in */
+    const links = [...document.querySelectorAll('.nav a, .menu-links a')];
+    const sections = [...new Set(links.map(l => l.getAttribute('href')))].map(h => document.querySelector(h)).filter(Boolean);
+    const mark = id => links.forEach(l => l.getAttribute('href') === '#' + id ? l.setAttribute('aria-current', 'location') : l.removeAttribute('aria-current'));
+    let here = null, spyRaf = 0;
+    const spy = () => {                                       // the last section whose sign has passed the 45% line
+      spyRaf = 0;
+      const line = innerHeight * .45;
+      let id = '';
+      sections.forEach(sec => { const r = sec.getBoundingClientRect(); if (r.top <= line && r.bottom > 0) id = sec.id; });
+      if (id !== here) { here = id; mark(id); }
+    };
+    addEventListener('scroll', () => { if (!spyRaf) spyRaf = requestAnimationFrame(spy); }, { passive: true });
+    spy();
+  } else tiles.forEach(t => t.classList.add('in'));
 
   /* ── "The idea": words read in as the paragraph enters view ─ */
   const idea = $('[data-reveal]');
