@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dasigned — Hero</title>
+<link rel="stylesheet" href="_ds/dasigned-design-system-7cfc189e-75e7-4445-89b9-a69cfc239847/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/dasigned-design-system-7cfc189e-75e7-4445-89b9-a69cfc239847/tokens/colors.css">
+<link rel="stylesheet" href="_ds/dasigned-design-system-7cfc189e-75e7-4445-89b9-a69cfc239847/tokens/typography.css">
+<link rel="stylesheet" href="_ds/dasigned-design-system-7cfc189e-75e7-4445-89b9-a69cfc239847/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/dasigned-design-system-7cfc189e-75e7-4445-89b9-a69cfc239847/tokens/effects.css">
+<link rel="stylesheet" href="_ds/dasigned-design-system-7cfc189e-75e7-4445-89b9-a69cfc239847/tokens/base.css">
+<link rel="stylesheet" href="_ds/dasigned-design-system-7cfc189e-75e7-4445-89b9-a69cfc239847/styles.css">
+<meta name="ext-resource-dependency" content="assets/web/storefront-hero.jpg" data-resource-id="r0">
+<meta name="ext-resource-dependency" content="assets/wordmark-black-slash.png" data-resource-id="r1">
+<meta name="ext-resource-dependency" content="assets/web/bag-sideboard.webp" data-resource-id="r2">
+<meta name="ext-resource-dependency" content="assets/web/bag-portrait.webp" data-resource-id="r3">
+<meta name="ext-resource-dependency" content="assets/web/interiorem-window.jpg" data-resource-id="r4">
+<meta name="ext-resource-dependency" content="assets/web/chair-label-campaign.jpg" data-resource-id="r5">
+<template id="__bundler_thumbnail" data-bg-color="#111113"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#111113"/><text x="50" y="62" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="32" font-weight="600" fill="#ffffff">D/A</text></svg></template>
+<style>
+body{margin:0;background:var(--ink);color:var(--text-primary);font-family:var(--font-sans)}
+a{color:var(--text-link)}a:hover{color:var(--text-link-hover)}
+.scroller{position:relative;height:320vh;height:320svh}
+.vh-probe{position:fixed;top:0;left:0;width:0;height:100vh;height:100svh;visibility:hidden;pointer-events:none}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--ink)}
+.world{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+.world img{display:block;width:100%;height:100%}
+.sign{position:absolute;left:31.5%;top:16.6%;transform:translateY(-50%);display:flex;align-items:center;gap:1.6em;white-space:nowrap;padding:0;font-family:var(--font-sans);color:var(--white);pointer-events:none}
+.upper-blur{position:absolute;left:30.3%;width:39.4%;top:0;height:4.8%;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);pointer-events:none;display:flex;align-items:center;justify-content:center;white-space:nowrap}
+.upper-blur *,.hint *{color:var(--white)}
+.sign-logo{position:absolute;top:10.2%;left:49.9%;transform:translate(-50%,-50%);pointer-events:none}
+.world .sign-logo img{display:block;width:16em;height:auto}
+.sign-links{display:flex;gap:1.3em;font-size:.95em;line-height:1}
+.sign-menu{position:absolute;top:16.6%;transform:translate(-50%,-50%);display:flex;flex-direction:column;justify-content:space-between;width:1.7em;height:1.2em;pointer-events:none}
+.sign-menu i{display:block;height:.16em;background:var(--white);border-radius:1em}
+.street-bag{position:absolute;left:18%;bottom:9.6%;height:17%;aspect-ratio:900/999;pointer-events:none}
+.street-bag-2{left:8.5%;bottom:9.6%;height:17%}
+.street-bag-hot{pointer-events:auto}
+.street-label{position:absolute;left:17.6%;bottom:5%;transform:translateX(-50%);margin:0;font-family:var(--font-wide);font-stretch:125%;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;font-size:.55em;line-height:1;color:var(--white);pointer-events:none;white-space:nowrap}
+.bag-zoom{position:fixed;z-index:60;overflow:hidden;pointer-events:none;background:transparent;opacity:0;transition:opacity 1.8s var(--ease-out)}
+.bag-zoom.open{opacity:1}
+.bag-zoom.fade{opacity:0;transition:opacity 1.6s var(--ease-out)}
+.bag-zoom img{display:block;width:100%;height:100%;object-fit:cover;object-position:45% 20%}
+.street-bag img{position:absolute;inset:0;width:100%!important;height:100%!important;filter:brightness(.82) saturate(.9)}
+.street-bag::before{content:"";position:absolute;left:-6%;right:-6%;bottom:-3%;height:8%;background:radial-gradient(ellipse at center,rgba(0,0,0,.55),rgba(0,0,0,0) 70%);filter:blur(2px)}
+.street-bag .street-bag-refl{top:100%;bottom:auto;transform:scaleY(-1);transform-origin:center;opacity:.22;filter:brightness(.7) blur(1px);-webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.9),transparent 55%);mask-image:linear-gradient(to top,rgba(0,0,0,.9),transparent 55%)}
+.screen{position:absolute;left:30.39%;top:21.02%;width:39.03%;height:58.48%;overflow:hidden;background:var(--white)}
+.glass{position:absolute;inset:0;background:rgba(17,17,19,.14);pointer-events:none}
+.site{position:absolute;left:50%;top:50%;transform-origin:50% 50%;background:#E4E3E1;overflow:hidden;perspective:900px;--radius-pill:0;--radius-full:0}
+.bg::before{content:"";position:absolute;inset:0;background:#E7E6E4 url(assets/web/dasigned-hero-image.jpg) 35% 40%/cover no-repeat;opacity:.8}
+.bg{position:absolute;top:0;will-change:transform;backface-visibility:hidden}
+.vp{position:absolute;top:0;transform-style:preserve-3d}
+.site-cols{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);pointer-events:none}
+.site-cols i{border-right:1px solid rgba(17,17,19,.28)}.site-cols i:last-child{border:0}
+.mast{position:absolute;left:0;right:0;top:0;z-index:2;background:var(--white);padding:0 var(--gutter);border-bottom:var(--rule-thick)}
+.mast-foot{display:flex;justify-content:flex-end;align-items:center;gap:var(--space-6);padding:var(--space-8) 0}
+.mast header>a>span[role="img"]{height:clamp(38px,4vw,56px)!important;width:calc(clamp(38px,4vw,56px)*4.7326)!important}
+.mast button[aria-label="Search"]{display:none!important}
+.mast header>div{flex:1;margin-left:var(--space-12)}
+.mast-links{display:flex;gap:var(--space-10);margin-right:auto}
+.mast-links a{font-size:var(--fs-body-l);color:var(--ink);text-decoration:none;transition:color var(--dur-fast) var(--ease-out)}
+.mast-links a:hover{color:var(--blue-600)}
+.bag-text{position:absolute;margin:0;font-family:var(--font-wide);font-stretch:125%;letter-spacing:var(--ls-tagline);text-transform:uppercase;font-weight:400;line-height:1;color:var(--ink);white-space:nowrap}
+.tag{position:absolute;right:var(--gutter);top:var(--space-8);z-index:1}
+.block{position:absolute;left:var(--gutter);width:auto;top:68%;display:flex;flex-direction:column;gap:clamp(12px,2.5vh,24px)}
+.eyes{display:flex;justify-content:space-between;gap:var(--space-6)}
+.eyes p{margin:0;font:var(--type-eyebrow);font-size:clamp(20px,2.4vw,40px);line-height:1.25;font-stretch:125%;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--ink);max-width:none}
+.eyes p:last-child{text-align:right}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-8);align-items:center}
+.lede{margin:0;font-size:var(--fs-body-l);line-height:var(--lh-body);color:var(--ink);max-width:40ch;text-wrap:pretty}
+.site-scroll{position:absolute;left:var(--gutter);bottom:var(--space-8);margin:0;font:var(--type-eyebrow);font-stretch:125%;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--ink)}
+.idea{position:absolute;pointer-events:none;transform:rotate(-.6deg);transform-origin:0 0}
+.idea>*{position:relative}
+.idea-eye{margin:0 0 1.2em;font:var(--type-eyebrow);font-size:.42em;font-stretch:125%;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--ink);opacity:0;animation:ideaWord .8s var(--ease-out) 2.2s forwards}
+.idea-text{margin:0;font-weight:var(--weight-medium);font-size:1em;line-height:1.12;letter-spacing:var(--ls-display);color:var(--ink);text-wrap:pretty}
+.idea-w{display:inline-block;opacity:0;transform:translateY(.25em);animation:ideaWord .8s var(--ease-out) forwards}
+.idea-w.hl{color:var(--blue-600)}
+@keyframes ideaScrim{to{opacity:1}}
+@keyframes ideaWord{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.idea-w,.idea-eye{animation-duration:.01s}}
+.hint{position:absolute;left:50%;bottom:var(--space-8);transform:translateX(-50%);font:var(--type-eyebrow);font-stretch:125%;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--white);display:flex;flex-direction:column;align-items:center;gap:var(--space-3)}
+.hint i{display:block;width:1px;height:40px;background:var(--white);transform-origin:top;animation:hint 1.6s var(--ease-out) infinite}
+@keyframes hint{0%{transform:scaleY(0)}60%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@media (max-width:1100px){.eyes{flex-direction:column;gap:var(--space-2)}.eyes p:last-child{text-align:left}}
+@media (max-width:900px){.mast-links{display:none}.mast header>div{margin-left:0}.block{left:var(--space-5);width:calc(100% - 2*var(--space-5))}.row{grid-template-columns:1fr}}
+.menu{position:fixed;inset:0;z-index:50;background:var(--ink);color:var(--white);display:flex;flex-direction:column;padding:0 var(--space-5) var(--space-8);opacity:0;visibility:hidden;transition:opacity var(--dur-base) var(--ease-out),visibility 0s linear var(--dur-base)}
+.menu.open{opacity:1;visibility:visible;transition:opacity var(--dur-base) var(--ease-out)}
+.menu-top{display:flex;justify-content:space-between;align-items:center;height:72px;border-bottom:1px solid rgba(255,255,255,.2)}
+.menu-links{flex:1;display:flex;flex-direction:column;justify-content:center;gap:var(--space-4)}
+.menu-links a{font-size:clamp(48px,14vw,96px);font-weight:var(--weight-medium);letter-spacing:var(--ls-display);line-height:1.05;color:var(--white);text-decoration:none;opacity:0;transform:translateY(16px);transition:opacity 480ms var(--ease-out),transform 480ms var(--ease-out),color var(--dur-fast) var(--ease-out)}
+.menu.open .menu-links a{opacity:1;transform:none}
+.menu-links a:hover{color:var(--blue-600)}
+.menu-foot{border-top:1px solid rgba(255,255,255,.2);padding-top:var(--space-5)}
+@media (max-width:600px){.tag{right:var(--space-5);top:var(--space-6)}.tag>div{font-size:14px!important}.scroller{height:100vh;height:100svh}.hint{display:none}.tag{top:auto!important;bottom:var(--space-8);left:var(--space-5);right:auto}.mast{padding:0 var(--space-5)}.mast header{height:72px!important}.mast header>a>span[role="img"]{height:26px!important;width:calc(26px*4.7326)!important}.tag{right:var(--space-5)}.tag>div{font-size:14px!important}.hint{bottom:var(--space-6)}}
+@media (max-width:600px) and (orientation:portrait){.street-bag{left:50.5%;bottom:-12%;height:22%}.street-bag-2{left:37.5%;bottom:-12%;height:22%}.street-label{left:49.5%;bottom:-17%}}
+</style></head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/dasigned-design-system-7cfc189e-75e7-4445-89b9-a69cfc239847/_ds_bundle.js"></script>
+<script type="text/babel">
+const { Logo, Button, IconButton, SiteHeader, CategoryNav, SocialLinks, Tagline } = window.DasignedDesignSystem_7cfc18;
+const IMG_R = 1678 / 937, SCR = { x: .3039, y: .2102, w: .3903, h: .5848 };
+const IDEA = 'Most storefronts are assembled from the same fifty themes. Yours shouldn’t be. We art-direct commerce like an editorial — every scroll a spread, every product a story — then engineer it to load fast, convert hard and scale without apology.';
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+
+function ZoomHero(){
+  const scroller = React.useRef(), world = React.useRef(), screen = React.useRef(), site = React.useRef(), glass = React.useRef(), vp = React.useRef(), bg = React.useRef(), cols = React.useRef(), block = React.useRef(), mast = React.useRef(), tag = React.useRef(), sign = React.useRef(), signMenu = React.useRef(), signImg = React.useRef(), hint = React.useRef(), idea = React.useRef(), probe = React.useRef();
+  const [menu, setMenu] = React.useState(false);
+  const [zoom, setZoom] = React.useState(null);
+  const openZoom = (e, key) => { if (zoom && !zoom.fade && zoom.key === key) return; clearTimeout(window.__zt); const r = e.currentTarget.getBoundingClientRect(), t0 = screen.current.getBoundingClientRect(), px = t0.width * .012, t = { left: t0.left - px, top: t0.top - px, width: t0.width + px * 2, height: t0.height + px * 2 }; setZoom({ r, t, key, open: false }); requestAnimationFrame(() => requestAnimationFrame(() => setZoom(z => z && { ...z, open: true }))); };
+  const closeZoom = () => { setZoom(z => z && { ...z, fade: true }); clearTimeout(window.__zt); window.__zt = setTimeout(() => setZoom(z => z && z.fade ? null : z), 1700); };
+  React.useEffect(() => { if (!zoom) return; const k = e => e.key === 'Escape' && closeZoom(); addEventListener('keydown', k); return () => removeEventListener('keydown', k); }, [!!zoom]);
+  React.useEffect(() => { const k = e => e.key === 'Escape' && setMenu(false); addEventListener('keydown', k); document.body.style.overflow = menu ? 'hidden' : ''; return () => removeEventListener('keydown', k); }, [menu]);
+  React.useEffect(() => {
+    let raf = 0, ready = 0, post = 0;
+    const update = () => {
+      raf = 0;
+      const vw = innerWidth, vh = probe.current.offsetHeight || innerHeight;
+      let bw = vw, bh = vw / IMG_R; if (bh < vh && vw / vh > 1) { bh = vh; bw = vh * IMG_R; }
+      const L = (vw - bw) / 2, T = (vh - bh) / 2;
+      const sw = SCR.w * bw, sh = SCR.h * bh, cx = (SCR.x + SCR.w / 2) * bw, cy = (SCR.y + SCR.h / 2) * bh;
+      const phone = vw <= 600 && vh > vw, s1 = phone ? vw / (sw * 1.2) : Math.max(vw / sw, vh / sh);
+      const range = scroller.current.offsetHeight - vh;
+      const p = clamp(-scroller.current.getBoundingClientRect().top / range, 0, 1);
+      const zp = phone ? 1 : clamp(p / .78, 0, 1), e = ease(zp);
+      const s = Math.pow(s1, e), k = (s - 1) / (s1 - 1);
+      const W = sw * s1, H = sh * s1, cyT = phone ? ((.135 + SCR.y + SCR.h) / 2) * bh : cy;
+      const X = (L + cx) + (vw / 2 - (L + cx)) * k, Y = phone ? (T + cy) + (cy * s1 - (T + cy)) * k : (T + cy) + (H / 2 - (T + cy)) * k;
+      const w = world.current;
+      w.style.width = bw + 'px'; w.style.height = bh + 'px'; tag.current.style.fontSize = bh * .017 + 'px';
+      w.style.transform = `translate(${X - s * cx}px,${Y - s * cy}px) scale(${s})`;
+      const st = site.current;
+      st.style.width = W + 'px'; st.style.height = H + 'px';
+      const v = vp.current;
+      v.style.width = (phone ? W : vw) + 'px'; v.style.height = (phone ? H : vh) + 'px'; v.style.left = (phone ? 0 : (W - vw) / 2) + 'px';
+      const mh = 0, b = bg.current.style; b.left = '0px'; b.top = mh + 'px'; b.width = W + 'px'; b.height = (H - mh) + 'px'; b.backgroundSize = 'cover';
+      { const mob = false, IW = mob ? 1800 : 2748, IH = mob ? 3000 : 1536, px = mob ? .5 : .35, py = mob ? .45 : .4, bx = mob ? 105 : 405, by = mob ? 1320 : 661;
+        const bwid = W, bhei = H - mh, sc = Math.max(bwid / IW, bhei / IH), ox = (bwid - IW * sc) * px, oy = (bhei - IH * sc) * py, d = idea.current.style;
+        d.left = (ox + (bx + 28) * sc) + 'px'; d.top = (oy + (by + 40) * sc) + 'px'; d.width = 600 * sc + 'px'; d.fontSize = 54 * sc + 'px'; } 
+      { const lw = (vw <= 600 ? 26 : clamp(vw * .04, 38, 56)) * 4.7326, fs = (phone ? sw * .3 / 13 : lw / s1 * .7 / 6) + 'px';
+        sign.current.style.left = SCR.x * 100 + '%'; sign.current.style.fontSize = fs; signImg.current.style.fontSize = fs; signImg.current.style.left = (SCR.x + SCR.w / 2) * 100 + '%';
+        const m = signMenu.current.style; m.fontSize = fs; m.left = (SCR.x + SCR.w * .965) * 100 + '%'; }
+      st.style.transform = `translate(-50%,-50%) scale(${1 / s1})`;
+      const fade = clamp((zp - .45) / .4, 0, 1);
+      glass.current.style.opacity = 1 - fade;
+      st.style.pointerEvents = zp > .98 ? 'auto' : 'none';
+      ready = ease(clamp((zp - .5) / .5, 0, 1)); post = clamp((p - .78) / .22, 0, 1);
+      hint.current.style.opacity = 1 - clamp(p / .08, 0, 1);
+    };
+    const req = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let tx = 0, ty = 0, mx = 0, my = 0, last = -1e9, loop = 0;
+    const coarse = matchMedia('(pointer: coarse)').matches;
+    const onTilt = ev => { if (ev.gamma == null) return; tx = clamp(ev.gamma / 25, -1, 1); ty = clamp((ev.beta - 45) / 25, -1, 1); last = performance.now(); };
+    const askTilt = () => { const D = window.DeviceOrientationEvent; if (D && typeof D.requestPermission === 'function') D.requestPermission().then(r => r === 'granted' && addEventListener('deviceorientation', onTilt)).catch(() => {}); };
+    if (coarse) { addEventListener('deviceorientation', onTilt); addEventListener('touchend', askTilt, { once: true }); }
+    const onMove = ev => { tx = ev.clientX / innerWidth * 2 - 1; ty = ev.clientY / innerHeight * 2 - 1; last = performance.now(); };
+    const tick = now => {
+      loop = requestAnimationFrame(tick);
+      const idle = clamp((now - last - 1500) / 1500, 0, 1), t = now / 1000;
+      const gx = tx * (1 - idle) + Math.sin(t * .35) * .45 * idle, gy = ty * (1 - idle) + Math.sin(t * .27 + 1) * .35 * idle;
+      mx += (gx - mx) * .06; my += (gy - my) * .06;
+      const a = reduce ? 0 : (.25 + .75 * ready) * (coarse ? .55 : 1), x = mx * a, y = my * a;
+      bg.current.style.transform = `translate3d(${-x * 10}px,${-y * 7}px,${Math.sin(t * .5) * 10 * a}px) rotateY(${x * 6}deg) rotateX(${-y * 4}deg) scale(1.05)`;
+    };
+    loop = requestAnimationFrame(tick);
+    addEventListener('pointermove', onMove, { passive: true });
+    addEventListener('scroll', req, { passive: true }); addEventListener('resize', req);
+    return () => { removeEventListener('deviceorientation', onTilt); removeEventListener('touchend', askTilt); cancelAnimationFrame(loop); removeEventListener('pointermove', onMove); removeEventListener('scroll', req); removeEventListener('resize', req); };
+  }, []);
+  return (
+    <section className="scroller" ref={scroller} data-screen-label="Hero">
+      <div className="stage">
+        <div className="world" ref={world}>
+          <img src={(window.__resources&&window.__resources.r0)||"assets/web/storefront-hero.jpg"} alt="A modern shopfront whose window is a large screen showing a storefront website" />
+          <div className="upper-blur" ref={tag}></div>
+          <div className="sign-logo" ref={signImg}><img src={(window.__resources&&window.__resources.r1)||"assets/wordmark-black-slash.png"} alt="Dasigned" /></div>
+          <div className="sign" ref={sign}><span className="sign-links">{['Studio','Services','Work'].map(l => <span key={l}>{l}</span>)}</span></div>
+          <span className="sign-menu" ref={signMenu}><i></i><i></i><i></i></span>
+          <div className="street-bag street-bag-2 street-bag-hot" onMouseEnter={e => openZoom(e, 'side')} onClick={e => openZoom(e, 'side')} onMouseLeave={() => closeZoom()}><img src={(window.__resources&&window.__resources.r2)||"assets/web/bag-sideboard.webp"} alt="White tote bag printed with a teak sideboard" /><img className="street-bag-refl" src={(window.__resources&&window.__resources.r2)||"assets/web/bag-sideboard.webp"} alt="" /></div>
+          <div className="street-bag street-bag-hot" onMouseEnter={e => openZoom(e, 'chair')} onClick={e => openZoom(e, 'chair')} onMouseLeave={() => closeZoom()}><img src={(window.__resources&&window.__resources.r3)||"assets/web/bag-portrait.webp"} alt="White tote bag printed with a portrait of a model in a chair label shirt" /><img className="street-bag-refl" src={(window.__resources&&window.__resources.r3)||"assets/web/bag-portrait.webp"} alt="" /></div>
+          <p className="street-label">Click</p>
+          <div className="screen" ref={screen}>
+            <div className="site" ref={site}>
+              <div className="bg" ref={bg}><div className="idea" ref={idea}>
+                <p className="idea-text">{IDEA.split(' ').map((w, i) => { const hl = /^(spread|story),?$/.test(w); const word = hl ? w.replace(',', '') : w; return <React.Fragment key={i}><span className={'idea-w' + (hl ? ' hl' : '')} style={{animationDelay: (2.4 + i * .075) + 's'}}>{word}</span>{hl && w.endsWith(',') ? <span className="idea-w" style={{animationDelay: (2.4 + i * .075) + 's'}}>,</span> : null}{' '}</React.Fragment>; })}</p>
+              </div></div>
+              <div className="vp" ref={vp}>
+              <div className="site-cols" ref={cols}><i></i><i></i><i></i><i></i></div>
+              </div>
+            </div>
+            <div className="glass" ref={glass}></div>
+          </div>
+        </div>
+        <div className="hint" ref={hint}><Tagline style={{fontSize:'clamp(14px,1.3vw,22px)',color:'var(--white)'}} /></div>
+      </div>
+      <div className="vh-probe" ref={probe}></div>
+      {zoom && <div key={zoom.key} className={'bag-zoom' + (zoom.open ? ' open' : '') + (zoom.fade ? ' fade' : '')}
+        style={{ left: zoom.t.left + 'px', top: zoom.t.top + 'px', width: zoom.t.width + 'px', height: zoom.t.height + 'px' }}>
+        {zoom.key === 'side' ? <img style={{objectPosition:'center top'}} src={(window.__resources&&window.__resources.r4)||"assets/web/interiorem-window.jpg"} alt="Interiorem homepage featuring a mid-century teak sideboard" /> : <img src={(window.__resources&&window.__resources.r5)||"assets/web/chair-label-campaign.jpg"} alt="Chair label Collection 01 campaign: two models in black and white chair label shirts" />}
+      </div>}
+      <div className={'menu' + (menu ? ' open' : '')} aria-hidden={!menu}>
+        <div className="menu-top"><Logo height={26} color="var(--white)" /><IconButton icon="x" label="Close menu" onClick={() => setMenu(false)} style={{color:'var(--white)'}} /></div>
+        <nav className="menu-links">{['Studio','Services','Work'].map((l, i) => <a key={l} href="#" onClick={() => setMenu(false)} style={{transitionDelay: menu ? (80 + i * 60) + 'ms' : '0ms'}}>{l}</a>)}</nav>
+        <div className="menu-foot"><Tagline style={{color:'var(--white)',fontSize:'14px'}} /></div>
+      </div>
+    </section>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<ZoomHero />);
+</script>
+</body></html>

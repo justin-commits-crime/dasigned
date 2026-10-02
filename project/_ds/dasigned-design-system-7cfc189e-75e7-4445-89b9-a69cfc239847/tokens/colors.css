@@ -1,0 +1,21 @@
+:root{
+/* Base — ink & paper */
+--black:#000000;--ink:#111113;--white:#FFFFFF;--paper:#FCFBF8;
+/* Greys (warm-neutral) */
+--grey-950:#18181A;--grey-900:#222224;--grey-800:#2E2E31;--grey-700:#48484D;--grey-600:#6E6E74;--grey-500:#8E8E93;--grey-400:#B4B4B6;--grey-300:#D2D2CF;--grey-200:#E6E6E3;--grey-100:#F1F1EE;--grey-50:#F7F7F5;
+/* Blue — the one brand colour */
+--blue-700:#0033C2;--blue-600:#0A47FF;--blue-500:#3366FF;--blue-200:#C7D5FF;--blue-100:#E8EEFF;
+/* Accents — sparing, borrowed from product imagery */
+--orange-500:#FF5A1F;--vermilion-500:#E23D28;--sun-400:#F4B400;--moss-600:#2F6B4F;
+/* Semantic */
+--success:#2F6B4F;--warning:#F4B400;--danger:#E23D28;--info:#0A47FF;
+
+/* Aliases — text */
+--text-primary:var(--ink);--text-secondary:var(--grey-600);--text-tertiary:var(--grey-500);--text-inverse:var(--white);--text-link:var(--ink);--text-link-hover:var(--blue-600);--text-accent:var(--blue-600);
+/* Aliases — surfaces */
+--surface-page:var(--white);--surface-subtle:var(--grey-50);--surface-card:var(--white);--surface-paper:var(--paper);--surface-inverse:var(--ink);--surface-muted:var(--grey-100);--surface-accent:var(--blue-600);--surface-overlay:rgba(17,17,19,.56);
+/* Aliases — borders */
+--border-strong:var(--ink);--border-default:var(--grey-200);--border-subtle:var(--grey-100);--border-focus:var(--blue-600);
+/* Aliases — actions */
+--action-primary:var(--ink);--action-primary-hover:var(--blue-600);--action-accent:var(--blue-600);--action-accent-hover:var(--blue-700);
+}
