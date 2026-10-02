@@ -159,11 +159,8 @@
     closeZoom();
     tiles.forEach(t => t.classList.remove('is-target'));
     tile.classList.add('is-target');
-    tile.classList.remove('in'); void tile.offsetWidth;      // replay its glass as you arrive
     tile.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     history.replaceState(null, '', '#' + id);
-    const seen = new IntersectionObserver(([en]) => { if (en.isIntersecting) { tile.classList.add('in'); seen.disconnect(); } }, { threshold: .6 });
-    seen.observe(tile);
     setTimeout(() => tile.classList.remove('is-target'), 3000);
   }
 
@@ -190,12 +187,32 @@
     if (menu.classList.contains('open')) setMenu(false); else closeZoom();
   });
 
-  /* ── Display → discovery: project windows clear as they come into view ── */
+  /* ── Shop window → browser: the first project opens out as it rises into view ── */
+  const wins = document.querySelectorAll('[data-reveal-win]');
+  const openers = [...document.querySelectorAll('[data-open]')];
+  if (!reduce && openers.length) {
+    let oRaf = 0;
+    const open = () => {
+      oRaf = 0;
+      const vh = innerHeight;
+      openers.forEach(o => {
+        const r = o.getBoundingClientRect();
+        const k = ease(clamp((vh * .92 - r.top) / (vh * .7), 0, 1));
+        o.style.setProperty('--k', k.toFixed(4));
+        o.style.setProperty('--g', clamp(k * 1.15, 0, 1).toFixed(4));
+      });
+    };
+    addEventListener('scroll', () => { if (!oRaf) oRaf = requestAnimationFrame(open); }, { passive: true });
+    addEventListener('resize', open);
+    open();
+  } else openers.forEach(o => o.style.setProperty('--g', 1));
+
+  /* ── Display → discovery: detail windows clear as they come into view ── */
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(es => es.forEach(en => {
       if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
-    }), { threshold: .35 });
-    tiles.forEach(t => io.observe(t));
+    }), { threshold: .3 });
+    wins.forEach(w => io.observe(w));
 
     /* Directory: the header marks the section you're standing in */
     const links = [...document.querySelectorAll('.nav a, .menu-links a')];
@@ -211,7 +228,7 @@
     };
     addEventListener('scroll', () => { if (!spyRaf) spyRaf = requestAnimationFrame(spy); }, { passive: true });
     spy();
-  } else tiles.forEach(t => t.classList.add('in'));
+  } else wins.forEach(w => w.classList.add('in'));
 
   /* ── "The idea": words read in as the paragraph enters view ─ */
   const idea = $('[data-reveal]');
