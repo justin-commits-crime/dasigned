@@ -1,0 +1,2 @@
+# Upload bundle built from site/ (regenerate with: cd site && zip -qr ../dasigned-site.zip . -x ".*")
+dasigned-site.zip
