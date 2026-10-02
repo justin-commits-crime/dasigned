@@ -4,7 +4,8 @@
      the window from ~66% up to exactly 100%, so the copy is legible and the CTAs live
      from the first frame, and nothing is ever upscaled.
    - Paper bags turn slightly under the cursor; hover / focus / tap previews the project in the window,
-     click (or a second tap) walks to it.
+     click (or a second tap) opens its page.
+   - Shared by every page: menu, glass reveals, the window-to-browser opener, the nav marker.
    - The window glass wipes away along the slash angle as you zoom: physical → digital.
    - Header menu (small screens) and an on-view word reveal for "The idea". */
 (() => {
@@ -23,6 +24,9 @@
   const scroller = $('[data-hero]'), stage = $('[data-stage]'), world = $('[data-world]'), screen = $('[data-screen]'),
     hint = $('[data-hint]'), probe = $('[data-probe]');
 
+  /* Hero (home page only) */
+  let closeZoom = () => {};
+  if (scroller) (() => {
   /* ── Layout + scroll zoom ────────────────────────────────── */
   let mode = '', raf = 0, eNow = 0, jump = true, zoom = null, zoomKey = null, zoomTimer = 0;
   function setMode(m) {
@@ -128,13 +132,13 @@
       width: r.width + pad * 2 + 'px', height: r.height + pad * 2 + 'px'
     });
   }
-  function closeZoom() {
+  closeZoom = function () {
     if (!zoom) return;
     bags.forEach(b => b.classList.remove('is-on'));
     zoom.classList.add('fade');
     clearTimeout(zoomTimer);
     zoomTimer = setTimeout(() => { if (zoom) zoom.remove(); zoom = null; zoomKey = null; }, 1200);
-  }
+  };
   bags.forEach(bag => {
     const key = bag.dataset.bag;
     bag.addEventListener('pointerenter', e => e.pointerType === 'mouse' && openZoom(key));
@@ -142,27 +146,15 @@
     bag.addEventListener('focus', () => bag.matches(':focus-visible') && openZoom(key));   // keyboard only
     bag.addEventListener('blur', closeZoom);
     bag.addEventListener('click', e => {
-      // The bag is an entrance: mouse / keyboard select walks to the project;
+      // The bag is an entrance: mouse / keyboard select opens the project page;
       // on touch the first tap previews it in the window, the second walks in.
       e.stopPropagation();
       const showing = zoom && zoomKey === key && !zoom.classList.contains('fade');
-      if (e.pointerType === 'touch' && !showing) openZoom(key); else enterTile(bag.dataset.target);
+      if (e.pointerType === 'touch' && !showing) openZoom(key); else { closeZoom(); location.href = bag.dataset.href; }
     });
   });
   document.addEventListener('click', closeZoom);
-
-  /* ── Window → product: walking from a bag to its project ─── */
-  const tiles = [...document.querySelectorAll('[data-tile]')];
-  function enterTile(id) {
-    const tile = document.getElementById(id);
-    if (!tile) return;
-    closeZoom();
-    tiles.forEach(t => t.classList.remove('is-target'));
-    tile.classList.add('is-target');
-    tile.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-    history.replaceState(null, '', '#' + id);
-    setTimeout(() => tile.classList.remove('is-target'), 3000);
-  }
+  })();
 
   /* ── Menu (small screens) ────────────────────────────────── */
   const menu = $('[data-menu]'), menuBtn = $('[data-menu-open]');
@@ -216,8 +208,8 @@
 
     /* Directory: the header marks the section you're standing in */
     const links = [...document.querySelectorAll('.nav a, .menu-links a')];
-    const sections = [...new Set(links.map(l => l.getAttribute('href')))].map(h => document.querySelector(h)).filter(Boolean);
-    const mark = id => links.forEach(l => l.getAttribute('href') === '#' + id ? l.setAttribute('aria-current', 'location') : l.removeAttribute('aria-current'));
+    const sections = [...new Set(links.map(l => l.getAttribute('href')))].filter(h => h.startsWith('#')).map(h => document.querySelector(h)).filter(Boolean);
+    const mark = id => sections.length && links.forEach(l => l.getAttribute('href') === '#' + id ? l.setAttribute('aria-current', 'location') : l.removeAttribute('aria-current'));
     let here = null, spyRaf = 0;
     const spy = () => {                                       // the last section whose sign has passed the 45% line
       spyRaf = 0;
@@ -232,10 +224,12 @@
 
   /* ── "The idea": words read in as the paragraph enters view ─ */
   const idea = $('[data-reveal]');
+  if (idea) {
   idea.innerHTML = idea.textContent.trim().split(/\s+/)
     .map((w, i) => `<span class="w" style="--i:${i}">${w.replace(/\*([^*]+)\*/g, '<em>$1</em>')}</span>`).join(' ');
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(([en]) => { if (en.isIntersecting) { idea.classList.add('in'); io.disconnect(); } }, { threshold: .2 });
     io.observe(idea);
   } else idea.classList.add('in');
+  }
 })();

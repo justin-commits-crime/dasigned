@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Interiorem — Dasigned</title>
+<meta name="description" content="Interiorem — a marketplace storefront for furniture with a previous life. Selected work by Dasigned.">
+<meta name="theme-color" content="#111113">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../styles/tokens.css">
+<link rel="stylesheet" href="../styles/hero.css">
+<script src="../scripts/hero.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ── Site header (real navigation) ─────────────────────────── -->
+<header class="site-header" data-header>
+  <a class="brand" href="../index.html"><img src="../assets/wordmark-white-longslash.png" width="2504" height="552" alt="Dasigned"></a>
+  <nav class="nav" aria-label="Primary">
+    <a href="../index.html#work" aria-current="page">Work</a>
+    <a href="../index.html#idea">Studio</a>
+    <a href="../index.html#services">Services</a>
+  </nav>
+  <a class="hdr-cta" href="../index.html#start">Start a project <span aria-hidden="true">→</span></a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-open>
+    <span class="sr">Menu</span><i></i><i></i>
+  </button>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" data-menu>
+  <div class="menu-top">
+    <img src="../assets/wordmark-white-longslash.png" alt="Dasigned">
+    <button class="menu-close" type="button" data-menu-close><span class="sr">Close menu</span><i></i><i></i></button>
+  </div>
+  <nav class="menu-links" aria-label="Menu">
+    <a href="../index.html#work" aria-current="page">Work</a>
+    <a href="../index.html#idea">Studio</a>
+    <a href="../index.html#services">Services</a>
+  </nav>
+  <a class="btn btn-light menu-cta" href="../index.html#start">Start a project <span aria-hidden="true">→</span></a>
+</div>
+
+<main id="main">
+<article class="work proj-page" aria-labelledby="proj-title">
+  <div class="work-in">
+    <a class="back" href="../index.html#work"><span class="arr" aria-hidden="true">←</span> All work</a>
+    <div class="proj-body">
+      <header class="proj-head">
+        <span class="tile-no">Storefront <i>/</i> 01</span>
+        <h1 class="proj-name" id="proj-title">Interiorem</h1>
+      </header>
+      <div class="proj-info">
+        <p class="proj-desc">A storefront for furniture with a previous life — mid-century teak, Italian glass and Anatolian wool, listed by Melbourne dealers and collectors.</p>
+        <dl class="proj-meta">
+          <div><dt>Type</dt><dd>Marketplace storefront</dd></div>
+          <div><dt>Discipline</dt><dd>Art direction, Commerce engineering</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrives framed like the shop window, opens out to a full-bleed browser -->
+  <div class="opener" data-open>
+    <div class="opener-win">
+      <div class="chrome" aria-hidden="true"><i></i><span>interiorem — homepage</span></div>
+      <img src="../assets/work-interiorem-home.webp" alt="Interiorem homepage: a teak sideboard with the headline “Furniture with a previous life”, navigation for Shop all, Journal and Makers">
+      <span class="glass" aria-hidden="true"></span><span class="glass-edge" aria-hidden="true"></span>
+    </div>
+  </div>
+
+  <div class="work-in">
+    <div class="proj-details">
+      <figure class="detail detail-crop">
+        <div class="tile-win" data-reveal-win>
+          <img src="../assets/work-interiorem-home.webp" alt="Close-up of the hero card: “Furniture with a previous life”, Shop new arrivals, Parker-style sideboard $3,400" loading="lazy">
+          <span class="glass" aria-hidden="true"></span><span class="glass-edge" aria-hidden="true"></span>
+        </div>
+        <figcaption>Merchandising — one object, one price, one action</figcaption>
+      </figure>
+      <figure class="detail detail-object">
+        <div class="tile-win" data-reveal-win>
+          <img src="../assets/bag-sideboard.webp" alt="White tote bag printed with the same teak sideboard" loading="lazy">
+          <span class="glass" aria-hidden="true"></span><span class="glass-edge" aria-hidden="true"></span>
+        </div>
+        <figcaption>The same object, carried out of the store</figcaption>
+      </figure>
+    </div>
+
+    <a class="next" href="chair-label.html">
+      <span class="tile-no">Next <i>/</i> 02</span>
+      <span class="next-name">Chair Label <span class="arr" aria-hidden="true">→</span></span>
+    </a>
+  </div>
+
+  <div class="work-in work-end">
+    <p>Built from the brand outwards.</p>
+    <a class="btn btn-light" href="../index.html#start">Start a project <span class="arr" aria-hidden="true">→</span></a>
+  </div>
+</article>
+</main>
+
+<footer class="site-footer">
+  <div class="tagline"><span>Designed</span><span class="tagline-slash">/</span><span class="tagline-bold">Differently</span></div>
+  <small>© 2026 Dasigned</small>
+</footer>
+</body>
+</html>
