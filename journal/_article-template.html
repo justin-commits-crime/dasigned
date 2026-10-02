@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- JOURNAL ARTICLE TEMPLATE — not linked anywhere.
+     To publish: copy this file to journal/<slug>.html, fill in the title, date and text,
+     then add a row for it to journal/index.html (and the home page's Journal section). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Article title — Dasigned Journal</title>
+<meta name="description" content="Article summary — the Dasigned Journal.">
+<meta name="theme-color" content="#111113">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../styles/tokens.css">
+<link rel="stylesheet" href="../styles/hero.css">
+<script src="../scripts/hero.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ── Site header (real navigation) ─────────────────────────── -->
+<header class="site-header" data-header>
+  <a class="brand" href="../index.html"><img src="../assets/wordmark-white-longslash.png" width="2504" height="552" alt="Dasigned"></a>
+  <nav class="nav" aria-label="Primary">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#idea">Studio</a>
+    <a href="../index.html#services">Services</a>
+    <a href="../journal/index.html" aria-current="page">Journal</a>
+  </nav>
+  <a class="hdr-cta" href="../index.html#start">Start a project <span aria-hidden="true">→</span></a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-open>
+    <span class="sr">Menu</span><i></i><i></i>
+  </button>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" data-menu>
+  <div class="menu-top">
+    <img src="../assets/wordmark-white-longslash.png" alt="Dasigned">
+    <button class="menu-close" type="button" data-menu-close><span class="sr">Close menu</span><i></i><i></i></button>
+  </div>
+  <nav class="menu-links" aria-label="Menu">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#idea">Studio</a>
+    <a href="../index.html#services">Services</a>
+    <a href="../journal/index.html" aria-current="page">Journal</a>
+  </nav>
+  <a class="btn btn-light menu-cta" href="../index.html#start">Start a project <span aria-hidden="true">→</span></a>
+</div>
+
+<main id="main">
+<article class="jr-page jr-article" aria-labelledby="art-title">
+  <a class="back back-light" href="index.html"><span class="arr" aria-hidden="true">←</span> Journal</a>
+  <header class="art-head">
+    <span class="jr-meta"><time>Month 2026</time></span>
+    <h1 class="art-h1" id="art-title">Article title</h1>
+  </header>
+  <div class="art-body">
+    <!-- Article text: paragraphs (<p>), subheads (<h2>), images (<figure class="jr-fig">). -->
+    <p>First paragraph.</p>
+  </div>
+
+</article>
+</main>
+
+<footer class="site-footer">
+  <div class="tagline"><span>Designed</span><span class="tagline-slash">/</span><span class="tagline-bold">Differently</span></div>
+  <small>© 2026 Dasigned</small>
+</footer>
+</body>
+</html>
