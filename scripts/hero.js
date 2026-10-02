@@ -13,7 +13,8 @@
   const SCR = { x: .3039, y: .2102, w: .3903, h: .5848 };     // shop window, as fractions of the photo
   const WIN_R = (SCR.w * IMG_R) / SCR.h;                      // shop window aspect (~1.195)
   const WIN_PHOTO_H = 1 / (SCR.w * IMG_R);                    // photo height per px of window width
-  const Z0 = .7;                                             // opening size of the window vs. final
+  const Z0 = .7;
+  const STACK_W = 900, STACK_CROP = .115;                    // phones: layout width of the window, photo cropped above the sign band                                             // opening size of the window vs. final
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -22,7 +23,7 @@
   const $ = s => document.querySelector(s);
   const root = document.documentElement, header = $('[data-header]');
   const scroller = $('[data-hero]'), stage = $('[data-stage]'), world = $('[data-world]'), screen = $('[data-screen]'),
-    hint = $('[data-hint]'), probe = $('[data-probe]');
+    hint = $('[data-hint]'), probe = $('[data-probe]'), below = $('[data-below]');
 
   /* Hero (home page only) */
   let closeZoom = () => {};
@@ -48,8 +49,11 @@
     if (mode === 'zoom' || mode === 'still') {
       we = fitW;
     } else if (mode === 'stacked') {
-      // full width, unless that would push the CTA bar below the fold (tablets)
-      we = clamp((vh - HDR - 128) / (.92 * WIN_PHOTO_H), vw * .8, vw);
+      we = STACK_W;                                           // window laid out at a desktop width…
+      // …shown at ~86% of the screen, but small enough that the CTAs stay above the fold
+      const photoH = (1 - STACK_CROP) * (STACK_W / SCR.w / IMG_R);
+      const fit = (vh - HDR - 28 - below.offsetHeight - 24) / photoH;
+      s = Math.max(Math.min(vw * .86 / we, fit), vw * .62 / we);
     } else {
       we = Math.min(vw * .92, Ah * .88 * WIN_R);
     }
@@ -71,9 +75,11 @@
       if (!reduce) screen.style.setProperty('--g', clamp((e - .12) / .7, 0, 1));
       hint.style.opacity = 1 - clamp(p / .06, 0, 1);
     } else if (mode === 'stacked') {
-      const top = HDR - .08 * BH;                             // fascia + sign just under the header
-      Y = top + cy;
-      const h = Math.ceil(top + BH + 128);                    // photo, then the CTA bar
+      // Whole shopfront from the sign down to the pavement, then the statement + CTAs beneath it.
+      const top = HDR - STACK_CROP * BH * s, bottom = top + BH * s;
+      Y = top + s * cy;
+      below.style.top = Math.round(bottom + 28) + 'px';
+      const h = Math.ceil(bottom + 28 + below.offsetHeight + 32);
       scroller.style.height = stage.style.height = h + 'px';
     } else if (mode === 'still') {
       s = clamp(Math.max(we * Z0, vw * SCR.w), 0, we) / we;
@@ -85,6 +91,7 @@
     world.style.width = BW + 'px';
     world.style.height = BH + 'px';
     world.style.fontSize = BH / 100 + 'px';                   // 1em = 1% of the photo height (bag captions)
+    world.style.setProperty('--inv', 1 / s);                  // lets labels keep a real-pixel size when scaled
     world.style.transform = `translate(${vw / 2 - s * cx}px,${Y - s * cy}px) scale(${s})`;
     placeZoom();
     jump = false;

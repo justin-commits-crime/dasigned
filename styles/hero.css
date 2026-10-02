@@ -1,7 +1,7 @@
 /* Dasigned — storefront hero + studio page.
    Layout modes are set on <html> by scripts/hero.js:
      .m-zoom     desktop / landscape tablet — scroll zooms into the shop window
-     .m-stacked  portrait phone / tablet    — window fills the width, CTAs below
+     .m-stacked  portrait phone / tablet    — the whole shopfront as a picture, statement + CTAs below
      .m-static   small landscape            — window centred, no zoom            */
 
 :root{--hdr:64px;--gut:var(--gutter)}
@@ -119,7 +119,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .m-stacked .street-bag-plain{height:11.5%;bottom:8%}
 .m-stacked .street-bag-pl{left:44.4%}
 .m-stacked .street-bag-pr{left:50.4%}
-.m-stacked .bag-cap{font-size:max(1.95em,11px);top:calc(100% + .7em);color:rgba(255,255,255,.78)}
+.m-stacked .bag-cap{font-size:calc(10.5px * var(--inv,1));top:calc(100% + .7em);color:rgba(255,255,255,.78)}
 .m-stacked .bag-cap b{display:none}
 
 /* Project preview dissolving into the shop window */
@@ -171,13 +171,18 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
   .win-cta .link{font-size:max(3.6cqw,13px)}
 }
 /* Portrait phones/tablets: the CTAs sit below the storefront at full tap size */
-.m-stacked .win-cta{display:none}
-@container (min-width:601px){.m-stacked .win-lede{font-size:max(2.3cqw,15px)}}
+/* Phones: the window shows the desktop composition in miniature (headline still reads);
+   the statement and CTAs move out beneath the storefront at full size. */
+.m-stacked .win-cta,.m-stacked .win-lede{display:none}
+.m-stacked .win-eye{font-size:3.2cqw;letter-spacing:.16em}
+.m-stacked .win-h{font-size:13.6cqw}
 
 /* Under the hero: CTA bar (stacked) and scroll cue (zoom) */
-.hero-actions{display:none}
-.m-stacked .hero-actions{position:absolute;left:0;right:0;margin-inline:auto;width:min(calc(100% - 2 * var(--gut)),560px);bottom:var(--space-8);display:grid;grid-template-columns:1.35fr 1fr;gap:var(--space-3)}
-.m-stacked .hero-actions .btn{height:52px;padding:0 12px}
+.hero-below{display:none}
+.m-stacked .hero-below{position:absolute;left:0;right:0;margin-inline:auto;width:min(calc(100% - 2 * var(--gut)),560px);display:flex;flex-direction:column;gap:var(--space-6)}
+.hero-lede{margin:0;font-size:17px;line-height:1.5;color:rgba(255,255,255,.78);max-width:34ch}
+.hero-actions{display:grid;grid-template-columns:1.35fr 1fr;gap:var(--space-3)}
+.hero-actions .btn{height:52px;padding:0 12px}
 .hint{display:none}
 .m-zoom .hint{position:absolute;left:50%;bottom:var(--space-6);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:var(--space-3);font:var(--type-eyebrow);font-size:11px;font-stretch:125%;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:rgba(255,255,255,.7);pointer-events:none}
 .hint i{display:block;width:1px;height:28px;background:currentColor;opacity:.6;transform-origin:top;animation:rule .9s var(--ease-out) .9s both}
@@ -193,7 +198,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .win-h b{opacity:0;transform-origin:50% 100%;animation:slash .6s var(--ease-out) .45s forwards}
 .win-lede{opacity:0;animation:riseIn .6s var(--ease-out) .2s forwards}
 .win-cta{opacity:0;animation:riseIn .6s var(--ease-out) .28s forwards}
-.hero-actions{opacity:0;animation:riseIn .6s var(--ease-out) .28s forwards}
+.hero-below{opacity:0;animation:riseIn .6s var(--ease-out) .2s forwards}
 @keyframes fadeIn{to{opacity:1}}
 @keyframes rule{from{transform:scaleY(0) scaleX(0)}to{transform:none}}
 @keyframes lineUp{to{transform:none}}
@@ -390,8 +395,8 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .foot-top:hover{color:var(--white)}
 .foot-top .arr{display:inline-block;transition:transform var(--dur-slow) var(--ease-out)}
 .foot-top:hover .arr{transform:translateY(-.2em)}
-.tagline-light{color:var(--white)}
-.tagline-light .tagline-slash{color:var(--blue-500)}
+.foot .tagline-light{color:var(--white)}
+.foot .tagline-light .tagline-slash{color:var(--blue-500)}
 @media (max-width:900px){
   .foot-cta,.foot-cols{grid-column:1 / -1}
   .foot-cols{grid-template-columns:1fr 1fr}
@@ -457,8 +462,9 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
   .svc>li:nth-child(2n+1){padding-left:0}
   .proj-head,.proj-info{grid-column:1 / -1}
   .proj-info{margin-top:var(--space-8)}
-  .opener-win{aspect-ratio:4/3;clip-path:inset(calc((1 - var(--k)) * 9%) calc((1 - var(--k)) * 10%))}
-  .opener-win img{object-position:0 0}
+  .opener-win{aspect-ratio:auto;clip-path:none}
+  .opener-win img{position:relative;top:auto;margin-top:36px;height:auto}
+  .opener{--g:1!important}
   .detail-crop{grid-column:1 / -1}
   .detail-object{grid-column:5 / -1;margin-top:var(--space-10)}
   .proj-details .detail-portrait{grid-column:1 / span 8}
@@ -468,6 +474,25 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
   .work-end{flex-direction:column;align-items:flex-start}
 }
 @media (max-width:600px){
+  .section{padding-top:72px;padding-bottom:72px}
+  .work{padding:64px 0 72px}
+  .dir{margin-top:40px}
+  .dir-2{margin-top:var(--space-12);width:82%}
+  .work-end{margin-top:72px}
+  .opener{margin-top:40px}
+  .proj-details{margin-top:48px}
+  .detail-object,.detail-object-r{margin-top:var(--space-8)}
+  .next{margin-top:72px}
+  .proj-page{padding-bottom:64px}
+  .foot-in{padding-top:64px;row-gap:var(--space-12)}
+  .foot-sign{margin-top:56px}
+  .services{margin-top:64px}
+  .art-more{margin-top:72px}
+  .ct{padding-bottom:72px;row-gap:var(--space-8)}
+  .ct-form{gap:var(--space-8)}
+  .jr-page{padding-bottom:72px}
+}
+@media (max-width:600px){
   .svc{grid-template-columns:1fr}
   .svc>li,.svc>li+li,.svc>li:nth-child(2n){padding:var(--space-6) 0 var(--space-8);border-right:0}
   .svc h3{margin-top:var(--space-4)}
@@ -475,7 +500,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 }
 
 @media (prefers-reduced-motion:reduce){
-  .win-eye,.win-eye::after,.win-h .ln>span,.win-h b,.win-lede,.win-cta,.hero-actions{animation:none;opacity:1;transform:none}
+  .win-eye,.win-eye::after,.win-h .ln>span,.win-h b,.win-lede,.win-cta,.hero-below{animation:none;opacity:1;transform:none}
   .hint i{animation:none}
   .street-bag>img:not(.street-bag-refl){transition:none;transform:none}
   .btn .arr,.btn:hover .arr{transition:none;transform:none}
