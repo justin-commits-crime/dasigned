@@ -709,7 +709,7 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
   .ct-row{grid-template-columns:1fr}
 }
 
-/* "See the work" browses (↓); "Start a project" commits (→) */
+/* "See the work" browses (↓); "Get in touch" commits (→) */
 .link .arr{display:inline-block;transition:transform var(--dur-slow) var(--ease-out)}
 .link-down:hover .arr,.btn-ghost-light:hover .arr{transform:translateY(.18em)}
 
