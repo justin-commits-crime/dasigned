@@ -1,99 +1,172 @@
 /* Dasigned
-   - Hero: the studio as a giant storefront. A three-bay shop window shows one "look" (storefront)
-     at a time; looks change on a timer (paused on hover / focus / off-screen / reduced motion),
-     by the look buttons, or by a swipe. The glass refracts with the cursor, and the display
-     settles as it rises into view. Clicking the glass opens the look on show.
-   - Shared by every page: header, menu, glass reveals, the window-to-browser opener, the nav marker,
-     the "idea" word reveal and the contact form. */
+   - Hero: the storefront photo is a "world" whose shop window holds the real website.
+     The website is laid out at its final on-screen size; scrolling zooms the world about
+     the window from ~66% up to exactly 100%, so the copy is legible and the CTAs live
+     from the first frame, and nothing is ever upscaled.
+   - Paper bags turn slightly under the cursor; hover / focus / tap previews the project in the window,
+     click (or a second tap) opens its page.
+   - Shared by every page: menu, glass reveals, the window-to-browser opener, the nav marker.
+   - The window glass wipes away along the slash angle as you zoom: physical → digital.
+   - Header menu (small screens) and an on-view word reveal for "The idea". */
 (() => {
+  const IMG_R = 1678 / 937;                                   // storefront photo aspect
+  const SCR = { x: .3039, y: .2102, w: .3903, h: .5848 };     // shop window, as fractions of the photo
+  const WIN_R = (SCR.w * IMG_R) / SCR.h;                      // shop window aspect (~1.195)
+  const WIN_PHOTO_H = 1 / (SCR.w * IMG_R);                    // photo height per px of window width
+  const Z0 = .7;
+  const STACK_W = 900, STACK_CROP = .115, BELOW_GAP = 72;                    // phones: layout width of the window, photo cropped above the sign band                                             // opening size of the window vs. final
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const coarse = matchMedia('(pointer: coarse)').matches;
 
   const $ = s => document.querySelector(s);
-  const header = $('[data-header]');
+  const root = document.documentElement, header = $('[data-header]');
+  const scroller = $('[data-hero]'), stage = $('[data-stage]'), world = $('[data-world]'), screen = $('[data-screen]'),
+    hint = $('[data-hint]'), probe = $('[data-probe]'), below = $('[data-below]');
 
-  /* ── Hero: the shop window (home page only) ──────────────── */
-  const shop = $('[data-shop]');
-  if (shop) (() => {
-    const win = $('[data-win]'), cur = $('[data-cur]'), prog = $('[data-prog]'), lookNo = $('[data-look-no]');
-    const chips = [...shop.querySelectorAll('[data-look]')], cards = [...shop.querySelectorAll('[data-card]')];
-    const N = cards.length;
-    let now = 0, z = 1;
+  /* Hero (home page only) */
+  let closeZoom = () => {};
+  if (scroller) (() => {
+  /* ── Layout + scroll zoom ────────────────────────────────── */
+  let mode = '', raf = 0, eNow = 0, jump = true, zoom = null, zoomKey = null, zoomTimer = 0;
+  function setMode(m) {
+    if (m === mode) return;
+    root.classList.remove('m-' + mode); root.classList.add('m-' + m); mode = m;
+    screen.style.removeProperty('--g');
+    scroller.style.height = stage.style.height = '';
+  }
+  function update() {
+    raf = 0;
+    const vw = innerWidth, vh = probe.offsetHeight || innerHeight, HDR = header.offsetHeight;
+    const Ah = vh - HDR, portrait = vh > vw;
+    const fitW = Math.min(vw, Ah * WIN_R);                    // window fitted below the header
 
-    const label = () => cards[now].querySelector('.hx-card-go').firstChild.textContent.trim() + ' ' +
-      cards[now].querySelector('.hx-card-go .arr').textContent;
-    cur.textContent = label();
+    // Reduced motion: the opening framing, held still — same content, no camera move.
+    setMode(fitW >= 720 && !(portrait && vw < 900) ? (reduce ? 'still' : 'zoom') : portrait ? 'stacked' : 'static');
 
-    function restartTimer() {
-      if (reduce) return;
-      prog.classList.remove('run'); void prog.offsetWidth; prog.classList.add('run');
+    let we, s = 1, Y;
+    if (mode === 'zoom' || mode === 'still') {
+      we = fitW;
+    } else if (mode === 'stacked') {
+      we = STACK_W;                                           // window laid out at a desktop width…
+      // …shown at ~86% of the screen, but small enough that the CTAs stay above the fold
+      const photoH = (1 - STACK_CROP) * (STACK_W / SCR.w / IMG_R);
+      const fit = (vh - HDR - BELOW_GAP - below.offsetHeight - 24) / photoH;
+      s = Math.max(Math.min(vw * .86 / we, fit), vw * .62 / we);
+    } else {
+      we = Math.min(vw * .92, Ah * .88 * WIN_R);
     }
-    function show(n) {
-      n = (n + N) % N;
-      if (n === now) return;
-      z++;
-      shop.querySelectorAll(`.lk[data-l="${n}"]`).forEach(l => {
-        l.classList.remove('on'); void l.offsetWidth;            // restart the wipe
-        l.style.zIndex = z; l.classList.add('on');
-      });
-      const prev = now;
-      setTimeout(() => {                                         // once covered, the old look steps down
-        if (now !== prev) shop.querySelectorAll(`.lk[data-l="${prev}"]`).forEach(l => l.classList.remove('on'));
-      }, 1300);
-      cards[now].hidden = true; cards[n].hidden = false;
-      chips[now].setAttribute('aria-pressed', 'false'); chips[n].setAttribute('aria-pressed', 'true');
-      now = n;
-      lookNo.textContent = String(n + 1).padStart(2, '0');
-      cur.textContent = label();
-      restartTimer();
+    const BW = we / SCR.w, BH = BW / IMG_R;
+    const cx = (SCR.x + SCR.w / 2) * BW, cy = (SCR.y + SCR.h / 2) * BH;
+
+    if (mode === 'zoom') {
+      const ws = clamp(Math.max(we * Z0, vw * SCR.w), 0, we);  // never leave black bars at the sides
+      const s0 = ws / we;
+      const range = scroller.offsetHeight - vh;
+      const p = clamp(-scroller.getBoundingClientRect().top / range, 0, 1);
+      // Natural momentum: the camera follows the scroll position instead of being bolted to it.
+      const target = ease(clamp(p / .72, 0, 1));
+      eNow = jump ? target : eNow + (target - eNow) * .16;
+      if (Math.abs(target - eNow) > .0005) req(); else eNow = target;
+      const e = eNow;
+      s = s0 * Math.pow(1 / s0, e);
+      Y = HDR + Ah / 2;
+      if (!reduce) screen.style.setProperty('--g', clamp((e - .12) / .7, 0, 1));
+      hint.style.opacity = 1 - clamp(p / .06, 0, 1);
+    } else if (mode === 'stacked') {
+      // Whole shopfront from the sign down to the pavement, then the statement + CTAs beneath it.
+      const top = HDR - STACK_CROP * BH * s, bottom = top + BH * s;
+      Y = top + s * cy;
+      below.style.top = Math.round(bottom + BELOW_GAP) + 'px';  // clears the bags and their captions
+      const h = Math.ceil(bottom + BELOW_GAP + below.offsetHeight + 32);
+      scroller.style.height = stage.style.height = h + 'px';
+    } else if (mode === 'still') {
+      s = clamp(Math.max(we * Z0, vw * SCR.w), 0, we) / we;
+      Y = HDR + Ah / 2;
+    } else {
+      Y = HDR + Ah / 2;
     }
-    chips.forEach((c, i) => c.addEventListener('click', () => show(i)));
-    prog.addEventListener('animationend', () => show(now + 1));
 
-    // Off-screen, the display holds still
-    if ('IntersectionObserver' in window) new IntersectionObserver(([en]) => shop.classList.toggle('is-away', !en.isIntersecting)).observe(shop);
-    restartTimer();
+    world.style.width = BW + 'px';
+    world.style.height = BH + 'px';
+    world.style.fontSize = BH / 100 + 'px';                   // 1em = 1% of the photo height (bag captions)
+    world.style.setProperty('--inv', 1 / s);                  // lets labels keep a real-pixel size when scaled
+    world.style.transform = `translate(${vw / 2 - s * cx}px,${Y - s * cy}px) scale(${s})`;
+    placeZoom();
+    jump = false;
+  }
+  const req = () => { if (!raf) raf = requestAnimationFrame(update); };
+  update();
+  // Only the zoom layout depends on scroll. Elsewhere, ignore the resizes a phone fires when its
+  // address bar shows/hides (height-only) — re-laying the hero on those caused visible jumps.
+  let lastW = innerWidth;
+  addEventListener('scroll', () => { if (mode === 'zoom') req(); else if (zoom) placeZoom(); }, { passive: true });
+  addEventListener('resize', () => {
+    if (mode !== 'zoom' && innerWidth === lastW) return;
+    lastW = innerWidth; jump = true; req();
+  });
+  if (document.fonts) document.fonts.ready.then(req);
 
-    // Clicking the glass walks into the look on show
-    win.addEventListener('click', e => { if (!e.target.closest('a, button, [data-ui], .hx-card')) location.href = cards[now].querySelector('a').href; });
+  /* ── Touching an object: a bag turns slightly under the cursor, then settles ── */
+  const bagEls = document.querySelectorAll('[data-bag]');
+  if (!reduce) bagEls.forEach(bag => {
+    bag.addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse') return;
+      const r = bag.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width * 2 - 1, y = (e.clientY - r.top) / r.height * 2 - 1;
+      bag.style.setProperty('--bry', x * 9 + 'deg');
+      bag.style.setProperty('--brx', -y * 4 + 'deg');
+    });
+    bag.addEventListener('pointerleave', () => { bag.style.removeProperty('--bry'); bag.style.removeProperty('--brx'); });
+  });
 
-    // Swipe between looks
-    let sx = null, sy = 0;
-    win.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
-    win.addEventListener('touchend', e => {
-      if (sx === null) return;
-      const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
-      if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy) * 1.4) show(now + (dx < 0 ? 1 : -1));
-      sx = null;
-    }, { passive: true });
-
-    if (reduce) return;
-
-    // The glass refracts: each bay shifts a little differently under the cursor; a label follows it
-    let mx = 0, my = 0, raf = 0;
-    const paint = () => {
-      raf = 0;
-      shop.style.setProperty('--mx', mx.toFixed(3));
-      shop.style.setProperty('--my', my.toFixed(3));
-      const r = shop.getBoundingClientRect(), vh = innerHeight;
-      shop.style.setProperty('--rise', clamp((vh - r.top) / (vh * .9), 0, 1).toFixed(3));
-    };
-    const req = () => { if (!raf) raf = requestAnimationFrame(paint); };
-    if (fine) {
-      win.addEventListener('pointermove', e => {
-        const r = win.getBoundingClientRect();
-        mx = (e.clientX - r.left) / r.width * 2 - 1; my = (e.clientY - r.top) / r.height * 2 - 1;
-        cur.style.transform = `translate(${e.clientX - r.left}px,${e.clientY - r.top}px)`;
-        win.classList.toggle('on-ui', !!e.target.closest('[data-ui], .hx-card'));
-        req();
-      });
-      win.addEventListener('pointerleave', () => { mx = my = 0; req(); });
-    }
-    addEventListener('scroll', req, { passive: true });
-    addEventListener('resize', req);
-    paint();
+  /* ── Bag → project dissolves into the shop window ────────── */
+  const previews = $('#bag-previews').content;
+  const bags = [...document.querySelectorAll('[data-bag]')];
+  function openZoom(key) {
+    clearTimeout(zoomTimer);
+    bags.forEach(b => b.classList.toggle('is-on', b.dataset.bag === key));
+    if (zoom && zoomKey === key) { zoom.classList.remove('fade'); zoom.classList.add('open'); return; }
+    if (zoom) zoom.remove();
+    zoom = document.createElement('div');
+    zoom.className = 'bag-zoom';
+    placeZoom();
+    zoom.appendChild(previews.querySelector(`[data-key="${key}"]`).cloneNode(true));
+    document.body.appendChild(zoom);
+    zoomKey = key;
+    requestAnimationFrame(() => requestAnimationFrame(() => zoom && zoom.classList.add('open')));
+  }
+  function placeZoom() {                                     // sits exactly over the shop window
+    if (!zoom) return;
+    const r = screen.getBoundingClientRect(), pad = r.width * .012;
+    Object.assign(zoom.style, {
+      left: r.left - pad + 'px', top: r.top - pad + 'px',
+      width: r.width + pad * 2 + 'px', height: r.height + pad * 2 + 'px'
+    });
+  }
+  closeZoom = function () {
+    if (!zoom) return;
+    bags.forEach(b => b.classList.remove('is-on'));
+    zoom.classList.add('fade');
+    clearTimeout(zoomTimer);
+    zoomTimer = setTimeout(() => { if (zoom) zoom.remove(); zoom = null; zoomKey = null; }, 1200);
+  };
+  bags.forEach(bag => {
+    const key = bag.dataset.bag;
+    bag.addEventListener('pointerenter', e => e.pointerType === 'mouse' && openZoom(key));
+    bag.addEventListener('pointerleave', e => e.pointerType === 'mouse' && closeZoom());
+    bag.addEventListener('focus', () => bag.matches(':focus-visible') && openZoom(key));   // keyboard only
+    bag.addEventListener('blur', closeZoom);
+    bag.addEventListener('click', e => {
+      // The bag is an entrance: mouse / keyboard select opens the project page;
+      // on touch the first tap previews it in the window, the second walks in.
+      e.stopPropagation();
+      const showing = zoom && zoomKey === key && !zoom.classList.contains('fade');
+      if (e.pointerType === 'touch' && !showing) openZoom(key); else { closeZoom(); location.href = bag.dataset.href; }
+    });
+  });
+  document.addEventListener('click', closeZoom);
   })();
 
   /* ── Header: each word rolls up into its heavier self; a blue rule reads the page ── */
@@ -130,7 +203,7 @@
   });
   addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
-    if (menu.classList.contains('open')) setMenu(false);
+    if (menu.classList.contains('open')) setMenu(false); else closeZoom();
   });
 
   /* ── Shop window → browser: the first project opens out as it rises into view ── */
