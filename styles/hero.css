@@ -186,10 +186,8 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 .sf-hero .sf-base{display:none}
 .sf-hero .sf-reveal{border-bottom-width:0}
 .sf-hero .sf-sill{top:calc(var(--y) + var(--h));height:.55cqw;background:#141416;box-shadow:0 1px 0 #A3A3A8}
-/* Under the screen, the photo's reflection is softened to a glow (its old screen text no longer reads) */
-.hx-wet{position:absolute;left:30.39%;width:39.03%;top:80.6%;height:13%;background:url(../assets/storefront-hero.jpg) -54.42em -80.6em/179.08em 100em no-repeat;filter:blur(.55em);opacity:.95}
-.bay-int{position:absolute;inset:0;background:url(../assets/storefront-hero.jpg) 6.1% 53%/555% auto no-repeat;opacity:.3;filter:saturate(.85)}
-.bay-r .bay-int{background-position:93.9% 53%;opacity:.34}
+.bay-int{position:absolute;inset:0;background:url(../assets/storefront-hero.jpg) 6.1% 53%/555% auto no-repeat;opacity:.5;filter:saturate(.85)}
+.bay-r .bay-int{background-position:93.9% 53%;opacity:.55}
 .sf-hero .street-bag::before{background:radial-gradient(ellipse at center,rgba(0,0,0,.5),rgba(0,0,0,0) 70%)}
 .sf-hero .street-bag .street-bag-refl{display:block;opacity:.22}
 .sf-hero .bag-cap{color:rgba(255,255,255,.66)}
@@ -259,7 +257,7 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 .bay:hover .cp-bar em{transform:translateX(.35em)}
 .bay-r:hover .cp-card .cp-bar{background:var(--blue-600)}
 
-.cp-poster{left:4em;top:25.5em;width:19em}
+.cp-poster{left:1.7em;top:25.4em;width:15em}
 .cp-poster img{display:block;width:100%;height:auto}
 .cp-poster figcaption{display:flex;justify-content:space-between;margin-top:.8em;font:500 1em/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
 .cp-browser{display:block;width:23em}
@@ -280,20 +278,20 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 .cp-cursor{position:absolute;right:2.2em;bottom:-1.9em;width:3em;height:3em;fill:var(--white);stroke:var(--ink);stroke-width:1.3;stroke-linejoin:round;transition:transform .9s var(--ease-out)}
 .bay-l:hover .cp-cursor{transform:translate(-.5em,-.6em)}
 
-.cp-photo{display:block;left:2.4em;top:31em;width:25em;height:16.5em}
+.cp-photo{display:block;left:1.7em;top:25.4em;width:24.5em;height:16em}
 .cp-crop{position:absolute;inset:0;overflow:hidden}
 .cp-crop img{position:absolute;width:158%;max-width:none;height:auto;left:-50%;top:-17%}
 .cp-tag{position:absolute;right:-.9em;bottom:-1em;padding:.3em .45em .25em;background:var(--blue-600);color:var(--white);font:800 2.3em/1 var(--font-wide);font-stretch:70%;letter-spacing:-.01em}
-.cp-card{display:flex;flex-direction:column;right:2.4em;top:27em;width:14.6em;padding:1.3em 1.3em 0;background:var(--white);color:var(--ink)}
+.cp-card{display:flex;flex-direction:column;right:1.7em;top:25.4em;width:15.4em;padding:1.3em 1.3em 0;background:var(--white);color:var(--ink)}
 .cp-card-n{margin-top:2.4em;padding-top:.9em;border-top:1px solid var(--grey-200);font-size:1.45em;font-weight:500;line-height:1.15;letter-spacing:-.01em}
 .cp-card-p{margin:.3em 0 1.1em;font:800 3.1em/1 var(--font-wide);font-stretch:70%;letter-spacing:-.01em}
 .cp-card .cp-bar{margin:0 -1.3em}
 /* The price card stands on a steel holder beside its object */
-.cp-card::after{content:"";position:absolute;left:50%;top:100%;width:.4em;height:12.4em;background:#141416;transform:translateX(-50%)}
-.cp-card::before{content:"";position:absolute;left:32%;right:32%;top:calc(100% + 12.4em);height:.7em;background:#141416;border-top:1px solid #A3A3A8}
+.cp-card::after{content:"";position:absolute;left:50%;top:100%;width:.4em;height:11.6em;background:#141416;transform:translateX(-50%)}
+.cp-card::before{content:"";position:absolute;left:32%;right:32%;top:calc(100% + 11.6em);height:.7em;background:#141416;border-top:1px solid #A3A3A8}
 /* Small physical labels: which shop window this is */
 .cp-plate{display:flex;flex-direction:column;gap:.45em;top:59.6em;width:14.5em;padding:1em 1.1em 1.1em;background:#F4F2EE;color:var(--ink)}
-.bay-l .cp-plate{left:25em;top:47.6em}
+.bay-l .cp-plate{left:1.7em}
 .bay-r .cp-plate{right:1.7em}
 .cp-plate b{font-size:1.45em;font-weight:600;letter-spacing:-.01em;line-height:1}
 .cp-plate>span:last-child{font:500 .85em/1.3 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--grey-600)}
