@@ -13,7 +13,7 @@
   const SCR = { x: .3039, y: .2102, w: .3903, h: .5848 };     // shop window, as fractions of the photo
   const WIN_R = (SCR.w * IMG_R) / SCR.h;                      // shop window aspect (~1.195)
   const WIN_PHOTO_H = 1 / (SCR.w * IMG_R);                    // photo height per px of window width
-  const Z0 = .7;
+  const Z0 = .6;                                              // opening size of the window vs. final: the whole frontage in view
   const STACK_W = 900, STACK_CROP = .115, BELOW_GAP = 72;                    // phones: layout width of the window, photo cropped above the sign band                                             // opening size of the window vs. final
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -120,6 +120,20 @@
     });
     bag.addEventListener('pointerleave', () => { bag.style.removeProperty('--bry'); bag.style.removeProperty('--brx'); });
   });
+
+  /* ── The shop window answers the cursor: displays drift a few pixels, the glass reflection slides ── */
+  if (!reduce) {
+    let px = 0, py = 0, pRaf = 0;
+    stage.addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse') return;
+      px = e.clientX / innerWidth * 2 - 1; py = e.clientY / innerHeight * 2 - 1;
+      if (!pRaf) pRaf = requestAnimationFrame(() => {
+        pRaf = 0;
+        world.style.setProperty('--px', px.toFixed(3));
+        world.style.setProperty('--py', py.toFixed(3));
+      });
+    });
+  }
 
   /* ── Bag → the window puts that storefront on display ────── */
   const bags = [...document.querySelectorAll('[data-bag]')];
