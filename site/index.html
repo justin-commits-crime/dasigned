@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="preload" as="image" href="assets/storefront-hero.jpg">
+<link rel="preload" as="image" href="assets/work-interiorem-home.webp">
 <link rel="stylesheet" href="styles/tokens.css">
 <link rel="stylesheet" href="styles/hero.css">
 <script src="scripts/hero.js" defer></script>
@@ -47,68 +47,94 @@
 </div>
 
 <main id="main">
-<!-- ── Hero: the physical storefront is the digital storefront ── -->
-<section class="scroller" id="top" data-hero aria-labelledby="hero-title">
-  <div class="stage" data-stage>
-    <div class="world" data-world>
-      <img class="world-photo" src="assets/storefront-hero.jpg" width="1678" height="937" alt="The Dasigned storefront: a modern shopfront whose window displays the studio's website">
-      <div class="upper-blur" aria-hidden="true"></div>
-      <div class="dim" aria-hidden="true"></div>
-      <div class="fascia" aria-hidden="true"><img src="assets/wordmark-white-longslash.png" alt=""></div>
-
-      <!-- The shop window: the website -->
-      <div class="screen" data-screen>
-        <div class="win">
-          <p class="win-eye"><span>Design &amp; E-commerce Studio</span></p>
-          <div class="win-main">
-            <h1 class="win-h" id="hero-title">
-              <span class="ln"><span>Storefronts</span></span>
-              <span class="ln win-in"><span>that refuse <b aria-hidden="true">/</b></span></span>
-              <span class="ln"><span>the template.</span></span>
-            </h1>
-            <p class="win-lede">We design and build narrative-driven storefronts for brands with something to say — and something to sell.</p>
-            <div class="win-cta">
-              <a class="btn btn-primary" href="contact.html">Start a project <span class="arr" aria-hidden="true">→</span></a>
-              <a class="link link-down" href="#work">See the work <span class="arr" aria-hidden="true">↓</span></a>
-            </div>
-          </div>
-        </div>
-        <div class="glass" aria-hidden="true"></div><div class="glass-edge" aria-hidden="true"></div>
-      </div>
-
-      <!-- Paper bags = the work. Hover / focus previews it in the window; click (or a second tap) walks to it. -->
-      <!-- Two plain bags, further back on the pavement: set dressing, not links -->
-      <div class="street-bag street-bag-plain street-bag-pl" aria-hidden="true">
-        <img src="assets/bag-white.webp" alt="">
-        <img class="street-bag-refl" src="assets/bag-white.webp" alt="">
-      </div>
-      <div class="street-bag street-bag-plain street-bag-pr" aria-hidden="true">
-        <img src="assets/bag-white.webp" alt="">
-        <img class="street-bag-refl" src="assets/bag-white.webp" alt="">
-      </div>
-      <button class="street-bag street-bag-l" type="button" data-bag="side" aria-label="Storefront 01, Interiorem — preview in the window, select to open the project" data-href="work/interiorem.html">
-        <img src="assets/bag-sideboard.webp" alt="">
-        <img class="street-bag-refl" src="assets/bag-sideboard.webp" alt="">
-        <span class="bag-cap" aria-hidden="true"><b>01</b>Interiorem<i>↗</i></span>
-      </button>
-      <button class="street-bag street-bag-r" type="button" data-bag="chair" aria-label="Storefront 02, Chair Label — preview in the window, select to open the project" data-href="work/chair-label.html">
-        <img src="assets/bag-portrait.webp" alt="">
-        <img class="street-bag-refl" src="assets/bag-portrait.webp" alt="">
-        <span class="bag-cap" aria-hidden="true"><b>02</b>Chair Label<i>↗</i></span>
-      </button>
+<!-- ── Hero: the studio as a giant storefront. The headline is the sign; the window is the interface. ── -->
+<section class="hx" id="top" aria-labelledby="hero-title">
+  <div class="hx-in">
+    <div class="sign-row hx-sign">
+      <p class="eyebrow">Design &amp; E-commerce Studio</p>
+      <code>01</code>
     </div>
-
-    <!-- Phones: the storefront is the picture; the statement and CTAs sit beneath it as real text -->
-    <div class="hero-below" data-below>
-      <p class="hero-lede">We design and build narrative-driven storefronts for brands with something to say — and something to sell.</p>
-      <div class="hero-actions">
-        <a class="btn btn-light" href="contact.html">Start a project <span class="arr" aria-hidden="true">→</span></a>
-        <a class="btn btn-ghost-light" href="#work">See the work <span class="arr" aria-hidden="true">↓</span></a>
-      </div>
-    </div>
-    <div class="hint" data-hint aria-hidden="true"><span>Scroll</span><i></i></div>
+    <h1 class="hx-h" id="hero-title">
+      <span class="ln ln-1"><span>Storefronts</span></span>
+      <span class="ln ln-2"><span>that refuse <b aria-hidden="true">/</b></span></span>
+      <span class="ln ln-3"><span>the template.</span></span>
+    </h1>
   </div>
-  <div class="vh-probe" data-probe></div>
+
+  <!-- The window: three bays of glass between steel mullions. Each "look" is a storefront on display;
+       it changes on its own (paused on hover), by the look buttons, or by a swipe. -->
+  <div class="hx-shop" data-shop>
+    <div class="hx-fascia">
+      <img src="assets/wordmark-white-longslash.png" width="2504" height="552" alt="">
+      <span class="hx-fascia-no" aria-hidden="true">Look <b data-look-no>01</b> / 03</span>
+    </div>
+    <div class="hx-win" data-win>
+      <div class="hx-bays" aria-hidden="true">
+          <div class="hx-bay hx-bay-l">
+            <img class="lk on" data-l="0" src="assets/work-interiorem-home.webp" width="2200" height="1118" alt="" style="--pos:100% 50%;--mpos:70% 50%;--z:1.5;--t:-22%">
+            <img class="lk" data-l="1" src="assets/chair-label-campaign.jpg" width="1800" height="992" alt="" style="--pos:50% 30%;--mpos:28% 30%;--z:1.3;--t:-4%" loading="lazy">
+            <img class="lk" data-l="2" src="assets/storefront-hero.jpg" width="1678" height="937" alt="" style="--pos:50% 46%;--mpos:50% 46%" loading="lazy">
+          </div>
+          <div class="hx-bay hx-bay-c">
+            <img class="lk on" data-l="0" src="assets/work-interiorem-home.webp" width="2200" height="1118" alt="" style="--pos:100% 50%;--mpos:70% 50%;--z:1.5;--t:-22%">
+            <img class="lk" data-l="1" src="assets/chair-label-campaign.jpg" width="1800" height="992" alt="" style="--pos:50% 30%;--mpos:28% 30%;--z:1.3;--t:-4%" loading="lazy">
+            <img class="lk" data-l="2" src="assets/storefront-hero.jpg" width="1678" height="937" alt="" style="--pos:50% 46%;--mpos:50% 46%" loading="lazy">
+          </div>
+          <div class="hx-bay hx-bay-r">
+            <img class="lk on" data-l="0" src="assets/work-interiorem-home.webp" width="2200" height="1118" alt="" style="--pos:100% 50%;--mpos:70% 50%;--z:1.5;--t:-22%">
+            <img class="lk" data-l="1" src="assets/chair-label-campaign.jpg" width="1800" height="992" alt="" style="--pos:50% 30%;--mpos:28% 30%;--z:1.3;--t:-4%" loading="lazy">
+            <img class="lk" data-l="2" src="assets/storefront-hero.jpg" width="1678" height="937" alt="" style="--pos:50% 46%;--mpos:50% 46%" loading="lazy">
+          </div>
+      </div>
+      <span class="hx-cur" aria-hidden="true" data-cur></span>
+      <div class="hx-ui">
+        <article class="hx-card" data-card>
+          <div class="hx-card-box" data-ui>
+            <p class="hx-card-no"><span>Storefront <i>/</i> 01</span><span>Marketplace</span></p>
+            <h2 class="hx-card-name">Interiorem</h2>
+            <p class="hx-card-line">Furniture with a previous life, listed by Melbourne dealers and collectors.</p>
+            <a class="hx-card-go" href="work/interiorem.html">View storefront <span class="arr" aria-hidden="true">↗</span></a>
+          </div>
+          <p class="hx-tag" aria-hidden="true">Parker-style sideboard <i>/</i> $3,400</p>
+        </article>
+        <article class="hx-card" data-card hidden>
+          <div class="hx-card-box" data-ui>
+            <p class="hx-card-no"><span>Storefront <i>/</i> 02</span><span>Fashion</span></p>
+            <h2 class="hx-card-name">Chair Label</h2>
+            <p class="hx-card-line">Collection 01, Uniform — shirts, polos and tees in black and white.</p>
+            <a class="hx-card-go" href="work/chair-label.html">View storefront <span class="arr" aria-hidden="true">↗</span></a>
+          </div>
+          <p class="hx-tag" aria-hidden="true">Look 1 of 8 <i>/</i> Collection 01</p>
+        </article>
+        <article class="hx-card" data-card hidden>
+          <div class="hx-card-box" data-ui>
+            <p class="hx-card-no"><span>Storefront <i>/</i> 03</span><span>Available</span></p>
+            <h2 class="hx-card-name">Your brand</h2>
+            <p class="hx-card-line">This window is free. Something to say — and something to sell?</p>
+            <a class="hx-card-go" href="contact.html">Start a project <span class="arr" aria-hidden="true">→</span></a>
+          </div>
+          <p class="hx-tag" aria-hidden="true">Window to let <i>/</i> Enquire within</p>
+        </article>
+        <div class="hx-looks" data-ui>
+          <p class="hx-looks-l" id="looks-label">Select look</p>
+          <div class="hx-chips" role="group" aria-labelledby="looks-label">
+            <button class="hx-chip" type="button" data-look="0" aria-pressed="true" aria-label="Look 01: Interiorem">01</button>
+            <button class="hx-chip" type="button" data-look="1" aria-pressed="false" aria-label="Look 02: Chair Label">02</button>
+            <button class="hx-chip" type="button" data-look="2" aria-pressed="false" aria-label="Look 03: Your brand">03</button>
+          </div>
+          <span class="hx-prog" aria-hidden="true"><i data-prog></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hx-in hx-foot">
+    <p class="hx-lede">We design and build narrative-driven storefronts for brands with something to say — and something to sell.</p>
+    <div class="hx-cta">
+      <a class="key" href="contact.html">Start a project <span class="arr" aria-hidden="true">→</span></a>
+      <a class="link link-down" href="#work">See the work <span class="arr" aria-hidden="true">↓</span></a>
+    </div>
+  </div>
 </section>
 
 <!-- ── Work: a directory of storefronts. Each entry is a window you can walk into. ── -->
@@ -269,10 +295,5 @@
   </div>
 </footer>
 
-<!-- Project previews dissolved into the shop window while a bag is hovered -->
-<template id="bag-previews">
-  <img data-key="side" class="pos-top" src="assets/interiorem-window.jpg" alt="">
-  <img data-key="chair" src="assets/chair-label-campaign.jpg" alt="">
-</template>
 </body>
 </html>
