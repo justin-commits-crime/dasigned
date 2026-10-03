@@ -31,29 +31,46 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 
 /* ── Header ───────────────────────────────────────────────────── */
 .site-header{position:fixed;inset:0 0 auto;z-index:70;height:var(--hdr);display:flex;align-items:center;gap:var(--space-8);padding:0 var(--gut);background:var(--ink);color:var(--white);border-bottom:1px solid rgba(255,255,255,.1)}
-.brand{display:block;flex:none}
-.brand img{height:20px;width:auto}
-.nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:var(--space-10)}
-.nav a,.hdr-cta{font-size:14px;letter-spacing:.01em;color:rgba(255,255,255,.72);text-decoration:none;transition:color var(--dur-fast)}
-.nav a:hover,.nav a[aria-current]{color:var(--white)}
-.nav a{position:relative}
+/* The header reads like the shop's own signage: a tiny maker's mark, an oversized directory, a key to press */
+.site-header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue-500);transform:scaleX(var(--read,0));transform-origin:0 50%}
+.brand{display:block;flex:none;opacity:.9;transition:opacity var(--dur-fast)}
+.brand:hover{opacity:1}
+.brand img{height:13px;width:auto}
+.nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:clamp(40px,4.4vw,72px);counter-reset:nav}
+.nav a{position:relative;counter-increment:nav;font:400 17px/1.25 var(--font-sans);font-stretch:96%;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color var(--dur-base) var(--ease-out)}
+.nav a:hover,.nav a:focus-visible,.nav a[aria-current]{color:var(--white)}
+/* Index numbers, like aisle signs */
+.nav a::after{content:"0" counter(nav);position:absolute;top:-.35em;right:-1.9em;font:500 9px/1 var(--font-mono);letter-spacing:0;color:rgba(255,255,255,.36);transition:color var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out)}
+.nav a:hover::after,.nav a[aria-current]::after{color:var(--blue-500);transform:translateY(-2px)}
+/* Hover: the word rolls up and comes back heavier */
+.nl{display:inline-grid;overflow:hidden;vertical-align:top}
+.nl>span{grid-area:1/1;transition:transform var(--dur-slow) var(--ease-out)}
+.nl-b{font-weight:600;transform:translateY(105%)}
+.nav a:hover .nl-a,.nav a:focus-visible .nl-a,.nav a[aria-current] .nl-a{transform:translateY(-105%)}
+.nav a:hover .nl-b,.nav a:focus-visible .nl-b,.nav a[aria-current] .nl-b{transform:none}
 .nav a::before,.menu-links a::before{content:"/";position:absolute;left:-.85em;color:var(--blue-500);opacity:0;transform:translateX(4px);transition:opacity var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out)}
+.nav a:hover::before{opacity:.55;transform:none}
 .nav a[aria-current]::before,.menu-links a[aria-current]::before{opacity:1;transform:none}
 .menu-links a{position:relative}
-.hdr-cta{margin-left:auto;display:inline-flex;align-items:center;gap:.6em;height:36px;padding:0 16px;border:1px solid rgba(255,255,255,.32);color:var(--white)}
-.hdr-cta:hover{background:var(--white);color:var(--ink)}
+/* The CTA is a physical key: a white block on a blue slab that presses in */
+.hdr-cta{--lift:3px;margin-left:auto;display:inline-flex;align-items:center;gap:.7em;height:38px;padding:0 16px 0 18px;background:var(--white);color:var(--ink);font:600 12px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;box-shadow:var(--lift) var(--lift) 0 var(--blue-500);transform:translate(calc(var(--lift) * -1 + 3px),calc(var(--lift) * -1 + 3px));transition:transform var(--dur-fast) var(--ease-out),box-shadow var(--dur-fast) var(--ease-out)}
+.hdr-cta:hover{--lift:5px;color:var(--ink)}
+.hdr-cta:active,.hdr-cta[aria-current]{--lift:0px}
+.hdr-cta:focus-visible{outline:2px solid var(--white);outline-offset:4px}
+.hdr-cta span{display:inline-block;font-size:14px;transition:transform var(--dur-base) var(--ease-out)}
+.hdr-cta:hover span{transform:translate(2px,-2px)}
 .menu-btn,.menu-close{display:none;margin-left:auto;width:44px;height:44px;margin-right:-10px;padding:0;border:0;background:none;color:var(--white);cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:7px}
 .menu-btn i,.menu-close i{display:block;width:22px;height:1.5px;background:currentColor;transition:transform var(--dur-base) var(--ease-out)}
 @media (max-width:900px){
   .nav,.hdr-cta{display:none}
   .menu-btn{display:flex}
-  .brand img{height:18px}
+  .brand img{height:14px}
 }
 
 .menu{position:fixed;inset:0;z-index:80;display:flex;flex-direction:column;padding:0 var(--gut) calc(var(--space-8) + env(safe-area-inset-bottom));background:var(--ink);color:var(--white);opacity:0;visibility:hidden;transition:opacity var(--dur-base) var(--ease-out),visibility 0s linear var(--dur-base)}
 .menu.open{opacity:1;visibility:visible;transition:opacity var(--dur-base) var(--ease-out)}
 .menu-top{display:flex;align-items:center;height:var(--hdr);border-bottom:1px solid rgba(255,255,255,.1)}
-.menu-top img{height:18px;width:auto}
+.menu-top img{height:14px;width:auto}
 .menu-close{display:block;position:relative}
 .menu-close i{position:absolute;left:11px;top:21px}
 .menu-close i:first-of-type{transform:rotate(45deg)}
@@ -417,7 +434,6 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 }
 
 /* ── Contact ───────────────────────────────────────────────── */
-.hdr-cta[aria-current]{background:var(--white);color:var(--ink)}
 .ct{max-width:1536px;margin:0 auto;padding:calc(var(--hdr) + clamp(48px,7vw,112px)) var(--gut) clamp(96px,11vw,160px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap);row-gap:var(--space-12)}
 .ct-intro{grid-column:1 / span 5;align-self:start;position:sticky;top:calc(var(--hdr) + 48px)}
 .tile-no-dark{color:var(--text-tertiary)}
@@ -516,6 +532,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 }
 
 @media (prefers-reduced-motion:reduce){
+  .nl>span,.hdr-cta,.hdr-cta span{transition:none!important}
   .win-eye,.win-eye::after,.win-h .ln>span,.win-h b,.win-lede,.win-cta,.hero-below{animation:none;opacity:1;transform:none}
   .hint i{animation:none}
   .street-bag>img:not(.street-bag-refl){transition:none;transform:none}
