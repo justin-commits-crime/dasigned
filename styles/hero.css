@@ -1,8 +1,4 @@
-/* Dasigned — storefront hero + studio page.
-   Layout modes are set on <html> by scripts/hero.js:
-     .m-zoom     desktop / landscape tablet — scroll zooms into the shop window
-     .m-stacked  portrait phone / tablet    — the whole shopfront as a picture, statement + CTAs below
-     .m-static   small landscape            — window centred, no zoom            */
+/* Dasigned — site styles: header, hero (the giant storefront), studio, work, journal, contact, footer. */
 
 :root{--hdr:64px;--gut:var(--gutter)}
 @media (max-width:900px){:root{--hdr:56px;--gut:20px}}
@@ -83,77 +79,120 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .menu-links a:hover{color:var(--blue-500)}
 .menu-cta{width:100%;height:56px}
 
-/* ── Hero stage ───────────────────────────────────────────────── */
-.scroller{position:relative;height:250vh;height:250svh;background:var(--ink)}
-.m-static .scroller,.m-still .scroller{height:100vh;height:100svh}
-.vh-probe{position:fixed;top:0;left:0;width:0;height:100vh;height:100svh;visibility:hidden;pointer-events:none}
-.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--ink)}
-.world{position:absolute;left:0;top:0;transform-origin:0 0}
-.m-zoom .world{will-change:transform}
-.world-photo{display:block;width:100%;height:100%;max-width:none;user-select:none}
+/* ── Hero: the studio as a giant storefront ────────────────────
+   Paper, steel and glass: the headline is the shop sign at full scale, the window below is the
+   interface. Three bays between mullions show one look at a time; looks wipe in along the
+   slash angle across all three bays at once, and the glass refracts with the cursor. */
+.hx{background:var(--paper);color:var(--ink);padding-top:calc(var(--hdr) + clamp(20px,2.4vw,40px))}
+.hx-in{padding:0 var(--gut)}
+.hx-sign{padding-bottom:var(--space-4);margin-bottom:clamp(16px,1.6vw,28px)}
+.hx-h{margin:0;font-family:var(--font-wide);font-weight:800;font-stretch:70%;font-size:min(15.4vw,290px);line-height:.82;letter-spacing:-.012em;text-transform:uppercase;color:var(--ink);text-wrap:initial}
+.hx-h .ln{display:block;overflow:hidden;white-space:nowrap;padding:.04em 0 .06em;margin:-.04em 0 -.06em}
+.hx-h .ln>span{display:inline-block}
+.hx-h .ln-2{padding-left:7.5%}
+.hx-h .ln-3{text-align:right}
+.hx-h b{display:inline-block;font-weight:300;font-stretch:100%;color:var(--blue-600);margin-left:.04em}
 
-.m-stacked .upper-blur,.m-static .upper-blur{display:none}
-.upper-blur{position:absolute;left:30.3%;width:39.4%;top:0;height:4.8%;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);pointer-events:none}
+.hx-shop{margin:clamp(28px,3.6vw,64px) var(--gut) 0;background:var(--ink);padding:0 10px 10px}
+.hx-fascia{display:flex;align-items:center;justify-content:space-between;height:clamp(40px,3.4vw,54px);padding:0 6px;color:rgba(255,255,255,.62);font:500 11px/1 var(--font-mono);letter-spacing:.04em;text-transform:uppercase}
+.hx-fascia img{height:12px;width:auto}
+.hx-fascia-no b{font-weight:500;color:var(--white)}
+.hx-win{--a:24cqw;--b:76cqw;--m:10px;position:relative;height:clamp(440px,76vh,880px);overflow:hidden;background:var(--ink);container-type:inline-size;cursor:pointer;isolation:isolate}
+.hx-bays{position:absolute;inset:0}
+.hx-bay{position:absolute;top:0;bottom:0;overflow:hidden;background:var(--grey-900)}
+.hx-bay-l{left:0;width:calc(var(--a) - var(--m) / 2);--d:-16px;--o:0px}
+.hx-bay-c{left:calc(var(--a) + var(--m) / 2);width:calc(var(--b) - var(--a) - var(--m));--d:12px;--o:calc(-1 * (var(--a) + var(--m) / 2))}
+.hx-bay-r{left:calc(var(--b) + var(--m) / 2);right:0;--d:-16px;--o:calc(-1 * (var(--b) + var(--m) / 2))}
+/* every bay holds the same picture, offset so it reads as one image behind the mullions */
+.lk{position:absolute;top:var(--t,-4%);left:var(--o);width:100cqw;height:calc(var(--z,1.08) * 100%);max-width:none;object-fit:cover;object-position:var(--pos);user-select:none;
+  transform:translate3d(calc(var(--mx,0) * var(--d)),calc(var(--my,0) * var(--d) * -.4),0) scale(calc(1.04 + (1 - var(--rise,1)) * .1));transition:transform .9s var(--ease-out);
+  clip-path:polygon(-40% 0,-40% 0,-80% 100%,-80% 100%)}
+.lk.on{clip-path:polygon(-40% 0,140% 0,100% 100%,-80% 100%);transition:transform .9s var(--ease-out),clip-path 1.15s var(--ease-in-out)}
 
-/* Shop sign: lettering mounted straight onto the charcoal fascia */
-.fascia{position:absolute;left:49.91%;top:16.6%;height:4.1%;transform:translate(-50%,-50%);pointer-events:none}
-.fascia img{display:block;height:100%;width:auto;max-width:none;filter:drop-shadow(0 0 .3em rgba(255,255,255,.3))}
+.hx-cur{position:absolute;left:0;top:0;z-index:30;margin:16px 0 0 16px;padding:9px 12px;background:var(--blue-600);color:var(--white);font:600 11px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity var(--dur-base) var(--ease-out)}
+.hx-win:hover .hx-cur{opacity:1}
+.hx-win.on-ui .hx-cur{opacity:0}
 
-/* Dusk: everything outside the shop window steps back, so the lit window is the one focal point.
-   A box the size of the window throws a soft light spill, then a dark wash over the rest. */
-.dim{position:absolute;inset:0;pointer-events:none;background:rgba(10,10,12,.46);
-  clip-path:polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0,30.39% 21.02%,69.42% 21.02%,69.42% 79.5%,30.39% 79.5%,30.39% 21.02%)}
-/* (a cheap overlay with a window-shaped hole — a huge box-shadow here made mobile browsers flicker) */
+.hx-ui{--p:clamp(14px,1.6vw,24px);position:absolute;inset:0;z-index:20;pointer-events:none}
+.hx-ui [data-ui],.hx-ui .hx-card-go{pointer-events:auto;cursor:auto}
+.hx-card:not([hidden]){display:contents}
+.hx-card-box{position:absolute;left:var(--p);bottom:var(--p);width:clamp(272px,24vw,364px);padding:20px 20px 0;background:var(--white);color:var(--ink);animation:riseIn .5s var(--ease-out) both}
+.hx-card-no{display:flex;justify-content:space-between;margin:0;font:500 11px/1 var(--font-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--grey-600)}
+.hx-card-no i{font-style:normal;color:var(--blue-600)}
+.hx-card-name{margin:clamp(24px,2.4vw,40px) 0 10px;font-family:var(--font-wide);font-weight:800;font-stretch:72%;font-size:clamp(32px,2.8vw,46px);line-height:.9;letter-spacing:0;text-transform:uppercase}
+.hx-card-line{margin:0 0 20px;font-size:14px;line-height:1.45;color:var(--grey-700);text-wrap:pretty}
+.hx-card-go{display:flex;justify-content:space-between;align-items:center;height:54px;margin:0 -20px;padding:0 20px;background:var(--ink);color:var(--white);font:600 12px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background var(--dur-fast) var(--ease-standard)}
+.hx-card-go:hover{background:var(--blue-600);color:var(--white)}
+.hx-card-go .arr{font-size:15px;transition:transform var(--dur-base) var(--ease-out)}
+.hx-card-go:hover .arr{transform:translate(2px,-2px)}
+.hx-tag{position:absolute;top:var(--p);left:var(--p);margin:0;padding:9px 12px;background:var(--white);color:var(--ink);font:500 11px/1 var(--font-mono);letter-spacing:.04em;text-transform:uppercase;animation:riseIn .5s var(--ease-out) .08s both}
+.hx-tag i{font-style:normal;color:var(--blue-600)}
 
-/* ── Paper bags = selected work ───────────────────────────────── */
-.street-bag{position:absolute;z-index:20;bottom:13%;height:21%;aspect-ratio:900/999;padding:0;border:0;background:none;font:inherit;color:var(--white);perspective:600px;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.street-bag-l{left:18.9%}
-.street-bag-r{left:70.4%}
-.street-bag img{position:absolute;inset:0;width:100%;height:100%;max-width:none;filter:brightness(.95) saturate(.95);transition:filter var(--dur-slow) var(--ease-out)}
-.street-bag>img:not(.street-bag-refl){transform-origin:50% 100%;transform:rotateY(var(--bry,0deg)) rotateX(var(--brx,0deg));transition:transform .7s var(--ease-out),filter var(--dur-slow) var(--ease-out)}
-.street-bag-l>img:not(.street-bag-refl){transform:rotateY(calc(var(--bry,0deg) * -1 + 4deg)) rotateX(var(--brx,0deg))}
-.street-bag:hover img,.street-bag:focus-visible img,.street-bag.is-on img{filter:brightness(1.04) saturate(1)}
-.street-bag::before{content:"";position:absolute;left:-6%;right:-6%;bottom:-3%;height:8%;background:radial-gradient(ellipse at center,rgba(0,0,0,.55),rgba(0,0,0,0) 70%);filter:blur(2px)}
-.street-bag .street-bag-refl{top:100%;bottom:auto;transform:scaleY(-1);transform-origin:center;opacity:.2;filter:brightness(.7) blur(1px);pointer-events:none;-webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.9),transparent 55%);mask-image:linear-gradient(to top,rgba(0,0,0,.9),transparent 55%)}
-.street-bag:focus-visible{outline-offset:.4em}
-.bag-cap{position:absolute;left:50%;top:calc(100% + .9em);transform:translateX(-50%);display:flex;gap:.8em;align-items:baseline;font-family:var(--font-wide);font-stretch:125%;font-size:1.05em;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;line-height:1;white-space:nowrap;color:rgba(255,255,255,.62);pointer-events:none;transition:color var(--dur-slow) var(--ease-out)}
-.bag-cap{font-size:1.1em}
-.bag-cap i{font-style:normal;letter-spacing:0;margin-left:-.3em}
-.street-bag:hover .bag-cap,.street-bag:focus-visible .bag-cap,.street-bag.is-on .bag-cap{color:var(--white)}
-.bag-cap b{font-family:var(--font-mono);font-weight:400;font-stretch:100%;letter-spacing:0;color:rgba(255,255,255,.45)}
-.bag-cap::after{content:"";position:absolute;left:0;right:0;bottom:-.6em;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform var(--dur-slow) var(--ease-out)}
-.street-bag:hover .bag-cap::after,.street-bag:focus-visible .bag-cap::after,.street-bag.is-on .bag-cap::after{transform:scaleX(1)}
+.hx-looks{position:absolute;right:var(--p);bottom:var(--p);padding:14px 14px 0;background:var(--white);color:var(--ink)}
+.hx-looks-l{margin:0 0 10px;font:500 10px/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--grey-600)}
+.hx-chips{display:flex;gap:6px}
+.hx-chip{width:44px;height:44px;padding:0;border:1px solid var(--ink);background:var(--white);color:var(--ink);font:500 13px/1 var(--font-mono);cursor:pointer;transition:background var(--dur-fast),color var(--dur-fast),border-color var(--dur-fast)}
+.hx-chip:hover{border-color:var(--blue-600);color:var(--blue-600)}
+.hx-chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.hx-prog{display:block;height:3px;margin:14px -14px 0;background:var(--grey-200)}
+.hx-prog i{display:block;height:100%;background:var(--blue-600);transform:scaleX(0);transform-origin:0 50%}
+.hx-prog i.run{animation:fillX 7s linear forwards}
+.hx-shop:hover .hx-prog i,.hx-shop:focus-within .hx-prog i,.hx-shop.is-away .hx-prog i{animation-play-state:paused}
+@keyframes fillX{to{transform:none}}
 
-/* Plain bags: a step further back (smaller, higher, a touch dimmer), behind the project bags */
-.street-bag-plain{z-index:19;height:17.5%;bottom:14.6%;pointer-events:none}
-.street-bag-plain img{filter:brightness(.9) saturate(.9)}
-.street-bag-pl{left:11.1%}
-.street-bag-pr{left:79.9%}
-.street-bag-pr>img:not(.street-bag-refl){transform:rotateY(-6deg)}
-.street-bag-pl>img:not(.street-bag-refl){transform:rotateY(6deg)}
-/* On squarer screens the outer pavement is cropped — show the plain bags only where they fit whole */
-@media (max-aspect-ratio:3/2){.m-zoom .street-bag-plain,.m-still .street-bag-plain{display:none}}
-/* Phones: big bags across the pavement — project bags at the ends, plain ones tucked behind
-   between them — standing on the kerb and stepping into the dark band below the photo */
-.m-stacked .street-bag{bottom:-4%;height:22%}
-.m-stacked .street-bag-l{left:29.2%}
-.m-stacked .street-bag-r{left:60%}
-.m-stacked .street-bag-plain{height:18%;bottom:-1.5%}
-.m-stacked .street-bag-pl{left:39.6%}
-.m-stacked .street-bag-pr{left:50.6%}
-.m-stacked .street-bag .street-bag-refl{display:none}
-.m-stacked .bag-cap{font-size:calc(10.5px * var(--inv,1));top:calc(100% + .7em);color:rgba(255,255,255,.78)}
-.m-stacked .bag-cap b{display:none}
+.hx-foot{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap);align-items:end;padding-top:clamp(40px,5vw,88px);padding-bottom:clamp(80px,9vw,144px)}
+.hx-lede{grid-column:1 / span 8;margin:0;max-width:30ch;font-family:var(--font-wide);font-weight:700;font-stretch:88%;font-size:clamp(22px,2.5vw,42px);line-height:1.04;letter-spacing:-.005em;text-transform:uppercase;text-wrap:balance}
+.hx-cta{grid-column:9 / -1;justify-self:end;display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-6)}
+.hx-cta .link{font-size:15px}
 
-/* Project preview dissolving into the shop window */
-.bag-zoom{position:fixed;z-index:60;overflow:hidden;pointer-events:none;opacity:0;transition:opacity 1.2s cubic-bezier(.45,0,.25,1)}
-.bag-zoom.open{opacity:1}
-.bag-zoom.fade{opacity:0;transition:opacity .8s var(--ease-out)}
-.bag-zoom img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:45% 20%}
-.bag-zoom img.pos-top{object-position:center top}
+/* A physical key: an ink block on a blue slab that lifts on hover and presses in */
+.key{--lift:4px;display:inline-flex;align-items:center;gap:1.4em;height:64px;padding:0 28px 0 30px;background:var(--ink);color:var(--white);font:600 14px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;box-shadow:var(--lift) var(--lift) 0 var(--blue-600);transform:translate(calc(4px - var(--lift)),calc(4px - var(--lift)));transition:transform var(--dur-fast) var(--ease-out),box-shadow var(--dur-fast) var(--ease-out)}
+.key:hover{--lift:7px;color:var(--white)}
+.key:active{--lift:0px}
+.key .arr{font-size:17px;transition:transform var(--dur-base) var(--ease-out)}
+.key:hover .arr{transform:translateX(4px)}
 
-/* ── The shop window / website ────────────────────────────────── */
-.screen{position:absolute;left:30.39%;top:21.02%;width:39.03%;height:58.48%;overflow:hidden;background:var(--white);container-type:size}
+/* Entrance: the sign goes up line by line, then the window lights */
+.hx-h .ln>span{transform:translateY(102%);animation:lineUp .8s var(--ease-out) forwards}
+.hx-h .ln-2>span{animation-delay:.07s}
+.hx-h .ln-3>span{animation-delay:.14s}
+.hx-h b{opacity:0;transform-origin:50% 100%;animation:slash .6s var(--ease-out) .55s forwards}
+.hx-sign{animation:fadeIn .5s var(--ease-out) both}
+.hx-shop{animation:riseIn .8s var(--ease-out) .25s both}
+
+@media (max-width:900px){
+  .hx-h{font-size:14.8vw;line-height:.84}
+  .hx-h .ln-2{padding-left:6%}
+  .hx-shop{padding:0 6px 6px}
+  .hx-fascia{height:38px;padding:0 4px;font-size:10px}
+  .hx-fascia img{height:10px}
+  .hx-win{--a:9cqw;--b:91cqw;--m:6px;height:auto;aspect-ratio:4 / 5;max-height:calc(100svh - var(--hdr) - 100px)}
+  .lk{object-position:var(--mpos)}
+  .hx-ui{--p:12px}
+  .hx-card-box{right:var(--p);width:auto;padding:16px 16px 0}
+  .hx-card-name{margin:18px 0 8px;font-size:32px}
+  .hx-card-line{margin-bottom:16px;font-size:13px}
+  .hx-card-go{height:50px;margin:0 -16px;padding:0 16px}
+  .hx-tag{display:none}
+  .hx-looks{top:var(--p);bottom:auto;padding:8px 8px 0}
+  .hx-looks-l{display:none}
+  .hx-chip{width:38px;height:38px;font-size:12px}
+  .hx-prog{margin:8px -8px 0}
+  .hx-foot{grid-template-columns:1fr;row-gap:var(--space-8)}
+  .hx-lede,.hx-cta{grid-column:auto}
+  .hx-lede{font-size:clamp(20px,5.4vw,30px)}
+  .hx-cta{justify-self:stretch;align-items:stretch}
+  .key{justify-content:space-between;height:60px}
+  .hx-cta .link{align-self:flex-start}
+}
+@media (min-width:601px) and (max-width:900px){.hx-win{aspect-ratio:4 / 3}}
+@media (max-width:600px){
+  .hx-sign .eyebrow{white-space:nowrap;font-size:11px;letter-spacing:.12em}
+  .hx-card-line{display:none}
+  .hx-card-name{margin-bottom:16px}
+}
+@media (hover:none){.hx-cur{display:none}.hx-win{cursor:auto}}
+
 /* Glass: the physical layer. As the visitor steps inside, it is wiped away along the angle of
    the DASIGNED slash, and a thin blue slash marks the edge where physical becomes digital.
    --g: 0 = shop glass, 1 = pure screen (scroll-driven in zoom mode, played once elsewhere). */
@@ -165,63 +204,6 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .glass-edge{position:absolute;inset:0;pointer-events:none;
   opacity:calc(min(var(--g), 1 - var(--g)) * 6);
   background:linear-gradient(115deg,transparent calc(var(--g) * 130% - 15.25%),var(--blue-600) calc(var(--g) * 130% - 15%),transparent calc(var(--g) * 130% - 14.75%))}
-.m-stacked .screen,.m-static .screen{animation:glassWipe 1.4s var(--ease-in-out) .45s both}
-@keyframes glassWipe{from{--g:0}to{--g:1}}
-
-/* Sizes are in container units, so the composition is identical at every
-   viewport; it's laid out at its final (zoomed-in) size and only ever scaled down. */
-.win{position:absolute;inset:0;display:flex;flex-direction:column;padding:3.6cqw 5.2cqw 6.4cqw;background:var(--white)}
-.win-eye{display:flex;align-items:center;gap:1.6cqw;margin:0;font-family:var(--font-wide);font-stretch:125%;font-weight:500;font-size:1.5cqw;letter-spacing:.2em;text-transform:uppercase;line-height:1;color:var(--ink)}
-.win-eye::after{content:"";flex:1;height:1px;background:var(--grey-200);transform-origin:left}
-.win-main{margin-block:auto}
-.win-h{display:flex;flex-direction:column;margin:0;font-family:var(--font-sans);font-weight:500;font-stretch:88%;font-size:12.6cqw;line-height:.9;letter-spacing:-.05em;color:var(--ink);text-wrap:initial}
-.win-in{padding-left:13.2cqw}
-.win-h b{display:inline-block;font-weight:300;color:var(--blue-600);margin-left:.12em}
-.win-lede{margin:3.8cqw 0 0;max-width:36ch;font-size:2cqw;line-height:1.45;letter-spacing:-.005em;color:var(--grey-700)}
-.win-cta{display:flex;align-items:center;gap:3.4cqw;margin-top:3.4cqw}
-.win-cta .btn{height:6.2cqw;padding:0 3.2cqw;font-size:1.85cqw;gap:1.4cqw}
-.win-cta .link{font-size:1.7cqw;font-weight:400;color:var(--grey-700);text-decoration-color:var(--grey-300)}
-.win-cta .link:hover{color:var(--ink);text-decoration-color:currentColor}
-
-/* Narrow windows (phones): same hierarchy, re-proportioned for a small screen */
-@container (max-width:600px){
-  .win{padding:5.6cqw 5.6cqw 6cqw}
-  .win-eye{font-size:max(2.8cqw,11px);gap:3cqw}
-  .win-h{font-size:14.4cqw;line-height:.88}
-  .win-in{padding-left:7.5cqw}
-  .win-lede{margin-top:4.4cqw;font-size:max(3.7cqw,14px);line-height:1.4;max-width:34ch}
-  .win-cta .btn{height:max(11cqw,40px);padding:0 5cqw;font-size:max(3.6cqw,13px)}
-  .win-cta .link{font-size:max(3.6cqw,13px)}
-}
-/* Portrait phones/tablets: the CTAs sit below the storefront at full tap size */
-/* Phones: the window shows the desktop composition in miniature (headline still reads);
-   the statement and CTAs move out beneath the storefront at full size. */
-.m-stacked .win-cta,.m-stacked .win-lede{display:none}
-.m-stacked .win-eye{font-size:3.2cqw;letter-spacing:.16em}
-.m-stacked .win-h{font-size:13.6cqw}
-
-/* Under the hero: CTA bar (stacked) and scroll cue (zoom) */
-.hero-below{display:none}
-.m-stacked .hero-below{position:absolute;left:0;right:0;margin-inline:auto;width:min(calc(100% - 2 * var(--gut)),560px);display:flex;flex-direction:column;gap:var(--space-6)}
-.hero-lede{margin:0;font-size:17px;line-height:1.5;color:rgba(255,255,255,.78);max-width:34ch}
-.hero-actions{display:grid;grid-template-columns:1.35fr 1fr;gap:var(--space-3)}
-.hero-actions .btn{height:52px;padding:0 12px}
-.hint{display:none}
-.m-zoom .hint{position:absolute;left:50%;bottom:var(--space-6);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:var(--space-3);font:var(--type-eyebrow);font-size:11px;font-stretch:125%;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:rgba(255,255,255,.7);pointer-events:none}
-.hint i{display:block;width:1px;height:28px;background:currentColor;opacity:.6;transform-origin:top;animation:rule .9s var(--ease-out) .9s both}
-
-/* ── Entrance: front-loaded — the copy is readable within ~0.6s ─ */
-.win-eye{opacity:0;animation:fadeIn .5s var(--ease-out) forwards}
-.win-eye::after{transform:scaleX(0);animation:rule 1s var(--ease-out) .1s forwards}
-.win-h .ln{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
-.win-h .ln>span{display:inline-block;transform:translateY(102%);animation:lineUp .7s var(--ease-out) forwards}
-.win-h .ln:nth-child(1)>span{animation-delay:0s}
-.win-h .ln:nth-child(2)>span{animation-delay:.06s}
-.win-h .ln:nth-child(3)>span{animation-delay:.12s}
-.win-h b{opacity:0;transform-origin:50% 100%;animation:slash .6s var(--ease-out) .45s forwards}
-.win-lede{opacity:0;animation:riseIn .6s var(--ease-out) .2s forwards}
-.win-cta{opacity:0;animation:riseIn .6s var(--ease-out) .28s forwards}
-.hero-below{opacity:0;animation:riseIn .6s var(--ease-out) .2s forwards}
 @keyframes fadeIn{to{opacity:1}}
 @keyframes rule{from{transform:scaleY(0) scaleX(0)}to{transform:none}}
 @keyframes lineUp{to{transform:none}}
@@ -533,13 +515,13 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 
 @media (prefers-reduced-motion:reduce){
   .nl>span,.hdr-cta,.hdr-cta span{transition:none!important}
-  .win-eye,.win-eye::after,.win-h .ln>span,.win-h b,.win-lede,.win-cta,.hero-below{animation:none;opacity:1;transform:none}
-  .hint i{animation:none}
-  .street-bag>img:not(.street-bag-refl){transition:none;transform:none}
+  .hx-h .ln>span,.hx-h b,.hx-sign,.hx-shop,.hx-card-box,.hx-tag{animation:none;opacity:1;transform:none}
+  .lk,.lk.on{transition:none;transform:none}
+  .hx-prog{display:none}
+  .key,.key .arr{transition:none}
   .btn .arr,.btn:hover .arr{transition:none;transform:none}
   .menu,.menu.open,.menu-links a{transition:none}
   .menu-links a{opacity:1;transform:none}
-  .screen{--g:1;animation:none!important}
   .idea-p .w{opacity:1;transition:none}
   .tile-win{--g:1;transition:none}
   .opener{--k:1!important}
@@ -547,5 +529,4 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
   .dir-win img,.dir-go .arr,.back .arr,.next-name .arr{transition:none!important;transform:none!important}
   .sign-link .arr,.jr-row .arr,.jr-go .arr{transition:none!important;transform:none!important}
   .foot-top .arr{transition:none!important;transform:none!important}
-  .bag-zoom,.bag-zoom.fade{transition-duration:.01s}
 }
