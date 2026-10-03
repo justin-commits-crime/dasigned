@@ -169,6 +169,20 @@
   document.addEventListener('click', closeZoom);
   })();
 
+  /* ── Header: each word rolls up into its heavier self; a blue rule reads the page ── */
+  document.querySelectorAll('.nav a').forEach(a => {
+    const t = a.textContent.trim();
+    a.innerHTML = `<span class="nl"><span class="nl-a">${t}</span><span class="nl-b" aria-hidden="true">${t}</span></span>`;
+  });
+  let readRaf = 0;
+  const read = () => {
+    readRaf = 0;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    header.style.setProperty('--read', max > 0 ? (scrollY / max).toFixed(4) : 0);
+  };
+  addEventListener('scroll', () => { if (!readRaf) readRaf = requestAnimationFrame(read); }, { passive: true });
+  read();
+
   /* ── Menu (small screens) ────────────────────────────────── */
   const menu = $('[data-menu]'), menuBtn = $('[data-menu-open]');
   menu.inert = true;
