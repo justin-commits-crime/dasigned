@@ -3,7 +3,7 @@
      The website is laid out at its final on-screen size; scrolling zooms the world about
      the window from ~66% up to exactly 100%, so the copy is legible and the CTAs live
      from the first frame, and nothing is ever upscaled.
-   - Paper bags turn slightly under the cursor; hover / focus / tap previews the project in the window,
+   - Paper bags turn slightly under the cursor; hover / focus / tap puts the project on display in the window,
      click (or a second tap) opens its page.
    - Shared by every page: menu, glass reveals, the window-to-browser opener, the nav marker.
    - The window glass wipes away along the slash angle as you zoom: physical → digital.
@@ -29,7 +29,7 @@
   let closeZoom = () => {};
   if (scroller) (() => {
   /* ── Layout + scroll zoom ────────────────────────────────── */
-  let mode = '', raf = 0, eNow = 0, jump = true, zoom = null, zoomKey = null, zoomTimer = 0;
+  let mode = '', raf = 0, eNow = 0, jump = true, zoom = null;
   function setMode(m) {
     if (m === mode) return;
     root.classList.remove('m-' + mode); root.classList.add('m-' + m); mode = m;
@@ -121,36 +121,19 @@
     bag.addEventListener('pointerleave', () => { bag.style.removeProperty('--bry'); bag.style.removeProperty('--brx'); });
   });
 
-  /* ── Bag → project dissolves into the shop window ────────── */
-  const previews = $('#bag-previews').content;
+  /* ── Bag → the window puts that storefront on display ────── */
   const bags = [...document.querySelectorAll('[data-bag]')];
+  const DISPLAY = { side: 'interiorem', chair: 'chair' };
+  let showKey = null;
   function openZoom(key) {
-    clearTimeout(zoomTimer);
     bags.forEach(b => b.classList.toggle('is-on', b.dataset.bag === key));
-    if (zoom && zoomKey === key) { zoom.classList.remove('fade'); zoom.classList.add('open'); return; }
-    if (zoom) zoom.remove();
-    zoom = document.createElement('div');
-    zoom.className = 'bag-zoom';
-    placeZoom();
-    zoom.appendChild(previews.querySelector(`[data-key="${key}"]`).cloneNode(true));
-    document.body.appendChild(zoom);
-    zoomKey = key;
-    requestAnimationFrame(() => requestAnimationFrame(() => zoom && zoom.classList.add('open')));
+    showKey = key; world.dataset.show = DISPLAY[key];
   }
-  function placeZoom() {                                     // sits exactly over the shop window
-    if (!zoom) return;
-    const r = screen.getBoundingClientRect(), pad = r.width * .012;
-    Object.assign(zoom.style, {
-      left: r.left - pad + 'px', top: r.top - pad + 'px',
-      width: r.width + pad * 2 + 'px', height: r.height + pad * 2 + 'px'
-    });
-  }
+  function placeZoom() {}
   closeZoom = function () {
-    if (!zoom) return;
+    if (!showKey) return;
     bags.forEach(b => b.classList.remove('is-on'));
-    zoom.classList.add('fade');
-    clearTimeout(zoomTimer);
-    zoomTimer = setTimeout(() => { if (zoom) zoom.remove(); zoom = null; zoomKey = null; }, 1200);
+    showKey = null; world.dataset.show = 'home';
   };
   bags.forEach(bag => {
     const key = bag.dataset.bag;
@@ -162,7 +145,7 @@
       // The bag is an entrance: mouse / keyboard select opens the project page;
       // on touch the first tap previews it in the window, the second walks in.
       e.stopPropagation();
-      const showing = zoom && zoomKey === key && !zoom.classList.contains('fade');
+      const showing = showKey === key;
       if (e.pointerType === 'touch' && !showing) openZoom(key); else { closeZoom(); location.href = bag.dataset.href; }
     });
   });
@@ -182,6 +165,44 @@
   };
   addEventListener('scroll', () => { if (!readRaf) readRaf = requestAnimationFrame(read); }, { passive: true });
   read();
+
+  /* ── The shopfront, recurring: Work, Services and the closing call change its display ── */
+  const sfWork = $('.sf-work'), rows = [...document.querySelectorAll('[data-display]')];
+  if (sfWork && rows.length) {
+    const pick = row => {
+      rows.forEach(r => r.classList.toggle('is-on', r === row));
+      sfWork.dataset.show = row.dataset.display; sfWork.href = row.href;
+    };
+    rows.forEach(r => { r.addEventListener('pointerenter', () => pick(r)); r.addEventListener('focus', () => pick(r)); });
+    pick(rows[0]);
+    // Touch: the shopfront is pinned; the storefront just passing beneath it is the one on display
+    if (!matchMedia('(hover: hover)').matches) {
+      let wRaf = 0;
+      const follow = () => {
+        wRaf = 0;
+        const line = sfWork.getBoundingClientRect().bottom + 140;
+        let cur = rows[0];
+        rows.forEach(r => { if (r.getBoundingClientRect().top < line) cur = r; });
+        if (!cur.classList.contains('is-on')) pick(cur);
+      };
+      addEventListener('scroll', () => { if (!wRaf) wRaf = requestAnimationFrame(follow); }, { passive: true });
+    }
+  }
+  const sfSvc = $('.sf-svc');
+  if (sfSvc) document.querySelectorAll('.svc > li').forEach((li, i) => {
+    const on = () => sfSvc.dataset.hl = i + 1, off = () => delete sfSvc.dataset.hl;
+    li.addEventListener('pointerenter', on); li.addEventListener('pointerleave', off);
+    li.addEventListener('focusin', on); li.addEventListener('focusout', off);
+  });
+  // Closing time: the window stands empty for a moment, then the question appears in it
+  document.querySelectorAll('[data-sf-empty]').forEach(sf => {
+    if (reduce || !('IntersectionObserver' in window)) { sf.classList.add('lit'); return; }
+    const io = new IntersectionObserver(([en]) => {
+      if (!en.isIntersecting) return;
+      io.disconnect(); setTimeout(() => sf.classList.add('lit'), 700);
+    }, { threshold: .55 });
+    io.observe(sf);
+  });
 
   /* ── Menu (small screens) ────────────────────────────────── */
   const menu = $('[data-menu]'), menuBtn = $('[data-menu-open]');

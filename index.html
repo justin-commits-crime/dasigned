@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="preload" as="image" href="assets/storefront-hero.jpg">
+<link rel="preload" as="image" href="assets/bag-white.webp">
 <link rel="stylesheet" href="styles/tokens.css">
 <link rel="stylesheet" href="styles/hero.css">
 <script src="scripts/hero.js" defer></script>
@@ -47,45 +47,45 @@
 </div>
 
 <main id="main">
-<!-- ── Hero: the physical storefront is the digital storefront ── -->
+<!-- ── Hero: the shopfront. The same storefront recurs through the page — its display changes for the
+     work (hover a project), the services, and the closing call (the footer). ── -->
 <section class="scroller" id="top" data-hero aria-labelledby="hero-title">
   <div class="stage" data-stage>
-    <div class="world" data-world>
-      <img class="world-photo" src="assets/storefront-hero.jpg" width="1678" height="937" alt="The Dasigned storefront: a modern shopfront whose window displays the studio's website">
-      <div class="upper-blur" aria-hidden="true"></div>
-      <div class="dim" aria-hidden="true"></div>
-      <div class="fascia" aria-hidden="true"><img src="assets/wordmark-white-longslash.png" alt=""></div>
+    <div class="world sf sf-hero" data-world data-show="home">
+      <!-- The shopfront: stone, a deep reveal, a metal frame. No sign — the window is the brand. -->
+      <div class="sf-wall" aria-hidden="true"></div><div class="sf-base" aria-hidden="true"></div><div class="sf-ground" aria-hidden="true"></div>
+      <div class="sf-reveal" aria-hidden="true"></div><div class="sf-sill" aria-hidden="true"></div>
 
-      <!-- The shop window: the website -->
-      <div class="screen" data-screen>
-        <div class="win">
-          <p class="win-eye"><span>Design &amp; E-commerce Studio</span></p>
-          <div class="win-main">
-            <h1 class="win-h" id="hero-title">
-              <span class="ln"><span>Storefronts</span></span>
-              <span class="ln win-in"><span>that refuse <b aria-hidden="true">/</b></span></span>
-              <span class="ln"><span>the template.</span></span>
-            </h1>
-            <p class="win-lede">We design and build narrative-driven storefronts for brands with something to say — and something to sell.</p>
-            <div class="win-cta">
-              <a class="btn btn-primary" href="contact.html">Start a project <span class="arr" aria-hidden="true">→</span></a>
-              <a class="link link-down" href="#work">See the work <span class="arr" aria-hidden="true">↓</span></a>
-            </div>
+      <!-- The window display: the website as oversized fragments of commerce -->
+      <div class="screen sf-win" data-screen>
+        <div class="win sf-d sf-d-home">
+          <img class="dsp-mark" src="assets/wordmark-white-longslash.png" width="2504" height="552" alt="Dasigned">
+          <h1 class="dsp-h win-h" id="hero-title">
+            <span class="ln"><span>Storefronts</span></span>
+            <span class="ln win-in"><span>that refuse <b aria-hidden="true">/</b></span></span>
+            <span class="ln"><span>the template.</span></span>
+          </h1>
+          <div class="dsp-obj" aria-hidden="true"><img src="assets/bag-white.webp" alt=""><i class="dsp-plinth"></i></div>
+          <div class="dsp-label">
+            <p class="dsp-k">Object 01</p>
+            <p class="dsp-p">$1,240</p>
+            <a class="dsp-go" href="#work">View storefront <span class="arr" aria-hidden="true">→</span></a>
           </div>
+        </div>
+        <div class="sf-d sf-d-interiorem" aria-hidden="true">
+          <p class="dsp-h dsp-h-one">Interiorem</p>
+          <div class="dsp-obj"><img src="assets/bag-sideboard.webp" alt=""><i class="dsp-plinth"></i></div>
+          <div class="dsp-label"><p class="dsp-k">Storefront 01 <i>/</i> Marketplace</p><p class="dsp-n">Parker-style sideboard</p><p class="dsp-p">$3,400</p><span class="dsp-go">View storefront <span class="arr">→</span></span></div>
+        </div>
+        <div class="sf-d sf-d-chair" aria-hidden="true">
+          <p class="dsp-h dsp-h-one">Chair Label</p>
+          <div class="dsp-obj"><img src="assets/bag-portrait.webp" alt=""><i class="dsp-plinth"></i></div>
+          <div class="dsp-label"><p class="dsp-k">Storefront 02 <i>/</i> Fashion</p><p class="dsp-n">Collection 01, Uniform</p><p class="dsp-p">Look 1/8</p><span class="dsp-go">View storefront <span class="arr">→</span></span></div>
         </div>
         <div class="glass" aria-hidden="true"></div><div class="glass-edge" aria-hidden="true"></div>
       </div>
 
-      <!-- Paper bags = the work. Hover / focus previews it in the window; click (or a second tap) walks to it. -->
-      <!-- Two plain bags, further back on the pavement: set dressing, not links -->
-      <div class="street-bag street-bag-plain street-bag-pl" aria-hidden="true">
-        <img src="assets/bag-white.webp" alt="">
-        <img class="street-bag-refl" src="assets/bag-white.webp" alt="">
-      </div>
-      <div class="street-bag street-bag-plain street-bag-pr" aria-hidden="true">
-        <img src="assets/bag-white.webp" alt="">
-        <img class="street-bag-refl" src="assets/bag-white.webp" alt="">
-      </div>
+      <!-- Paper bags = the work. Hover / focus puts it on display in the window; click (or a second tap) walks to it. -->
       <button class="street-bag street-bag-l" type="button" data-bag="side" aria-label="Storefront 01, Interiorem — preview in the window, select to open the project" data-href="work/interiorem.html">
         <img src="assets/bag-sideboard.webp" alt="">
         <img class="street-bag-refl" src="assets/bag-sideboard.webp" alt="">
@@ -118,32 +118,43 @@
       <h2 class="eyebrow" id="work-title">Selected work</h2>
       <code>02</code>
     </div>
+    <!-- The same shopfront: its display follows the storefront you hover (or scroll to, on touch). -->
     <div class="dir">
-      <a class="dir-item dir-1" href="work/interiorem.html">
-        <div class="tile-win dir-win" data-reveal-win>
-          <div class="chrome" aria-hidden="true"><i></i><span>interiorem — homepage</span></div>
-          <img src="assets/work-interiorem-home.webp" width="2200" height="1118" alt="" loading="lazy">
-          <span class="glass" aria-hidden="true"></span><span class="glass-edge" aria-hidden="true"></span>
-        </div>
-        <div class="dir-cap">
-          <span class="tile-no">Storefront <i>/</i> 01</span>
-          <h3 class="dir-name">Interiorem</h3>
-          <p class="dir-desc">A marketplace storefront for furniture with a previous life, listed by Melbourne dealers and collectors.</p>
-          <span class="dir-go">View storefront <span class="arr" aria-hidden="true">→</span></span>
-        </div>
-      </a>
-      <a class="dir-item dir-2" href="work/chair-label.html">
-        <div class="tile-win dir-win" data-reveal-win>
-          <img src="assets/work-chairlabel-portrait.webp" width="768" height="1365" alt="" loading="lazy">
-          <span class="glass" aria-hidden="true"></span><span class="glass-edge" aria-hidden="true"></span>
-        </div>
-        <div class="dir-cap">
-          <span class="tile-no">Storefront <i>/</i> 02</span>
-          <h3 class="dir-name">Chair Label</h3>
-          <p class="dir-desc">Collection 01, launched as a campaign you can shop.</p>
-          <span class="dir-go">View storefront <span class="arr" aria-hidden="true">→</span></span>
-        </div>
-      </a>
+      <div class="dir-stage">
+        <a class="sf sf-work" href="work/interiorem.html" data-sf data-show="interiorem" tabindex="-1" aria-hidden="true">
+          <div class="sf-wall"></div><div class="sf-base"></div><div class="sf-ground"></div><div class="sf-reveal"></div><div class="sf-sill"></div>
+          <div class="sf-win">
+            <div class="sf-d sf-d-interiorem">
+              <p class="dsp-h dsp-h-one">Interiorem</p>
+              <div class="dsp-obj"><img src="assets/bag-sideboard.webp" alt="" loading="lazy"><i class="dsp-plinth"></i></div>
+              <div class="dsp-label"><p class="dsp-k">Storefront 01 <i>/</i> Marketplace</p><p class="dsp-n">Parker-style sideboard</p><p class="dsp-p">$3,400</p><span class="dsp-go">View storefront <span class="arr">→</span></span></div>
+            </div>
+            <div class="sf-d sf-d-chair">
+              <p class="dsp-h dsp-h-one">Chair Label</p>
+              <div class="dsp-obj"><img src="assets/bag-portrait.webp" alt="" loading="lazy"><i class="dsp-plinth"></i></div>
+              <div class="dsp-label"><p class="dsp-k">Storefront 02 <i>/</i> Fashion</p><p class="dsp-n">Collection 01, Uniform</p><p class="dsp-p">Look 1/8</p><span class="dsp-go">View storefront <span class="arr">→</span></span></div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <ol class="dir-list">
+        <li>
+          <a class="dir-row" href="work/interiorem.html" data-display="interiorem">
+            <span class="tile-no">Storefront <i>/</i> 01</span>
+            <h3 class="dir-name">Interiorem</h3>
+            <p class="dir-desc">A marketplace storefront for furniture with a previous life, listed by Melbourne dealers and collectors.</p>
+            <span class="dir-go">View storefront <span class="arr" aria-hidden="true">→</span></span>
+          </a>
+        </li>
+        <li>
+          <a class="dir-row" href="work/chair-label.html" data-display="chair">
+            <span class="tile-no">Storefront <i>/</i> 02</span>
+            <h3 class="dir-name">Chair Label</h3>
+            <p class="dir-desc">Collection 01, launched as a campaign you can shop.</p>
+            <span class="dir-go">View storefront <span class="arr" aria-hidden="true">→</span></span>
+          </a>
+        </li>
+      </ol>
     </div>
   </div>
 
@@ -163,6 +174,15 @@
     <div class="sign-row">
       <h2 class="eyebrow">Services</h2>
       <code>04</code>
+    </div>
+    <!-- The same shopfront: the display becomes the four services; hovering a service lights its word. -->
+    <div class="sf sf-svc" data-sf data-show="services" aria-hidden="true">
+      <div class="sf-wall"></div><div class="sf-base"></div><div class="sf-ground"></div><div class="sf-reveal"></div><div class="sf-sill"></div>
+      <div class="sf-win">
+        <div class="sf-d sf-d-services">
+          <p class="dsp-svc"><span>Brand <b>/</b></span><span>Storefront <b>/</b></span><span>Commerce <b>/</b></span><span>Growth</span></p>
+        </div>
+      </div>
     </div>
     <ul class="svc">
       <li>
@@ -219,9 +239,17 @@
 
 <footer class="foot" aria-labelledby="foot-title">
   <div class="foot-in">
+    <!-- Closing time: the same shopfront, its window emptied — then the question appears in it -->
     <div class="foot-cta">
-      <h2 class="foot-h" id="foot-title">Something to say — and something to sell?</h2>
-      <a class="btn btn-light" href="contact.html">Start a project <span class="arr" aria-hidden="true">→</span></a>
+      <div class="sf sf-foot" data-sf data-show="empty" data-sf-empty>
+        <div aria-hidden="true"><div class="sf-wall"></div><div class="sf-base"></div><div class="sf-ground"></div><div class="sf-reveal"></div><div class="sf-sill"></div></div>
+        <div class="sf-win">
+          <div class="sf-d sf-d-empty">
+            <h2 class="dsp-q" id="foot-title"><span>Something to say —</span> <span>something to sell?</span></h2>
+          </div>
+        </div>
+      </div>
+      <a class="key" href="contact.html">Start a project <span class="arr" aria-hidden="true">→</span></a>
     </div>
     <nav class="foot-cols" aria-label="Footer">
       <div>
@@ -269,10 +297,6 @@
   </div>
 </footer>
 
-<!-- Project previews dissolved into the shop window while a bag is hovered -->
-<template id="bag-previews">
-  <img data-key="side" class="pos-top" src="assets/interiorem-window.jpg" alt="">
-  <img data-key="chair" src="assets/chair-label-campaign.jpg" alt="">
-</template>
+
 </body>
 </html>

@@ -90,20 +90,74 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--ink)}
 .world{position:absolute;left:0;top:0;transform-origin:0 0}
 .m-zoom .world{will-change:transform}
-.world-photo{display:block;width:100%;height:100%;max-width:none;user-select:none}
+/* ── The shopfront: the recurring device ─────────────────────────
+   One architectural elevation, seen straight on: board-marked concrete, a deep reveal, a thin metal
+   frame, a stone sill, the pavement. No sign — the window is the brand. Its display changes with
+   context (data-show): the site (home), a project (interiorem / chair), the services, or empty.
+   Geometry: --x/--y/--w/--h place the window (% of the elevation), --gl is the pavement line,
+   --d the depth of the reveal. Units inside are container units, so it works at any size. */
+.sf{--x:12%;--y:13%;--w:76%;--h:67%;--gl:89%;--d:1.3cqw;container-type:size;background:#ECE9E4}
+.sf-wall{position:absolute;inset:0;background:#ECE9E4 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60'%3E%3Cpath d='M119.5 0V60M0 59.5H120' stroke='%23CFCAC2' stroke-width='1.6' fill='none'/%3E%3Cg fill='%23C8C3BA'%3E%3Ccircle cx='20' cy='15' r='1.9'/%3E%3Ccircle cx='60' cy='15' r='1.9'/%3E%3Ccircle cx='100' cy='15' r='1.9'/%3E%3Ccircle cx='20' cy='45' r='1.9'/%3E%3Ccircle cx='60' cy='45' r='1.9'/%3E%3Ccircle cx='100' cy='45' r='1.9'/%3E%3C/g%3E%3C/svg%3E") 0 0/9cqw 4.5cqw}
+.sf-base{position:absolute;left:0;right:0;top:calc(var(--gl) - 1.5cqw);height:1.5cqw;background:#DBD7D0;border-top:1px solid #CFCBC3}
+.sf-ground{position:absolute;left:0;right:0;top:var(--gl);bottom:0;background:#D2CFC8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10' preserveAspectRatio='none'%3E%3Cpath d='M59.5 0V10' stroke='%23C3BFB7' stroke-width='1' vector-effect='non-scaling-stroke' fill='none'/%3E%3C/svg%3E") 0 0/7cqw 100%;border-top:.3cqw solid #BEBAB2}
+.sf-reveal{position:absolute;box-sizing:border-box;left:calc(var(--x) - var(--d));top:calc(var(--y) - var(--d));width:calc(var(--w) + 2 * var(--d));height:calc(var(--h) + 2 * var(--d));border:var(--d) solid;border-color:#B3AFA7 #CDC9C1 #EDEAE5 #CDC9C1}
+.sf-sill{position:absolute;left:calc(var(--x) - 2 * var(--d));width:calc(var(--w) + 4 * var(--d));top:calc(var(--y) + var(--h) + var(--d));height:calc(var(--d) * 1.1);background:#F3F1ED;box-shadow:0 .35cqw 0 #C6C2BA,0 .9cqw 1.2cqw rgba(0,0,0,.07)}
+.sf-win{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);overflow:hidden;background:#F6F5F2;container-type:size;box-shadow:0 0 0 .42cqw #2A2A2C}
+.sf-win::before{content:"";position:absolute;left:0;right:0;bottom:0;height:17%;background:#EBE8E2;border-top:1px solid #DEDAD3}
+.sf-win::after{content:"";position:absolute;inset:0;z-index:6;pointer-events:none;box-shadow:inset 0 3.5cqh 3cqh -2.5cqh rgba(0,0,0,.16)}
 
-.m-stacked .upper-blur,.m-static .upper-blur{display:none}
-.upper-blur{position:absolute;left:30.3%;width:39.4%;top:0;height:4.8%;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);pointer-events:none}
+/* Displays: one shows at a time */
+.sf-d{position:absolute;inset:0;z-index:1;opacity:0;visibility:hidden;transition:opacity .7s var(--ease-out),visibility 0s linear .7s}
+.sf[data-show="home"] .sf-d-home,.sf[data-show="interiorem"] .sf-d-interiorem,.sf[data-show="chair"] .sf-d-chair,
+.sf[data-show="services"] .sf-d-services,.sf[data-show="empty"] .sf-d-empty{opacity:1;visibility:visible;transition:opacity .7s var(--ease-out)}
+.dsp-mark{position:absolute;left:5.5cqw;top:6cqh;width:15cqw;height:auto;max-width:none;filter:invert(1)}
+.dsp-h{position:absolute;left:5.5cqw;top:17cqh;margin:0;display:flex;flex-direction:column;font-family:var(--font-sans);font-weight:600;font-stretch:76%;font-size:min(8.8cqw,14cqh);line-height:.88;letter-spacing:-.03em;text-transform:uppercase;color:var(--ink);text-wrap:initial;white-space:nowrap}
+.dsp-h .win-in{padding-left:6cqw}
+.dsp-h b{display:inline-block;font-weight:300;color:var(--blue-600);margin-left:.08em}
+.dsp-h-one{top:9cqh;font-size:min(11.5cqw,19cqh)}
+.dsp-obj{position:absolute;z-index:-1;right:4cqw;bottom:9cqh;width:30cqw;height:56cqh}
+.dsp-obj img{position:absolute;left:50%;bottom:10.6cqh;height:40cqh;width:auto;max-width:none;transform:translateX(-50%);filter:drop-shadow(0 .8cqh 1cqh rgba(0,0,0,.14))}
+.dsp-plinth{position:absolute;left:8%;right:8%;bottom:0;height:12cqh;background:#DCD8D1;border-top:1.2cqh solid #EFEDE8;box-shadow:inset -1.6cqw 0 0 #CFCAC2,0 .5cqh 0 #C4BFB7}
+.dsp-label{position:absolute;left:5.5cqw;bottom:9cqh}
+.dsp-label p{margin:0}
+.dsp-k{font:500 1.5cqw/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--grey-600)}
+.dsp-k i{font-style:normal;color:var(--blue-600)}
+.dsp-n{margin-top:1.4cqh!important;font-size:2.1cqw;font-weight:500;letter-spacing:-.01em;color:var(--ink)}
+.dsp-p{margin-top:.8cqh!important;font:600 6cqw/1 var(--font-sans);font-stretch:76%;letter-spacing:-.02em;color:var(--ink)}
+.dsp-go{display:inline-flex;align-items:center;gap:1.2cqw;margin-top:3cqh;padding-bottom:.9cqh;border-bottom:.22cqw solid currentColor;font:600 1.5cqw/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink);text-decoration:none;transition:color var(--dur-fast)}
+a.dsp-go:hover{color:var(--blue-600)}
+.dsp-go .arr{display:inline-block;transition:transform var(--dur-slow) var(--ease-out)}
+a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
+.dsp-svc{position:absolute;left:5.5cqw;right:5.5cqw;top:50%;transform:translateY(-55%);margin:0;display:flex;flex-wrap:wrap;column-gap:.35em;font-family:var(--font-sans);font-weight:600;font-stretch:76%;font-size:min(7.4cqw,21cqh);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;color:var(--ink)}
+.dsp-svc span{transition:opacity var(--dur-slow) var(--ease-out)}
+.dsp-svc b{font-weight:300;color:var(--blue-600)}
+.sf[data-hl] .dsp-svc span{opacity:.16}
+.sf[data-hl="1"] .dsp-svc span:nth-child(1),.sf[data-hl="2"] .dsp-svc span:nth-child(2),
+.sf[data-hl="3"] .dsp-svc span:nth-child(3),.sf[data-hl="4"] .dsp-svc span:nth-child(4){opacity:1}
+.dsp-q{position:absolute;left:6cqw;right:6cqw;bottom:24cqh;margin:0;display:flex;flex-direction:column;font-family:var(--font-sans);font-weight:600;font-stretch:76%;font-size:min(8cqw,15cqh);line-height:.92;letter-spacing:-.03em;text-transform:uppercase;color:var(--ink)}
+.dsp-q span{display:block;opacity:0;transform:translateY(.25em);transition:opacity 1s var(--ease-out),transform 1s var(--ease-out)}
+.dsp-q span+span{transition-delay:.18s}
+.sf.lit .dsp-q span{opacity:1;transform:none}
+/* Small windows: the fragments keep a readable size */
+@container (max-width:520px){
+  .dsp-k{font-size:2.6cqw}
+  .dsp-n{display:none}
+  .dsp-p{font-size:8cqw}
+  .dsp-go{font-size:2.6cqw;gap:2cqw}
+  .dsp-label{left:6cqw}
+}
 
-/* Shop sign: lettering mounted straight onto the charcoal fascia */
-.fascia{position:absolute;left:49.91%;top:16.6%;height:4.1%;transform:translate(-50%,-50%);pointer-events:none}
-.fascia img{display:block;height:100%;width:auto;max-width:none;filter:drop-shadow(0 0 .3em rgba(255,255,255,.3))}
+/* Standalone shopfronts (work, services, footer) */
+.sf-work,.sf-svc,.sf-foot{position:relative;display:block;width:100%;aspect-ratio:var(--ar);overflow:hidden;color:inherit;text-decoration:none}
+.sf-work,.sf-foot{--ar:16/11}
+.sf-svc{--ar:21/8;--x:8%;--y:15%;--w:84%;--h:62%;--gl:88%;--d:.9cqw}
+@media (max-width:600px){
+  .sf-work,.sf-foot{--ar:16/12;--x:8%;--y:11%;--w:84%;--h:70%;--gl:90%}
+  .sf-svc{--ar:4/4;--x:9%;--y:11%;--w:82%;--h:70%;--gl:90%;--d:1.6cqw}
+}
 
-/* Dusk: everything outside the shop window steps back, so the lit window is the one focal point.
-   A box the size of the window throws a soft light spill, then a dark wash over the rest. */
-.dim{position:absolute;inset:0;pointer-events:none;background:rgba(10,10,12,.46);
-  clip-path:polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0,30.39% 21.02%,69.42% 21.02%,69.42% 79.5%,30.39% 79.5%,30.39% 21.02%)}
-/* (a cheap overlay with a window-shaped hole — a huge box-shadow here made mobile browsers flicker) */
+/* The hero world is the same shopfront, at the proportions of the original elevation */
+.sf-hero{--x:30.39%;--y:21.02%;--w:39.03%;--h:58.48%;--gl:87%;--d:1.1cqw}
 
 /* ── Paper bags = selected work ───────────────────────────────── */
 .street-bag{position:absolute;z-index:20;bottom:13%;height:21%;aspect-ratio:900/999;padding:0;border:0;background:none;font:inherit;color:var(--white);perspective:600px;cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -113,47 +167,27 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .street-bag>img:not(.street-bag-refl){transform-origin:50% 100%;transform:rotateY(var(--bry,0deg)) rotateX(var(--brx,0deg));transition:transform .7s var(--ease-out),filter var(--dur-slow) var(--ease-out)}
 .street-bag-l>img:not(.street-bag-refl){transform:rotateY(calc(var(--bry,0deg) * -1 + 4deg)) rotateX(var(--brx,0deg))}
 .street-bag:hover img,.street-bag:focus-visible img,.street-bag.is-on img{filter:brightness(1.04) saturate(1)}
-.street-bag::before{content:"";position:absolute;left:-6%;right:-6%;bottom:-3%;height:8%;background:radial-gradient(ellipse at center,rgba(0,0,0,.55),rgba(0,0,0,0) 70%);filter:blur(2px)}
+.street-bag::before{content:"";position:absolute;left:-6%;right:-6%;bottom:-3%;height:8%;background:radial-gradient(ellipse at center,rgba(0,0,0,.22),rgba(0,0,0,0) 70%);filter:blur(2px)}
+.street-bag .street-bag-refl{display:none}
 .street-bag .street-bag-refl{top:100%;bottom:auto;transform:scaleY(-1);transform-origin:center;opacity:.2;filter:brightness(.7) blur(1px);pointer-events:none;-webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.9),transparent 55%);mask-image:linear-gradient(to top,rgba(0,0,0,.9),transparent 55%)}
 .street-bag:focus-visible{outline-offset:.4em}
-.bag-cap{position:absolute;left:50%;top:calc(100% + .9em);transform:translateX(-50%);display:flex;gap:.8em;align-items:baseline;font-family:var(--font-wide);font-stretch:125%;font-size:1.05em;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;line-height:1;white-space:nowrap;color:rgba(255,255,255,.62);pointer-events:none;transition:color var(--dur-slow) var(--ease-out)}
+.bag-cap{position:absolute;left:50%;top:calc(100% + .9em);transform:translateX(-50%);display:flex;gap:.8em;align-items:baseline;font-family:var(--font-wide);font-stretch:125%;font-size:1.05em;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;line-height:1;white-space:nowrap;color:rgba(17,17,19,.62);pointer-events:none;transition:color var(--dur-slow) var(--ease-out)}
 .bag-cap{font-size:1.1em}
 .bag-cap i{font-style:normal;letter-spacing:0;margin-left:-.3em}
-.street-bag:hover .bag-cap,.street-bag:focus-visible .bag-cap,.street-bag.is-on .bag-cap{color:var(--white)}
-.bag-cap b{font-family:var(--font-mono);font-weight:400;font-stretch:100%;letter-spacing:0;color:rgba(255,255,255,.45)}
+.street-bag:hover .bag-cap,.street-bag:focus-visible .bag-cap,.street-bag.is-on .bag-cap{color:var(--ink)}
+.bag-cap b{font-family:var(--font-mono);font-weight:400;font-stretch:100%;letter-spacing:0;color:rgba(17,17,19,.4)}
 .bag-cap::after{content:"";position:absolute;left:0;right:0;bottom:-.6em;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform var(--dur-slow) var(--ease-out)}
 .street-bag:hover .bag-cap::after,.street-bag:focus-visible .bag-cap::after,.street-bag.is-on .bag-cap::after{transform:scaleX(1)}
 
-/* Plain bags: a step further back (smaller, higher, a touch dimmer), behind the project bags */
-.street-bag-plain{z-index:19;height:17.5%;bottom:14.6%;pointer-events:none}
-.street-bag-plain img{filter:brightness(.9) saturate(.9)}
-.street-bag-pl{left:11.1%}
-.street-bag-pr{left:79.9%}
-.street-bag-pr>img:not(.street-bag-refl){transform:rotateY(-6deg)}
-.street-bag-pl>img:not(.street-bag-refl){transform:rotateY(6deg)}
-/* On squarer screens the outer pavement is cropped — show the plain bags only where they fit whole */
-@media (max-aspect-ratio:3/2){.m-zoom .street-bag-plain,.m-still .street-bag-plain{display:none}}
-/* Phones: big bags across the pavement — project bags at the ends, plain ones tucked behind
-   between them — standing on the kerb and stepping into the dark band below the photo */
+/* Phones: big bags standing on the kerb, stepping into the dark band below the shopfront */
 .m-stacked .street-bag{bottom:-4%;height:22%}
-.m-stacked .street-bag-l{left:29.2%}
-.m-stacked .street-bag-r{left:60%}
-.m-stacked .street-bag-plain{height:18%;bottom:-1.5%}
-.m-stacked .street-bag-pl{left:39.6%}
-.m-stacked .street-bag-pr{left:50.6%}
+.m-stacked .street-bag-l{left:31.5%}
+.m-stacked .street-bag-r{left:57.6%}
 .m-stacked .street-bag .street-bag-refl{display:none}
 .m-stacked .bag-cap{font-size:calc(10.5px * var(--inv,1));top:calc(100% + .7em);color:rgba(255,255,255,.78)}
 .m-stacked .bag-cap b{display:none}
 
-/* Project preview dissolving into the shop window */
-.bag-zoom{position:fixed;z-index:60;overflow:hidden;pointer-events:none;opacity:0;transition:opacity 1.2s cubic-bezier(.45,0,.25,1)}
-.bag-zoom.open{opacity:1}
-.bag-zoom.fade{opacity:0;transition:opacity .8s var(--ease-out)}
-.bag-zoom img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:45% 20%}
-.bag-zoom img.pos-top{object-position:center top}
-
 /* ── The shop window / website ────────────────────────────────── */
-.screen{position:absolute;left:30.39%;top:21.02%;width:39.03%;height:58.48%;overflow:hidden;background:var(--white);container-type:size}
 /* Glass: the physical layer. As the visitor steps inside, it is wiped away along the angle of
    the DASIGNED slash, and a thin blue slash marks the edge where physical becomes digital.
    --g: 0 = shop glass, 1 = pure screen (scroll-driven in zoom mode, played once elsewhere). */
@@ -168,38 +202,6 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .m-stacked .screen,.m-static .screen{animation:glassWipe 1.4s var(--ease-in-out) .45s both}
 @keyframes glassWipe{from{--g:0}to{--g:1}}
 
-/* Sizes are in container units, so the composition is identical at every
-   viewport; it's laid out at its final (zoomed-in) size and only ever scaled down. */
-.win{position:absolute;inset:0;display:flex;flex-direction:column;padding:3.6cqw 5.2cqw 6.4cqw;background:var(--white)}
-.win-eye{display:flex;align-items:center;gap:1.6cqw;margin:0;font-family:var(--font-wide);font-stretch:125%;font-weight:500;font-size:1.5cqw;letter-spacing:.2em;text-transform:uppercase;line-height:1;color:var(--ink)}
-.win-eye::after{content:"";flex:1;height:1px;background:var(--grey-200);transform-origin:left}
-.win-main{margin-block:auto}
-.win-h{display:flex;flex-direction:column;margin:0;font-family:var(--font-sans);font-weight:500;font-stretch:88%;font-size:12.6cqw;line-height:.9;letter-spacing:-.05em;color:var(--ink);text-wrap:initial}
-.win-in{padding-left:13.2cqw}
-.win-h b{display:inline-block;font-weight:300;color:var(--blue-600);margin-left:.12em}
-.win-lede{margin:3.8cqw 0 0;max-width:36ch;font-size:2cqw;line-height:1.45;letter-spacing:-.005em;color:var(--grey-700)}
-.win-cta{display:flex;align-items:center;gap:3.4cqw;margin-top:3.4cqw}
-.win-cta .btn{height:6.2cqw;padding:0 3.2cqw;font-size:1.85cqw;gap:1.4cqw}
-.win-cta .link{font-size:1.7cqw;font-weight:400;color:var(--grey-700);text-decoration-color:var(--grey-300)}
-.win-cta .link:hover{color:var(--ink);text-decoration-color:currentColor}
-
-/* Narrow windows (phones): same hierarchy, re-proportioned for a small screen */
-@container (max-width:600px){
-  .win{padding:5.6cqw 5.6cqw 6cqw}
-  .win-eye{font-size:max(2.8cqw,11px);gap:3cqw}
-  .win-h{font-size:14.4cqw;line-height:.88}
-  .win-in{padding-left:7.5cqw}
-  .win-lede{margin-top:4.4cqw;font-size:max(3.7cqw,14px);line-height:1.4;max-width:34ch}
-  .win-cta .btn{height:max(11cqw,40px);padding:0 5cqw;font-size:max(3.6cqw,13px)}
-  .win-cta .link{font-size:max(3.6cqw,13px)}
-}
-/* Portrait phones/tablets: the CTAs sit below the storefront at full tap size */
-/* Phones: the window shows the desktop composition in miniature (headline still reads);
-   the statement and CTAs move out beneath the storefront at full size. */
-.m-stacked .win-cta,.m-stacked .win-lede{display:none}
-.m-stacked .win-eye{font-size:3.2cqw;letter-spacing:.16em}
-.m-stacked .win-h{font-size:13.6cqw}
-
 /* Under the hero: CTA bar (stacked) and scroll cue (zoom) */
 .hero-below{display:none}
 .m-stacked .hero-below{position:absolute;left:0;right:0;margin-inline:auto;width:min(calc(100% - 2 * var(--gut)),560px);display:flex;flex-direction:column;gap:var(--space-6)}
@@ -207,20 +209,17 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .hero-actions{display:grid;grid-template-columns:1.35fr 1fr;gap:var(--space-3)}
 .hero-actions .btn{height:52px;padding:0 12px}
 .hint{display:none}
-.m-zoom .hint{position:absolute;left:50%;bottom:var(--space-6);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:var(--space-3);font:var(--type-eyebrow);font-size:11px;font-stretch:125%;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:rgba(255,255,255,.7);pointer-events:none}
+.m-zoom .hint{position:absolute;z-index:30;left:50%;bottom:var(--space-6);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:var(--space-3);font:var(--type-eyebrow);font-size:11px;font-stretch:125%;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:rgba(17,17,19,.6);pointer-events:none}
 .hint i{display:block;width:1px;height:28px;background:currentColor;opacity:.6;transform-origin:top;animation:rule .9s var(--ease-out) .9s both}
 
 /* ── Entrance: front-loaded — the copy is readable within ~0.6s ─ */
-.win-eye{opacity:0;animation:fadeIn .5s var(--ease-out) forwards}
-.win-eye::after{transform:scaleX(0);animation:rule 1s var(--ease-out) .1s forwards}
 .win-h .ln{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.dsp-label,.dsp-mark,.sf-hero .dsp-obj{opacity:0;animation:riseIn .7s var(--ease-out) .3s forwards}
 .win-h .ln>span{display:inline-block;transform:translateY(102%);animation:lineUp .7s var(--ease-out) forwards}
 .win-h .ln:nth-child(1)>span{animation-delay:0s}
 .win-h .ln:nth-child(2)>span{animation-delay:.06s}
 .win-h .ln:nth-child(3)>span{animation-delay:.12s}
 .win-h b{opacity:0;transform-origin:50% 100%;animation:slash .6s var(--ease-out) .45s forwards}
-.win-lede{opacity:0;animation:riseIn .6s var(--ease-out) .2s forwards}
-.win-cta{opacity:0;animation:riseIn .6s var(--ease-out) .28s forwards}
 .hero-below{opacity:0;animation:riseIn .6s var(--ease-out) .2s forwards}
 @keyframes fadeIn{to{opacity:1}}
 @keyframes rule{from{transform:scaleY(0) scaleX(0)}to{transform:none}}
@@ -247,6 +246,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 /* Services: a shelf of three */
 .services{margin-top:clamp(72px,9vw,128px)}
 .services .sign-row{margin-bottom:0}
+.sf-svc{margin:var(--grid-gap) 0 var(--space-4)}
 .svc{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(4,auto)}
 /* each service spans the four rows (index, name, description, tags) so they line up across columns */
 .svc>li{display:grid;grid-row:span 4;grid-template-rows:subgrid;align-content:start;padding:var(--space-6) var(--space-6) var(--space-10) 0;border-right:var(--rule-thin)}
@@ -314,23 +314,19 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 
 /* Directory (home): one window + one line per storefront; the whole entry is the link */
 .dir{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap);margin-top:clamp(48px,6vw,96px);align-items:start}
-.dir-item{display:flex;flex-direction:column;gap:var(--space-6);color:var(--white);text-decoration:none}
-.dir-item:hover{color:var(--white)}
-.dir-1{grid-column:1 / span 7}
-.dir-2{grid-column:9 / -1;margin-top:clamp(96px,14vw,220px)}
-.dir-1 .dir-win{aspect-ratio:16/10}
-.dir-1 .dir-win img{position:absolute;top:36px;height:calc(100% - 36px);object-position:left top;transform-origin:left top}
-.dir-2 .dir-win{aspect-ratio:4/5}
-.dir-win img{transition:transform 1.2s var(--ease-out)}
-.dir-item:hover .dir-win img,.dir-item:focus-visible .dir-win img{transform:scale(1.025)}
-.dir-cap{display:flex;flex-direction:column;gap:var(--space-3)}
+.dir-stage{grid-column:1 / span 7;position:sticky;top:calc(var(--hdr) + 32px)}
+.dir-list{grid-column:9 / -1;list-style:none;margin:0;padding:0}
+.dir-row{display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-10) 0;border-top:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.5);text-decoration:none;transition:color var(--dur-base) var(--ease-out)}
+.dir-list li:last-child .dir-row{border-bottom:1px solid rgba(255,255,255,.18)}
+.dir-row:hover,.dir-row:focus-visible,.dir-row.is-on{color:var(--white)}
+.dir-row .dir-desc{color:inherit}
 .dir-name{margin:var(--space-1) 0 0;font-size:clamp(36px,4.4vw,68px);font-weight:500;font-stretch:88%;line-height:.95;letter-spacing:-.04em}
 .dir-desc{margin:0;max-width:36ch;font-size:16px;line-height:1.5;color:rgba(255,255,255,.7)}
-.dir-go{display:inline-flex;gap:.6em;align-items:center;margin-top:var(--space-2);font-size:15px;font-weight:500;color:var(--white)}
+.dir-go{display:inline-flex;gap:.6em;align-items:center;margin-top:var(--space-2);font-size:15px;font-weight:500}
 .dir-go .arr{display:inline-block;transition:transform var(--dur-slow) var(--ease-out)}
-.dir-item:hover .dir-go .arr,.dir-item:focus-visible .dir-go .arr{transform:translateX(.3em)}
-.dir-item:hover .tile-no{color:var(--white)}
-.dir-item:focus-visible{outline-offset:8px}
+.dir-row:hover .dir-go .arr,.dir-row:focus-visible .dir-go .arr{transform:translateX(.3em)}
+.dir-row:hover .tile-no,.dir-row.is-on .tile-no{color:var(--white)}
+.dir-row:focus-visible{outline-offset:8px}
 
 /* Project pages */
 .proj-page{padding-top:calc(var(--hdr) + clamp(32px,4vw,56px))}
@@ -403,6 +399,12 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .foot{background:var(--ink);color:var(--white);overflow:hidden}
 .foot-in{max-width:1536px;margin:0 auto;padding:clamp(80px,10vw,144px) var(--gut) 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap);row-gap:var(--space-16)}
 .foot-cta{grid-column:1 / span 6;display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-8)}
+/* A physical key: a white block on a blue slab that lifts on hover and presses in */
+.key{--lift:4px;display:inline-flex;align-items:center;gap:1.4em;height:60px;padding:0 26px 0 28px;background:var(--white);color:var(--ink);font:600 13px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;box-shadow:var(--lift) var(--lift) 0 var(--blue-600);transform:translate(calc(4px - var(--lift)),calc(4px - var(--lift)));transition:transform var(--dur-fast) var(--ease-out),box-shadow var(--dur-fast) var(--ease-out)}
+.key:hover{--lift:7px;color:var(--ink)}
+.key:active{--lift:0px}
+.key .arr{font-size:16px;transition:transform var(--dur-base) var(--ease-out)}
+.key:hover .arr{transform:translateX(4px)}
 .foot-h{margin:0;font-size:clamp(32px,3.6vw,56px);font-weight:500;font-stretch:88%;line-height:1;letter-spacing:-.04em;max-width:14em;color:var(--white)}
 .foot-cols{grid-column:8 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--grid-gap)}
 .foot-cols h3{margin:0 0 var(--space-5);font:var(--type-eyebrow);font-stretch:125%;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:rgba(255,255,255,.5)}
@@ -495,15 +497,15 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
   .detail-object{grid-column:5 / -1;margin-top:var(--space-10)}
   .proj-details .detail-portrait{grid-column:1 / span 8}
   .detail-object-r{grid-column:5 / -1;margin-top:var(--space-10)}
-  .dir-1,.dir-2{grid-column:1 / -1}
-  .dir-2{margin-top:var(--space-16);width:78%}
+  .dir-stage{grid-column:1 / -1;z-index:2;top:calc(var(--hdr) + 12px);padding-bottom:12px;background:var(--ink)}
+  .dir-list{grid-column:1 / -1;margin-top:var(--space-6)}
   .work-end{flex-direction:column;align-items:flex-start}
 }
 @media (max-width:600px){
   .section{padding-top:72px;padding-bottom:72px}
   .work{padding:64px 0 72px}
   .dir{margin-top:40px}
-  .dir-2{margin-top:var(--space-12);width:82%}
+  .dir-row{padding:var(--space-8) 0}
   .work-end{margin-top:72px}
   .opener{margin-top:40px}
   .proj-details{margin-top:48px}
@@ -532,8 +534,9 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 }
 
 @media (prefers-reduced-motion:reduce){
-  .nl>span,.hdr-cta,.hdr-cta span{transition:none!important}
-  .win-eye,.win-eye::after,.win-h .ln>span,.win-h b,.win-lede,.win-cta,.hero-below{animation:none;opacity:1;transform:none}
+  .nl>span,.hdr-cta,.hdr-cta span,.key,.key .arr{transition:none!important}
+  .win-h .ln>span,.win-h b,.hero-below,.dsp-label,.dsp-mark,.sf-hero .dsp-obj{animation:none;opacity:1;transform:none}
+  .sf-d,.dsp-q span,.dsp-svc span{transition:none}
   .hint i{animation:none}
   .street-bag>img:not(.street-bag-refl){transition:none;transform:none}
   .btn .arr,.btn:hover .arr{transition:none;transform:none}
@@ -547,5 +550,4 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
   .dir-win img,.dir-go .arr,.back .arr,.next-name .arr{transition:none!important;transform:none!important}
   .sign-link .arr,.jr-row .arr,.jr-go .arr{transition:none!important;transform:none!important}
   .foot-top .arr{transition:none!important;transform:none!important}
-  .bag-zoom,.bag-zoom.fade{transition-duration:.01s}
 }
