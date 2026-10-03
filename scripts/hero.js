@@ -1,6 +1,5 @@
 /* Dasigned
-   - Hero: an art-directed composition (type, photography, interface fragments, architecture) is a
-     "world" whose central window holds the real website.
+   - Hero: the storefront photo is a "world" whose shop window holds the real website.
      The website is laid out at its final on-screen size; scrolling zooms the world about
      the window from ~66% up to exactly 100%, so the copy is legible and the CTAs live
      from the first frame, and nothing is ever upscaled.
@@ -121,20 +120,6 @@
     });
     bag.addEventListener('pointerleave', () => { bag.style.removeProperty('--bry'); bag.style.removeProperty('--brx'); });
   });
-
-  /* ── The composition drifts in layers under the cursor (desktop) ── */
-  if (!reduce) {
-    let px = 0, py = 0, pRaf = 0;
-    stage.addEventListener('pointermove', e => {
-      if (e.pointerType !== 'mouse') return;
-      px = e.clientX / innerWidth * 2 - 1; py = e.clientY / innerHeight * 2 - 1;
-      if (!pRaf) pRaf = requestAnimationFrame(() => {
-        pRaf = 0;
-        world.style.setProperty('--px', px.toFixed(3));
-        world.style.setProperty('--py', py.toFixed(3));
-      });
-    });
-  }
 
   /* ── Bag → project dissolves into the shop window ────────── */
   const previews = $('#bag-previews').content;
