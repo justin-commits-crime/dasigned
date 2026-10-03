@@ -139,7 +139,10 @@
   const bags = [...document.querySelectorAll('[data-bag]')];
   const DISPLAY = { side: 'interiorem', chair: 'chair' };
   let showKey = null;
+  const bayFor = { side: '.bay-r', chair: '.bay-l' };                 // each bag stands under its own window
+  const lightBay = key => document.querySelectorAll('.bay').forEach(b => b.classList.toggle('is-lit', !!key && b.matches(bayFor[key])));
   function openZoom(key) {
+    lightBay(key);
     bags.forEach(b => b.classList.toggle('is-on', b.dataset.bag === key));
     showKey = key; world.dataset.show = DISPLAY[key];
   }
@@ -148,6 +151,7 @@
     if (!showKey) return;
     bags.forEach(b => b.classList.remove('is-on'));
     showKey = null; world.dataset.show = 'home';
+    lightBay(null);
   };
   bags.forEach(bag => {
     const key = bag.dataset.bag;

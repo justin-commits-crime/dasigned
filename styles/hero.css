@@ -297,6 +297,11 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 .cp-plate>span:last-child{font:500 .85em/1.3 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--grey-600)}
 .cp-plate i{font-style:normal;color:var(--blue-600)}
 
+/* Focus: the side windows rest dimmed behind their glass so the screen leads; SAY / SELL stay lit.
+   Hovering (or focusing) a window — or its bag on the pavement — lights it up. */
+.bay-dim{position:absolute;inset:0;z-index:4;background:rgba(12,12,14,.66);pointer-events:none;transition:opacity .7s var(--ease-out)}
+.cp-word,.cp-cap{z-index:5}
+.bay:hover .bay-dim,.bay:focus-visible .bay-dim,.bay.is-lit .bay-dim{opacity:0}
 /* Glass: a flat reflection that slides a little as you move — no gradients */
 .refl{position:absolute;inset:-6% -20%;z-index:5;pointer-events:none;background:rgba(255,255,255,.07);clip-path:polygon(30% 0,40% 0,18% 100%,8% 100%);transform:translateX(calc(var(--px,0) * -2.2em));transition:transform 1.4s var(--ease-out)}
 .bay-r .refl{clip-path:polygon(58% 0,63% 0,41% 100%,36% 100%)}
@@ -757,6 +762,7 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
   .nl>span,.hdr-cta,.hdr-cta span,.key,.key .arr{transition:none!important}
   .win-h .ln>span,.win-h b,.hero-below,.dsp-label,.dsp-mark,.dsp-ex,.sf-hero .dsp-obj{animation:none;opacity:1;transform:none}
   .sf-d,.dsp-q span,.dsp-svc span{transition:none}
+  .bay-dim{transition:none}
   .cp,.refl,.cp-word,.cp-cap>span,.cp-cursor,.store-win img,.store-refl,.store-enter{transition:none!important;transform:none!important}
   .hx-name,.cp-word,.cp-cap,.cp-poster,.cp-browser,.cp-size,.cp-photo,.cp-card{animation:none}
   .hint i{animation:none}
