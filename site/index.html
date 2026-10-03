@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="preload" as="image" href="assets/storefront-hero.jpg">
+<link rel="preload" as="image" href="assets/work-chairlabel-portrait.webp">
 <link rel="stylesheet" href="styles/tokens.css">
 <link rel="stylesheet" href="styles/hero.css">
 <script src="scripts/hero.js" defer></script>
@@ -51,8 +51,48 @@
 <section class="scroller" id="top" data-hero aria-labelledby="hero-title">
   <div class="stage" data-stage>
     <div class="world" data-world>
-      <img class="world-photo" src="assets/storefront-hero.jpg" width="1678" height="937" alt="The Dasigned storefront: a modern shopfront whose window displays the studio's website">
-      <div class="upper-blur" aria-hidden="true"></div>
+      <!-- The object: one art-directed composition around the window — type, photography, interface
+           fragments and architecture. Sized in em (1em = 1% of its height); layers drift with the cursor (--d). -->
+      <div class="comp" aria-hidden="true">
+        <div class="cp-grid"></div>
+        <p class="cp cp-say" style="--d:-.35">Say</p>
+        <p class="cp cp-sell" style="--d:-.35">Sell</p>
+        <i class="cp-beam"></i>
+        <div class="cp-lintel"></div>
+        <div class="cp-frame"></div>
+        <div class="cp-plinth"></div>
+
+        <figure class="cp cp-poster" style="--d:.5">
+          <img src="assets/work-chairlabel-portrait.webp" alt="">
+          <figcaption><span>Look 01</span><span>Black</span></figcaption>
+        </figure>
+        <div class="cp cp-browser cp-browser-l" style="--d:.8">
+          <div class="cp-tilt"><span class="cp-chrome"><i></i><i></i><i></i><b>interiorem.com.au</b></span><img src="assets/work-interiorem-home.webp" alt=""></div>
+        </div>
+        <div class="cp cp-card" style="--d:1">
+          <span class="cp-card-k">Sideboards <i>/</i> 014</span>
+          <span class="cp-card-n">Parker-style sideboard</span>
+          <span class="cp-card-p">$3,400</span>
+          <span class="cp-card-b">Add to bag</span>
+        </div>
+        <span class="cp cp-dim cp-dim-v" style="--d:.2"><b>900</b></span>
+        <span class="cp cp-note cp-note-tl" style="--d:.2">N° 01 <i>/</i> Storefronts that refuse the template</span>
+
+        <figure class="cp cp-photo" style="--d:.5">
+          <span class="cp-crop"><img src="assets/work-interiorem-home.webp" alt=""></span>
+          <span class="cp-tag">$3,400</span>
+        </figure>
+        <div class="cp cp-browser cp-browser-r" style="--d:.8">
+          <div class="cp-tilt"><span class="cp-chrome"><i></i><i></i><i></i><b>chairlabel.com</b></span><img src="assets/work-chairlabel-campaign.webp" alt=""></div>
+        </div>
+        <div class="cp cp-size" style="--d:1">
+          <span class="cp-size-k">Select size</span>
+          <span class="cp-size-o"><i>S</i><i class="on">M</i><i>L</i><i>XL</i></span>
+          <span class="cp-size-b">Add to bag <em>→</em></span>
+          <svg class="cp-cursor" viewBox="0 0 24 24"><path d="M5 3l14 8.2-6.2 1.4 3.6 6.9-2.6 1.4-3.6-7L5.6 18z"/></svg>
+        </div>
+        <span class="cp cp-note cp-note-br" style="--d:.2">x 0.30 — 0.69 <i>/</i> y 0.21 — 0.80</span>
+      </div>
       <div class="dim" aria-hidden="true"></div>
       <div class="fascia" aria-hidden="true"><img src="assets/wordmark-white-longslash.png" alt=""></div>
 
