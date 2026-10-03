@@ -90,10 +90,63 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--ink)}
 .world{position:absolute;left:0;top:0;transform-origin:0 0}
 .m-zoom .world{will-change:transform}
-.world-photo{display:block;width:100%;height:100%;max-width:none;user-select:none}
+/* The object: an art-directed composition in place of a photograph. World units: 1em = 1% of its height
+   (179em wide). Giant type, steel and stone, photography, interface fragments and a cursor — the window sits at its centre. */
+.comp{position:absolute;inset:0;overflow:hidden;background:#141416;user-select:none}
+.cp{position:absolute;margin:0;transform:translate(calc(var(--px,0) * var(--d,0) * 1em),calc(var(--py,0) * var(--d,0) * 1em));transition:transform .9s var(--ease-out)}
+.cp-grid{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 100' preserveAspectRatio='none'%3E%3Cg stroke='%23fff' stroke-opacity='.07' stroke-width='1' vector-effect='non-scaling-stroke' fill='none'%3E%3Cpath vector-effect='non-scaling-stroke' d='M10 0V100M20 0V100M30 0V100M40 0V100M50 0V100M60 0V100M70 0V100M80 0V100M90 0V100M100 0V100M110 0V100M0 12.5H120M0 37.5H120M0 62.5H120'/%3E%3C/g%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+.cp-say,.cp-sell{font-family:var(--font-wide);font-weight:800;font-stretch:62%;font-size:66em;line-height:.78;letter-spacing:-.015em;text-transform:uppercase;color:#303035;white-space:nowrap}
+.cp-say{left:-.8%;top:-4%}
+.cp-sell{right:-1.2%;bottom:-6%}
+.cp-beam{position:absolute;left:66.5%;top:-12%;width:.32em;height:130%;background:var(--blue-600);transform:rotate(24deg);transform-origin:50% 50%}
+.cp-lintel{position:absolute;left:29.2%;width:41.4%;top:12.4%;height:9%;background:#0b0b0c;border-top:1px solid rgba(255,255,255,.1)}
+.cp-frame{position:absolute;left:29.6%;width:40.6%;top:20.2%;height:60.1%;background:#0b0b0c;outline:1px solid rgba(255,255,255,.08)}
+.cp-plinth{position:absolute;left:0;right:0;top:85.6%;bottom:0;background:#1c1c1f;border-top:1px solid rgba(255,255,255,.14)}
+.cp-plinth::after{content:"";position:absolute;left:0;right:0;top:46%;bottom:0;background:#171719;border-top:1px solid rgba(255,255,255,.06)}
 
-.m-stacked .upper-blur,.m-static .upper-blur{display:none}
-.upper-blur{position:absolute;left:30.3%;width:39.4%;top:0;height:4.8%;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);pointer-events:none}
+.cp-poster{left:3.2%;top:19%;width:21em}
+.cp-poster img{display:block;width:100%;height:auto}
+.cp-poster figcaption,.cp-note,.cp-card-k,.cp-size-k{font-family:var(--font-mono);font-size:1.05em;line-height:1;letter-spacing:.04em;text-transform:uppercase}
+.cp-poster figcaption{display:flex;justify-content:space-between;margin-top:.9em;color:rgba(255,255,255,.55)}
+.cp-browser{width:30em}
+.cp-browser-l{left:13.6%;top:5.5%}
+.cp-browser-r{left:70.8%;top:35%;width:25em}
+.cp-tilt{transform:perspective(55em) rotateY(30deg);transform-origin:100% 50%;background:#232326}
+.cp-browser-r .cp-tilt{transform:perspective(55em) rotateY(-30deg);transform-origin:0 50%}
+.cp-chrome{display:flex;align-items:center;gap:.5em;height:2.3em;padding:0 .9em;font:400 .95em/1 var(--font-mono);color:rgba(255,255,255,.5)}
+.cp-chrome i{width:.6em;height:.6em;border-radius:50%;background:rgba(255,255,255,.22)}
+.cp-chrome b{font-weight:400;margin-left:.8em}
+.cp-tilt img{display:block;width:100%;height:auto}
+
+.cp-card{left:17.6%;top:41%;width:17.5em;padding:1.4em 1.4em 0;background:var(--white);color:var(--ink);display:flex;flex-direction:column}
+.cp-card-k{color:var(--grey-600)}
+.cp-card-k i,.cp-note i{font-style:normal;color:var(--blue-500)}
+.cp-card-n{margin-top:2.2em;font-size:1.55em;font-weight:500;line-height:1.15;letter-spacing:-.01em}
+.cp-card-p{margin-top:.25em;font:800 3.2em/1 var(--font-wide);font-stretch:70%}
+.cp-card-b{display:flex;align-items:center;height:3.2em;margin:1.3em -1.4em 0;padding:0 1.4em;background:var(--ink);color:var(--white);font:600 1em/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase}
+
+.cp-dim{left:28.3%;top:21%;height:58.5%;border-left:1px solid rgba(255,255,255,.3)}
+.cp-dim::before,.cp-dim::after{content:"";position:absolute;left:-.5em;width:1em;border-top:1px solid rgba(255,255,255,.3)}
+.cp-dim::before{top:0}.cp-dim::after{bottom:0}
+.cp-dim b{position:absolute;top:50%;left:0;padding:.4em 0;background:#141416;font:400 1em/1 var(--font-mono);color:rgba(255,255,255,.55);transform:translate(-50%,-50%) rotate(-90deg)}
+.cp-note{color:rgba(255,255,255,.5);white-space:nowrap}
+.cp-note-tl{left:2.2%;bottom:4.6%}
+.cp-note-br{right:2.2%;bottom:4.6%}
+
+.cp-photo{left:73.6%;top:5%;width:41em;height:27em}
+.cp-crop{position:absolute;inset:0;overflow:hidden}
+.cp-crop img{position:absolute;width:158%;max-width:none;height:auto;left:-50%;top:-17%}
+.cp-tag{position:absolute;right:-1.2em;bottom:-1.4em;padding:.35em .5em .3em;background:var(--blue-600);color:var(--white);font:800 2.6em/1 var(--font-wide);font-stretch:70%}
+
+.cp-size{left:81.6%;top:45.5%;width:16em;padding:1.2em;background:var(--white);color:var(--ink)}
+.cp-size-k{display:block;color:var(--grey-600)}
+.cp-size-o{display:flex;gap:.5em;margin-top:1em}
+.cp-size-o i{display:grid;place-items:center;width:2.9em;height:2.9em;border:1px solid var(--ink);font:400 1.1em/1 var(--font-mono);font-style:normal}
+.cp-size-o i.on{background:var(--ink);color:var(--white)}
+.cp-size-b{display:flex;justify-content:space-between;align-items:center;height:3em;margin-top:1em;padding:0 1em;background:var(--blue-600);color:var(--white);font:600 1em/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase}
+.cp-size-b em{font-style:normal}
+.cp-cursor{position:absolute;right:1.8em;bottom:-2.2em;width:3.4em;height:3.4em;fill:var(--white);stroke:var(--ink);stroke-width:1.2;stroke-linejoin:round}
+
 
 /* Shop sign: lettering mounted straight onto the charcoal fascia */
 .fascia{position:absolute;left:49.91%;top:16.6%;height:4.1%;transform:translate(-50%,-50%);pointer-events:none}
@@ -101,7 +154,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 
 /* Dusk: everything outside the shop window steps back, so the lit window is the one focal point.
    A box the size of the window throws a soft light spill, then a dark wash over the rest. */
-.dim{position:absolute;inset:0;pointer-events:none;background:rgba(10,10,12,.46);
+.dim{position:absolute;inset:0;pointer-events:none;background:rgba(10,10,12,.22);
   clip-path:polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0,30.39% 21.02%,69.42% 21.02%,69.42% 79.5%,30.39% 79.5%,30.39% 21.02%)}
 /* (a cheap overlay with a window-shaped hole — a huge box-shadow here made mobile browsers flicker) */
 
@@ -533,6 +586,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 
 @media (prefers-reduced-motion:reduce){
   .nl>span,.hdr-cta,.hdr-cta span{transition:none!important}
+  .cp{transition:none;transform:none}
   .win-eye,.win-eye::after,.win-h .ln>span,.win-h b,.win-lede,.win-cta,.hero-below{animation:none;opacity:1;transform:none}
   .hint i{animation:none}
   .street-bag>img:not(.street-bag-refl){transition:none;transform:none}
