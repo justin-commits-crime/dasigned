@@ -113,6 +113,8 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .dsp-mark{position:absolute;left:5.5cqw;top:6cqh;width:15cqw;height:auto;max-width:none;filter:invert(1)}
 .dsp-h{position:absolute;left:5.5cqw;top:17cqh;margin:0;display:flex;flex-direction:column;font-family:var(--font-sans);font-weight:600;font-stretch:76%;font-size:min(8.8cqw,14cqh);line-height:.88;letter-spacing:-.03em;text-transform:uppercase;color:var(--ink);text-wrap:initial;white-space:nowrap}
 .dsp-h .win-in{padding-left:6cqw}
+.sf-d-home .dsp-h{top:8cqh;font-size:min(10.2cqw,16cqh)}
+.sf-d-home .dsp-obj img{height:34cqh}
 .dsp-h b{display:inline-block;font-weight:300;color:var(--blue-600);margin-left:.08em}
 .dsp-h-one{top:9cqh;font-size:min(11.5cqw,19cqh)}
 .dsp-obj{position:absolute;z-index:-1;right:4cqw;bottom:9cqh;width:30cqw;height:56cqh}
@@ -157,7 +159,94 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 }
 
 /* The hero world is the same shopfront, at the proportions of the original elevation */
-.sf-hero{--x:30.39%;--y:21.02%;--w:39.03%;--h:58.48%;--gl:87%;--d:1.1cqw}
+.sf-hero{--x:30.39%;--y:21.02%;--w:39.03%;--h:58.48%;--gl:89%;--d:.9cqw}
+/* Hero shop window: one glazed frontage (x 4.5–95.5, y 9–79.5) in a metal frame. The screen sits in
+   its central bay (the hero's --x/--y/--w/--h); the reveal and sill wrap the whole frontage. */
+.sf-hero .sf-reveal,.sf-hero .sf-sill{--x:4.5%;--y:9%;--w:91%;--h:70.5%}
+.hx-glazing{position:absolute;left:4.5%;top:9%;width:91%;height:70.5%;background:#161618;box-shadow:0 0 0 .42cqw #2A2A2C}
+.hx-bar{position:absolute;left:4.5%;width:91%;top:calc(21.02% - .42cqw);height:.42cqw;background:#2A2A2C;z-index:2}
+.hx-name{position:absolute;left:30.39%;width:39.03%;top:9%;height:calc(12.02% - .42cqw);display:grid;place-items:center;z-index:2}
+.hx-name img{height:2.6em;width:auto;max-width:none;opacity:.92}
+/* Narrow screens see only the central bay: SAY and SELL move onto the transom glass, either side of the name */
+.nm-w{display:none}
+.m-stacked .hx-name{display:flex;justify-content:space-between;align-items:center;padding:0 3em}
+.m-stacked .nm-w{display:block;font-family:var(--font-wide);font-weight:800;font-stretch:62%;font-size:8.6em;line-height:.8;letter-spacing:-.012em;text-transform:uppercase;color:#ECE9E4}
+/* The specification: the screen dimensioned like a drawing, cut into the stone below the window */
+.hx-spec{position:absolute;left:30.39%;width:39.03%;top:84%;margin:0;padding-top:.7em;border-top:1px solid rgba(17,17,19,.32);text-align:center;font:500 1em/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(17,17,19,.55);white-space:nowrap}
+.hx-spec::before,.hx-spec::after{content:"";position:absolute;top:-.5em;height:1em;border-left:1px solid rgba(17,17,19,.32)}
+.hx-spec::before{left:0}.hx-spec::after{right:0}
+.hx-spec i{font-style:normal;color:var(--blue-600);margin:0 .5em}
+.sf-hero .street-bag{bottom:11%}
+
+/* Display bays (links to the two storefronts). Contents are sized in em: 1em = 1% of the elevation. */
+.bay{position:absolute;top:9%;height:70.5%;overflow:hidden;color:var(--white);text-decoration:none;z-index:1}
+.bay-l{left:4.5%;width:calc(25.89% - .42cqw)}
+.bay-r{left:calc(69.42% + .42cqw);width:calc(26.08% - .42cqw)}
+.bay:hover,.bay:focus-visible{color:var(--white)}
+.bay:focus-visible{outline:2px solid var(--blue-500);outline-offset:-.4em}
+.cp{position:absolute;margin:0;transform:translate(calc(var(--px,0) * var(--d,0) * 1em),calc(var(--py,0) * var(--d,0) * 1em));transition:transform 1.1s var(--ease-out)}
+/* SAY / SELL: the two halves of the work, set big on the back wall of each bay */
+.cp-word{top:.026em;font-family:var(--font-wide);font-weight:800;font-stretch:62%;font-size:23em;line-height:.8;letter-spacing:-.012em;text-transform:uppercase;color:#ECE9E4;white-space:nowrap;transition:transform 1.1s var(--ease-out),letter-spacing 1.1s var(--ease-out)}
+.bay-l .cp-word{left:.07em}
+.bay-r .cp-word{right:.07em}
+.bay:hover .cp-word,.bay:focus-visible .cp-word{letter-spacing:-.028em}
+.cp-cap{position:absolute;top:21.4em;display:grid;font:500 1.05em/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.bay-l .cp-cap{left:1.7em}
+.bay-r .cp-cap{right:1.7em;justify-items:end}
+.cp-cap>span{grid-area:1/1;transition:opacity .6s var(--ease-out),transform .6s var(--ease-out)}
+.cap-a{color:rgba(255,255,255,.55)}
+.cap-b{color:var(--white);opacity:0;transform:translateY(.5em)}
+.cp-cap i{font-style:normal;color:var(--blue-500);margin:0 .35em}
+.bay:hover .cap-a,.bay:focus-visible .cap-a{opacity:0;transform:translateY(-.5em)}
+.bay:hover .cap-b,.bay:focus-visible .cap-b{opacity:1;transform:none}
+
+/* Commerce fragments: one bespoke system — mono specs, condensed prices, square ink and blue bars */
+.cp-k{display:block;font:500 1em/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--grey-600)}
+.cp-k i{font-style:normal;color:var(--blue-600);margin:0 .3em}
+.cp-bar{display:flex;justify-content:space-between;align-items:center;height:3.1em;padding:0 1.3em;background:var(--ink);color:var(--white);font:600 .95em/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;transition:background .5s var(--ease-out)}
+.cp-bar em{font-style:normal;letter-spacing:0;transition:transform .6s var(--ease-out)}
+.cp-bar-blue{background:var(--blue-600)}
+.bay:hover .cp-bar em{transform:translateX(.35em)}
+.bay-r:hover .cp-card .cp-bar{background:var(--blue-600)}
+
+.cp-poster{left:1.7em;top:25.4em;width:15em}
+.cp-poster img{display:block;width:100%;height:auto}
+.cp-poster figcaption{display:flex;justify-content:space-between;margin-top:.8em;font:500 1em/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.cp-browser{display:block;width:23em}
+.bay-l .cp-browser{left:20.6em;top:27.6em}
+.bay-r .cp-browser{left:1.7em;top:44.5em;width:24em}
+.cp-tilt{display:block;transform:perspective(50em) rotateY(26deg);transform-origin:100% 50%;background:#26262A}
+.bay-r .cp-tilt{transform:perspective(50em) rotateY(-26deg);transform-origin:0 50%}
+.cp-chrome{display:flex;align-items:center;gap:.45em;height:2.2em;padding:0 .9em;font:400 .9em/1 var(--font-mono);color:rgba(255,255,255,.5)}
+.cp-chrome i{width:.55em;height:.55em;border-radius:50%;background:rgba(255,255,255,.22)}
+.cp-chrome b{font-weight:400;margin-left:.7em}
+.cp-tilt img{display:block;width:100%;height:auto}
+
+.cp-size{left:22.4em;top:44.4em;width:16.4em;padding:1.3em 1.3em 0;background:var(--white);color:var(--ink)}
+.cp-size-o{display:flex;gap:.45em;margin:1.1em 0 1.3em}
+.cp-size-o i{display:grid;place-items:center;flex:1;height:2.8em;border:1px solid var(--grey-300);font:500 1.05em/1 var(--font-mono);font-style:normal;color:var(--grey-700)}
+.cp-size-o i.on{border-color:var(--ink);background:var(--ink);color:var(--white)}
+.cp-size .cp-bar{margin:0 -1.3em}
+.cp-cursor{position:absolute;right:2.2em;bottom:-1.9em;width:3em;height:3em;fill:var(--white);stroke:var(--ink);stroke-width:1.3;stroke-linejoin:round;transition:transform .9s var(--ease-out)}
+.bay-l:hover .cp-cursor{transform:translate(-.5em,-.6em)}
+
+.cp-photo{display:block;left:1.7em;top:25.4em;width:24.5em;height:16em}
+.cp-crop{position:absolute;inset:0;overflow:hidden}
+.cp-crop img{position:absolute;width:158%;max-width:none;height:auto;left:-50%;top:-17%}
+.cp-tag{position:absolute;right:-.9em;bottom:-1em;padding:.3em .45em .25em;background:var(--blue-600);color:var(--white);font:800 2.3em/1 var(--font-wide);font-stretch:70%;letter-spacing:-.01em}
+.cp-card{display:flex;flex-direction:column;right:1.7em;top:25.4em;width:15.4em;padding:1.3em 1.3em 0;background:var(--white);color:var(--ink)}
+.cp-card-n{margin-top:2.4em;padding-top:.9em;border-top:1px solid var(--grey-200);font-size:1.45em;font-weight:500;line-height:1.15;letter-spacing:-.01em}
+.cp-card-p{margin:.3em 0 1.1em;font:800 3.1em/1 var(--font-wide);font-stretch:70%;letter-spacing:-.01em}
+.cp-card .cp-bar{margin:0 -1.3em}
+
+/* Glass: a flat reflection that slides a little as you move — no gradients */
+.refl{position:absolute;inset:-6% -20%;z-index:5;pointer-events:none;background:rgba(255,255,255,.05);clip-path:polygon(30% 0,40% 0,18% 100%,8% 100%);transform:translateX(calc(var(--px,0) * -2.2em));transition:transform 1.4s var(--ease-out)}
+.bay-r .refl{clip-path:polygon(58% 0,63% 0,41% 100%,36% 100%)}
+
+/* Entrance: the name, then SAY / SELL, then the displays; the headline lands last */
+.hx-name{animation:fadeIn .8s var(--ease-out) both}
+.cp-word,.cp-cap{animation:riseIn .9s var(--ease-out) .15s both}
+.cp-poster,.cp-browser,.cp-size,.cp-photo,.cp-card{animation:fadeIn .9s var(--ease-out) .4s both}
 
 /* ── Paper bags = selected work ───────────────────────────────── */
 .street-bag{position:absolute;z-index:20;bottom:13%;height:21%;aspect-ratio:900/999;padding:0;border:0;background:none;font:inherit;color:var(--white);perspective:600px;cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -193,7 +282,7 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
    --g: 0 = shop glass, 1 = pure screen (scroll-driven in zoom mode, played once elsewhere). */
 @property --g{syntax:'<number>';inherits:true;initial-value:0}
 .glass{position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(115deg,rgba(255,255,255,0) 28%,rgba(255,255,255,.2) 40%,rgba(255,255,255,0) 52%),rgba(17,17,19,.1);
+  background:rgba(17,17,19,.08);
   -webkit-mask-image:linear-gradient(115deg,transparent calc(var(--g) * 130% - 15%),#000 calc(var(--g) * 130%));
   mask-image:linear-gradient(115deg,transparent calc(var(--g) * 130% - 15%),#000 calc(var(--g) * 130%))}
 .glass-edge{position:absolute;inset:0;pointer-events:none;
@@ -214,12 +303,12 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 
 /* ── Entrance: front-loaded — the copy is readable within ~0.6s ─ */
 .win-h .ln{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
-.dsp-label,.dsp-mark,.sf-hero .dsp-obj{opacity:0;animation:riseIn .7s var(--ease-out) .3s forwards}
+.dsp-label,.dsp-mark,.sf-hero .dsp-obj{opacity:0;animation:riseIn .7s var(--ease-out) 1s forwards}
 .win-h .ln>span{display:inline-block;transform:translateY(102%);animation:lineUp .7s var(--ease-out) forwards}
-.win-h .ln:nth-child(1)>span{animation-delay:0s}
-.win-h .ln:nth-child(2)>span{animation-delay:.06s}
-.win-h .ln:nth-child(3)>span{animation-delay:.12s}
-.win-h b{opacity:0;transform-origin:50% 100%;animation:slash .6s var(--ease-out) .45s forwards}
+.win-h .ln:nth-child(1)>span{animation-delay:.6s}
+.win-h .ln:nth-child(2)>span{animation-delay:.68s}
+.win-h .ln:nth-child(3)>span{animation-delay:.76s}
+.win-h b{opacity:0;transform-origin:50% 100%;animation:slash .6s var(--ease-out) 1.1s forwards}
 .hero-below{opacity:0;animation:riseIn .6s var(--ease-out) .2s forwards}
 @keyframes fadeIn{to{opacity:1}}
 @keyframes rule{from{transform:scaleY(0) scaleX(0)}to{transform:none}}
@@ -537,6 +626,8 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
   .nl>span,.hdr-cta,.hdr-cta span,.key,.key .arr{transition:none!important}
   .win-h .ln>span,.win-h b,.hero-below,.dsp-label,.dsp-mark,.sf-hero .dsp-obj{animation:none;opacity:1;transform:none}
   .sf-d,.dsp-q span,.dsp-svc span{transition:none}
+  .cp,.refl,.cp-word,.cp-cap>span,.cp-cursor{transition:none!important;transform:none!important}
+  .hx-name,.cp-word,.cp-cap,.cp-poster,.cp-browser,.cp-size,.cp-photo,.cp-card{animation:none}
   .hint i{animation:none}
   .street-bag>img:not(.street-bag-refl){transition:none;transform:none}
   .btn .arr,.btn:hover .arr{transition:none;transform:none}
