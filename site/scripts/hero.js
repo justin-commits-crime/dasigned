@@ -14,7 +14,7 @@
   const WIN_R = (SCR.w * IMG_R) / SCR.h;                      // shop window aspect (~1.195)
   const WIN_PHOTO_H = 1 / (SCR.w * IMG_R);                    // photo height per px of window width
   const Z0 = .6;                                              // opening size of the window vs. final: the whole frontage in view
-  const STACK_W = 900, STACK_CROP = .115, BELOW_GAP = 72;                    // phones: layout width of the window, photo cropped above the sign band                                             // opening size of the window vs. final
+  const STACK_W = 900, STACK_CROP = .115, BELOW_GAP = 36;                    // phones: layout width of the window, photo cropped above the sign band                                             // opening size of the window vs. final
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
