@@ -24,7 +24,7 @@
     <a href="#work">Work</a>
     <a href="#idea">Studio</a>
     <a href="#services">Services</a>
-    <a href="journal/index.html">Journal</a>
+    <a href="journal/index.html">Notes</a>
   </nav>
   <a class="hdr-cta" href="contact.html">Start a project <span aria-hidden="true">↗</span></a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-open>
@@ -41,7 +41,7 @@
     <a href="#work">Work</a>
     <a href="#idea">Studio</a>
     <a href="#services">Services</a>
-    <a href="journal/index.html">Journal</a>
+    <a href="journal/index.html">Notes</a>
   </nav>
   <a class="btn btn-light menu-cta" href="contact.html">Start a project <span aria-hidden="true">→</span></a>
 </div>
@@ -74,6 +74,7 @@
           <span class="cp-bar cp-bar-blue">Add to bag <em>→</em></span>
           <svg class="cp-cursor" viewBox="0 0 24 24"><path d="M5 3l14 8.2-6.2 1.4 3.6 6.9-2.6 1.4-3.6-7L5.6 18z"/></svg>
         </span>
+        <span class="cp cp-plate" style="--d:.2" aria-hidden="true"><span class="cp-k">Window 02</span><b>Chair Label</b><span>Fashion <i>/</i> Campaign <i>/</i> Apparel</span></span>
         <i class="refl" aria-hidden="true"></i>
       </a>
       <a class="bay bay-r" href="work/interiorem.html" aria-label="Interiorem — view storefront">
@@ -90,6 +91,7 @@
           <span class="cp-bar">Add to bag <em>→</em></span>
         </span>
         <span class="cp cp-browser" style="--d:.45" aria-hidden="true"><span class="cp-tilt"><span class="cp-chrome"><i></i><i></i><i></i><b>interiorem.com.au</b></span><img src="assets/work-interiorem-home.webp" alt=""></span></span>
+        <span class="cp cp-plate" style="--d:.2" aria-hidden="true"><span class="cp-k">Window 01</span><b>Interiorem</b><span>Furniture <i>/</i> Objects <i>/</i> Marketplace</span></span>
         <i class="refl" aria-hidden="true"></i>
       </a>
       <i class="hx-bar" aria-hidden="true"></i>
@@ -151,50 +153,51 @@
   <div class="vh-probe" data-probe></div>
 </section>
 
-<!-- ── Work: a directory of storefronts. Each entry is a window you can walk into. ── -->
+<!-- ── Selected storefronts: each project is shown as its own shop window, in its own materials and
+     with its own sign — the digital storefront DASIGNED made, set into the street. ── -->
 <section class="work" id="work" aria-labelledby="work-title">
   <div class="work-in">
     <div class="sign-row sign-row-dark">
-      <h2 class="eyebrow" id="work-title">Selected work</h2>
+      <h2 class="eyebrow" id="work-title">Selected storefronts</h2>
       <code>02</code>
     </div>
-    <!-- The same shopfront: its display follows the storefront you hover (or scroll to, on touch). -->
-    <div class="dir">
-      <div class="dir-stage">
-        <a class="sf sf-work" href="work/interiorem.html" data-sf data-show="interiorem" tabindex="-1" aria-hidden="true">
-          <div class="sf-wall"></div><div class="sf-base"></div><div class="sf-ground"></div><div class="sf-reveal"></div><div class="sf-sill"></div>
-          <div class="sf-win">
-            <div class="sf-d sf-d-interiorem">
-              <p class="dsp-h dsp-h-one">Interiorem</p>
-              <div class="dsp-obj"><img src="assets/bag-sideboard.webp" alt="" loading="lazy"><i class="dsp-plinth"></i></div>
-              <div class="dsp-label"><p class="dsp-k">Storefront 01 <i>/</i> Marketplace</p><p class="dsp-n">Parker-style sideboard</p><p class="dsp-p">$3,400</p><span class="dsp-go">View storefront <span class="arr">→</span></span></div>
-            </div>
-            <div class="sf-d sf-d-chair">
-              <p class="dsp-h dsp-h-one">Chair Label</p>
-              <div class="dsp-obj"><img src="assets/bag-portrait.webp" alt="" loading="lazy"><i class="dsp-plinth"></i></div>
-              <div class="dsp-label"><p class="dsp-k">Storefront 02 <i>/</i> Fashion</p><p class="dsp-n">Collection 01, Uniform</p><p class="dsp-p">Look 1/8</p><span class="dsp-go">View storefront <span class="arr">→</span></span></div>
-            </div>
+    <div class="stores">
+      <a class="store store-int" href="work/interiorem.html">
+        <div class="store-front" aria-hidden="true">
+          <div class="store-fascia"><span class="store-sign">interiorem<b>.</b></span><span class="store-no">No. 01</span></div>
+          <div class="store-win">
+            <img src="assets/work-interiorem-home.webp" width="2200" height="1118" alt="" loading="lazy">
+            <span class="store-vinyl">Furniture <i>/</i> Objects <i>/</i> Marketplace</span>
+            <span class="store-refl"></span>
+            <span class="store-enter">Enter storefront <span class="arr">→</span></span>
           </div>
-        </a>
-      </div>
-      <ol class="dir-list">
-        <li>
-          <a class="dir-row" href="work/interiorem.html" data-display="interiorem">
-            <span class="tile-no">Storefront <i>/</i> 01</span>
-            <h3 class="dir-name">Interiorem</h3>
-            <p class="dir-desc">A marketplace storefront for furniture with a previous life, listed by Melbourne dealers and collectors.</p>
-            <span class="dir-go">View storefront <span class="arr" aria-hidden="true">→</span></span>
-          </a>
-        </li>
-        <li>
-          <a class="dir-row" href="work/chair-label.html" data-display="chair">
-            <span class="tile-no">Storefront <i>/</i> 02</span>
-            <h3 class="dir-name">Chair Label</h3>
-            <p class="dir-desc">Collection 01, launched as a campaign you can shop.</p>
-            <span class="dir-go">View storefront <span class="arr" aria-hidden="true">→</span></span>
-          </a>
-        </li>
-      </ol>
+          <div class="store-sill"></div>
+        </div>
+        <div class="store-meta">
+          <p class="store-k">Storefront <i>/</i> 01</p>
+          <h3 class="store-name">Interiorem</h3>
+          <p class="store-desc">A marketplace storefront for furniture with a previous life, listed by Melbourne dealers and collectors.</p>
+          <dl class="store-spec"><dt>Discipline</dt><dd>Brand &amp; art direction, Commerce engineering</dd></dl>
+        </div>
+      </a>
+      <a class="store store-chair" href="work/chair-label.html">
+        <div class="store-front" aria-hidden="true">
+          <div class="store-fascia"><span class="store-sign">chair label</span><span class="store-no">No. 02</span></div>
+          <div class="store-win">
+            <img src="assets/chair-label-campaign.jpg" width="1800" height="992" alt="" loading="lazy">
+            <span class="store-vinyl">Fashion <i>/</i> Campaign <i>/</i> Apparel</span>
+            <span class="store-refl"></span>
+            <span class="store-enter">Enter storefront <span class="arr">→</span></span>
+          </div>
+          <div class="store-sill"></div>
+        </div>
+        <div class="store-meta">
+          <p class="store-k">Storefront <i>/</i> 02</p>
+          <h3 class="store-name">Chair Label</h3>
+          <p class="store-desc">Collection 01, launched as a campaign you can shop.</p>
+          <dl class="store-spec"><dt>Discipline</dt><dd>Brand &amp; art direction, Storefront design</dd></dl>
+        </div>
+      </a>
     </div>
   </div>
 
@@ -204,11 +207,11 @@
   </div>
 </section>
 
-<!-- ── The idea + services ───────────────────────────────────── -->
+<!-- ── Philosophy + services ─────────────────────────────────── -->
 <section class="section idea" id="idea" aria-labelledby="idea-title">
   <div class="idea-grid">
-    <h2 class="eyebrow" id="idea-title">The idea</h2>
-    <p class="idea-p" data-reveal>Most storefronts are assembled from the same fifty themes. Yours shouldn’t be. We art-direct commerce like an editorial — every scroll a *spread*, every product a *story* — then engineer it to load fast, convert hard and scale without apology.</p>
+    <h2 class="eyebrow" id="idea-title">Philosophy</h2>
+    <p class="idea-p" data-reveal>Most storefronts are assembled from the same fifty themes. Yours shouldn’t be. We treat commerce as a *design* *discipline* — shaping brand, product, interface and technology into storefronts built around the way your business *actually* *works.*</p>
   </div>
   <div class="services" id="services">
     <div class="sign-row">
@@ -224,30 +227,36 @@
         </div>
       </div>
     </div>
+    <!-- The services as a specification: each one placed on the axis between SAY (brand) and SELL (commerce) -->
+    <div class="svc-head" aria-hidden="true"><span>No.</span><span>Discipline</span><span>Scope</span><span>Includes</span><span class="svc-head-axis"><b>Say</b><b>Sell</b></span></div>
     <ul class="svc">
       <li>
         <code>01</code>
         <h3>Brand &amp; art direction</h3>
         <p>Identity, photography direction and the story your storefront tells.</p>
         <ul class="tags" aria-label="Includes"><li>Identity</li><li>Art direction</li><li>Campaign</li></ul>
+        <span class="svc-axis" style="--p:.1" aria-hidden="true"><b>Say</b><i></i><b>Sell</b></span>
       </li>
       <li>
         <code>02</code>
         <h3>Storefront design</h3>
         <p>Editorial, narrative-led commerce experiences designed page by page.</p>
         <ul class="tags" aria-label="Includes"><li>UX</li><li>UI</li><li>Prototyping</li></ul>
+        <span class="svc-axis" style="--p:.42" aria-hidden="true"><b>Say</b><i></i><b>Sell</b></span>
       </li>
       <li>
         <code>03</code>
         <h3>Commerce engineering</h3>
         <p>Custom themes, Shopify Plus and headless builds — plus WooCommerce, Wix and completely bespoke builds.</p>
         <ul class="tags" aria-label="Includes"><li>Liquid</li><li>Hydrogen</li><li>Plus</li><li>Webflow</li></ul>
+        <span class="svc-axis" style="--p:.78" aria-hidden="true"><b>Say</b><i></i><b>Sell</b></span>
       </li>
       <li>
         <code>04</code>
         <h3>Growth &amp; optimisation</h3>
         <p>Testing, analytics and iteration once the doors are open.</p>
         <ul class="tags" aria-label="Includes"><li>CRO</li><li>Analytics</li><li>Retention</li></ul>
+        <span class="svc-axis" style="--p:.92" aria-hidden="true"><b>Say</b><i></i><b>Sell</b></span>
       </li>
     </ul>
   </div>
@@ -256,22 +265,22 @@
 <!-- ── Journal: the latest entries; the full index lives at journal/ (entries are PLACEHOLDERS) ── -->
 <section class="section journal-home" id="journal" aria-labelledby="journal-title">
   <div class="sign-row">
-    <h2 class="eyebrow" id="journal-title">Journal</h2>
-    <a class="sign-link" href="journal/index.html">All entries <span class="arr" aria-hidden="true">→</span></a>
+    <h2 class="eyebrow" id="journal-title">Notes</h2>
+    <a class="sign-link" href="journal/index.html">All notes <span class="arr" aria-hidden="true">→</span></a>
   </div>
   <ul class="jr-list">
       <li class="jr-row">
-        <a href="journal/the-window-is-the-first-page.html"><time>September 2026</time><span class="jr-title">The window is the first page</span><span class="arr" aria-hidden="true">→</span></a>
+        <a href="journal/the-window-is-the-first-page.html"><span class="jr-no">N° 05</span><time>September 2026</time><span class="jr-title">The window is the first page</span><span class="arr" aria-hidden="true">→</span></a>
       </li>
       <li class="jr-row">
-        <a href="journal/against-the-fifty-themes.html"><time>August 2026</time><span class="jr-title">Against the fifty themes</span><span class="arr" aria-hidden="true">→</span></a>
+        <a href="journal/against-the-fifty-themes.html"><span class="jr-no">N° 04</span><time>August 2026</time><span class="jr-title">Against the fifty themes</span><span class="arr" aria-hidden="true">→</span></a>
       </li>
       <li class="jr-row">
-        <a href="journal/one-object-one-price-one-action.html"><time>July 2026</time><span class="jr-title">One object, one price, one action</span><span class="arr" aria-hidden="true">→</span></a>
+        <a href="journal/one-object-one-price-one-action.html"><span class="jr-no">N° 03</span><time>July 2026</time><span class="jr-title">One object, one price, one action</span><span class="arr" aria-hidden="true">→</span></a>
       </li>
     <!-- Entry row (copy per article, newest first):
           <li class="jr-row">
-            <a href="journal/SLUG.html"><time>Month 2026</time><span class="jr-title">Article title</span><span class="arr" aria-hidden="true">→</span></a>
+            <a href="journal/SLUG.html"><span class="jr-no">N° 00</span><time>Month 2026</time><span class="jr-title">Article title</span><span class="arr" aria-hidden="true">→</span></a>
           </li> -->
   </ul>
 </section>
@@ -298,7 +307,7 @@
           <li><a href="index.html#work">Work</a></li>
           <li><a href="index.html#idea">Studio</a></li>
           <li><a href="index.html#services">Services</a></li>
-          <li><a href="journal/index.html">Journal</a></li>
+          <li><a href="journal/index.html">Notes</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
