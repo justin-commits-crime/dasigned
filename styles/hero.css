@@ -121,6 +121,14 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .dsp-obj img{position:absolute;left:50%;bottom:10.6cqh;height:40cqh;width:auto;max-width:none;transform:translateX(-50%);filter:drop-shadow(0 .8cqh 1cqh rgba(0,0,0,.14))}
 .dsp-plinth{position:absolute;left:8%;right:8%;bottom:0;height:12cqh;background:#DCD8D1;border-top:1.2cqh solid #EFEDE8;box-shadow:inset -1.6cqw 0 0 #CFCAC2,0 .5cqh 0 #C4BFB7}
 .dsp-label{position:absolute;left:5.5cqw;bottom:9cqh}
+.dsp-ex{position:absolute;right:6cqw;bottom:5cqh;width:30cqw;display:flex;flex-direction:column;align-items:center}
+.ex-k{position:relative;margin:0 0 3.4cqh;padding:1cqh 1.3cqw;border:1px solid #CFCAC2;background:#FBFAF8;font:500 1.45cqw/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--grey-700)}
+.ex-k::after{content:"";position:absolute;left:50%;top:100%;height:3.4cqh;border-left:1px solid #CFCAC2}
+.ex-obj{display:block;height:33cqh;width:auto;max-width:none;margin-bottom:-.8cqh;filter:drop-shadow(0 .8cqh 1cqh rgba(0,0,0,.14))}
+.ex-plinth{display:flex;align-items:center;justify-content:center;width:28cqw;height:20cqh;background:#E2DED7;border-top:1.4cqh solid #F1EEE9;box-shadow:inset -1.6cqw 0 0 #D4CFC7,0 .5cqh 0 #C9C4BC}
+.ex-plate{width:22cqw;padding:1.8cqh 1.6cqw;background:var(--white);box-shadow:0 .3cqh .8cqh rgba(0,0,0,.1)}
+.ex-p{margin:0 0 1.6cqh;font:600 4.4cqw/1 var(--font-sans);font-stretch:76%;letter-spacing:-.02em;color:var(--ink)}
+.ex-plate .dsp-go{margin-top:0;font-size:1.3cqw;white-space:nowrap}
 .sf-d-home .dsp-label{width:25cqw;padding:2.4cqh 2.2cqw 2.6cqh;background:var(--white);border:1px solid #E3E0DA;box-shadow:0 .8cqh 1.8cqh rgba(0,0,0,.08)}
 .sf-d-home .dsp-k{padding-bottom:1.6cqh;border-bottom:1px solid var(--grey-200)}
 .sf-d-home .dsp-p{margin-top:1.8cqh!important;font-size:5cqw}
@@ -170,6 +178,22 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 /* Hero shop window: one glazed frontage (x 4.5–95.5, y 9–79.5) in a metal frame. The screen sits in
    its central bay (the hero's --x/--y/--w/--h); the reveal and sill wrap the whole frontage. */
 .sf-hero .sf-reveal,.sf-hero .sf-sill{--x:4.5%;--y:9%;--w:91%;--h:70.5%}
+/* From the original shopfront photograph (same proportions as this elevation, so it registers exactly):
+   the wet paving, which catches the light of the screen above it, and the lit shop interiors seen
+   through its doors, set dimly behind the two displays. */
+.sf-hero{--gl:80.6%}
+.sf-hero .sf-ground{background:#2C2D30 url(../assets/storefront-hero.jpg) 0 100%/100% auto no-repeat;border-top:0}
+.sf-hero .sf-base{display:none}
+.sf-hero .sf-reveal{border-bottom-width:0}
+.sf-hero .sf-sill{top:calc(var(--y) + var(--h));height:.55cqw;background:#141416;box-shadow:0 1px 0 #A3A3A8}
+.bay-int{position:absolute;inset:0;background:url(../assets/storefront-hero.jpg) 6.1% 53%/555% auto no-repeat;opacity:.5;filter:saturate(.85)}
+.bay-r .bay-int{background-position:93.9% 53%;opacity:.55}
+.sf-hero .street-bag::before{background:radial-gradient(ellipse at center,rgba(0,0,0,.5),rgba(0,0,0,0) 70%)}
+.sf-hero .street-bag .street-bag-refl{display:block;opacity:.22}
+.sf-hero .bag-cap{color:rgba(255,255,255,.66)}
+.sf-hero .street-bag:hover .bag-cap,.sf-hero .street-bag:focus-visible .bag-cap,.sf-hero .street-bag.is-on .bag-cap{color:var(--white)}
+.sf-hero .bag-cap b{color:rgba(255,255,255,.42)}
+.m-zoom .hint{color:rgba(255,255,255,.7)}
 .hx-glazing{position:absolute;left:4.5%;top:9%;width:91%;height:70.5%;background:#161618;box-shadow:0 0 0 .55cqw #141416,0 0 0 calc(.55cqw + 1px) #A3A3A8,0 1.4cqw 2cqw rgba(0,0,0,.18)}
 /* The frame: black steel members with an aluminium edge — the window frame is the grid */
 .sf-hero .sf-win{box-shadow:0 0 0 .5cqw #141416,0 0 0 calc(.5cqw + 1px) #A3A3A8}
@@ -183,11 +207,11 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 .m-stacked .hx-name{display:flex;justify-content:space-between;align-items:center;padding:0 3em}
 .m-stacked .nm-w{display:block;font-family:var(--font-wide);font-weight:800;font-stretch:62%;font-size:8.6em;line-height:.8;letter-spacing:-.012em;text-transform:uppercase;color:#ECE9E4}
 /* The specification: the screen dimensioned like a drawing, cut into the stone below the window */
-.hx-spec{position:absolute;left:30.39%;width:39.03%;top:84%;margin:0;padding-top:.7em;border-top:1px solid rgba(17,17,19,.32);text-align:center;font:500 1em/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(17,17,19,.55);white-space:nowrap}
-.hx-spec::before,.hx-spec::after{content:"";position:absolute;top:-.5em;height:1em;border-left:1px solid rgba(17,17,19,.32)}
+.hx-spec{position:absolute;left:30.39%;width:39.03%;top:83.4%;margin:0;padding-top:.7em;border-top:1px solid rgba(255,255,255,.34);text-align:center;font:500 1em/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72);white-space:nowrap}
+.hx-spec::before,.hx-spec::after{content:"";position:absolute;top:-.5em;height:1em;border-left:1px solid rgba(255,255,255,.34)}
 .hx-spec::before{left:0}.hx-spec::after{right:0}
 .hx-spec i{font-style:normal;color:var(--blue-600);margin:0 .5em}
-.hx-spec span{position:absolute;top:.7em;font-size:.85em;color:rgba(17,17,19,.42)}
+.hx-spec span{position:absolute;top:.7em;font-size:.85em;color:rgba(255,255,255,.45)}
 .hx-spec span:first-child{left:.6em}.hx-spec span:last-child{right:.6em}
 .sf-hero .street-bag{bottom:11%}
 
@@ -198,7 +222,7 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 /* Depth: a shadow under the transom, and a display floor drawn in shallow perspective */
 .bay{box-shadow:inset 0 3em 3em -1.6em rgba(0,0,0,.6)}
 .bay::after{content:"";position:absolute;left:0;right:0;bottom:0;z-index:6;height:2.4em;background:#141416;border-top:1px solid #A3A3A8}
-.bay::before{content:"";position:absolute;left:0;right:0;bottom:0;height:16em;background:#1E1E21;clip-path:polygon(5% 0,95% 0,100% 100%,0 100%)}
+.bay::before{content:"";display:none;position:absolute;left:0;right:0;bottom:0;height:16em;background:#1E1E21;clip-path:polygon(5% 0,95% 0,100% 100%,0 100%)}
 .bay-r::before{background:#3A3029}
 .bay-r{left:calc(69.42% + .42cqw);width:calc(26.08% - .42cqw)}
 .cp-poster img,.cp-photo,.cp-tilt{box-shadow:0 1.2em 2em -.8em rgba(0,0,0,.55)}
@@ -339,7 +363,7 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 
 /* ── Entrance: front-loaded — the copy is readable within ~0.6s ─ */
 .win-h .ln{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
-.dsp-label,.dsp-mark,.sf-hero .dsp-obj{opacity:0;animation:riseIn .7s var(--ease-out) 1s forwards}
+.dsp-label,.dsp-mark,.dsp-ex,.sf-hero .dsp-obj{opacity:0;animation:riseIn .7s var(--ease-out) 1s forwards}
 .win-h .ln>span{display:inline-block;transform:translateY(102%);animation:lineUp .7s var(--ease-out) forwards}
 .win-h .ln:nth-child(1)>span{animation-delay:.6s}
 .win-h .ln:nth-child(2)>span{animation-delay:.68s}
@@ -464,6 +488,18 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 .dir-row:focus-visible{outline-offset:8px}
 
 
+/* The street directory: the storefronts are the way through the work */
+.store-dir{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(32px,4vw,56px);background:#18181A;border:1px solid rgba(255,255,255,.16)}
+.store-dir a{position:relative;display:flex;flex-direction:column;gap:10px;padding:clamp(18px,2vw,28px);color:var(--white);text-decoration:none;transition:background-color var(--dur-base) var(--ease-out)}
+.store-dir a+a{border-left:1px solid rgba(255,255,255,.16)}
+.store-dir a:hover{background:#222225;color:var(--white)}
+.store-dir span:first-child,.store-dir em{font:500 11px/1.2 var(--font-mono);font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.store-dir em i{font-style:normal;color:var(--blue-500);margin:0 .3em}
+.store-dir b{font-size:clamp(24px,2.3vw,34px);font-weight:500;letter-spacing:-.03em;line-height:1}
+.store-dir .arr{position:absolute;right:clamp(18px,2vw,28px);top:clamp(18px,2vw,28px);transition:transform var(--dur-slow) var(--ease-out)}
+.store-dir a:hover .arr{transform:translateY(.25em)}
+@media (max-width:600px){.store-dir{grid-template-columns:1fr}.store-dir a+a{border-left:0;border-top:1px solid rgba(255,255,255,.16)}}
+
 /* Selected storefronts: each project as its own shop window — own facade, own sign, own frame */
 .stores{display:flex;flex-direction:column;gap:clamp(80px,10vw,160px);margin-top:clamp(48px,6vw,96px)}
 .store{--pad:clamp(16px,2.4vw,40px);display:block;color:var(--white);text-decoration:none}
@@ -490,7 +526,8 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 .store-meta{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap);align-items:baseline;padding-top:clamp(24px,2.6vw,40px)}
 .store-k{grid-column:1 / span 2;margin:0;font:500 12px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55)}
 .store-k i{font-style:normal;color:var(--blue-500)}
-.store-name{grid-column:3 / span 4;margin:0;font-size:clamp(34px,4vw,62px);font-weight:500;font-stretch:88%;line-height:.95;letter-spacing:-.04em}
+.store-name span{color:rgba(255,255,255,.42)}
+.store-name{grid-column:1 / span 6;margin:0;font-size:clamp(34px,4vw,62px);font-weight:500;font-stretch:88%;line-height:.95;letter-spacing:-.04em}
 .store-desc{grid-column:7 / span 3;margin:0;font-size:16px;line-height:1.5;color:rgba(255,255,255,.72)}
 .store-spec{grid-column:10 / -1;margin:0}
 .store-spec dt{font:500 11px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
@@ -505,7 +542,7 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
   .store-int .store-win img{object-position:90% 100%}
   .store-chair .store-win img{object-position:38% 100%}
   .store-meta{grid-template-columns:1fr;row-gap:var(--space-3)}
-  .store-k,.store-name,.store-desc,.store-spec{grid-column:auto}
+  .store-name,.store-desc,.store-spec{grid-column:auto}
   .store-spec{margin-top:var(--space-2)}
 }
 
@@ -718,7 +755,7 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 
 @media (prefers-reduced-motion:reduce){
   .nl>span,.hdr-cta,.hdr-cta span,.key,.key .arr{transition:none!important}
-  .win-h .ln>span,.win-h b,.hero-below,.dsp-label,.dsp-mark,.sf-hero .dsp-obj{animation:none;opacity:1;transform:none}
+  .win-h .ln>span,.win-h b,.hero-below,.dsp-label,.dsp-mark,.dsp-ex,.sf-hero .dsp-obj{animation:none;opacity:1;transform:none}
   .sf-d,.dsp-q span,.dsp-svc span{transition:none}
   .cp,.refl,.cp-word,.cp-cap>span,.cp-cursor,.store-win img,.store-refl,.store-enter{transition:none!important;transform:none!important}
   .hx-name,.cp-word,.cp-cap,.cp-poster,.cp-browser,.cp-size,.cp-photo,.cp-card{animation:none}

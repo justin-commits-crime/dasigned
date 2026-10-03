@@ -61,6 +61,7 @@
            them is the system that connects the two. Layers drift a few pixels with the cursor (--d). -->
       <div class="hx-glazing" aria-hidden="true"></div>
       <a class="bay bay-l" href="work/chair-label.html" aria-label="Chair Label — view storefront">
+        <span class="bay-int" aria-hidden="true"></span>
         <span class="cp cp-word" style="--d:-.15" aria-hidden="true">Say</span>
         <span class="cp-cap" aria-hidden="true"><span class="cap-a">Say <i>/</i> Brand <i>/</i> Story <i>/</i> Art direction</span><span class="cap-b">Chair Label <i>/</i> View storefront →</span></span>
         <figure class="cp cp-poster" style="--d:.3" aria-hidden="true">
@@ -74,10 +75,11 @@
           <span class="cp-bar cp-bar-blue">Add to bag <em>→</em></span>
           <svg class="cp-cursor" viewBox="0 0 24 24"><path d="M5 3l14 8.2-6.2 1.4 3.6 6.9-2.6 1.4-3.6-7L5.6 18z"/></svg>
         </span>
-        <span class="cp cp-plate" style="--d:.2" aria-hidden="true"><span class="cp-k">Window 02</span><b>Chair Label</b><span>Fashion <i>/</i> Campaign <i>/</i> Apparel</span></span>
+        <span class="cp cp-plate" style="--d:.2" aria-hidden="true"><span class="cp-k">Storefront 02</span><b>Chair Label</b><span>Fashion <i>/</i> Campaign <i>/</i> Apparel</span></span>
         <i class="refl" aria-hidden="true"></i>
       </a>
       <a class="bay bay-r" href="work/interiorem.html" aria-label="Interiorem — view storefront">
+        <span class="bay-int" aria-hidden="true"></span>
         <span class="cp cp-word" style="--d:-.15" aria-hidden="true">Sell</span>
         <span class="cp-cap" aria-hidden="true"><span class="cap-a">Sell <i>/</i> Commerce <i>/</i> Product <i>/</i> Conversion</span><span class="cap-b">Interiorem <i>/</i> View storefront →</span></span>
         <span class="cp cp-photo" style="--d:.3" aria-hidden="true">
@@ -91,14 +93,14 @@
           <span class="cp-bar">Add to bag <em>→</em></span>
         </span>
         <span class="cp cp-browser" style="--d:.45" aria-hidden="true"><span class="cp-tilt"><span class="cp-chrome"><i></i><i></i><i></i><b>interiorem.com.au</b></span><img src="assets/work-interiorem-home.webp" alt=""></span></span>
-        <span class="cp cp-plate" style="--d:.2" aria-hidden="true"><span class="cp-k">Window 01</span><b>Interiorem</b><span>Furniture <i>/</i> Objects <i>/</i> Marketplace</span></span>
+        <span class="cp cp-plate" style="--d:.2" aria-hidden="true"><span class="cp-k">Storefront 01</span><b>Interiorem</b><span>Architecture <i>/</i> Furniture <i>/</i> Marketplace</span></span>
         <i class="refl" aria-hidden="true"></i>
       </a>
       <i class="hx-bar" aria-hidden="true"></i>
       <div class="hx-name" aria-hidden="true"><span class="nm-w">Say</span><img src="assets/wordmark-white-longslash.png" alt=""><span class="nm-w">Sell</span></div>
       <p class="hx-spec" aria-hidden="true"><span>X 30</span>Store <i>/</i> Object <i>/</i> Brand<span>X 69</span></p>
       <!-- Setting-out lines: the frame's grid carried across the facade -->
-      <svg class="hx-lines" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M45 0V82M303.9 0V82M694.2 0V82M955 0V82M45 803V840M955 803V840M0 90H37M963 90H1000M0 210.2H37M963 210.2H1000M0 795H37M963 795H1000"/></svg>
+      <svg class="hx-lines" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M45 0V82M303.9 0V82M694.2 0V82M955 0V82M0 90H37M963 90H1000M0 210.2H37M963 210.2H1000M0 795H37M963 795H1000"/></svg>
 
       <!-- The window display: the website as oversized fragments of commerce -->
       <div class="screen sf-win" data-screen>
@@ -108,11 +110,16 @@
             <span class="ln win-in"><span>that refuse <b aria-hidden="true">/</b></span></span>
             <span class="ln"><span>the template.</span></span>
           </h1>
-          <div class="dsp-obj" aria-hidden="true"><img src="assets/bag-white.webp" alt=""><i class="dsp-plinth"></i></div>
-          <div class="dsp-label">
-            <p class="dsp-k">Object 01</p>
-            <p class="dsp-p">$1,240</p>
-            <a class="dsp-go" href="#work">View storefront <span class="arr" aria-hidden="true">→</span></a>
+          <!-- The exhibit, read top to bottom like a museum object: label, object, price, way in -->
+          <div class="dsp-ex">
+            <p class="ex-k">Object 01</p>
+            <img class="ex-obj" src="assets/bag-white.webp" alt="">
+            <div class="ex-plinth">
+              <div class="ex-plate">
+                <p class="ex-p">$1,240</p>
+                <a class="dsp-go" href="#work">View storefront <span class="arr" aria-hidden="true">→</span></a>
+              </div>
+            </div>
           </div>
         </div>
         <div class="sf-d sf-d-interiorem" aria-hidden="true">
@@ -163,28 +170,32 @@
       <h2 class="eyebrow" id="work-title">Selected storefronts</h2>
       <code>02</code>
     </div>
+    <!-- The street directory: the storefronts as the way through the work -->
+    <nav class="store-dir" aria-label="Storefronts">
+      <a href="#storefront-01"><span>Storefront 01</span><b>Interiorem</b><em>Architecture <i>/</i> Furniture <i>/</i> Marketplace</em><span class="arr" aria-hidden="true">↓</span></a>
+      <a href="#storefront-02"><span>Storefront 02</span><b>Chair Label</b><em>Fashion <i>/</i> Campaign <i>/</i> Apparel</em><span class="arr" aria-hidden="true">↓</span></a>
+    </nav>
     <div class="stores">
-      <a class="store store-int" href="work/interiorem.html">
+      <a class="store store-int" id="storefront-01" href="work/interiorem.html">
         <div class="store-front" aria-hidden="true">
-          <div class="store-fascia"><span class="store-sign">interiorem<b>.</b></span><span class="store-no">No. 01</span></div>
+          <div class="store-fascia"><span class="store-sign">interiorem<b>.</b></span><span class="store-no">Storefront 01</span></div>
           <div class="store-win">
             <img src="assets/work-interiorem-home.webp" width="2200" height="1118" alt="" loading="lazy">
-            <span class="store-vinyl">Furniture <i>/</i> Objects <i>/</i> Marketplace</span>
+            <span class="store-vinyl">Architecture <i>/</i> Furniture <i>/</i> Marketplace</span>
             <span class="store-refl"></span>
             <span class="store-enter">Enter storefront <span class="arr">→</span></span>
           </div>
           <div class="store-sill"></div>
         </div>
         <div class="store-meta">
-          <p class="store-k">Storefront <i>/</i> 01</p>
-          <h3 class="store-name">Interiorem</h3>
+          <h3 class="store-name"><span>Storefront 01 —</span> Interiorem</h3>
           <p class="store-desc">A marketplace storefront for furniture with a previous life, listed by Melbourne dealers and collectors.</p>
           <dl class="store-spec"><dt>Discipline</dt><dd>Brand &amp; art direction, Commerce engineering</dd></dl>
         </div>
       </a>
-      <a class="store store-chair" href="work/chair-label.html">
+      <a class="store store-chair" id="storefront-02" href="work/chair-label.html">
         <div class="store-front" aria-hidden="true">
-          <div class="store-fascia"><span class="store-sign">chair label</span><span class="store-no">No. 02</span></div>
+          <div class="store-fascia"><span class="store-sign">chair label</span><span class="store-no">Storefront 02</span></div>
           <div class="store-win">
             <img src="assets/chair-label-campaign.jpg" width="1800" height="992" alt="" loading="lazy">
             <span class="store-vinyl">Fashion <i>/</i> Campaign <i>/</i> Apparel</span>
@@ -194,8 +205,7 @@
           <div class="store-sill"></div>
         </div>
         <div class="store-meta">
-          <p class="store-k">Storefront <i>/</i> 02</p>
-          <h3 class="store-name">Chair Label</h3>
+          <h3 class="store-name"><span>Storefront 02 —</span> Chair Label</h3>
           <p class="store-desc">Collection 01, launched as a campaign you can shop.</p>
           <dl class="store-spec"><dt>Discipline</dt><dd>Brand &amp; art direction, Storefront design</dd></dl>
         </div>
