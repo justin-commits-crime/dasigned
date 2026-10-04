@@ -118,7 +118,25 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .dsp-mark{position:absolute;left:5.5cqw;top:6cqh;width:15cqw;height:auto;max-width:none;filter:invert(1)}
 .dsp-h{position:absolute;left:5.5cqw;top:17cqh;margin:0;display:flex;flex-direction:column;font-family:var(--font-sans);font-weight:600;font-stretch:76%;font-size:min(8.8cqw,14cqh);line-height:.88;letter-spacing:-.03em;text-transform:uppercase;color:var(--ink);text-wrap:initial;white-space:nowrap}
 .dsp-h .win-in{padding-left:6cqw}
-.sf-d-home .dsp-h{top:50%;transform:translateY(-54%);font-size:min(11.6cqw,19cqh)}
+.sf-d-home .dsp-h{font-size:min(10.4cqw,16cqh)}
+/* Hero text stack: H1 → supporting line → actions, vertically centred in the screen.
+   A soft light scrim behind it lifts contrast over the interior seen through the glass;
+   the copy and actions sit above the glass layers (z 10), the headline stays under the glass. */
+.hero-stack{position:absolute;left:5.5cqw;right:5.5cqw;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:flex-start}
+.hero-stack::before{content:"";position:absolute;z-index:-1;left:-6cqw;right:-2cqw;top:-8cqh;bottom:-8cqh;background:radial-gradient(ellipse 70% 62% at 34% 50%,rgba(248,247,244,.82),rgba(248,247,244,.5) 55%,rgba(248,247,244,0) 100%);pointer-events:none}
+.hero-stack .dsp-h{position:relative;left:auto;top:auto}
+.hs-lede,.hs-cta{position:relative;z-index:10}
+.hs-lede{margin:4.6cqh 0 0;max-width:34ch;font-size:max(12px,2.05cqw);line-height:1.45;letter-spacing:-.005em;color:#3A3A3F}
+.hs-cta{display:flex;align-items:center;gap:3.2cqw;margin-top:4.4cqh}
+.hs-cta .btn{height:max(36px,6cqw);padding:0 3cqw;font-size:max(12px,1.8cqw);gap:1.3cqw}
+.hs-cta .link{font-size:max(12px,1.7cqw);color:var(--ink)}
+.hs-lede{opacity:0;animation:riseIn .6s var(--ease-out) 1s forwards}
+.hs-cta{opacity:0;animation:riseIn .6s var(--ease-out) 1.08s forwards}
+/* Below 1024px (stacked / static) the screen carries the headline only; copy, actions and previews sit beneath */
+.m-stacked .hs-lede,.m-stacked .hs-cta,.m-static .hs-lede,.m-static .hs-cta{display:none}
+/* …and the side windows hold no floating displays */
+.m-stacked .bay .cp,.m-stacked .bay .cp-cap,.m-static .bay .cp,.m-static .bay .cp-cap{display:none}
+.m-stacked .street-bag,.m-static .street-bag{display:none}
 .sf-d-home .dsp-obj img{height:34cqh}
 .dsp-h b{display:inline-block;font-weight:300;color:var(--blue-600);margin-left:.08em}
 .dsp-h-one{top:9cqh;font-size:min(11.5cqw,19cqh)}
@@ -379,6 +397,19 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 
 /* Under the hero: CTA bar (stacked) and scroll cue (zoom) */
 .hero-below{display:none}
+/* Preview row (below 1024px): the two storefronts as a structured grid under the actions */
+.hero-previews{list-style:none;margin:var(--space-4) 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)}
+.hero-previews a{display:flex;flex-direction:column;gap:6px;color:var(--white);text-decoration:none}
+.hp-img{position:relative;display:block;aspect-ratio:4 / 3;overflow:hidden;background:#1E1E21}
+.hp-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease-out)}
+.hp-int img{inset:auto;left:-60%;top:auto;bottom:-6%;width:175%;max-width:none;height:auto}
+.hp-chair img{object-position:50% 22%}
+.hp-tag{position:absolute;right:8px;bottom:8px;padding:4px 6px 3px;background:var(--blue-600);color:var(--white);font:800 15px/1 var(--font-wide);font-stretch:70%}
+.hp-k{margin-top:4px;font:500 10px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.hp-n{font-size:16px;font-weight:500;letter-spacing:-.01em}
+.hp-n .arr{display:inline-block;transition:transform var(--dur-slow) var(--ease-out)}
+.hero-previews a:hover .hp-n .arr{transform:translateX(.25em)}
+.hero-previews a:hover img{transform:scale(1.03)}
 .m-stacked .hero-below{position:absolute;left:0;right:0;margin-inline:auto;width:min(calc(100% - 2 * var(--gut)),560px);display:flex;flex-direction:column;gap:var(--space-6)}
 .hero-lede{margin:0;font-size:17px;line-height:1.5;color:rgba(255,255,255,.78);max-width:34ch}
 .hero-actions{display:grid;grid-template-columns:1.35fr 1fr;gap:var(--space-3)}
@@ -781,7 +812,7 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 
 @media (prefers-reduced-motion:reduce){
   .nl>span,.hdr-cta,.hdr-cta span,.key,.key .arr{transition:none!important}
-  .win-h .ln>span,.win-h b,.hero-below,.dsp-label,.dsp-mark,.dsp-ex,.sf-hero .dsp-obj{animation:none;opacity:1;transform:none}
+  .hs-lede,.hs-cta,.win-h .ln>span,.win-h b,.hero-below,.dsp-label,.dsp-mark,.dsp-ex,.sf-hero .dsp-obj{animation:none;opacity:1;transform:none}
   .sf-d,.dsp-q span,.dsp-svc span{transition:none}
   .bay-dim{transition:none}
   .cp,.refl,.cp-word,.cp-cap>span,.cp-cursor,.store-win img,.store-refl,.store-enter{transition:none!important;transform:none!important}
