@@ -96,6 +96,32 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .menu-links a:hover{color:var(--blue-500)}
 .menu-cta{width:100%;height:56px}
 
+/* ── Introduction ─────────────────────────────────────────────
+   After metalab.com: one large statement on black, set wide and loose; on arrival it lights word by
+   word from grey to white. Then the shopfront follows as an inset card that opens to full-bleed. */
+.intro{background:var(--ink);color:var(--white);padding:calc(var(--hdr) + clamp(64px,10vw,160px)) var(--gut) clamp(72px,9vw,140px)}
+.intro-eye{margin:0 0 clamp(28px,3vw,48px);font:500 12px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.intro-h{margin:0;max-width:17em;font-family:var(--font-sans);font-weight:500;font-size:clamp(38px,5.6vw,96px);line-height:1.04;letter-spacing:-.035em;text-wrap:balance}
+.intro-h .w{color:rgba(255,255,255,.18);transition:color .6s var(--ease-out);transition-delay:calc(.25s + var(--i) * 45ms)}
+.intro-h.lit .w{color:var(--white)}
+.intro-h em{font-style:normal}
+.intro-h.lit .w em{color:var(--blue-500);transition:color .6s var(--ease-out);transition-delay:inherit}
+.intro-meta{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap);align-items:end;margin-top:clamp(56px,8vw,128px);padding-top:var(--space-6);border-top:1px solid rgba(255,255,255,.16);font-size:15px;line-height:1.5;color:rgba(255,255,255,.72)}
+.intro-meta p{margin:0;grid-column:span 4}
+.intro-meta span{display:block;margin-bottom:8px;font:500 11px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.intro-meta a{color:var(--white);text-decoration:underline;text-decoration-color:rgba(255,255,255,.3);text-underline-offset:.3em}
+.intro-meta a:hover{text-decoration-color:var(--white)}
+.intro-meta .intro-go{grid-column:span 4;justify-self:end;display:inline-flex;gap:.7em;font-size:15px;text-decoration:none}
+.intro-go .arr{display:inline-block;transition:transform var(--dur-slow) var(--ease-out)}
+.intro-go:hover .arr{transform:translateY(.25em)}
+@media (max-width:900px){
+  .intro-meta{grid-template-columns:1fr;row-gap:var(--space-6)}
+  .intro-meta p,.intro-meta .intro-go{grid-column:auto;justify-self:start}
+}
+/* The reel: the shopfront arrives inset, square-cornered like the rest of the site, and opens to the edges */
+.scroller .stage{clip-path:inset(calc(var(--reel,0) * 7%) calc(var(--reel,0) * 7%))}
+@media (prefers-reduced-motion:reduce){.intro-h .w{color:var(--white);transition:none}.scroller .stage{clip-path:none}}
+
 /* ── Hero stage ───────────────────────────────────────────────── */
 .scroller{position:relative;height:250vh;height:250svh;background:var(--ink)}
 .m-static .scroller,.m-still .scroller{height:100vh;height:100svh}
