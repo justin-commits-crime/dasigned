@@ -104,7 +104,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
    The camera (scripts/hero.js) sets --cz (dolly), --yaw and --pitch on the world; --g fades the glass
    as you step through. Planes use transform-origin 0 0 and are placed with translate3d + one rotation. */
 .d3{--w:30vw;--gy:39vh;--ty:-33vh;--D:22vw;--L:110vw;--iw:var(--w);--it:var(--ty);--P:90vw;--F:50vw;--Fc:14vw;--Ff:22vw;
-  position:relative;height:560vh;height:560svh;background:#0C0C0E}
+  position:relative;height:480vh;height:480svh;background:#0C0C0E}
 .d3-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;perspective:var(--P);perspective-origin:50% 46%;background:#0C0C0E}
 .d3-world{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;
   transform:translate3d(calc(var(--mx,0) * -.9vw),calc(var(--my,0) * -.5vh + var(--oy,0px)),var(--cz,-6vw)) rotateX(var(--pitch,0deg)) rotateY(var(--yaw,-7deg))}
@@ -112,12 +112,12 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 
 /* Street: wet dark stone, a few joints, a pool of light from the opening */
 .d3-ground{width:400vw;height:calc(var(--D) + 70vw);transform:translate3d(-200vw,var(--gy),calc(var(--D) * -1)) rotateX(90deg);
-  background:#121214 repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 12vw)}
+  background:#111113}
 .d3-spill{width:calc(var(--w) * 2.6);height:46vw;transform:translate3d(calc(var(--w) * -1.3),calc(var(--gy) - 1px),calc(var(--D) * -1)) rotateX(90deg);
   background:radial-gradient(ellipse 50% 100% at calc(50% + var(--mx,0) * 6%) 0,rgba(244,240,232,.2),rgba(244,240,232,0) 72%)}
 
 /* Façade: board-marked concrete, almost black */
-.d3-face{background:#19191B repeating-linear-gradient(0deg,rgba(255,255,255,.028) 0 1px,transparent 1px 7.5vh);box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)}
+.d3-face{background:#18181A repeating-linear-gradient(0deg,rgba(255,255,255,.014) 0 1px,transparent 1px 7.5vh);box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)}
 .d3-face-l{width:calc(200vw - var(--w));height:calc(150vh + var(--gy));transform:translate3d(-200vw,-150vh,0)}
 .d3-face-r{width:calc(200vw - var(--w));height:calc(150vh + var(--gy));transform:translate3d(var(--w),-150vh,0)}
 .d3-face-t{width:calc(var(--w) * 2);height:calc(150vh + var(--ty));transform:translate3d(calc(var(--w) * -1),-150vh,0)}
@@ -142,6 +142,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
   display:flex;flex-direction:column;justify-content:center;padding:0 4.5vw;background:radial-gradient(ellipse 80% 60% at calc(50% + var(--mx,0) * 8%) calc(30% + var(--my,0) * 5%),#FBFAF7,#EFECE6 70%,#E5E1DA)}
 .d3-sign{background:none;transform:translate3d(calc(var(--iw) * -1),var(--it),calc((var(--D) + var(--L)) * -1 + 2px));transform-style:preserve-3d;pointer-events:none}
 /* Dimensional lettering: the wall keeps 3D so the letters can stand off it */
+.d3-lock{position:relative;align-self:flex-start;transform-style:preserve-3d}
 .d3-type{position:relative;transform-style:preserve-3d}
 .d3-h,.d3-x,.d3-cast{display:flex;flex-direction:column;margin:0;font-family:var(--font-sans);font-weight:600;font-stretch:76%;font-size:9.6vw;line-height:.84;letter-spacing:-.035em;text-transform:uppercase;white-space:nowrap}
 .d3-h{position:relative;color:#111113;transform:translateZ(calc(1.6vw * var(--ex,1)))}
@@ -149,7 +150,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .d3-h b{color:var(--blue-600)}
 .d3-x{position:absolute;left:0;top:0;color:#3A3A3F;transform:translateZ(calc((1.6vw - var(--k) * .2vw) * var(--ex,1)));opacity:var(--ex,1)}
 .d3-x b{color:#0A2E99}
-.d3-cast{position:absolute;left:0;top:0;color:transparent;opacity:var(--ex,1);text-shadow:calc(.4vw - var(--mx,0) * .35vw) calc(2.2vw - var(--my,0) * .25vw) .9vw rgba(40,34,26,.26)}
+.d3-cast{position:absolute;left:0;top:0;color:transparent;opacity:var(--ex,1);text-shadow:calc(.3vw - var(--mx,0) * .3vw) calc(1.3vw - var(--my,0) * .2vw) 1.2vw rgba(40,34,26,.14)}
 .d3-cast b{color:transparent}
 /* The descriptor: small, set on the wall like a gallery label */
 .d3-caps{margin:5vh 0 0;padding-top:1.4vh;border-top:1px solid rgba(17,17,19,.35);align-self:flex-start;font:500 .82vw/1 var(--font-wide);font-stretch:125%;letter-spacing:.3em;text-transform:uppercase;color:#4A4A50}
@@ -161,8 +162,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .d3-leaf{position:absolute;top:1.1vw;bottom:1.1vw;overflow:hidden;background:rgba(22,24,28,.3);transition:none}
 .d3-leaf-l{left:1.1vw;width:calc(61% - 1.1vw);border-right:.5vw solid #0B0B0C;transform:translateX(calc(var(--open,0) * -101%))}
 .d3-leaf-r{right:1.1vw;width:calc(39% - 1.1vw);border-left:1px solid #9C9CA1;transform:translateX(calc(var(--open,0) * 101%))}
-.d3-sheen{position:absolute;inset:0;transform:translateX(calc(var(--mx,0) * -3%));background:linear-gradient(112deg,rgba(255,255,255,0) 22%,rgba(255,255,255,.09) 34%,rgba(255,255,255,0) 44%,rgba(255,255,255,0) 64%,rgba(255,255,255,.05) 70%,rgba(255,255,255,0) 76%)}
-.d3-hi{position:absolute;inset:0;transform:translateX(calc(var(--mx,0) * -5%));background:rgba(255,255,255,.22);clip-path:polygon(60% 0,60.6% 0,40.6% 100%,40% 100%)}
+.d3-hi{position:absolute;inset:0;transform:translateX(calc(var(--mx,0) * -5%));background:rgba(255,255,255,.16);clip-path:polygon(60% 0,60.6% 0,40.6% 100%,40% 100%)}
 /* Emphasis as you approach: the threshold wakes and the opening's light deepens (--em) */
 .d3-sill{width:calc(var(--w) * 2);height:.5vw;transform:translate3d(calc(var(--w) * -1),calc(var(--gy) - 1px),calc(var(--D) * -1)) rotateX(90deg);
   background:#F4F0E8;opacity:calc(.12 + var(--em,0) * .88);box-shadow:0 0 2.4vw .4vw rgba(244,240,232,calc(var(--em,0) * .5))}
@@ -175,19 +175,13 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .d3-enter:hover .arr{transform:translateX(.35em)}
 .d3-enter:focus-visible{outline:2px solid var(--blue-500);outline-offset:6px}
 
-/* Inside, the architecture becomes interface (--dg 0 → 1): a hairline grid draws across every surface,
-   edges turn to blue rules, crop marks and a coordinate frame the statement */
-.d3-in::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:var(--dg,0);
-  background:repeating-linear-gradient(90deg,rgba(10,71,255,.16) 0 1px,transparent 1px 4vw),repeating-linear-gradient(0deg,rgba(10,71,255,.16) 0 1px,transparent 1px 4vw);
-  box-shadow:inset 0 0 0 1px rgba(10,71,255,.55)}
+/* Inside, the architecture becomes interface (--dg 0 → 1): edges turn to blue hairlines, nothing more */
+.d3-in::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:var(--dg,0);box-shadow:inset 0 0 0 1px rgba(10,71,255,.6)}
 .d3-sign::after{display:none}
-.d3-crop{position:absolute;left:3vw;right:3vw;top:24%;bottom:26%;pointer-events:none;opacity:var(--dg,0);
-  background:linear-gradient(var(--blue-600),var(--blue-600)) 0 0/1.6vw 1px,linear-gradient(var(--blue-600),var(--blue-600)) 0 0/1px 1.6vw,
-    linear-gradient(var(--blue-600),var(--blue-600)) 100% 0/1.6vw 1px,linear-gradient(var(--blue-600),var(--blue-600)) 100% 0/1px 1.6vw,
-    linear-gradient(var(--blue-600),var(--blue-600)) 0 100%/1.6vw 1px,linear-gradient(var(--blue-600),var(--blue-600)) 0 100%/1px 1.6vw,
-    linear-gradient(var(--blue-600),var(--blue-600)) 100% 100%/1.6vw 1px,linear-gradient(var(--blue-600),var(--blue-600)) 100% 100%/1px 1.6vw;background-repeat:no-repeat}
-.d3-coord{position:absolute;left:3vw;top:calc(24% - 2.2vw);font:500 .7vw/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue-600);opacity:var(--dg,0)}
-.d3-coord i{font-style:normal;opacity:.5;margin:0 .4em}
+/* the selection: one hairline box with four square handles around the statement */
+.d3-sel{position:absolute;inset:-1.6vw -2vw -1.4vw;pointer-events:none;opacity:var(--dg,0);box-shadow:0 0 0 1px var(--blue-600)}
+.d3-sel b{position:absolute;width:.7vw;height:.7vw;min-width:7px;min-height:7px;background:#fff;box-shadow:0 0 0 1px var(--blue-600);transform:translate(-50%,-50%)}
+.d3-sel b:nth-child(1){left:0;top:0}.d3-sel b:nth-child(2){left:100%;top:0}.d3-sel b:nth-child(3){left:0;top:100%}.d3-sel b:nth-child(4){left:100%;top:100%}
 
 
 /* ── The transformation: physical → digital ───────────────────
@@ -201,9 +195,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .d3-in-ceil b{opacity:calc(1 - var(--fl,0))}
 .d3-stage.is-unfold{background:#E3E0DA}
 .d3-stage.is-unfold .d3-ext,.d3-stage.is-unfold .d3-room{visibility:hidden}
-.d3-fold{visibility:hidden;background:#E8E5DF;
-  background-image:repeating-linear-gradient(90deg,rgba(10,71,255,.16) 0 1px,transparent 1px 4vw),repeating-linear-gradient(0deg,rgba(10,71,255,.16) 0 1px,transparent 1px 4vw);
-  box-shadow:inset 0 0 0 1px rgba(10,71,255,.55)}
+.d3-fold{visibility:hidden;background:#E8E5DF;box-shadow:inset 0 0 0 1px rgba(10,71,255,.45)}
 .d3-stage.is-unfold .d3-fold{visibility:visible}
 .d3-fold-l{width:var(--F);height:calc(var(--gy) - var(--it));transform-origin:100% 0;
   transform:translate3d(calc(var(--iw) * -1 - var(--F)),var(--it),calc((var(--D) + var(--L)) * -1)) rotateY(calc(90deg * (1 - var(--uf,0))))}
@@ -213,35 +205,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
   transform:translate3d(calc(var(--iw) * -1),calc(var(--it) - var(--Fc)),calc((var(--D) + var(--L)) * -1)) rotateX(calc(-90deg * (1 - var(--uf,0))))}
 .d3-fold-f{width:calc(var(--iw) * 2);height:var(--Ff);transform-origin:0 0;
   transform:translate3d(calc(var(--iw) * -1),var(--gy),calc((var(--D) + var(--L)) * -1)) rotateX(calc(90deg * (1 - var(--uf,0))))}
-/* What each surface becomes */
-.d3-card{position:absolute;left:12%;right:12%;top:14%;bottom:12%;display:flex;flex-direction:column;gap:1.2vw;color:#111113;text-decoration:none;opacity:var(--ct,0)}
-.d3-card-img{position:relative;flex:1;overflow:hidden;background:#D9D4CB;box-shadow:0 0 0 1px rgba(17,17,19,.12)}
-.d3-card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease-out)}
-.d3-card-int img{display:none}
-.d3-card-int{background:#C9B9A6 url(../assets/work-interiorem-home.webp) 94% 78%/200% auto no-repeat}
-.d3-card-chair img{object-position:50% 20%}
-.d3-card:hover img{transform:scale(1.03)}
-.d3-card-k{display:flex;align-items:baseline;gap:.8em;font-family:var(--font-sans);font-size:2.2vw;font-weight:500;letter-spacing:-.02em}
-.d3-card-k b{font:500 1vw/1 var(--font-mono);color:var(--blue-600)}
-.d3-card-k .arr{transition:transform var(--dur-slow) var(--ease-out)}
-.d3-card:hover .d3-card-k .arr{transform:translateX(.3em)}
-.d3-card-t{font:500 .9vw/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#55555B}
-.d3-card-t i{font-style:normal;color:var(--blue-600);margin:0 .3em}
-.d3-chrome{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:.7vw;height:45%;padding:0 2vw;background:#111113;opacity:var(--ct,0)}
-.d3-chrome i{width:.8vw;height:.8vw;border-radius:50%;background:rgba(255,255,255,.28)}
-.d3-chrome b{margin:0 auto;padding:.5vw 3vw;background:rgba(255,255,255,.08);font:400 .95vw/1 var(--font-mono);color:rgba(255,255,255,.7)}
-.d3-next{position:absolute;left:50%;top:32%;transform:translateX(-50%);display:inline-flex;gap:1em;align-items:center;padding:1.2vw 2.2vw;background:#111113;color:#FFFFFF;font:600 1.1vw/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;opacity:var(--ct,0);white-space:nowrap}
-.d3-next:hover{background:var(--blue-600);color:#FFFFFF}
-@media (max-aspect-ratio:1/1){
-  .d3{--F:30vw;--Fc:10vw;--Ff:16vw}
-  .d3-card{left:8%;right:8%;gap:2vw}
-  .d3-card-k{font-size:3.6vw}.d3-card-k b{font-size:2vw}
-  .d3-card-t{display:none}
-  .d3-card-int{background-size:auto 150%;background-position:72% 84%}
-  .d3-card-k{font-size:3.2vw}
-  .d3-chrome b{font-size:2vw}
-  .d3-next{font-size:2.6vw;padding:2.4vw 4vw}
-}
+@media (max-aspect-ratio:1/1){.d3{--F:30vw;--Fc:10vw;--Ff:16vw}}
 
 /* Phones (portrait): a narrower building, a taller portal */
 @media (max-aspect-ratio:1/1){
@@ -250,7 +214,7 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
   .d3-back{padding:0 6vw}
   .d3-caps{font-size:1.75vw;letter-spacing:.18em;white-space:nowrap}
   .d3-mark{height:2.6vh}
-  .d3-coord{font-size:1.6vw}
+
 }
 /* Reduced motion: the camera holds inside, in front of the line */
 @media (prefers-reduced-motion:reduce){
