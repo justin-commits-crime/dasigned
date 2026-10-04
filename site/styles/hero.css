@@ -103,42 +103,37 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 @media (max-width:900px){.menu{left:var(--gut)}.menu-cta{display:block}}
 
 /* ── Hero: the 3D introduction ────────────────────────────────
-   Stage 1 is the exterior: one monolith, one aperture, one door. World units: x/z in vw, y in vh,
-   origin at the centre of the screen.
-     --fw  half-width of the building       --w   half-width of the aperture    --ty  aperture lintel
-     --dw  half-width of the door           --gy  street level                  --D   depth of the reveals (glass line)
-     --iw  half-width of the gallery (= --w: planes hidden behind the piers mis-sort in Chrome)
-     --it  gallery ceiling                  --L   depth of the gallery
-   The camera (scripts/hero.js) sets --cz (dolly), --yaw and --pitch on the world; --open parts the door.
-   Planes use transform-origin 0 0 and are placed with translate3d + one rotation. */
-.d3{--fw:39vw;--w:30vw;--ty:-16vh;--dw:8vw;--gy:39vh;--D:22vw;--L:110vw;--iw:30vw;--it:-33vh;--P:90vw;--F:50vw;--Fc:14vw;--Ff:22vw;
-  position:relative;height:480vh;height:480svh;background:#0A0A0C}
-.d3-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;perspective:var(--P);perspective-origin:50% 46%;background:#0A0A0C}
+   One building, one opening. World units: x/z in vw, y in vh, origin at the centre of the screen.
+     --w   half-width of the portal        --gy  street level        --ty  top of the portal
+     --D   depth of the recess (glass)      --L   depth of the gallery
+     --iw  half-width of the gallery        --it  gallery ceiling
+   The camera (scripts/hero.js) sets --cz (dolly), --yaw and --pitch on the world; --g fades the glass
+   as you step through. Planes use transform-origin 0 0 and are placed with translate3d + one rotation. */
+.d3{--w:30vw;--gy:39vh;--ty:-33vh;--D:22vw;--L:110vw;--iw:var(--w);--it:var(--ty);--P:90vw;--F:50vw;--Fc:14vw;--Ff:22vw;
+  position:relative;height:480vh;height:480svh;background:#0C0C0E}
+.d3-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;perspective:var(--P);perspective-origin:50% 46%;background:#0C0C0E}
 .d3-world{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;
   transform:translate3d(calc(var(--mx,0) * -.9vw),calc(var(--my,0) * -.5vh + var(--oy,0px)),var(--cz,-6vw)) rotateX(var(--pitch,0deg)) rotateY(var(--yaw,-7deg))}
 .pl{position:absolute;left:0;top:0;display:block;transform-origin:0 0;backface-visibility:visible}
 
-/* Street: dark polished stone; the only light on it falls from the door (painted on, not a separate plane:
-   a transparent plane here knocks the piers out of Chrome's compositor) */
+/* Street: wet dark stone, a few joints, a pool of light from the opening */
 .d3-ground{width:400vw;height:calc(var(--D) + 70vw);transform:translate3d(-200vw,var(--gy),calc(var(--D) * -1)) rotateX(90deg);
-  background:radial-gradient(calc(var(--dw) * 2.4) 52vw at calc(50% + var(--mx,0) * 2vw) 0,rgba(244,240,232,.2),rgba(244,240,232,0) 74%) #121214}
+  background:#111113}
+.d3-spill{width:calc(var(--w) * 2.6);height:46vw;transform:translate3d(calc(var(--w) * -1.3),calc(var(--gy) - 1px),calc(var(--D) * -1)) rotateX(90deg);
+  background:radial-gradient(ellipse 50% 100% at calc(50% + var(--mx,0) * 6%) 0,rgba(244,240,232,.2),rgba(244,240,232,0) 72%)}
 
-/* The monolith: fine board-marked concrete, almost black, lifted off the street on a shadow gap */
-.d3-face{background:linear-gradient(0deg,#070708 0 1.1vh,transparent 1.1vh),repeating-linear-gradient(0deg,rgba(255,255,255,.016) 0 1px,transparent 1px 6vh) #19191B}
-.d3-face-l{width:calc(var(--fw) - var(--w));height:calc(150vh + var(--gy));transform:translate3d(calc(var(--fw) * -1),-150vh,0)}
-.d3-face-r{width:calc(var(--fw) - var(--w));height:calc(150vh + var(--gy));transform:translate3d(var(--w),-150vh,0)}
-.d3-face-t{width:calc(var(--w) * 2);height:calc(150vh + var(--ty));transform:translate3d(calc(var(--w) * -1),-150vh,0);background:repeating-linear-gradient(0deg,rgba(255,255,255,.016) 0 1px,transparent 1px 6vh) #19191B}
-/* Light catches its outer arrises, so it reads as a solid block standing in the dark */
-.d3-face-l{box-shadow:inset 1px 0 rgba(255,255,255,.09)}
-.d3-face-r{box-shadow:inset -1px 0 rgba(255,255,255,.07)}
-/* The identity: the wordmark cast into the concrete at the full width of the aperture, tone on tone */
-.d3-letters{position:absolute;left:0;bottom:4.5vh;width:100%;height:auto;max-width:none;opacity:.075}
-/* The aperture: deep reveals, lighter as they near the lit glass; a lintel with one concealed line of light */
+/* Façade: board-marked concrete, almost black */
+.d3-face{background:#18181A repeating-linear-gradient(0deg,rgba(255,255,255,.014) 0 1px,transparent 1px 7.5vh);box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)}
+.d3-face-l{width:calc(200vw - var(--w));height:calc(150vh + var(--gy));transform:translate3d(-200vw,-150vh,0)}
+.d3-face-r{width:calc(200vw - var(--w));height:calc(150vh + var(--gy));transform:translate3d(var(--w),-150vh,0)}
+.d3-face-t{width:calc(var(--w) * 2);height:calc(150vh + var(--ty));transform:translate3d(calc(var(--w) * -1),-150vh,0)}
+/* The sign: DASIGNED, halo-lit from behind onto the concrete */
+.d3-mark{position:absolute;left:50%;bottom:3.6vh;height:4.4vh;width:auto;max-width:none;transform:translateX(-50%);filter:drop-shadow(0 0 .6vw rgba(255,255,255,.35)) drop-shadow(0 0 2.4vw rgba(255,255,255,.18))}
+/* The recess: lighter as it nears the lit interior */
 .d3-rev{width:var(--D);height:calc(var(--gy) - var(--ty))}
-.d3-rev-l{transform:translate3d(calc(var(--w) * -1),var(--ty),0) rotateY(90deg);background:linear-gradient(90deg,#151517,#2E2D2B 88%,#47443F)}
-.d3-rev-r{transform:translate3d(var(--w),var(--ty),0) rotateY(90deg);background:linear-gradient(90deg,#111113,#262523 88%,#3A3835)}
-.d3-soffit{width:calc(var(--w) * 2);height:var(--D);transform:translate3d(calc(var(--w) * -1),var(--ty),calc(var(--D) * -1)) rotateX(90deg);
-  background:linear-gradient(180deg,transparent 0 9%,rgba(250,247,240,.9) 9% 10.4%,transparent 10.4%),linear-gradient(0deg,#0F0F11,#262523)}
+.d3-rev-l{transform:translate3d(calc(var(--w) * -1),var(--ty),0) rotateY(90deg);background:linear-gradient(90deg,#141416,#3A3836 92%,#55524E)}
+.d3-rev-r{transform:translate3d(var(--w),var(--ty),0) rotateY(90deg);background:linear-gradient(90deg,#101012,#2A2927 92%,#3E3C39)}
+.d3-soffit{width:calc(var(--w) * 2);height:var(--D);transform:translate3d(calc(var(--w) * -1),var(--ty),calc(var(--D) * -1)) rotateX(90deg);background:linear-gradient(0deg,#0E0E10,#2B2A28)}
 
 /* Inside: a bright gallery */
 .d3-in-floor{width:calc(var(--iw) * 2);height:var(--L);transform:translate3d(calc(var(--iw) * -1),var(--gy),calc((var(--D) + var(--L)) * -1)) rotateX(90deg);background:linear-gradient(180deg,#C9C4BC,#DAD6CF 60%,#BDB8B0)}
@@ -167,20 +162,17 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .d3-caps{margin:5vh 0 0;padding-top:1.4vh;border-top:1px solid rgba(17,17,19,.35);align-self:flex-start;font:500 .82vw/1 var(--font-wide);font-stretch:125%;letter-spacing:.3em;text-transform:uppercase;color:#4A4A50}
 .d3-caps i{font-style:normal;color:var(--blue-600);margin:0 .6em}
 
-/* The glass wall: two fixed tinted panes, one door. The door is the brightest thing on the street:
-   a thick blackened-steel frame, lighter glass, a threshold of light. Its leaves pocket away (--open). */
-.d3-glass{width:calc(var(--w) * 2);height:calc(var(--gy) - var(--ty));transform:translate3d(calc(var(--w) * -1),var(--ty),calc(var(--D) * -1));
-  overflow:hidden;box-shadow:inset 0 0 0 .45vw #0B0B0C}
-.d3-pane{position:absolute;top:.45vw;bottom:.45vw;background:rgba(13,14,17,.66)}
-.d3-pane-l{left:.45vw;right:calc(50% + var(--dw));background:linear-gradient(104deg,transparent 46%,rgba(255,255,255,.035) 46% 53%,transparent 53%),rgba(13,14,17,.66)}
-.d3-pane-r{right:.45vw;left:calc(50% + var(--dw))}
-.d3-door{position:absolute;top:0;bottom:0;left:calc(50% - var(--dw));width:calc(var(--dw) * 2);overflow:hidden;box-shadow:0 0 0 .75vw #0B0B0C,0 0 0 calc(.75vw + 1px) #3A3A3E}
-.d3-leaf{position:absolute;top:0;bottom:0;width:50%;background:rgba(20,22,26,.2)}
-.d3-leaf-l{left:0;box-shadow:inset -1px 0 #4A4A4F;transform:translateX(calc(var(--open,0) * -100%))}
-.d3-leaf-r{right:0;transform:translateX(calc(var(--open,0) * 100%))}
+/* The glass: a fixed steel frame with an aluminium edge; two leaves slide apart as you approach (--open) */
+.d3-glass{width:calc(var(--w) * 2);height:calc(var(--gy) - var(--ty));transform:translate3d(calc(var(--w) * -1),var(--ty),calc(var(--D) * -1));overflow:hidden;
+  box-shadow:inset 0 0 0 1.1vw #0B0B0C,inset 0 0 0 calc(1.1vw + 1px) #9C9CA1}
+.d3-leaf{position:absolute;top:1.1vw;bottom:1.1vw;overflow:hidden;background:rgba(22,24,28,.3);transition:none}
+.d3-leaf-l{left:1.1vw;width:calc(61% - 1.1vw);border-right:.5vw solid #0B0B0C;transform:translateX(calc(var(--open,0) * -101%))}
+.d3-leaf-r{right:1.1vw;width:calc(39% - 1.1vw);border-left:1px solid #9C9CA1;transform:translateX(calc(var(--open,0) * 101%))}
+.d3-hi{position:absolute;inset:0;transform:translateX(calc(var(--mx,0) * -5%));background:rgba(255,255,255,.16);clip-path:polygon(60% 0,60.6% 0,40.6% 100%,40% 100%)}
 /* Emphasis as you approach: the threshold wakes and the opening's light deepens (--em) */
-.d3-sill{width:calc(var(--dw) * 2);height:.5vw;transform:translate3d(calc(var(--dw) * -1),calc(var(--gy) - 1px),calc(var(--D) * -1)) rotateX(90deg);
+.d3-sill{width:calc(var(--w) * 2);height:.5vw;transform:translate3d(calc(var(--w) * -1),calc(var(--gy) - 1px),calc(var(--D) * -1)) rotateX(90deg);
   background:#F4F0E8;opacity:calc(.12 + var(--em,0) * .88);box-shadow:0 0 2.4vw .4vw rgba(244,240,232,calc(var(--em,0) * .5))}
+.d3-spill{opacity:calc(1 + var(--em,0) * .8)}
 
 /* ENTER: on the street, at the threshold */
 .d3-enter{position:absolute;left:50%;bottom:5vh;transform:translateX(-50%);display:inline-flex;align-items:center;gap:1.1em;padding:12px 4px 10px;border:0;border-bottom:1px solid rgba(244,242,238,.32);background:none;font:500 11px/1 var(--font-mono);letter-spacing:.22em;text-transform:uppercase;color:rgba(244,242,238,.72);cursor:pointer;transition:color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out),opacity .6s var(--ease-out)}
@@ -221,12 +213,13 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
   transform:translate3d(calc(var(--iw) * -1),var(--gy),calc((var(--D) + var(--L)) * -1)) rotateX(calc(90deg * (1 - var(--uf,0))))}
 @media (max-aspect-ratio:1/1){.d3{--F:30vw;--Fc:10vw;--Ff:16vw}}
 
-/* Phones (portrait): a narrower building, a taller aperture */
+/* Phones (portrait): a narrower building, a taller portal */
 @media (max-aspect-ratio:1/1){
-  .d3{--fw:47vw;--w:38vw;--ty:-12vh;--dw:11vw;--iw:38vw;--it:-30vh;--D:26vw;--P:120vw;--L:130vw;--gy:34vh}
+  .d3{--w:38vw;--D:26vw;--P:120vw;--L:130vw;--ty:-30vh;--gy:34vh}
   .d3-h,.d3-x,.d3-cast{font-size:12.4vw}
   .d3-back{padding:0 6vw}
   .d3-caps{font-size:1.75vw;letter-spacing:.18em;white-space:nowrap}
+  .d3-mark{height:2.6vh}
 
 }
 /* Reduced motion: the camera holds inside, in front of the line */

@@ -181,7 +181,7 @@
     const num = v => parseFloat(getComputedStyle(d3).getPropertyValue(v));
     let D, L, P, IW, F, Fc, Ff, GY, IT, cz = null, yaw = null, mx = 0, my = 0, sx = 0, sy = 0, raf = 0;
     const stage = $('[data-d3-stage]');
-    const measure = () => { D = num('--D'); L = num('--L'); P = num('--P'); IW = num('--iw'); F = num('--F'); Fc = num('--Fc'); Ff = num('--Ff'); GY = num('--gy'); IT = num('--it'); };
+    const measure = () => { D = num('--D'); L = num('--L'); P = num('--P'); IW = num('--w'); F = num('--F'); Fc = num('--Fc'); Ff = num('--Ff'); GY = num('--gy'); IT = num('--ty'); };
     const PF = 420;                                                  // perspective at the end: nearly flat
     measure();
     function frame() {
