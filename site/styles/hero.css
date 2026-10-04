@@ -44,9 +44,6 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.site-header{background-color:rgba(10,10,10,.94)}}
 /* The header reads like the shop's own signage: a tiny maker's mark, an oversized directory, a key to press */
 .site-header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue-500);transform:scaleX(var(--read,0));transform-origin:0 50%}
-.brand{display:block;flex:none;opacity:.9;transition:opacity var(--dur-fast)}
-.brand:hover{opacity:1}
-.brand img{display:block;height:26px;width:auto}
 .nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:clamp(40px,4.4vw,72px);counter-reset:nav}
 .nav a{position:relative;counter-increment:nav;font:400 17px/1.25 var(--font-sans);font-stretch:96%;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color var(--dur-base) var(--ease-out)}
 .nav a:hover,.nav a:focus-visible,.nav a[aria-current]{color:var(--white)}
@@ -71,30 +68,36 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .hdr-cta:focus-visible{outline:2px solid var(--blue-500);outline-offset:3px}
 .hdr-cta span{display:inline-block;transition:transform var(--dur-base) var(--ease-out)}
 .hdr-cta:hover span{transform:translate(2px,-2px)}
-.menu-btn,.menu-close{display:none;margin-left:auto;width:44px;height:44px;margin-right:-10px;padding:0;border:0;background:none;color:var(--white);cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:7px}
-.menu-btn i,.menu-close i{display:block;width:22px;height:1.5px;background:currentColor;transition:transform var(--dur-base) var(--ease-out)}
+/* The menu key: a pill at the top left, the twin of the CTA on the right */
+.menu-btn{flex:none;display:inline-flex;align-items:center;padding:.5rem 1rem;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:transparent;color:var(--white);font:500 14px/1.2 var(--font-sans);letter-spacing:.01em;cursor:pointer;transition:background-color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out)}
+.menu-btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.55)}
+.menu-btn:active{background:rgba(255,255,255,.16)}
+.menu-btn:focus-visible{outline:2px solid var(--blue-500);outline-offset:3px}
+/* Open: the pill stays lit while its panel is down */
+.menu-btn[aria-expanded=true]{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.55)}
 @media (max-width:900px){
-  .nav,.hdr-cta{display:none}
-  .menu-btn{display:flex}
+  .hdr-cta{display:none}
   .site-header{padding:.5rem var(--gut)}
-  .brand img{height:24px}
 }
 
-.menu{position:fixed;inset:0;z-index:80;display:flex;flex-direction:column;padding:0 var(--gut) calc(var(--space-8) + env(safe-area-inset-bottom));background:var(--ink);color:var(--white);opacity:0;visibility:hidden;transition:opacity var(--dur-base) var(--ease-out),visibility 0s linear var(--dur-base)}
-.menu.open{opacity:1;visibility:visible;transition:opacity var(--dur-base) var(--ease-out)}
-.menu-top{display:flex;align-items:center;height:var(--hdr);border-bottom:1px solid rgba(255,255,255,.1)}
-.menu-top img{height:24px;width:auto}
-.menu-close{display:block;position:relative}
-.menu-close i{position:absolute;left:11px;top:21px}
-.menu-close i:first-of-type{transform:rotate(45deg)}
-.menu-close i:last-of-type{transform:rotate(-45deg)}
-.menu-links{flex:1;display:flex;flex-direction:column;justify-content:center;gap:var(--space-2)}
-.menu-links a{font-size:clamp(44px,13vw,88px);font-weight:500;font-stretch:88%;letter-spacing:-.04em;line-height:1.05;color:var(--white);text-decoration:none;opacity:0;transform:translateY(16px);transition:opacity var(--dur-slow) var(--ease-out),transform var(--dur-slow) var(--ease-out),color var(--dur-fast)}
-.menu.open .menu-links a{opacity:1;transform:none}
-.menu.open .menu-links a:nth-child(2){transition-delay:60ms}
-.menu.open .menu-links a:nth-child(3){transition-delay:120ms}
-.menu-links a:hover{color:var(--blue-500)}
-.menu-cta{width:100%;height:56px}
+/* The menu drops from its pill: a small dark panel holding the directory, set like the old header nav */
+.menu{position:fixed;z-index:75;top:calc(var(--hdr) + 8px);left:2rem;min-width:236px;padding:22px 30px 22px 36px;box-sizing:border-box;
+  background:rgba(10,10,10,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);color:var(--white);
+  opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out),visibility 0s linear var(--dur-base)}
+.menu.open{opacity:1;visibility:visible;transform:none;transition:opacity var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out)}
+.menu-links{display:flex;flex-direction:column;gap:16px;counter-reset:nav}
+.menu-links a{align-self:flex-start;counter-increment:nav;font:400 17px/1.25 var(--font-sans);font-stretch:96%;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color var(--dur-base) var(--ease-out)}
+.menu-links a:hover,.menu-links a:focus-visible,.menu-links a[aria-current]{color:var(--white)}
+.menu-links a::after{content:"0" counter(nav);position:absolute;top:-.35em;right:-1.9em;font:500 9px/1 var(--font-mono);letter-spacing:0;color:rgba(255,255,255,.36);transition:color var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out)}
+.menu-links a:hover::after,.menu-links a[aria-current]::after{color:var(--blue-500);transform:translateY(-2px)}
+.menu-links a:hover::before{opacity:.55;transform:none}
+.menu-links a:hover .nl-a,.menu-links a:focus-visible .nl-a,.menu-links a[aria-current] .nl-a{transform:translateY(-105%)}
+.menu-links a:hover .nl-b,.menu-links a:focus-visible .nl-b,.menu-links a[aria-current] .nl-b{transform:none}
+.menu-links a:focus-visible{outline:2px solid var(--blue-500);outline-offset:4px}
+/* On small screens the CTA leaves the header and closes the list */
+.menu-cta{display:none;margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);font:500 14px/1.2 var(--font-sans);color:var(--white);text-decoration:none}
+.menu-cta span{color:var(--blue-500);margin-left:.4em}
+@media (max-width:900px){.menu{left:var(--gut)}.menu-cta{display:block}}
 
 /* ── Hero stage ───────────────────────────────────────────────── */
 .scroller{position:relative;height:250vh;height:250svh;background:var(--ink)}
@@ -836,8 +839,7 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
   .hint i{animation:none}
   .street-bag>img:not(.street-bag-refl){transition:none;transform:none}
   .btn .arr,.btn:hover .arr{transition:none;transform:none}
-  .menu,.menu.open,.menu-links a{transition:none}
-  .menu-links a{opacity:1;transform:none}
+  .menu,.menu.open{transition:none}
   .screen{--g:1;animation:none!important}
   .idea-p .w{opacity:1;transition:none}
   .tile-win{--g:1;transition:none}
