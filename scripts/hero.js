@@ -300,6 +300,24 @@
     spy();
   } else wins.forEach(w => w.classList.add('in'));
 
+  /* ── Hero object: turns a few degrees towards the cursor; the glass reflections slide against it ── */
+  const hz = $('[data-hz]'), hzObj = $('[data-hz-obj]');
+  if (hz && hzObj && !reduce && matchMedia('(hover: hover)').matches) {
+    let hRaf = 0, hx = 0, hy = 0;
+    hz.addEventListener('pointermove', e => {
+      const r = hz.getBoundingClientRect();
+      hx = (e.clientX - r.left) / r.width * 2 - 1; hy = (e.clientY - r.top) / r.height * 2 - 1;
+      if (!hRaf) hRaf = requestAnimationFrame(() => {
+        hRaf = 0;
+        hzObj.style.setProperty('--ry', (-16 + hx * 6).toFixed(2) + 'deg');
+        hzObj.style.setProperty('--rx', (hy * -3).toFixed(2) + 'deg');
+        hzObj.style.setProperty('--px', hx.toFixed(3));
+        hzObj.style.setProperty('--py', hy.toFixed(3));
+      });
+    });
+    hz.addEventListener('pointerleave', () => ['--ry', '--rx', '--px', '--py'].forEach(v => hzObj.style.removeProperty(v)));
+  }
+
   /* ── Introduction: the statement lights word by word on arrival ── */
   const intro = $('[data-intro]');
   if (intro) {
