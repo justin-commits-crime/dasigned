@@ -14,7 +14,7 @@
   const WIN_R = (SCR.w * IMG_R) / SCR.h;                      // shop window aspect (~1.195)
   const WIN_PHOTO_H = 1 / (SCR.w * IMG_R);                    // photo height per px of window width
   const Z0 = .6;                                              // opening size of the window vs. final: the whole frontage in view
-  const STACK_W = 900, STACK_CROP = .115, BELOW_GAP = 72;                    // phones: layout width of the window, photo cropped above the sign band                                             // opening size of the window vs. final
+  const STACK_W = 900, STACK_CROP = .115, BELOW_GAP = 32;                    // phones: layout width of the window, photo cropped above the sign band                                             // opening size of the window vs. final
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -43,7 +43,9 @@
     const fitW = Math.min(vw, Ah * WIN_R);                    // window fitted below the header
 
     // Reduced motion: the opening framing, held still — same content, no camera move.
-    setMode(fitW >= 720 && !(portrait && vw < 900) ? (reduce ? 'still' : 'zoom') : portrait ? 'stacked' : 'static');
+    // Below 1024px the side-window displays give way to a structured preview row under the CTAs (stacked);
+    // short landscape phones get the window alone (static).
+    setMode(fitW >= 720 && vw >= 1024 ? (reduce ? 'still' : 'zoom') : (portrait || vh >= 560) ? 'stacked' : 'static');
 
     let we, s = 1, Y;
     if (mode === 'zoom' || mode === 'still') {
@@ -52,7 +54,8 @@
       we = STACK_W;                                           // window laid out at a desktop width…
       // …shown at ~86% of the screen, but small enough that the CTAs stay above the fold
       const photoH = (1 - STACK_CROP) * (STACK_W / SCR.w / IMG_R);
-      const fit = (vh - HDR - BELOW_GAP - below.offsetHeight - 24) / photoH;
+      const pv = below.querySelector('.hero-previews');          // the preview row may sit below the fold
+      const fit = (vh - HDR - BELOW_GAP - (below.offsetHeight - (pv ? pv.offsetHeight + 24 : 0)) - 24) / photoH;
       s = Math.max(Math.min(vw * .86 / we, fit), vw * .62 / we);
     } else {
       we = Math.min(vw * .92, Ah * .88 * WIN_R);
