@@ -125,17 +125,22 @@
     bag.addEventListener('pointerleave', () => { bag.style.removeProperty('--bry'); bag.style.removeProperty('--brx'); });
   });
 
-  /* ── The shop window answers the cursor: displays drift a few pixels, the glass reflection slides ── */
+  /* ── The shop window answers the cursor: layers drift a few pixels, the glass reflection slides.
+     Eased here rather than with CSS transitions, so every layer moves on the same frame. ── */
   if (!reduce) {
-    let px = 0, py = 0, pRaf = 0;
+    let tx = 0, ty = 0, px = 0, py = 0, pRaf = 0;
+    const drift = () => {
+      px += (tx - px) * .07; py += (ty - py) * .07;
+      const done = Math.abs(tx - px) < .002 && Math.abs(ty - py) < .002;
+      if (done) { px = tx; py = ty; }
+      world.style.setProperty('--px', px.toFixed(3));
+      world.style.setProperty('--py', py.toFixed(3));
+      pRaf = done ? 0 : requestAnimationFrame(drift);
+    };
     stage.addEventListener('pointermove', e => {
       if (e.pointerType !== 'mouse') return;
-      px = e.clientX / innerWidth * 2 - 1; py = e.clientY / innerHeight * 2 - 1;
-      if (!pRaf) pRaf = requestAnimationFrame(() => {
-        pRaf = 0;
-        world.style.setProperty('--px', px.toFixed(3));
-        world.style.setProperty('--py', py.toFixed(3));
-      });
+      tx = e.clientX / innerWidth * 2 - 1; ty = e.clientY / innerHeight * 2 - 1;
+      if (!pRaf) pRaf = requestAnimationFrame(drift);
     });
   }
 
