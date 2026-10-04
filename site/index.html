@@ -47,114 +47,38 @@
 </div>
 
 <main id="main">
-<!-- ── Hero: the shopfront. The same storefront recurs through the page — its display changes for the
-     work (hover a project), the services, and the closing call (the footer). ── -->
-<section class="scroller" id="top" data-hero aria-labelledby="hero-title">
-  <div class="stage" data-stage>
-    <div class="world sf sf-hero" data-world data-show="home">
-      <!-- The shopfront: stone, a deep reveal, a metal frame. No sign — the window is the brand. -->
-      <div class="sf-wall" aria-hidden="true"></div><div class="sf-base" aria-hidden="true"></div><div class="sf-ground" aria-hidden="true"></div>
-      <div class="sf-reveal" aria-hidden="true"></div><div class="sf-sill" aria-hidden="true"></div>
-
-      <!-- The shop window: one glazed frontage in a metal frame. Two display bays flank the screen —
-           SAY (brand, story, art direction) and SELL (commerce, product, conversion); the screen between
-           them is the system that connects the two. Layers drift a few pixels with the cursor (--d). -->
-      <div class="hx-glazing" aria-hidden="true"></div>
-      <a class="bay bay-l" href="work/chair-label.html" aria-label="Chair Label — view storefront">
-        <span class="bay-int" aria-hidden="true"></span>
-        <span class="cp-cap" aria-hidden="true"><span class="cap-b">Chair Label <i>/</i> View storefront →</span></span>
-        <figure class="cp cp-poster" style="--d:.3" aria-hidden="true">
-          <img src="assets/work-chairlabel-portrait.webp" alt="">
-        </figure>
-        <span class="cp cp-plate" style="--d:.2" aria-hidden="true"><span class="cp-k">Storefront 02</span><b>Chair Label</b></span>
-        <i class="bay-dim" aria-hidden="true"></i>
-        <i class="refl" aria-hidden="true"></i>
-      </a>
-      <a class="bay bay-r" href="work/interiorem.html" aria-label="Interiorem — view storefront">
-        <span class="bay-int" aria-hidden="true"></span>
-        <span class="cp-cap" aria-hidden="true"><span class="cap-b">Interiorem <i>/</i> View storefront →</span></span>
-        <span class="cp cp-photo" style="--d:.3" aria-hidden="true">
-          <span class="cp-crop"><img src="assets/work-interiorem-home.webp" alt=""></span>
-          <span class="cp-tag">$3,400</span>
-        </span>
-        <i class="bay-dim" aria-hidden="true"></i>
-        <i class="refl" aria-hidden="true"></i>
-      </a>
-      <i class="hx-bar" aria-hidden="true"></i>
-      <i class="hx-wet" aria-hidden="true"></i>
-      <div class="hx-name" aria-hidden="true"><img src="assets/wordmark-white-longslash.png" alt=""></div>
-
-      <!-- The window display: the website as oversized fragments of commerce -->
-      <div class="screen sf-win" data-screen>
-        <i class="scr-behind" aria-hidden="true"></i>
-        <div class="win sf-d sf-d-home">
-          <!-- The hero's reading order: headline → supporting line → actions, in one stack above the
-               decorative layers, with a soft light scrim behind it for contrast -->
-          <div class="hero-stack">
-            <h1 class="dsp-h win-h" id="hero-title">
-              <span class="ln"><span>Commerce,</span></span>
-              <span class="ln win-in"><span>designed <b aria-hidden="true">/</b></span></span>
-              <span class="ln"><span>differently.</span></span>
-            </h1>
-            <p class="hs-lede">We design and build narrative-driven storefronts for brands with something to say — and something to sell.</p>
-            <div class="hs-cta">
-              <a class="btn btn-primary" href="contact.html">Get in touch <span class="arr" aria-hidden="true">→</span></a>
-              <a class="btn btn-ghost" href="#work">See the work <span class="arr" aria-hidden="true">↓</span></a>
-            </div>
-          </div>
-        </div>
-        <div class="sf-d sf-d-interiorem" aria-hidden="true">
-          <p class="dsp-h dsp-h-one">Interiorem</p>
-          <div class="dsp-obj"><img src="assets/bag-sideboard.webp" alt=""><i class="dsp-plinth"></i></div>
-          <div class="dsp-label"><p class="dsp-k">Storefront 01 <i>/</i> Marketplace</p><p class="dsp-n">Parker-style sideboard</p><p class="dsp-p">$3,400</p><span class="dsp-go">View storefront <span class="arr">→</span></span></div>
-        </div>
-        <div class="sf-d sf-d-chair" aria-hidden="true">
-          <p class="dsp-h dsp-h-one">Chair Label</p>
-          <div class="dsp-obj"><img src="assets/bag-portrait.webp" alt=""><i class="dsp-plinth"></i></div>
-          <div class="dsp-label"><p class="dsp-k">Storefront 02 <i>/</i> Fashion</p><p class="dsp-n">Collection 01, Uniform</p><p class="dsp-p">Look 1/8</p><span class="dsp-go">View storefront <span class="arr">→</span></span></div>
-        </div>
-        <!-- Reflective glass over the headline: a tint, broad soft sheen, two sharp highlights and the street
-             mirrored faintly at the foot; it slides a little with the cursor -->
-        <div class="scr-glass" aria-hidden="true"><i class="sg-sheen"></i><i class="sg-hi"></i><i class="sg-street"></i></div>
-        <div class="glass" aria-hidden="true"></div><div class="glass-edge" aria-hidden="true"></div>
+<!-- ── Hero: a 3D introduction. You stand outside one strange, minimal building — a dark board-marked
+     façade with a single deep portal, glazed in one steel-framed pane — and scrolling carries you through
+     it into a bright gallery where the studio's line is written on the far wall.
+     Built with CSS 3D transforms; the camera is driven by scroll (scripts/hero.js). ── -->
+<section class="d3" id="top" aria-labelledby="hero-title" data-d3>
+  <div class="d3-stage" data-d3-stage>
+    <div class="d3-world" data-d3-world>
+      <!-- Street -->
+      <i class="pl d3-ground"></i>
+      <i class="pl d3-spill"></i>
+      <!-- Façade: one slab with a single opening (built from three pieces around it) -->
+      <div class="pl d3-face d3-face-l" data-near></div>
+      <div class="pl d3-face d3-face-r" data-near></div>
+      <div class="pl d3-face d3-face-t" data-near><img class="d3-mark" src="assets/wordmark-white-longslash.png" width="2504" height="552" alt=""></div>
+      <!-- The recess: reveals and soffit, a step into the building -->
+      <i class="pl d3-rev d3-rev-l" data-near></i>
+      <i class="pl d3-rev d3-rev-r" data-near></i>
+      <i class="pl d3-soffit" data-near></i>
+      <!-- Inside: a gallery room, lit from a slot in the ceiling -->
+      <i class="pl d3-in d3-in-floor"></i>
+      <i class="pl d3-in d3-in-ceil"><b></b></i>
+      <i class="pl d3-in d3-in-l"></i><i class="pl d3-in d3-in-l d3-far"></i>
+      <i class="pl d3-in d3-in-r"></i><i class="pl d3-in d3-in-r d3-far"></i>
+      <div class="pl d3-in d3-back">
+        <h1 class="d3-h" id="hero-title"><span>We design</span><span>differently<b>.</b></span></h1>
+        <p class="d3-caps">Brand <i>/</i> Digital <i>/</i> UI/UX <i>/</i> Web <i>/</i> Commerce <i>/</i> Creative technology <i>/</i> Digital experiences</p>
       </div>
-
-      <!-- Paper bags = the work, each in front of its bay (Chair Label under SAY, Interiorem under SELL).
-           Hover / focus puts it on display in the window; click (or a second tap) walks to it. -->
-      <button class="street-bag street-bag-r" type="button" data-bag="side" aria-label="Storefront 01, Interiorem — preview in the window, select to open the project" data-href="work/interiorem.html">
-        <img src="assets/bag-sideboard.webp" alt="">
-        <img class="street-bag-refl" src="assets/bag-sideboard.webp" alt="">
-        <span class="bag-cap" aria-hidden="true"><b>01</b>Interiorem<i>↗</i></span>
-      </button>
-      <button class="street-bag street-bag-l" type="button" data-bag="chair" aria-label="Storefront 02, Chair Label — preview in the window, select to open the project" data-href="work/chair-label.html">
-        <img src="assets/bag-portrait.webp" alt="">
-        <img class="street-bag-refl" src="assets/bag-portrait.webp" alt="">
-        <span class="bag-cap" aria-hidden="true"><b>02</b>Chair Label<i>↗</i></span>
-      </button>
+      <!-- The glass: one pane in a black steel frame -->
+      <div class="pl d3-glass" data-glass><i class="d3-door"></i><i class="d3-sheen"></i><i class="d3-hi"></i></div>
     </div>
-
-    <!-- Phones: the storefront is the picture; the statement and CTAs sit beneath it as real text -->
-    <div class="hero-below" data-below>
-      <p class="hero-lede">We design and build narrative-driven storefronts for brands with something to say — and something to sell.</p>
-      <div class="hero-actions">
-        <a class="btn btn-light" href="contact.html">Get in touch <span class="arr" aria-hidden="true">→</span></a>
-        <a class="btn btn-ghost-light" href="#work">See the work <span class="arr" aria-hidden="true">↓</span></a>
-      </div>
-      <!-- Below 1024px the side-window displays become a plain preview row -->
-      <ul class="hero-previews" aria-label="Selected storefronts">
-        <li><a href="work/interiorem.html">
-          <span class="hp-img hp-int"><img src="assets/work-interiorem-home.webp" width="2200" height="1118" alt="" loading="lazy"><span class="hp-tag">$3,400</span></span>
-          <span class="hp-k">Storefront 01</span><span class="hp-n">Interiorem <span class="arr" aria-hidden="true">→</span></span>
-        </a></li>
-        <li><a href="work/chair-label.html">
-          <span class="hp-img hp-chair"><img src="assets/work-chairlabel-portrait.webp" width="768" height="1365" alt="" loading="lazy"></span>
-          <span class="hp-k">Storefront 02</span><span class="hp-n">Chair Label <span class="arr" aria-hidden="true">→</span></span>
-        </a></li>
-      </ul>
-    </div>
-    <div class="hint" data-hint aria-hidden="true"><span>Scroll</span><i></i></div>
+    <a class="d3-cue" href="#work" data-d3-cue><span>Enter</span><i></i></a>
   </div>
-  <div class="vh-probe" data-probe></div>
 </section>
 
 <!-- ── Selected storefronts: each project is shown as its own shop window, in its own materials and
