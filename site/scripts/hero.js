@@ -317,6 +317,13 @@
     });
     hz.addEventListener('pointerleave', () => ['--ry', '--rx', '--px', '--py'].forEach(v => hzObj.style.removeProperty(v)));
   }
+  // Scroll: as the hero leaves, the pane turns square to the viewer (--sq 0 → 1)
+  if (hz && hzObj && !reduce) {
+    let sRaf = 0;
+    const square = () => { sRaf = 0; hzObj.style.setProperty('--sq', clamp(scrollY / (hz.offsetHeight * .6), 0, 1).toFixed(3)); };
+    addEventListener('scroll', () => { if (!sRaf) sRaf = requestAnimationFrame(square); }, { passive: true });
+    square();
+  }
 
   /* ── Introduction: the statement lights word by word on arrival ── */
   const intro = $('[data-intro]');
