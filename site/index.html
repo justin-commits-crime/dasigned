@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="preload" as="image" href="assets/bag-white.webp">
+<link rel="preload" as="image" href="assets/work-interiorem-home.webp">
 <link rel="stylesheet" href="styles/tokens.css">
 <link rel="stylesheet" href="styles/hero.css">
 <script src="scripts/hero.js" defer></script>
@@ -47,126 +47,26 @@
 </div>
 
 <main id="main">
-<!-- ── Introduction (after metalab.com): a statement on black that lights word by word as you read,
-     a quiet studio meta row, then the shopfront arrives as an inset "reel" that opens to full-bleed. ── -->
-<section class="intro" aria-labelledby="intro-title">
-  <p class="intro-eye">Dasigned <i>/</i> Independent creative studio</p>
-  <h1 class="intro-h intro-anchor" id="intro-title" data-intro>We design *differently.*</h1>
-  <p class="intro-sub">We take ideas, brands and businesses and make them impossible to mistake for anyone else’s.</p>
-  <div class="intro-meta">
-    <p><span>Selected work</span><a href="work/interiorem.html">Interiorem</a>, <a href="work/chair-label.html">Chair Label</a></p>
-    <p><span>Practice</span>Brand, Digital, Experience</p>
-    <a class="intro-go" href="#top">Look inside <span class="arr" aria-hidden="true">↓</span></a>
-  </div>
-</section>
-<!-- ── Hero: the shopfront. The same storefront recurs through the page — its display changes for the
-     work (hover a project), the services, and the closing call (the footer). ── -->
-<section class="scroller" id="top" data-hero aria-label="The studio window">
-  <div class="stage" data-stage>
-    <div class="world sf sf-hero" data-world data-show="home">
-      <!-- The shopfront: stone, a deep reveal, a metal frame. No sign — the window is the brand. -->
-      <div class="sf-wall" aria-hidden="true"></div><div class="sf-base" aria-hidden="true"></div><div class="sf-ground" aria-hidden="true"></div>
-      <div class="sf-reveal" aria-hidden="true"></div><div class="sf-sill" aria-hidden="true"></div>
+<!-- ── Hero: typography, one digital object, negative space. The headline is the page; the object is
+     one pane of glass in a steel frame — an example of the work, not a picture of the studio. ── -->
+<section class="hz" id="top" aria-labelledby="hz-title" data-hz>
+  <h1 class="hz-h" id="hz-title"><span class="hz-ln"><span>We design</span></span><span class="hz-ln"><span>differently<b>.</b></span></span></h1>
+  <p class="hz-sub">Brand <i>/</i> Digital <i>/</i> Experience <i>/</i> Commerce</p>
 
-      <!-- The shop window: one glazed frontage in a metal frame. Two display bays flank the screen —
-           SAY (brand, story, art direction) and SELL (commerce, product, conversion); the screen between
-           them is the system that connects the two. Layers drift a few pixels with the cursor (--d). -->
-      <div class="hx-glazing" aria-hidden="true"></div>
-      <a class="bay bay-l" href="work/chair-label.html" aria-label="Chair Label — view project">
-        <span class="bay-int" aria-hidden="true"></span>
-        <span class="cp-cap" aria-hidden="true"><span class="cap-b">Chair Label <i>/</i> View project →</span></span>
-        <figure class="cp cp-poster" style="--d:.3" aria-hidden="true">
-          <img src="assets/work-chairlabel-portrait.webp" alt="">
-        </figure>
-        <span class="cp cp-plate" style="--d:.2" aria-hidden="true"><span class="cp-k">Project 02</span><b>Chair Label</b></span>
-        <i class="bay-dim" aria-hidden="true"></i>
-        <i class="refl" aria-hidden="true"></i>
-      </a>
-      <a class="bay bay-r" href="work/interiorem.html" aria-label="Interiorem — view project">
-        <span class="bay-int" aria-hidden="true"></span>
-        <span class="cp-cap" aria-hidden="true"><span class="cap-b">Interiorem <i>/</i> View project →</span></span>
-        <span class="cp cp-photo" style="--d:.3" aria-hidden="true">
-          <span class="cp-crop"><img src="assets/work-interiorem-home.webp" alt=""></span>
-          <span class="cp-tag">$3,400</span>
+  <a class="hz-obj" href="work/interiorem.html" aria-label="Interiorem — view project" data-hz-obj>
+    <span class="hz-tilt">
+      <span class="hz-frame">
+        <span class="hz-glass">
+          <span class="hz-img"></span>
+          <i class="hz-sheen"></i><i class="hz-hi"></i>
         </span>
-        <i class="bay-dim" aria-hidden="true"></i>
-        <i class="refl" aria-hidden="true"></i>
-      </a>
-      <i class="hx-bar" aria-hidden="true"></i>
-      <i class="hx-wet" aria-hidden="true"></i>
-      <div class="hx-name" aria-hidden="true"><img src="assets/wordmark-white-longslash.png" alt=""></div>
+      </span>
+      <span class="hz-shadow"></span>
+    </span>
+    <span class="hz-cap"><b>01</b> Interiorem <span class="arr" aria-hidden="true">↗</span></span>
+  </a>
 
-      <!-- The window display: the website as oversized fragments of commerce -->
-      <div class="screen sf-win" data-screen>
-        <i class="scr-behind" aria-hidden="true"></i>
-        <div class="win sf-d sf-d-home">
-          <!-- The hero's reading order: headline → supporting line → actions, in one stack above the
-               decorative layers, with a soft light scrim behind it for contrast -->
-          <div class="hero-stack">
-            <p class="dsp-h win-h" id="hero-title">
-              <span class="ln"><span>Ideas,</span></span>
-              <span class="ln win-in"><span>made <b aria-hidden="true">/</b></span></span>
-              <span class="ln"><span>visible.</span></span>
-            </p>
-            <p class="hs-lede">Identity, image, interface and the technology behind them — designed so nobody could have made them but you.</p>
-            <div class="hs-cta">
-              <a class="btn btn-primary" href="contact.html">Get in touch <span class="arr" aria-hidden="true">→</span></a>
-              <a class="btn btn-ghost" href="#work">See the work <span class="arr" aria-hidden="true">↓</span></a>
-            </div>
-          </div>
-        </div>
-        <div class="sf-d sf-d-interiorem" aria-hidden="true">
-          <p class="dsp-h dsp-h-one">Interiorem</p>
-          <div class="dsp-obj"><img src="assets/bag-sideboard.webp" alt=""><i class="dsp-plinth"></i></div>
-          <div class="dsp-label"><p class="dsp-k">Project 01 <i>/</i> Brand <i>/</i> Website</p><p class="dsp-n">Parker-style sideboard</p><p class="dsp-p">$3,400</p><span class="dsp-go">View project <span class="arr">→</span></span></div>
-        </div>
-        <div class="sf-d sf-d-chair" aria-hidden="true">
-          <p class="dsp-h dsp-h-one">Chair Label</p>
-          <div class="dsp-obj"><img src="assets/bag-portrait.webp" alt=""><i class="dsp-plinth"></i></div>
-          <div class="dsp-label"><p class="dsp-k">Project 02 <i>/</i> Art direction</p><p class="dsp-n">Collection 01, Uniform</p><p class="dsp-p">Look 1/8</p><span class="dsp-go">View project <span class="arr">→</span></span></div>
-        </div>
-        <!-- Reflective glass over the headline: a tint, broad soft sheen, two sharp highlights and the street
-             mirrored faintly at the foot; it slides a little with the cursor -->
-        <div class="scr-glass" aria-hidden="true"><i class="sg-sheen"></i><i class="sg-hi"></i><i class="sg-street"></i></div>
-        <div class="glass" aria-hidden="true"></div><div class="glass-edge" aria-hidden="true"></div>
-      </div>
-
-      <!-- Paper bags = the work, each in front of its bay (Chair Label under SAY, Interiorem under SELL).
-           Hover / focus puts it on display in the window; click (or a second tap) walks to it. -->
-      <button class="street-bag street-bag-r" type="button" data-bag="side" aria-label="Project 01, Interiorem — preview in the window, select to open the project" data-href="work/interiorem.html">
-        <img src="assets/bag-sideboard.webp" alt="">
-        <img class="street-bag-refl" src="assets/bag-sideboard.webp" alt="">
-        <span class="bag-cap" aria-hidden="true"><b>01</b>Interiorem<i>↗</i></span>
-      </button>
-      <button class="street-bag street-bag-l" type="button" data-bag="chair" aria-label="Project 02, Chair Label — preview in the window, select to open the project" data-href="work/chair-label.html">
-        <img src="assets/bag-portrait.webp" alt="">
-        <img class="street-bag-refl" src="assets/bag-portrait.webp" alt="">
-        <span class="bag-cap" aria-hidden="true"><b>02</b>Chair Label<i>↗</i></span>
-      </button>
-    </div>
-
-    <!-- Phones: the storefront is the picture; the statement and CTAs sit beneath it as real text -->
-    <div class="hero-below" data-below>
-      <p class="hero-lede">Identity, image, interface and the technology behind them — designed so nobody could have made them but you.</p>
-      <div class="hero-actions">
-        <a class="btn btn-light" href="contact.html">Get in touch <span class="arr" aria-hidden="true">→</span></a>
-        <a class="btn btn-ghost-light" href="#work">See the work <span class="arr" aria-hidden="true">↓</span></a>
-      </div>
-      <!-- Below 1024px the side-window displays become a plain preview row -->
-      <ul class="hero-previews" aria-label="Selected work">
-        <li><a href="work/interiorem.html">
-          <span class="hp-img hp-int"><img src="assets/work-interiorem-home.webp" width="2200" height="1118" alt="" loading="lazy"><span class="hp-tag">$3,400</span></span>
-          <span class="hp-k">Project 01</span><span class="hp-n">Interiorem <span class="arr" aria-hidden="true">→</span></span>
-        </a></li>
-        <li><a href="work/chair-label.html">
-          <span class="hp-img hp-chair"><img src="assets/work-chairlabel-portrait.webp" width="768" height="1365" alt="" loading="lazy"></span>
-          <span class="hp-k">Project 02</span><span class="hp-n">Chair Label <span class="arr" aria-hidden="true">→</span></span>
-        </a></li>
-      </ul>
-    </div>
-    <div class="hint" data-hint aria-hidden="true"><span>Scroll</span><i></i></div>
-  </div>
-  <div class="vh-probe" data-probe></div>
+  <a class="hz-cue" href="#work" aria-label="Scroll to the work"><span>Scroll</span><i></i></a>
 </section>
 
 <!-- ── Selected work: each project is shown as its own shop window, in its own materials and
