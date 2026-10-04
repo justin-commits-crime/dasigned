@@ -1,14 +1,11 @@
-# Keep the Hostinger site in sync with main.
+# Publish the site to Hostinger — manually only (Actions tab → "Sync Hostinger branch" → Run workflow).
 #
-# Hostinger (slategray-hare-109007.hostingersite.com) auto-deploys the `hostinger` branch into
-# public_html on every push. That branch holds only the contents of site/, so this job
-# rebuilds it from main's site/ folder and pushes it.
+# Hostinger (slategray-hare-109007.hostingersite.com) deploys the `hostinger` branch into
+# public_html whenever that branch changes. The branch holds only the contents of site/; this job
+# rebuilds it from main's site/ folder and pushes it. Pushes to main do NOT trigger it.
 name: Sync Hostinger branch
 
 on:
-  push:
-    branches: [main]
-    paths: ['site/**', '.github/workflows/sync-hostinger.yml']
   workflow_dispatch:
 
 concurrency:
