@@ -66,8 +66,11 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .hdr-cta:active{background:rgba(255,255,255,.16)}
 .hdr-cta[aria-current]{background:var(--white);border-color:var(--white);color:var(--ink)}
 .hdr-cta:focus-visible{outline:2px solid var(--blue-500);outline-offset:3px}
-.hdr-cta span{display:inline-block;transition:transform var(--dur-base) var(--ease-out)}
-.hdr-cta:hover span{transform:translate(2px,-2px)}
+/* Get in touch, as two marks: a phone and a letter */
+.hdr-cta{gap:.7em;padding:.55rem 1.05rem}
+.hc-ic{display:block;width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round;transition:transform var(--dur-base) var(--ease-out)}
+.hdr-cta:hover .hc-ic:first-of-type{transform:rotate(-10deg)}
+.hdr-cta:hover .hc-ic:last-of-type{transform:translateY(-2px)}
 /* The mark: centred in the header, linking home */
 .brand{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:block;opacity:.92;transition:opacity var(--dur-fast)}
 .brand:hover{opacity:1}
