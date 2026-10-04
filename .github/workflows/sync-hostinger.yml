@@ -1,0 +1,32 @@
+# Keep the Hostinger site in sync with main.
+#
+# Hostinger (slategray-hare-109007.hostingersite.com) auto-deploys the `hostinger` branch into
+# public_html on every push. That branch holds only the contents of site/, so this job
+# rebuilds it from main's site/ folder and pushes it.
+name: Sync Hostinger branch
+
+on:
+  push:
+    branches: [main]
+    paths: ['site/**', '.github/workflows/sync-hostinger.yml']
+  workflow_dispatch:
+
+concurrency:
+  group: hostinger-sync
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Push site/ to the hostinger branch
+        run: |
+          git subtree split --prefix site -b hostinger-build
+          git push --force origin hostinger-build:hostinger
