@@ -7,7 +7,14 @@
 :root{--hdr:64px;--gut:var(--gutter)}
 @media (max-width:900px){:root{--hdr:56px;--gut:20px}}
 
-html{scroll-behavior:smooth;scroll-padding-top:var(--hdr)}
+html{scroll-behavior:smooth}
+/* Anchor targets stop with their section header 24px below the fixed header, never underneath it */
+:root{--anchor-gap:24px}
+#services,#journal,#main{scroll-margin-top:calc(var(--hdr) + var(--anchor-gap))}
+#idea{scroll-margin-top:calc(var(--hdr) + var(--anchor-gap) - clamp(88px,11vw,160px))}
+@media (max-width:600px){#idea{scroll-margin-top:calc(var(--hdr) + var(--anchor-gap) - 72px)}}
+/* #work opens with its own top padding — offset it so the 'Selected storefronts' header lands at the same line */
+#work{scroll-margin-top:calc(var(--hdr) + var(--anchor-gap) - clamp(72px,8vw,128px))}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{background:var(--white);color:var(--text-primary);font-family:var(--font-sans)}
 .sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -24,8 +31,9 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .btn-primary:hover{background:var(--blue-600);color:var(--white)}
 .btn-light{background:var(--white);color:var(--ink)}
 .btn-light:hover{background:var(--blue-600);color:var(--white)}
-.btn-ghost-light{color:var(--white);border-color:rgba(255,255,255,.4)}
-.btn-ghost-light:hover{border-color:var(--white);color:var(--white)}
+.btn-ghost-light{color:rgba(255,255,255,.72);border-color:rgba(255,255,255,.24);font-weight:500}
+.btn-ghost-light:hover{border-color:rgba(255,255,255,.7);color:var(--white)}
+.hero-actions .btn-light{font-weight:600}
 .link{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.35em;transition:color var(--dur-fast),text-decoration-color var(--dur-fast)}
 .link:hover{color:var(--blue-600)}
 
@@ -129,7 +137,15 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .hs-lede{margin:4.6cqh 0 0;max-width:34ch;font-size:max(12px,2.05cqw);line-height:1.45;letter-spacing:-.005em;color:#3A3A3F}
 .hs-cta{display:flex;align-items:center;gap:3.2cqw;margin-top:4.4cqh}
 .hs-cta .btn{height:max(36px,6cqw);padding:0 3cqw;font-size:max(12px,1.8cqw);gap:1.3cqw}
-.hs-cta .link{font-size:max(12px,1.7cqw);color:var(--ink)}
+/* Primary: solid ink, bold label, lifts and turns blue on hover */
+.hs-cta .btn-primary{font-weight:600;box-shadow:0 0 0 rgba(17,17,19,0);transition:background var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out)}
+.hs-cta .btn-primary:hover{background:var(--blue-600);transform:translateY(-2px);box-shadow:0 .8cqw 1.8cqw -.6cqw rgba(10,71,255,.55)}
+.hs-cta .btn-primary:active{transform:none;box-shadow:none}
+/* Secondary: ghost — transparent, hairline border, muted label */
+.hs-cta .btn-ghost{background:transparent;border-color:rgba(17,17,19,.22);color:#55555B;font-weight:500}
+.hs-cta .btn-ghost:hover{border-color:var(--ink);color:var(--ink)}
+.btn-ghost .arr,.btn-ghost-light .arr{transition:transform var(--dur-slow) var(--ease-out)}
+.btn-ghost:hover .arr{transform:translateY(.18em)}
 .hs-lede{opacity:0;animation:riseIn .6s var(--ease-out) 1s forwards}
 .hs-cta{opacity:0;animation:riseIn .6s var(--ease-out) 1.08s forwards}
 /* Below 1024px (stacked / static) the screen carries the headline only; copy, actions and previews sit beneath */
