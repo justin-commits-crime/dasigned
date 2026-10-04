@@ -44,6 +44,9 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.site-header{background-color:rgba(10,10,10,.94)}}
 /* The header reads like the shop's own signage: a tiny maker's mark, an oversized directory, a key to press */
 .site-header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue-500);transform:scaleX(var(--read,0));transform-origin:0 50%}
+.brand{display:block;flex:none;opacity:.9;transition:opacity var(--dur-fast)}
+.brand:hover{opacity:1}
+.brand img{display:block;height:26px;width:auto}
 .nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:clamp(40px,4.4vw,72px);counter-reset:nav}
 .nav a{position:relative;counter-increment:nav;font:400 17px/1.25 var(--font-sans);font-stretch:96%;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color var(--dur-base) var(--ease-out)}
 .nav a:hover,.nav a:focus-visible,.nav a[aria-current]{color:var(--white)}
@@ -68,161 +71,30 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .hdr-cta:focus-visible{outline:2px solid var(--blue-500);outline-offset:3px}
 .hdr-cta span{display:inline-block;transition:transform var(--dur-base) var(--ease-out)}
 .hdr-cta:hover span{transform:translate(2px,-2px)}
-/* The menu key: a pill at the top left, the twin of the CTA on the right */
-.menu-btn{flex:none;display:inline-flex;align-items:center;padding:.5rem 1rem;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:transparent;color:var(--white);font:500 14px/1.2 var(--font-sans);letter-spacing:.01em;cursor:pointer;transition:background-color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out)}
-.menu-btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.55)}
-.menu-btn:active{background:rgba(255,255,255,.16)}
-.menu-btn:focus-visible{outline:2px solid var(--blue-500);outline-offset:3px}
-/* Open: the pill stays lit while its panel is down */
-.menu-btn[aria-expanded=true]{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.55)}
+.menu-btn,.menu-close{display:none;margin-left:auto;width:44px;height:44px;margin-right:-10px;padding:0;border:0;background:none;color:var(--white);cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:7px}
+.menu-btn i,.menu-close i{display:block;width:22px;height:1.5px;background:currentColor;transition:transform var(--dur-base) var(--ease-out)}
 @media (max-width:900px){
-  .hdr-cta{display:none}
+  .nav,.hdr-cta{display:none}
+  .menu-btn{display:flex}
   .site-header{padding:.5rem var(--gut)}
+  .brand img{height:24px}
 }
 
-/* The menu drops from its pill: a small dark panel holding the directory, set like the old header nav */
-.menu{position:fixed;z-index:75;top:calc(var(--hdr) + 8px);left:2rem;min-width:236px;padding:22px 30px 22px 36px;box-sizing:border-box;
-  background:rgba(10,10,10,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);color:var(--white);
-  opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out),visibility 0s linear var(--dur-base)}
-.menu.open{opacity:1;visibility:visible;transform:none;transition:opacity var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out)}
-.menu-links{display:flex;flex-direction:column;gap:16px;counter-reset:nav}
-.menu-links a{align-self:flex-start;counter-increment:nav;font:400 17px/1.25 var(--font-sans);font-stretch:96%;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color var(--dur-base) var(--ease-out)}
-.menu-links a:hover,.menu-links a:focus-visible,.menu-links a[aria-current]{color:var(--white)}
-.menu-links a::after{content:"0" counter(nav);position:absolute;top:-.35em;right:-1.9em;font:500 9px/1 var(--font-mono);letter-spacing:0;color:rgba(255,255,255,.36);transition:color var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out)}
-.menu-links a:hover::after,.menu-links a[aria-current]::after{color:var(--blue-500);transform:translateY(-2px)}
-.menu-links a:hover::before{opacity:.55;transform:none}
-.menu-links a:hover .nl-a,.menu-links a:focus-visible .nl-a,.menu-links a[aria-current] .nl-a{transform:translateY(-105%)}
-.menu-links a:hover .nl-b,.menu-links a:focus-visible .nl-b,.menu-links a[aria-current] .nl-b{transform:none}
-.menu-links a:focus-visible{outline:2px solid var(--blue-500);outline-offset:4px}
-/* On small screens the CTA leaves the header and closes the list */
-.menu-cta{display:none;margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);font:500 14px/1.2 var(--font-sans);color:var(--white);text-decoration:none}
-.menu-cta span{color:var(--blue-500);margin-left:.4em}
-@media (max-width:900px){.menu{left:var(--gut)}.menu-cta{display:block}}
-
-/* ── Hero: the 3D introduction ────────────────────────────────
-   One building, one opening. World units: x/z in vw, y in vh, origin at the centre of the screen.
-     --w   half-width of the portal        --gy  street level        --ty  top of the portal
-     --D   depth of the recess (glass)      --L   depth of the gallery
-     --iw  half-width of the gallery        --it  gallery ceiling
-   The camera (scripts/hero.js) sets --cz (dolly), --yaw and --pitch on the world; --g fades the glass
-   as you step through. Planes use transform-origin 0 0 and are placed with translate3d + one rotation. */
-.d3{--w:30vw;--gy:39vh;--ty:-33vh;--D:22vw;--L:110vw;--iw:var(--w);--it:var(--ty);--P:90vw;--F:50vw;--Fc:14vw;--Ff:22vw;
-  position:relative;height:480vh;height:480svh;background:#0C0C0E}
-.d3-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;perspective:var(--P);perspective-origin:50% 46%;background:#0C0C0E}
-.d3-world{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;
-  transform:translate3d(calc(var(--mx,0) * -.9vw),calc(var(--my,0) * -.5vh + var(--oy,0px)),var(--cz,-6vw)) rotateX(var(--pitch,0deg)) rotateY(var(--yaw,-7deg))}
-.pl{position:absolute;left:0;top:0;display:block;transform-origin:0 0;backface-visibility:visible}
-
-/* Street: wet dark stone, a few joints, a pool of light from the opening */
-.d3-ground{width:400vw;height:calc(var(--D) + 70vw);transform:translate3d(-200vw,var(--gy),calc(var(--D) * -1)) rotateX(90deg);
-  background:#111113}
-.d3-spill{width:calc(var(--w) * 2.6);height:46vw;transform:translate3d(calc(var(--w) * -1.3),calc(var(--gy) - 1px),calc(var(--D) * -1)) rotateX(90deg);
-  background:radial-gradient(ellipse 50% 100% at calc(50% + var(--mx,0) * 6%) 0,rgba(244,240,232,.2),rgba(244,240,232,0) 72%)}
-
-/* Façade: board-marked concrete, almost black */
-.d3-face{background:#18181A repeating-linear-gradient(0deg,rgba(255,255,255,.014) 0 1px,transparent 1px 7.5vh);box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)}
-.d3-face-l{width:calc(200vw - var(--w));height:calc(150vh + var(--gy));transform:translate3d(-200vw,-150vh,0)}
-.d3-face-r{width:calc(200vw - var(--w));height:calc(150vh + var(--gy));transform:translate3d(var(--w),-150vh,0)}
-.d3-face-t{width:calc(var(--w) * 2);height:calc(150vh + var(--ty));transform:translate3d(calc(var(--w) * -1),-150vh,0)}
-/* The sign: DASIGNED, halo-lit from behind onto the concrete */
-.d3-mark{position:absolute;left:50%;bottom:3.6vh;height:4.4vh;width:auto;max-width:none;transform:translateX(-50%);filter:drop-shadow(0 0 .6vw rgba(255,255,255,.35)) drop-shadow(0 0 2.4vw rgba(255,255,255,.18))}
-/* The recess: lighter as it nears the lit interior */
-.d3-rev{width:var(--D);height:calc(var(--gy) - var(--ty))}
-.d3-rev-l{transform:translate3d(calc(var(--w) * -1),var(--ty),0) rotateY(90deg);background:linear-gradient(90deg,#141416,#3A3836 92%,#55524E)}
-.d3-rev-r{transform:translate3d(var(--w),var(--ty),0) rotateY(90deg);background:linear-gradient(90deg,#101012,#2A2927 92%,#3E3C39)}
-.d3-soffit{width:calc(var(--w) * 2);height:var(--D);transform:translate3d(calc(var(--w) * -1),var(--ty),calc(var(--D) * -1)) rotateX(90deg);background:linear-gradient(0deg,#0E0E10,#2B2A28)}
-
-/* Inside: a bright gallery */
-.d3-in-floor{width:calc(var(--iw) * 2);height:var(--L);transform:translate3d(calc(var(--iw) * -1),var(--gy),calc((var(--D) + var(--L)) * -1)) rotateX(90deg);background:linear-gradient(180deg,#C9C4BC,#DAD6CF 60%,#BDB8B0)}
-.d3-in-ceil{width:calc(var(--iw) * 2);height:var(--L);transform:translate3d(calc(var(--iw) * -1),var(--it),calc((var(--D) + var(--L)) * -1)) rotateX(90deg);background:#E4E1DB}
-.d3-in-ceil b{position:absolute;left:46%;width:8%;top:0;bottom:0;background:#FFFFFF;box-shadow:calc(var(--mx,0) * -1vw) 0 6vw 2vw rgba(255,255,255,calc(.66 + var(--my,0) * .06))}
-.d3-in-l,.d3-in-r{--z0:var(--D);width:calc(var(--L) / 2 + 1px);height:calc(var(--gy) - var(--it))}
-/* each side wall is two panels: very long planes crossing behind the camera get dropped on mobile */
-.d3-far{--z0:calc(var(--D) + var(--L) / 2)}
-.d3-in-l{transform:translate3d(calc(var(--iw) * -1),var(--it),calc(var(--z0) * -1)) rotateY(90deg);background:#E2DED8}
-.d3-in-r{transform:translate3d(var(--iw),var(--it),calc(var(--z0) * -1)) rotateY(90deg);background:#DCD8D1}
-.d3-back,.d3-sign{width:calc(var(--iw) * 2);height:calc(var(--gy) - var(--it));transform:translate3d(calc(var(--iw) * -1),var(--it),calc((var(--D) + var(--L)) * -1));
-  display:flex;flex-direction:column;justify-content:center;padding:0 4.5vw;background:radial-gradient(ellipse 80% 60% at calc(50% + var(--mx,0) * 8%) calc(30% + var(--my,0) * 5%),#FBFAF7,#EFECE6 70%,#E5E1DA)}
-.d3-sign{background:none;transform:translate3d(calc(var(--iw) * -1),var(--it),calc((var(--D) + var(--L)) * -1 + 2px));transform-style:preserve-3d;pointer-events:none}
-/* Dimensional lettering: the wall keeps 3D so the letters can stand off it */
-.d3-lock{position:relative;align-self:flex-start;transform-style:preserve-3d}
-.d3-type{position:relative;transform-style:preserve-3d}
-.d3-h,.d3-x,.d3-cast{display:flex;flex-direction:column;margin:0;font-family:var(--font-sans);font-weight:600;font-stretch:76%;font-size:9.6vw;line-height:.84;letter-spacing:-.035em;text-transform:uppercase;white-space:nowrap}
-.d3-h{position:relative;color:#111113;transform:translateZ(calc(1.6vw * var(--ex,1)))}
-.d3-h b,.d3-x b{color:inherit}
-.d3-h b{color:var(--blue-600)}
-.d3-x{position:absolute;left:0;top:0;color:#3A3A3F;transform:translateZ(calc((1.6vw - var(--k) * .2vw) * var(--ex,1)));opacity:var(--ex,1)}
-.d3-x b{color:#0A2E99}
-.d3-cast{position:absolute;left:0;top:0;color:transparent;opacity:var(--ex,1);text-shadow:calc(.3vw - var(--mx,0) * .3vw) calc(1.3vw - var(--my,0) * .2vw) 1.2vw rgba(40,34,26,.14)}
-.d3-cast b{color:transparent}
-/* The descriptor: small, set on the wall like a gallery label */
-.d3-caps{margin:5vh 0 0;padding-top:1.4vh;border-top:1px solid rgba(17,17,19,.35);align-self:flex-start;font:500 .82vw/1 var(--font-wide);font-stretch:125%;letter-spacing:.3em;text-transform:uppercase;color:#4A4A50}
-.d3-caps i{font-style:normal;color:var(--blue-600);margin:0 .6em}
-
-/* The glass: a fixed steel frame with an aluminium edge; two leaves slide apart as you approach (--open) */
-.d3-glass{width:calc(var(--w) * 2);height:calc(var(--gy) - var(--ty));transform:translate3d(calc(var(--w) * -1),var(--ty),calc(var(--D) * -1));overflow:hidden;
-  box-shadow:inset 0 0 0 1.1vw #0B0B0C,inset 0 0 0 calc(1.1vw + 1px) #9C9CA1}
-.d3-leaf{position:absolute;top:1.1vw;bottom:1.1vw;overflow:hidden;background:rgba(22,24,28,.3);transition:none}
-.d3-leaf-l{left:1.1vw;width:calc(61% - 1.1vw);border-right:.5vw solid #0B0B0C;transform:translateX(calc(var(--open,0) * -101%))}
-.d3-leaf-r{right:1.1vw;width:calc(39% - 1.1vw);border-left:1px solid #9C9CA1;transform:translateX(calc(var(--open,0) * 101%))}
-.d3-hi{position:absolute;inset:0;transform:translateX(calc(var(--mx,0) * -5%));background:rgba(255,255,255,.16);clip-path:polygon(60% 0,60.6% 0,40.6% 100%,40% 100%)}
-/* Emphasis as you approach: the threshold wakes and the opening's light deepens (--em) */
-.d3-sill{width:calc(var(--w) * 2);height:.5vw;transform:translate3d(calc(var(--w) * -1),calc(var(--gy) - 1px),calc(var(--D) * -1)) rotateX(90deg);
-  background:#F4F0E8;opacity:calc(.12 + var(--em,0) * .88);box-shadow:0 0 2.4vw .4vw rgba(244,240,232,calc(var(--em,0) * .5))}
-.d3-spill{opacity:calc(1 + var(--em,0) * .8)}
-
-/* ENTER: on the street, at the threshold */
-.d3-enter{position:absolute;left:50%;bottom:5vh;transform:translateX(-50%);display:inline-flex;align-items:center;gap:1.1em;padding:12px 4px 10px;border:0;border-bottom:1px solid rgba(244,242,238,.32);background:none;font:500 11px/1 var(--font-mono);letter-spacing:.22em;text-transform:uppercase;color:rgba(244,242,238,.72);cursor:pointer;transition:color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out),opacity .6s var(--ease-out)}
-.d3-enter .arr{font-family:var(--font-sans);font-size:14px;letter-spacing:0;transition:transform var(--dur-slow) var(--ease-out)}
-.d3-enter:hover{color:#F4F2EE;border-color:#F4F2EE}
-.d3-enter:hover .arr{transform:translateX(.35em)}
-.d3-enter:focus-visible{outline:2px solid var(--blue-500);outline-offset:6px}
-
-/* Inside, the architecture becomes interface (--dg 0 → 1): edges turn to blue hairlines, nothing more */
-.d3-in::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:var(--dg,0);box-shadow:inset 0 0 0 1px rgba(10,71,255,.6)}
-.d3-sign::after{display:none}
-/* the selection: one hairline box with four square handles around the statement */
-.d3-sel{position:absolute;inset:-1.6vw -2vw -1.4vw;pointer-events:none;opacity:var(--dg,0);box-shadow:0 0 0 1px var(--blue-600)}
-.d3-sel b{position:absolute;width:.7vw;height:.7vw;min-width:7px;min-height:7px;background:#fff;box-shadow:0 0 0 1px var(--blue-600);transform:translate(-50%,-50%)}
-.d3-sel b:nth-child(1){left:0;top:0}.d3-sel b:nth-child(2){left:100%;top:0}.d3-sel b:nth-child(3){left:0;top:100%}.d3-sel b:nth-child(4){left:100%;top:100%}
-
-
-/* ── The transformation: physical → digital ───────────────────
-   --fl  materials flatten: shading, light and depth drain out to flat paper and hairlines
-   --uf  the room unfolds around the back wall into a flat page, while perspective flattens
-   --ct  the unfolded surfaces reveal their interface content
-   --ex  the dimensional letters settle flat into type */
-.d3-in::before{content:"";position:absolute;inset:0;pointer-events:none;background:#E8E5DF;opacity:var(--fl,0)}
-.d3-back::before{background:#F3F1EC}
-.d3-sign::before{display:none}
-.d3-in-ceil b{opacity:calc(1 - var(--fl,0))}
-.d3-stage.is-unfold{background:#E3E0DA}
-.d3-stage.is-unfold .d3-ext,.d3-stage.is-unfold .d3-room{visibility:hidden}
-.d3-fold{visibility:hidden;background:#E8E5DF;box-shadow:inset 0 0 0 1px rgba(10,71,255,.45)}
-.d3-stage.is-unfold .d3-fold{visibility:visible}
-.d3-fold-l{width:var(--F);height:calc(var(--gy) - var(--it));transform-origin:100% 0;
-  transform:translate3d(calc(var(--iw) * -1 - var(--F)),var(--it),calc((var(--D) + var(--L)) * -1)) rotateY(calc(90deg * (1 - var(--uf,0))))}
-.d3-fold-r{width:var(--F);height:calc(var(--gy) - var(--it));transform-origin:0 0;
-  transform:translate3d(var(--iw),var(--it),calc((var(--D) + var(--L)) * -1)) rotateY(calc(-90deg * (1 - var(--uf,0))))}
-.d3-fold-c{width:calc(var(--iw) * 2);height:var(--Fc);transform-origin:0 100%;
-  transform:translate3d(calc(var(--iw) * -1),calc(var(--it) - var(--Fc)),calc((var(--D) + var(--L)) * -1)) rotateX(calc(-90deg * (1 - var(--uf,0))))}
-.d3-fold-f{width:calc(var(--iw) * 2);height:var(--Ff);transform-origin:0 0;
-  transform:translate3d(calc(var(--iw) * -1),var(--gy),calc((var(--D) + var(--L)) * -1)) rotateX(calc(90deg * (1 - var(--uf,0))))}
-@media (max-aspect-ratio:1/1){.d3{--F:30vw;--Fc:10vw;--Ff:16vw}}
-
-/* Phones (portrait): a narrower building, a taller portal */
-@media (max-aspect-ratio:1/1){
-  .d3{--w:38vw;--D:26vw;--P:120vw;--L:130vw;--ty:-30vh;--gy:34vh}
-  .d3-h,.d3-x,.d3-cast{font-size:12.4vw}
-  .d3-back{padding:0 6vw}
-  .d3-caps{font-size:1.75vw;letter-spacing:.18em;white-space:nowrap}
-  .d3-mark{height:2.6vh}
-
-}
-/* Reduced motion: the camera holds inside, in front of the line */
-@media (prefers-reduced-motion:reduce){
-  .d3{height:100vh;height:100svh}
-}
+.menu{position:fixed;inset:0;z-index:80;display:flex;flex-direction:column;padding:0 var(--gut) calc(var(--space-8) + env(safe-area-inset-bottom));background:var(--ink);color:var(--white);opacity:0;visibility:hidden;transition:opacity var(--dur-base) var(--ease-out),visibility 0s linear var(--dur-base)}
+.menu.open{opacity:1;visibility:visible;transition:opacity var(--dur-base) var(--ease-out)}
+.menu-top{display:flex;align-items:center;height:var(--hdr);border-bottom:1px solid rgba(255,255,255,.1)}
+.menu-top img{height:24px;width:auto}
+.menu-close{display:block;position:relative}
+.menu-close i{position:absolute;left:11px;top:21px}
+.menu-close i:first-of-type{transform:rotate(45deg)}
+.menu-close i:last-of-type{transform:rotate(-45deg)}
+.menu-links{flex:1;display:flex;flex-direction:column;justify-content:center;gap:var(--space-2)}
+.menu-links a{font-size:clamp(44px,13vw,88px);font-weight:500;font-stretch:88%;letter-spacing:-.04em;line-height:1.05;color:var(--white);text-decoration:none;opacity:0;transform:translateY(16px);transition:opacity var(--dur-slow) var(--ease-out),transform var(--dur-slow) var(--ease-out),color var(--dur-fast)}
+.menu.open .menu-links a{opacity:1;transform:none}
+.menu.open .menu-links a:nth-child(2){transition-delay:60ms}
+.menu.open .menu-links a:nth-child(3){transition-delay:120ms}
+.menu-links a:hover{color:var(--blue-500)}
+.menu-cta{width:100%;height:56px}
 
 /* ── Hero stage ───────────────────────────────────────────────── */
 .scroller{position:relative;height:250vh;height:250svh;background:var(--ink)}
@@ -747,86 +619,6 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
   .store-spec{margin-top:var(--space-2)}
 }
 
-/* ── The work as worlds ──────────────────────────────────────
-   Each project is a sticky scene driven by --p (0 → 1 across its scroll, scripts/hero.js). */
-.wk{padding:0;background:#0C0C0E}
-.env{position:relative}
-.env-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
-.env-no{margin:0;font:500 12px/1 var(--font-mono);letter-spacing:.1em}
-.env-tags{margin:0;font:500 12px/1 var(--font-wide);font-stretch:125%;letter-spacing:.24em;text-transform:uppercase}
-.env-tags i{font-style:normal;margin:0 .6em}
-.env-go{display:inline-flex;align-items:center;gap:1em;padding-bottom:6px;border-bottom:1px solid currentColor;font:600 12px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
-.env-go .arr{transition:transform var(--dur-slow) var(--ease-out)}
-.env-go:hover .arr{transform:translateX(.35em)}
-
-/* 01 · Interiorem: warm stone room, one long wall in perspective, a reflecting floor */
-.env-int{height:320vh;height:320svh;--p:0}
-.env-int .env-stage{background:radial-gradient(ellipse 90% 70% at 60% 40%,#E3D8CA,#D2C5B4 60%,#C3B4A1);color:#2A1E14;perspective:1300px;perspective-origin:50% 42%}
-.int-room{position:absolute;inset:0;transform-style:preserve-3d}
-.int-wall{position:absolute;left:calc(10vw - var(--p) * 3vw);top:calc(var(--hdr) + 10vh);width:calc(66vw - var(--p) * 4vw);aspect-ratio:2200 / 1118;
-  transform-origin:0 50%;transform:rotateY(calc(max(1 - var(--p) * 1.25, 0) * 38deg));transform-style:preserve-3d;box-shadow:0 40px 80px -30px rgba(60,40,20,.45)}
-.int-site{position:absolute;inset:0;background:#EDE7DE url(../assets/work-interiorem-home.webp) 50% 0/cover no-repeat}
-/* the site's own architecture, drawn over it as the wall comes square */
-.int-grid{position:absolute;inset:0 3.5%;opacity:clamp(0,(var(--p) - .55) * 3,1);pointer-events:none;
-  background:repeating-linear-gradient(90deg,rgba(176,98,36,.55) 0 1px,transparent 1px calc(100% / 12));box-shadow:inset -1px 0 0 rgba(176,98,36,.55)}
-.int-dim{position:absolute;left:3.5%;right:3.5%;top:-28px;display:flex;align-items:center;gap:12px;opacity:calc((var(--p) - .6) * 3);font:500 11px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#7A4B22;white-space:nowrap}
-.int-dim i{flex:1;height:1px;background:currentColor;position:relative}
-.int-dim i::before{content:"";position:absolute;top:-5px;height:11px;border-left:1px solid currentColor}
-.int-dim i:first-child::before{left:0}.int-dim i:last-child::before{right:0}
-.int-floor{position:absolute;left:calc(10vw - var(--p) * 3vw);top:calc(var(--hdr) + 10vh);width:calc(66vw - var(--p) * 4vw);aspect-ratio:2200 / 1118;transform-origin:0 50%;
-  transform:rotateY(calc(max(1 - var(--p) * 1.25, 0) * 38deg)) translateY(100%) scaleY(-1);opacity:.14;filter:blur(2px);
-  -webkit-mask-image:linear-gradient(to top,#000,transparent 40%);mask-image:linear-gradient(to top,#000,transparent 40%)}
-.int-copy{position:absolute;right:var(--gut);bottom:9vh;align-items:flex-end;text-align:right;display:flex;flex-direction:column;gap:18px;opacity:calc(1 - var(--p) * 1.6)}
-.int-title{margin:0;font-family:var(--font-sans);font-weight:400;font-size:clamp(56px,9vw,150px);line-height:.9;letter-spacing:-.05em;color:#2A1E14}
-.env-int .env-no,.env-int .env-tags i{color:#9A5A26}
-.int-note{position:absolute;right:var(--gut);bottom:9vh;width:min(320px,26vw);display:flex;flex-direction:column;gap:20px;align-items:flex-start;opacity:clamp(0,(var(--p) - .62) * 4,1);font-size:15px;line-height:1.55;color:#4A3A2C}
-.int-note p{margin:0}
-.int-note .env-go{color:#2A1E14}
-
-/* 02 · Chair Label: black, flat, fast — a sideways runway of type and photography */
-.env-cl{height:380vh;height:380svh}
-.env-cl .env-stage{background:#000;color:#fff}
-.cl-track{position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;gap:6vw;padding:0 8vw;transform:translateX(var(--tx,0px));will-change:transform}
-.cl-intro{flex:none;width:34vw;display:flex;flex-direction:column;gap:22px}
-.cl-title{margin:0;font-family:var(--font-wide);font-weight:800;font-stretch:62%;font-size:clamp(64px,8.4vw,150px);line-height:.84;letter-spacing:-.01em;text-transform:uppercase}
-.env-cl .env-no{color:rgba(255,255,255,.5)}
-.env-cl .env-tags{color:rgba(255,255,255,.8)}
-.env-cl .env-tags i{color:rgba(255,255,255,.35)}
-.cl-word{flex:none;font-family:var(--font-wide);font-weight:800;font-stretch:62%;font-size:min(46vh,34vw);line-height:.8;letter-spacing:-.02em;text-transform:uppercase;color:#fff}
-.cl-word-out{color:transparent;-webkit-text-stroke:2px #fff}
-.cl-shot{flex:none;position:relative;margin:0}
-.cl-shot img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.08)}
-.cl-shot-tall{height:78vh;aspect-ratio:768 / 1365}
-.cl-shot-wide{height:62vh;aspect-ratio:1800 / 992;align-self:flex-end;margin-bottom:9vh}
-.cl-shot figcaption{position:absolute;left:0;top:calc(100% + 12px);font:500 11px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);white-space:nowrap}
-.cl-shot figcaption i{font-style:normal;margin:0 .5em;color:rgba(255,255,255,.3)}
-.cl-end{flex:none;width:30vw;display:flex;flex-direction:column;gap:24px;align-items:flex-start;font-size:16px;line-height:1.55;color:rgba(255,255,255,.75)}
-.cl-end p{margin:0}
-.env-go-light{color:#fff}
-.cl-count{position:absolute;right:var(--gut);bottom:5vh;font:500 11px/1 var(--font-mono);letter-spacing:.12em;color:rgba(255,255,255,.5)}
-.cl-count b{font-weight:500;color:#fff}
-
-@media (max-width:900px){
-  .int-wall,.int-floor{left:calc(8vw - var(--p) * 4vw);width:calc(84vw + var(--p) * 8vw);top:calc(var(--hdr) + 14vh)}
-  .int-copy{right:auto;left:var(--gut);align-items:flex-start;text-align:left;bottom:auto;top:calc(var(--hdr) + 22vh + 46vw)}
-  .int-note{left:var(--gut);right:var(--gut);width:auto;bottom:6vh}
-  .int-dim{font-size:9px;top:-22px}
-  .env-tags{font-size:10px;letter-spacing:.16em;white-space:nowrap}
-  .env-tags i{margin:0 .4em}
-  .cl-intro{width:76vw}
-  .cl-end{width:76vw}
-  .cl-word{font-size:40vh}
-  .cl-shot-tall{height:66vh}
-  .cl-shot-wide{height:auto;width:120vw;align-self:center;margin-bottom:0}
-}
-@media (prefers-reduced-motion:reduce){
-  .env-int{height:auto}.env-int{--p:1}
-  .env-int .env-stage{position:relative}
-  .env-cl{height:auto}
-  .env-cl .env-stage{position:relative;height:auto;overflow-x:auto}
-  .cl-track{position:relative;transform:none;height:100vh}
-}
-
 /* Project pages */
 .proj-page{padding-top:calc(var(--hdr) + clamp(32px,4vw,56px))}
 .back{display:inline-flex;gap:.6em;margin-bottom:clamp(40px,6vw,88px);font-size:14px;color:rgba(255,255,255,.6);text-decoration:none;transition:color var(--dur-fast)}
@@ -1044,7 +836,8 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
   .hint i{animation:none}
   .street-bag>img:not(.street-bag-refl){transition:none;transform:none}
   .btn .arr,.btn:hover .arr{transition:none;transform:none}
-  .menu,.menu.open{transition:none}
+  .menu,.menu.open,.menu-links a{transition:none}
+  .menu-links a{opacity:1;transform:none}
   .screen{--g:1;animation:none!important}
   .idea-p .w{opacity:1;transition:none}
   .tile-win{--g:1;transition:none}
