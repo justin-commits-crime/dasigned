@@ -371,6 +371,15 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
    the blur and the mirrored street are baked into images — and every moving layer moves by transform
    only. The cursor is eased in JS, so none of these layers carry a CSS transition. */
 .bay-l{--dir:1}.bay-r{--dir:-1}
+/* The work: two pills stacked in the left window, on the glass */
+.bay-pills{position:absolute;left:4.5%;width:calc(25.89% - .42cqw);top:21.02%;height:calc(58.48% - 2.4em);z-index:3;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4em;pointer-events:none}
+.bay-pill{pointer-events:auto;display:inline-flex;align-items:center;padding:.75em 1.5em;border:1px solid rgba(255,255,255,.42);border-radius:999px;
+  background:rgba(10,10,12,.32);color:var(--white);font:500 1.75em/1.2 var(--font-sans);letter-spacing:.01em;text-decoration:none;white-space:nowrap;
+  transition:background-color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out)}
+.bay-pill:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.75);color:var(--white)}
+.bay-pill:focus-visible{outline:2px solid var(--blue-500);outline-offset:3px}
+.m-stacked .bay-pills,.m-static .bay-pills{display:none}
 /* 1 · The room at the back: out of focus (pre-blurred), a little oversized so its edges never show */
 .bay-int{inset:-4%;filter:none;background-image:url(../assets/storefront-hero-soft.jpg);
   transform:translate3d(calc(var(--px,0) * -.9em + var(--sp,0) * var(--dir) * 3.2em),calc(var(--py,0) * -.5em),0);transition:none}
