@@ -68,6 +68,12 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .hdr-cta:focus-visible{outline:2px solid var(--blue-500);outline-offset:3px}
 .hdr-cta span{display:inline-block;transition:transform var(--dur-base) var(--ease-out)}
 .hdr-cta:hover span{transform:translate(2px,-2px)}
+/* The mark: centred in the header, linking home */
+.brand{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:block;opacity:.92;transition:opacity var(--dur-fast)}
+.brand:hover{opacity:1}
+.brand:focus-visible{outline:2px solid var(--blue-500);outline-offset:6px}
+.brand img{display:block;height:24px;width:auto}
+@media (max-width:900px){.brand img{height:20px}}
 /* The menu key: a pill at the top left, the twin of the CTA on the right */
 .menu-btn{flex:none;display:inline-flex;align-items:center;padding:.5rem 1rem;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:transparent;color:var(--white);font:500 14px/1.2 var(--font-sans);letter-spacing:.01em;cursor:pointer;transition:background-color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out)}
 .menu-btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.55)}
