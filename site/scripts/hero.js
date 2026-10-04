@@ -105,15 +105,6 @@
   // address bar shows/hides (height-only) — re-laying the hero on those caused visible jumps.
   let lastW = innerWidth;
   addEventListener('scroll', () => { if (mode === 'zoom') req(); else if (zoom) placeZoom(); }, { passive: true });
-  // The reel: while the shopfront rises into view it is inset (--reel 1 → 0 as its top reaches the header)
-  let reelRaf = 0;
-  const reel = () => {
-    reelRaf = 0;
-    const top = scroller.getBoundingClientRect().top, vh = innerHeight;
-    stage.style.setProperty('--reel', reduce ? 0 : clamp(top / (vh * .7), 0, 1).toFixed(3));
-  };
-  addEventListener('scroll', () => { if (!reelRaf) reelRaf = requestAnimationFrame(reel); }, { passive: true });
-  reel();
   addEventListener('resize', () => {
     if (mode !== 'zoom' && innerWidth === lastW) return;
     lastW = innerWidth; jump = true; req();
@@ -299,40 +290,6 @@
     addEventListener('scroll', () => { if (!spyRaf) spyRaf = requestAnimationFrame(spy); }, { passive: true });
     spy();
   } else wins.forEach(w => w.classList.add('in'));
-
-  /* ── Hero object: turns a few degrees towards the cursor; the glass reflections slide against it ── */
-  const hz = $('[data-hz]'), hzObj = $('[data-hz-obj]');
-  if (hz && hzObj && !reduce && matchMedia('(hover: hover)').matches) {
-    let hRaf = 0, hx = 0, hy = 0;
-    hz.addEventListener('pointermove', e => {
-      const r = hz.getBoundingClientRect();
-      hx = (e.clientX - r.left) / r.width * 2 - 1; hy = (e.clientY - r.top) / r.height * 2 - 1;
-      if (!hRaf) hRaf = requestAnimationFrame(() => {
-        hRaf = 0;
-        hzObj.style.setProperty('--ry', (-16 + hx * 6).toFixed(2) + 'deg');
-        hzObj.style.setProperty('--rx', (hy * -3).toFixed(2) + 'deg');
-        hzObj.style.setProperty('--px', hx.toFixed(3));
-        hzObj.style.setProperty('--py', hy.toFixed(3));
-      });
-    });
-    hz.addEventListener('pointerleave', () => ['--ry', '--rx', '--px', '--py'].forEach(v => hzObj.style.removeProperty(v)));
-  }
-  // Scroll: as the hero leaves, the pane turns square to the viewer (--sq 0 → 1)
-  if (hz && hzObj && !reduce) {
-    let sRaf = 0;
-    const square = () => { sRaf = 0; hzObj.style.setProperty('--sq', clamp(scrollY / (hz.offsetHeight * .6), 0, 1).toFixed(3)); };
-    addEventListener('scroll', () => { if (!sRaf) sRaf = requestAnimationFrame(square); }, { passive: true });
-    square();
-  }
-
-  /* ── Introduction: the statement lights word by word on arrival ── */
-  const intro = $('[data-intro]');
-  if (intro) {
-    intro.innerHTML = intro.textContent.trim().split(/\s+/)
-      .map((w, i) => `<span class="w" style="--i:${i}">${w.replace(/\*([^*]+)\*/g, '<em>$1</em>')}</span>`).join(' ');
-    // On arrival the statement lights word by word, left to right, like a sign switching on
-    requestAnimationFrame(() => requestAnimationFrame(() => intro.classList.add('lit')));
-  }
 
   /* ── "The idea": words read in as the paragraph enters view ─ */
   const idea = $('[data-reveal]');
