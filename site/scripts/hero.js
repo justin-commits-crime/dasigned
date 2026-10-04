@@ -238,8 +238,6 @@
       stage.classList.toggle('is-unfold', uf > .002);
       glass.style.visibility = dist < .05 * P ? 'hidden' : '';
       const behind = czWalk > .84 * P;                               // the façade has passed the camera
-      // outside, the header drops its scrim so the fascia runs straight up to the top edge
-      if (header) header.classList.toggle('is-clear', p < 1 && dist > .5 * P);
       nears.forEach(n => { n.style.visibility = behind ? 'hidden' : ''; });
       enter.style.opacity = (1 - clamp(p / .04, 0, 1)).toFixed(2);
       enter.style.visibility = p > .05 ? 'hidden' : '';
