@@ -105,6 +105,15 @@
   // address bar shows/hides (height-only) — re-laying the hero on those caused visible jumps.
   let lastW = innerWidth;
   addEventListener('scroll', () => { if (mode === 'zoom') req(); else if (zoom) placeZoom(); }, { passive: true });
+  // The reel: while the shopfront rises into view it is inset (--reel 1 → 0 as its top reaches the header)
+  let reelRaf = 0;
+  const reel = () => {
+    reelRaf = 0;
+    const top = scroller.getBoundingClientRect().top, vh = innerHeight;
+    stage.style.setProperty('--reel', reduce ? 0 : clamp(top / (vh * .7), 0, 1).toFixed(3));
+  };
+  addEventListener('scroll', () => { if (!reelRaf) reelRaf = requestAnimationFrame(reel); }, { passive: true });
+  reel();
   addEventListener('resize', () => {
     if (mode !== 'zoom' && innerWidth === lastW) return;
     lastW = innerWidth; jump = true; req();
@@ -290,6 +299,15 @@
     addEventListener('scroll', () => { if (!spyRaf) spyRaf = requestAnimationFrame(spy); }, { passive: true });
     spy();
   } else wins.forEach(w => w.classList.add('in'));
+
+  /* ── Introduction: the statement lights word by word on arrival ── */
+  const intro = $('[data-intro]');
+  if (intro) {
+    intro.innerHTML = intro.textContent.trim().split(/\s+/)
+      .map((w, i) => `<span class="w" style="--i:${i}">${w.replace(/\*([^*]+)\*/g, '<em>$1</em>')}</span>`).join(' ');
+    // On arrival the statement lights word by word, left to right, like a sign switching on
+    requestAnimationFrame(() => requestAnimationFrame(() => intro.classList.add('lit')));
+  }
 
   /* ── "The idea": words read in as the paragraph enters view ─ */
   const idea = $('[data-reveal]');
