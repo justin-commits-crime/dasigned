@@ -144,11 +144,11 @@
     });
   }
 
-  /* ── Bag → the window puts that storefront on display ────── */
+  /* ── Pill (left window) → the centre window puts that storefront on display ── */
   const bags = [...document.querySelectorAll('[data-bag]')];
   const DISPLAY = { side: 'interiorem', chair: 'chair' };
   let showKey = null;
-  const bayFor = { side: '.bay-r', chair: '.bay-l' };                 // each bag stands under its own window
+  const bayFor = { side: '.bay-l', chair: '.bay-l' };                 // both pills sit in the left window
   const lightBay = key => document.querySelectorAll('.bay').forEach(b => b.classList.toggle('is-lit', !!key && b.matches(bayFor[key])));
   function openZoom(key) {
     lightBay(key);
@@ -169,7 +169,7 @@
     bag.addEventListener('focus', () => bag.matches(':focus-visible') && openZoom(key));   // keyboard only
     bag.addEventListener('blur', closeZoom);
     bag.addEventListener('click', e => {
-      // The bag is an entrance: mouse / keyboard select opens the project page;
+      // The pill is an entrance: mouse / keyboard select opens the project page;
       // on touch the first tap previews it in the window, the second walks in.
       e.stopPropagation();
       const showing = showKey === key;

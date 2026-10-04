@@ -377,7 +377,7 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 .bay-pill{pointer-events:auto;display:inline-flex;align-items:center;padding:.75em 1.5em;border:1px solid rgba(255,255,255,.42);border-radius:999px;
   background:rgba(10,10,12,.32);color:var(--white);font:500 1.75em/1.2 var(--font-sans);letter-spacing:.01em;text-decoration:none;white-space:nowrap;
   transition:background-color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out)}
-.bay-pill:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.75);color:var(--white)}
+.bay-pill:hover,.bay-pill.is-on{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.75);color:var(--white)}
 .bay-pill:focus-visible{outline:2px solid var(--blue-500);outline-offset:3px}
 .m-stacked .bay-pills,.m-static .bay-pills{display:none}
 /* 1 · The room at the back: out of focus (pre-blurred), a little oversized so its edges never show */
