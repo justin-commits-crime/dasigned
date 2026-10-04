@@ -80,11 +80,20 @@
           <h1 class="d3-h" id="hero-title"><span>We design</span><span>differently<b>.</b></span></h1>
         </div>
         <p class="d3-caps">Brand <i>/</i> Digital <i>/</i> Experience <i>/</i> Commerce</p>
+        <!-- Inside, the room turns to interface: crop marks and a coordinate appear around the statement -->
+        <i class="d3-crop" aria-hidden="true"></i>
+        <span class="d3-coord" aria-hidden="true">Dasigned <i>/</i> Studio <i>/</i> 001</span>
       </div>
       <!-- The glass: one pane in a black steel frame -->
-      <div class="pl d3-glass" data-glass><i class="d3-door"></i><i class="d3-sheen"></i><i class="d3-hi"></i></div>
+      <!-- The glass: a fixed steel frame holding two sliding leaves, which part as you approach -->
+      <div class="pl d3-glass" data-glass>
+        <i class="d3-leaf d3-leaf-l"><i class="d3-sheen"></i><i class="d3-hi"></i></i>
+        <i class="d3-leaf d3-leaf-r"><i class="d3-sheen"></i></i>
+      </div>
+      <!-- The threshold: a line of light in the floor that wakes as you approach -->
+      <i class="pl d3-sill"></i>
     </div>
-    <a class="d3-cue" href="#work" data-d3-cue><span>Enter</span><i></i></a>
+    <button class="d3-enter" type="button" data-d3-enter><span>Enter</span><span class="arr" aria-hidden="true">→</span></button>
   </div>
 </section>
 

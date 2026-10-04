@@ -176,7 +176,7 @@
   /* ── 3D introduction: scroll walks the camera through the portal into the gallery ── */
   const d3 = $('[data-d3]');
   if (d3) (() => {
-    const world = $('[data-d3-world]'), glass = $('[data-glass]'), cue = $('[data-d3-cue]');
+    const world = $('[data-d3-world]'), glass = $('[data-glass]'), enter = $('[data-d3-enter]');
     const nears = [...d3.querySelectorAll('[data-near]')];
     const num = v => parseFloat(getComputedStyle(d3).getPropertyValue(v));
     let D, L, P, cz = null, yaw = null, mx = 0, my = 0, sx = 0, sy = 0, raf = 0;
@@ -187,7 +187,7 @@
       raf = 0;
       const range = d3.offsetHeight - innerHeight;
       const p = reduce ? 1 : clamp(-d3.getBoundingClientRect().top / Math.max(range, 1), 0, 1);
-      const e = ease(clamp((p - .05) / .85, 0, 1));
+      const e = .5 - .5 * Math.cos(Math.PI * clamp((p - .04) / .86, 0, 1));   // even pace: no rush at the threshold
       const czT = -6 + (D + L - .32 * P + 6) * e;                  // outside → past the glass → before the far wall
       // the pointer is smoothed heavily, so the room responds a moment after you move — never snaps
       sx += (mx - sx) * .06; sy += (my - sy) * .06;
@@ -200,12 +200,19 @@
       world.style.setProperty('--pitch', pitT.toFixed(3) + 'deg');
       stage.style.setProperty('--mx', sx.toFixed(4));
       stage.style.setProperty('--my', sy.toFixed(4));
-      const g = clamp((cz - D - .5 * P) / (.2 * P), 0, 1);
-      glass.style.setProperty('--g', g.toFixed(3));
-      glass.style.visibility = g > .99 ? 'hidden' : '';
+      // the sequence, read from where the camera stands: approach → threshold wakes → leaves part → cross → interface
+      const dist = P - cz + D;                                       // camera to glass
+      const open = clamp((1.3 * P - dist) / (.42 * P), 0, 1);       // leaves part well before you reach them
+      const em = clamp((cz + 6) / (.18 * P), 0, 1) * (1 - clamp((cz - D - .5 * P) / (.3 * P), 0, 1));
+      const dg = clamp((p - .84) / .14, 0, 1);
+      stage.style.setProperty('--open', ease(open).toFixed(3));
+      stage.style.setProperty('--em', em.toFixed(3));
+      stage.style.setProperty('--dg', ease(dg).toFixed(3));
+      glass.style.visibility = dist < .05 * P ? 'hidden' : '';
       const behind = cz > .84 * P;                                   // the façade has passed the camera
       nears.forEach(n => { n.style.visibility = behind ? 'hidden' : ''; });
-      cue.style.opacity = (1 - clamp(p / .05, 0, 1)).toFixed(2);
+      enter.style.opacity = (1 - clamp(p / .06, 0, 1)).toFixed(2);
+      enter.style.visibility = p > .08 ? 'hidden' : '';
       if (Math.abs(czT - cz) > .02 || Math.abs(yawT - yaw) > .005 || Math.abs(mx - sx) > .001 || Math.abs(my - sy) > .001) req();
     }
     const req = () => { if (!raf) raf = requestAnimationFrame(frame); };
@@ -214,6 +221,25 @@
     if (!reduce && matchMedia('(hover: hover)').matches)
       d3.addEventListener('pointermove', e => { mx = e.clientX / innerWidth * 2 - 1; my = e.clientY / innerHeight * 2 - 1; req(); });
     frame();
+
+    // ENTER: a slow, continuous walk to the far wall — the same path scrolling takes. Any wheel, touch or key
+    // hands control straight back. Reduced motion jumps there.
+    let walk = 0;
+    const stop = () => { cancelAnimationFrame(walk); walk = 0; };
+    enter.addEventListener('click', () => {
+      const from = scrollY, to = d3.offsetTop + d3.offsetHeight - innerHeight;
+      if (reduce) { scrollTo(0, to); return; }
+      const dur = 6400, t0 = performance.now();
+      const glide = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;   // gentle in, gentle out
+      document.documentElement.style.scrollBehavior = 'auto';
+      const step = now => {
+        const k = clamp((now - t0) / dur, 0, 1);
+        scrollTo(0, from + (to - from) * glide(k));
+        if (k < 1) walk = requestAnimationFrame(step); else { walk = 0; document.documentElement.style.scrollBehavior = ''; }
+      };
+      stop(); walk = requestAnimationFrame(step);
+    });
+    ['wheel', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, () => { if (walk) { stop(); document.documentElement.style.scrollBehavior = ''; } }, { passive: true }));
   })();
 
   /* ── Header: each word rolls up into its heavier self; a blue rule reads the page ── */

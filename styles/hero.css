@@ -155,16 +155,39 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 .d3-caps{margin:5vh 0 0;padding-top:1.4vh;border-top:1px solid rgba(17,17,19,.35);align-self:flex-start;font:500 .82vw/1 var(--font-wide);font-stretch:125%;letter-spacing:.3em;text-transform:uppercase;color:#4A4A50}
 .d3-caps i{font-style:normal;color:var(--blue-600);margin:0 .6em}
 
-/* The glass: one pane, black steel frame with an aluminium edge, a door line, two reflections */
-.d3-glass{width:calc(var(--w) * 2);height:calc(var(--gy) - var(--ty));transform:translate3d(calc(var(--w) * -1),var(--ty),calc(var(--D) * -1));
-  background:rgba(22,24,28,calc(.3 * (1 - var(--g,0))));box-shadow:inset 0 0 0 1.1vw #0B0B0C,inset 0 0 0 calc(1.1vw + 1px) #9C9CA1;opacity:calc(1 - var(--g,0))}
-.d3-door{position:absolute;top:1.1vw;bottom:1.1vw;left:61%;width:.5vw;background:#0B0B0C;box-shadow:1px 0 0 #9C9CA1}
-.d3-sheen{position:absolute;inset:1.1vw;transform:translateX(calc(var(--mx,0) * -3%));background:linear-gradient(112deg,rgba(255,255,255,0) 22%,rgba(255,255,255,.09) 34%,rgba(255,255,255,0) 44%,rgba(255,255,255,0) 64%,rgba(255,255,255,.05) 70%,rgba(255,255,255,0) 76%)}
-.d3-hi{position:absolute;inset:1.1vw;transform:translateX(calc(var(--mx,0) * -5%));background:rgba(255,255,255,.22);clip-path:polygon(40% 0,40.5% 0,24.5% 100%,24% 100%)}
+/* The glass: a fixed steel frame with an aluminium edge; two leaves slide apart as you approach (--open) */
+.d3-glass{width:calc(var(--w) * 2);height:calc(var(--gy) - var(--ty));transform:translate3d(calc(var(--w) * -1),var(--ty),calc(var(--D) * -1));overflow:hidden;
+  box-shadow:inset 0 0 0 1.1vw #0B0B0C,inset 0 0 0 calc(1.1vw + 1px) #9C9CA1}
+.d3-leaf{position:absolute;top:1.1vw;bottom:1.1vw;overflow:hidden;background:rgba(22,24,28,.3);transition:none}
+.d3-leaf-l{left:1.1vw;width:calc(61% - 1.1vw);border-right:.5vw solid #0B0B0C;transform:translateX(calc(var(--open,0) * -101%))}
+.d3-leaf-r{right:1.1vw;width:calc(39% - 1.1vw);border-left:1px solid #9C9CA1;transform:translateX(calc(var(--open,0) * 101%))}
+.d3-sheen{position:absolute;inset:0;transform:translateX(calc(var(--mx,0) * -3%));background:linear-gradient(112deg,rgba(255,255,255,0) 22%,rgba(255,255,255,.09) 34%,rgba(255,255,255,0) 44%,rgba(255,255,255,0) 64%,rgba(255,255,255,.05) 70%,rgba(255,255,255,0) 76%)}
+.d3-hi{position:absolute;inset:0;transform:translateX(calc(var(--mx,0) * -5%));background:rgba(255,255,255,.22);clip-path:polygon(60% 0,60.6% 0,40.6% 100%,40% 100%)}
+/* Emphasis as you approach: the threshold wakes and the opening's light deepens (--em) */
+.d3-sill{width:calc(var(--w) * 2);height:.5vw;transform:translate3d(calc(var(--w) * -1),calc(var(--gy) - 1px),calc(var(--D) * -1)) rotateX(90deg);
+  background:#F4F0E8;opacity:calc(.12 + var(--em,0) * .88);box-shadow:0 0 2.4vw .4vw rgba(244,240,232,calc(var(--em,0) * .5))}
+.d3-spill{opacity:calc(1 + var(--em,0) * .8)}
 
-.d3-cue{position:absolute;left:50%;bottom:4.5vh;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;font:500 11px/1 var(--font-mono);letter-spacing:.16em;text-transform:uppercase;color:rgba(244,242,238,.6);text-decoration:none;transition:opacity .6s var(--ease-out)}
-.d3-cue i{display:block;width:1px;height:34px;background:currentColor;transform-origin:top;animation:cueV 2.4s var(--ease-in-out) 1.2s infinite}
-@keyframes cueV{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+/* ENTER: on the street, at the threshold */
+.d3-enter{position:absolute;left:50%;bottom:5vh;transform:translateX(-50%);display:inline-flex;align-items:center;gap:1.1em;padding:12px 4px 10px;border:0;border-bottom:1px solid rgba(244,242,238,.32);background:none;font:500 11px/1 var(--font-mono);letter-spacing:.22em;text-transform:uppercase;color:rgba(244,242,238,.72);cursor:pointer;transition:color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out),opacity .6s var(--ease-out)}
+.d3-enter .arr{font-family:var(--font-sans);font-size:14px;letter-spacing:0;transition:transform var(--dur-slow) var(--ease-out)}
+.d3-enter:hover{color:#F4F2EE;border-color:#F4F2EE}
+.d3-enter:hover .arr{transform:translateX(.35em)}
+.d3-enter:focus-visible{outline:2px solid var(--blue-500);outline-offset:6px}
+
+/* Inside, the architecture becomes interface (--dg 0 → 1): a hairline grid draws across every surface,
+   edges turn to blue rules, crop marks and a coordinate frame the statement */
+.d3-in::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:var(--dg,0);
+  background:repeating-linear-gradient(90deg,rgba(10,71,255,.16) 0 1px,transparent 1px 4vw),repeating-linear-gradient(0deg,rgba(10,71,255,.16) 0 1px,transparent 1px 4vw);
+  box-shadow:inset 0 0 0 1px rgba(10,71,255,.55)}
+.d3-sign::after{display:none}
+.d3-crop{position:absolute;left:3vw;right:3vw;top:24%;bottom:26%;pointer-events:none;opacity:var(--dg,0);
+  background:linear-gradient(var(--blue-600),var(--blue-600)) 0 0/1.6vw 1px,linear-gradient(var(--blue-600),var(--blue-600)) 0 0/1px 1.6vw,
+    linear-gradient(var(--blue-600),var(--blue-600)) 100% 0/1.6vw 1px,linear-gradient(var(--blue-600),var(--blue-600)) 100% 0/1px 1.6vw,
+    linear-gradient(var(--blue-600),var(--blue-600)) 0 100%/1.6vw 1px,linear-gradient(var(--blue-600),var(--blue-600)) 0 100%/1px 1.6vw,
+    linear-gradient(var(--blue-600),var(--blue-600)) 100% 100%/1.6vw 1px,linear-gradient(var(--blue-600),var(--blue-600)) 100% 100%/1px 1.6vw;background-repeat:no-repeat}
+.d3-coord{position:absolute;left:3vw;top:calc(24% - 2.2vw);font:500 .7vw/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue-600);opacity:var(--dg,0)}
+.d3-coord i{font-style:normal;opacity:.5;margin:0 .4em}
 
 /* Phones (portrait): a narrower building, a taller portal */
 @media (max-aspect-ratio:1/1){
@@ -173,11 +196,11 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
   .d3-back{padding:0 6vw}
   .d3-caps{font-size:1.75vw;letter-spacing:.18em;white-space:nowrap}
   .d3-mark{height:2.6vh}
+  .d3-coord{font-size:1.6vw}
 }
 /* Reduced motion: the camera holds inside, in front of the line */
 @media (prefers-reduced-motion:reduce){
   .d3{height:100vh;height:100svh}
-  .d3-cue i{animation:none}
 }
 
 /* ── Hero stage ───────────────────────────────────────────────── */
