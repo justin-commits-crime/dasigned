@@ -173,6 +173,44 @@
   document.addEventListener('click', closeZoom);
   })();
 
+  /* ── 3D introduction: scroll walks the camera through the portal into the gallery ── */
+  const d3 = $('[data-d3]');
+  if (d3) (() => {
+    const world = $('[data-d3-world]'), glass = $('[data-glass]'), cue = $('[data-d3-cue]');
+    const nears = [...d3.querySelectorAll('[data-near]')];
+    const num = v => parseFloat(getComputedStyle(d3).getPropertyValue(v));
+    let D, L, P, cz = null, yaw = null, mx = 0, my = 0, raf = 0;
+    const measure = () => { D = num('--D'); L = num('--L'); P = num('--P'); };
+    measure();
+    function frame() {
+      raf = 0;
+      const range = d3.offsetHeight - innerHeight;
+      const p = reduce ? 1 : clamp(-d3.getBoundingClientRect().top / Math.max(range, 1), 0, 1);
+      const e = ease(clamp((p - .05) / .85, 0, 1));
+      const czT = -6 + (D + L - .32 * P + 6) * e;                  // outside → past the glass → before the far wall
+      const yawT = -7 * (1 - e) + mx * 1.4 * (1 - e * .6);          // stand a little off-axis, square up as you enter
+      const pitT = 1.2 * (1 - e) - my * .8;
+      if (cz === null || reduce) { cz = czT; yaw = yawT; }
+      cz += (czT - cz) * .14; yaw += (yawT - yaw) * .1;
+      world.style.setProperty('--cz', cz.toFixed(2) + 'vw');
+      world.style.setProperty('--yaw', yaw.toFixed(3) + 'deg');
+      world.style.setProperty('--pitch', pitT.toFixed(3) + 'deg');
+      const g = clamp((cz - D - .5 * P) / (.2 * P), 0, 1);
+      glass.style.setProperty('--g', g.toFixed(3));
+      glass.style.visibility = g > .99 ? 'hidden' : '';
+      const behind = cz > .84 * P;                                   // the façade has passed the camera
+      nears.forEach(n => { n.style.visibility = behind ? 'hidden' : ''; });
+      cue.style.opacity = (1 - clamp(p / .05, 0, 1)).toFixed(2);
+      if (Math.abs(czT - cz) > .02 || Math.abs(yawT - yaw) > .005) req();
+    }
+    const req = () => { if (!raf) raf = requestAnimationFrame(frame); };
+    addEventListener('scroll', req, { passive: true });
+    addEventListener('resize', () => { measure(); req(); });
+    if (!reduce && matchMedia('(hover: hover)').matches)
+      d3.addEventListener('pointermove', e => { mx = e.clientX / innerWidth * 2 - 1; my = e.clientY / innerHeight * 2 - 1; req(); });
+    frame();
+  })();
+
   /* ── Header: each word rolls up into its heavier self; a blue rule reads the page ── */
   document.querySelectorAll('.nav a').forEach(a => {
     const t = a.textContent.trim();
