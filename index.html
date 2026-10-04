@@ -45,7 +45,9 @@
 
       <!-- The shop window: one glazed frontage in a metal frame. Two display bays flank the screen —
            SAY (brand, story, art direction) and SELL (commerce, product, conversion); the screen between
-           them is the system that connects the two. Layers drift a few pixels with the cursor (--d). -->
+           them is the system that connects the two. Each bay is built in depth: a soft-focus room at the back,
+           real objects in the focal plane, lettering and reflections on the glass. Layers drift at their own
+           rate with the cursor (--px/--py × --d) and as you scroll in (--sp). -->
       <div class="hx-glazing" aria-hidden="true"></div>
       <a class="bay bay-l" href="work/chair-label.html" aria-label="Chair Label — view storefront">
         <span class="bay-int" aria-hidden="true"></span>
@@ -53,8 +55,9 @@
         <figure class="cp cp-poster" style="--d:.3" aria-hidden="true">
           <img src="assets/work-chairlabel-portrait.webp" alt="">
         </figure>
-        <span class="cp cp-plate" style="--d:.2" aria-hidden="true"><span class="cp-k">Storefront 02</span><b>Chair Label</b></span>
+        <span class="cp cp-plate" style="--d:-.12" aria-hidden="true"><span class="cp-k">Storefront 02</span><b>Chair Label</b></span>
         <i class="bay-dim" aria-hidden="true"></i>
+        <i class="bay-glass" aria-hidden="true"></i>
         <i class="refl" aria-hidden="true"></i>
       </a>
       <a class="bay bay-r" href="work/interiorem.html" aria-label="Interiorem — view storefront">
@@ -65,6 +68,7 @@
           <span class="cp-tag">$3,400</span>
         </span>
         <i class="bay-dim" aria-hidden="true"></i>
+        <i class="bay-glass" aria-hidden="true"></i>
         <i class="refl" aria-hidden="true"></i>
       </a>
       <i class="hx-bar" aria-hidden="true"></i>

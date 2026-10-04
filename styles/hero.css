@@ -357,6 +357,48 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
 .refl::after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.6);clip-path:polygon(44% 0,45.2% 0,23.2% 100%,22% 100%)}
 .bay-r .refl::after{clip-path:polygon(66% 0,67.2% 0,45.2% 100%,44% 100%)}
 
+/* ── Tactile depth: the bays as real windows, built back to front ──────────
+   --dir points each bay towards the centre; --sp (0 → 1) is the scroll-in. Walking forward, the frame
+   passes in front of the room, so deeper layers slide towards the centre of their bay. */
+.bay-l{--dir:1}.bay-r{--dir:-1}
+/* 1 · The room at the back: out of focus, a little oversized so its edges never show as it drifts */
+.bay-int{inset:-4%;filter:saturate(.85) blur(.32em);
+  transform:translate(calc(var(--px,0) * -.9em + var(--sp,0) * var(--dir) * 3.2em),calc(var(--py,0) * -.5em));transition:transform 1.6s var(--ease-out)}
+/* 2 · The objects, in the focal plane. Not boxes on glass: things in a room, with weight and light. */
+.cp{transform:translate(calc(var(--px,0) * var(--d,0) * 1em + var(--sp,0) * var(--dir,0) * 1.4em),calc(var(--py,0) * var(--d,0) * 1em))}
+.cp-poster img,.cp-photo{box-shadow:none}
+/* The Chair Label print hangs on two wires, turned a few degrees to the light, off the back wall */
+.cp-poster{filter:brightness(.93) drop-shadow(1.4em 2em 1.6em rgba(0,0,0,.6))}
+.cp-poster::before{content:"";position:absolute;left:16%;right:16%;bottom:100%;height:30em;border:solid rgba(255,255,255,.2);border-width:0 1px;pointer-events:none}
+.cp-poster img{transform:perspective(60em) rotateY(7deg);transform-origin:0 50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.cp-poster::after{content:"";position:absolute;inset:0;pointer-events:none;transform:perspective(60em) rotateY(7deg);transform-origin:0 50%;
+  background:linear-gradient(100deg,rgba(255,255,255,.1),rgba(255,255,255,0) 38%,rgba(0,0,0,.22))}
+/* The Interiorem image: a framed print on a plinth, the price on a paper swing tag */
+.cp-photo{filter:brightness(.93) drop-shadow(-1.2em 1.8em 1.5em rgba(0,0,0,.55))}
+.cp-crop{box-shadow:inset 0 0 0 .45em #0F0E0D,inset 0 0 0 calc(.45em + 1px) rgba(255,255,255,.12)}
+.cp-crop::after{content:"";position:absolute;inset:0;background:linear-gradient(170deg,rgba(255,255,255,.1),rgba(255,255,255,0) 40%,rgba(0,0,0,.18))}
+.cp-photo::before{content:"";position:absolute;left:30%;right:30%;top:100%;height:19.6em;
+  background:linear-gradient(90deg,#D6D1C8,#BDB7AD 70%,#A49E94);box-shadow:inset 0 .5em 0 rgba(255,255,255,.35),inset 0 -6em 5em -4em rgba(0,0,0,.25)}
+.cp-photo::after{content:"";position:absolute;left:22%;right:22%;top:calc(100% + 18.8em);height:2em;border-radius:50%;background:rgba(0,0,0,.55);filter:blur(.7em)}
+.cp-tag{right:1.4em;bottom:-2.6em;transform:rotate(-5deg);transform-origin:50% -1.6em;box-shadow:.2em .5em .8em rgba(0,0,0,.45);transition:transform 1.2s var(--ease-out)}
+.cp-tag::before{content:"";position:absolute;left:50%;bottom:100%;width:1px;height:1.6em;background:rgba(255,255,255,.55)}
+.bay-r:hover .cp-tag{transform:rotate(2deg)}
+/* 3 · On the glass: the label is vinyl lettering, sharp and in front of everything */
+.cp-plate{z-index:5;background:none;box-shadow:none;padding:0;color:#F4F2EE;text-shadow:0 1px 0 rgba(0,0,0,.35)}
+.cp-plate .cp-k{color:rgba(244,242,238,.6)}
+/* 4 · The glass itself: the street mirrored faintly, stronger towards the edges (fresnel), a glint that
+   follows the cursor, and the existing streaks softened into real glare */
+.bay-glass{position:absolute;inset:0;z-index:5;pointer-events:none;
+  background:radial-gradient(28em 22em at calc(50% + var(--px,0) * 60%) calc(38% + var(--py,0) * 30%),rgba(255,255,255,.08),rgba(255,255,255,0) 70%),
+    linear-gradient(0deg,rgba(255,255,255,.07),rgba(255,255,255,0) 26%),
+    linear-gradient(90deg,rgba(255,255,255,.035),rgba(255,255,255,0) 14%,rgba(255,255,255,0) 86%,rgba(255,255,255,.035))}
+.bay-glass::before{content:"";position:absolute;inset:-8%;opacity:.1;mix-blend-mode:screen;
+  background:url(../assets/storefront-hero.jpg) 50% 100%/cover no-repeat;filter:blur(.5em) grayscale(.4);
+  transform:scaleX(-1) translate(calc(var(--px,0) * 2.4em - var(--sp,0) * var(--dir) * 2em),calc(var(--py,0) * 1em));transition:transform 1.4s var(--ease-out)}
+.bay-glass::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),inset 0 .15em 0 rgba(160,190,180,.06)}
+.refl{filter:blur(.12em);transform:translateX(calc(var(--px,0) * -2.2em - var(--sp,0) * var(--dir) * 2.6em))}
+.refl::after{opacity:.55}
+
 /* Entrance: the name, then SAY / SELL, then the displays; the headline lands last */
 .hx-name{animation:fadeIn .8s var(--ease-out) both}
 .cp-word,.cp-cap{animation:riseIn .9s var(--ease-out) .15s both}
@@ -834,7 +876,7 @@ a.dsp-go:hover .arr,.sf:hover .dsp-go .arr{transform:translateX(.35em)}
   .hs-lede,.hs-cta,.win-h .ln>span,.win-h b,.hero-below,.dsp-label,.dsp-mark,.dsp-ex,.sf-hero .dsp-obj{animation:none;opacity:1;transform:none}
   .sf-d,.dsp-q span,.dsp-svc span{transition:none}
   .bay-dim{transition:none}
-  .cp,.refl,.cp-word,.cp-cap>span,.cp-cursor,.store-win img,.store-refl,.store-enter{transition:none!important;transform:none!important}
+  .cp,.refl,.bay-int,.bay-glass::before,.cp-tag,.cp-word,.cp-cap>span,.cp-cursor,.store-win img,.store-refl,.store-enter{transition:none!important;transform:none!important}
   .hx-name,.cp-word,.cp-cap,.cp-poster,.cp-browser,.cp-size,.cp-photo,.cp-card{animation:none}
   .hint i{animation:none}
   .street-bag>img:not(.street-bag-refl){transition:none;transform:none}

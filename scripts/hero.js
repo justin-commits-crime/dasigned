@@ -76,6 +76,7 @@
       s = s0 * Math.pow(1 / s0, e);
       Y = HDR + Ah / 2;
       if (!reduce) screen.style.setProperty('--g', clamp((e - .12) / .7, 0, 1));
+      world.style.setProperty('--sp', e.toFixed(4));          // depth parallax: layers in the bays drift at their own rate
       hint.style.opacity = 1 - clamp(p / .06, 0, 1);
     } else if (mode === 'stacked') {
       // Whole shopfront from the sign down to the pavement, then the statement + CTAs beneath it.
