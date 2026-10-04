@@ -41,13 +41,14 @@
 <section class="d3" id="top" aria-labelledby="hero-title" data-d3>
   <div class="d3-stage" data-d3-stage>
     <div class="d3-world" data-d3-world>
-      <!-- Street: dark polished stone, one pool of light from the door -->
+      <!-- Street -->
       <i class="pl d3-ground d3-ext"></i>
-      <!-- The building: one monolith rising out of frame, its front a thick frame around a single deep aperture -->
+      <i class="pl d3-spill d3-ext"></i>
+      <!-- Façade: one slab with a single opening (built from three pieces around it) -->
       <div class="pl d3-face d3-face-l d3-ext" data-near></div>
       <div class="pl d3-face d3-face-r d3-ext" data-near></div>
-      <div class="pl d3-face d3-face-t d3-ext" data-near><img class="d3-letters" src="assets/wordmark-white-longslash.png" width="2504" height="552" alt="Dasigned"></div>
-      <!-- The aperture: deep reveals and a lintel with one concealed line of light -->
+      <div class="pl d3-face d3-face-t d3-ext" data-near><img class="d3-mark" src="assets/wordmark-white-longslash.png" width="2504" height="552" alt="Dasigned"></div>
+      <!-- The recess: reveals and soffit, a step into the building -->
       <i class="pl d3-rev d3-rev-l d3-ext" data-near></i>
       <i class="pl d3-rev d3-rev-r d3-ext" data-near></i>
       <i class="pl d3-soffit d3-ext" data-near></i>
@@ -74,14 +75,13 @@
         <i class="d3-sel" aria-hidden="true"><b></b><b></b><b></b><b></b></i>
         </div>
       </div>
-      <!-- The glass wall: two fixed panes either side of one door. The door is a steel frame
-           holding two leaves that slide away into the panes as you approach. -->
+      <!-- The glass: one pane in a black steel frame -->
+      <!-- The glass: a fixed steel frame holding two sliding leaves, which part as you approach -->
       <div class="pl d3-glass d3-ext" data-glass>
-        <i class="d3-pane d3-pane-l"></i>
-        <i class="d3-pane d3-pane-r"></i>
-        <span class="d3-door"><i class="d3-leaf d3-leaf-l"></i><i class="d3-leaf d3-leaf-r"></i></span>
+        <i class="d3-leaf d3-leaf-l"><i class="d3-hi"></i></i>
+        <i class="d3-leaf d3-leaf-r"></i>
       </div>
-      <!-- The threshold: a line of light at the door that wakes as you approach -->
+      <!-- The threshold: a line of light in the floor that wakes as you approach -->
       <i class="pl d3-sill d3-ext"></i>
     </div>
     <button class="d3-enter" type="button" data-d3-enter><span>Enter</span><span class="arr" aria-hidden="true">→</span></button>
