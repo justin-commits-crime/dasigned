@@ -295,7 +295,7 @@
   }
 
   /* ── Header: each word rolls up into its heavier self; a blue rule reads the page ── */
-  document.querySelectorAll('.nav a').forEach(a => {
+  document.querySelectorAll('.nav a, .menu-links a').forEach(a => {
     const t = a.textContent.trim();
     a.innerHTML = `<span class="nl"><span class="nl-a">${t}</span><span class="nl-b" aria-hidden="true">${t}</span></span>`;
   });
@@ -346,27 +346,24 @@
     io.observe(sf);
   });
 
-  /* ── Menu (small screens) ────────────────────────────────── */
+  /* ── Menu: a small panel drops from the pill ─────────────── */
   const menu = $('[data-menu]'), menuBtn = $('[data-menu-open]');
   menu.inert = true;
-  const setMenu = open => {
+  const setMenu = (open, focus) => {
     menu.classList.toggle('open', open); menu.inert = !open;
     menuBtn.setAttribute('aria-expanded', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-    (open ? menu.querySelector('.menu-links a') : menuBtn).focus({ preventScroll: true });
+    if (open && focus) menu.querySelector('a').focus({ preventScroll: true });
+    if (!open && focus) menuBtn.focus({ preventScroll: true });
   };
-  menuBtn.addEventListener('click', () => setMenu(true));
-  $('[data-menu-close]').addEventListener('click', () => setMenu(false));
+  menuBtn.addEventListener('click', e => setMenu(!menu.classList.contains('open'), e.detail === 0));
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-  menu.addEventListener('keydown', e => {                    // modal: Tab cycles within the menu
-    if (e.key !== 'Tab') return;
-    const f = [...menu.querySelectorAll('a, button')], first = f[0], last = f[f.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  document.addEventListener('pointerdown', e => {           // a click anywhere else folds it away
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false);
   });
+  menu.addEventListener('focusout', e => { if (e.relatedTarget && !menu.contains(e.relatedTarget) && e.relatedTarget !== menuBtn) setMenu(false); });
   addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
-    if (menu.classList.contains('open')) setMenu(false); else closeZoom();
+    if (menu.classList.contains('open')) setMenu(false, true); else closeZoom();
   });
 
   /* ── Shop window → browser: the first project opens out as it rises into view ── */
