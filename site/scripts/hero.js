@@ -270,6 +270,30 @@
     ['wheel', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, () => { if (walk) { stop(); document.documentElement.style.scrollBehavior = ''; } }, { passive: true }));
   })();
 
+  /* ── The work as worlds: each scene reads its own progress (--p); Chair Label drives a sideways track ── */
+  const envs = [...document.querySelectorAll('[data-env]')];
+  if (envs.length && !reduce) {
+    let eRaf = 0;
+    const paint = () => {
+      eRaf = 0;
+      envs.forEach(env => {
+        const r = env.getBoundingClientRect(), range = env.offsetHeight - innerHeight;
+        const p = clamp(-r.top / Math.max(range, 1), 0, 1);
+        env.style.setProperty('--p', p.toFixed(4));
+        const track = env.querySelector('[data-track]');
+        if (track) {
+          const span = track.scrollWidth - innerWidth;
+          track.style.setProperty('--tx', (-span * clamp((p - .06) / .86, 0, 1)).toFixed(1) + 'px');   // even pace, a beat of stillness at each end
+          const count = env.querySelector('[data-count]');
+          if (count) count.textContent = '0' + Math.min(4, 1 + Math.floor(p * 4));
+        }
+      });
+    };
+    addEventListener('scroll', () => { if (!eRaf) eRaf = requestAnimationFrame(paint); }, { passive: true });
+    addEventListener('resize', paint);
+    paint();
+  }
+
   /* ── Header: each word rolls up into its heavier self; a blue rule reads the page ── */
   document.querySelectorAll('.nav a').forEach(a => {
     const t = a.textContent.trim();
