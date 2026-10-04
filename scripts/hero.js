@@ -179,7 +179,8 @@
     const world = $('[data-d3-world]'), glass = $('[data-glass]'), cue = $('[data-d3-cue]');
     const nears = [...d3.querySelectorAll('[data-near]')];
     const num = v => parseFloat(getComputedStyle(d3).getPropertyValue(v));
-    let D, L, P, cz = null, yaw = null, mx = 0, my = 0, raf = 0;
+    let D, L, P, cz = null, yaw = null, mx = 0, my = 0, sx = 0, sy = 0, raf = 0;
+    const stage = $('[data-d3-stage]');
     const measure = () => { D = num('--D'); L = num('--L'); P = num('--P'); };
     measure();
     function frame() {
@@ -188,20 +189,24 @@
       const p = reduce ? 1 : clamp(-d3.getBoundingClientRect().top / Math.max(range, 1), 0, 1);
       const e = ease(clamp((p - .05) / .85, 0, 1));
       const czT = -6 + (D + L - .32 * P + 6) * e;                  // outside → past the glass → before the far wall
-      const yawT = -7 * (1 - e) + mx * 1.4 * (1 - e * .6);          // stand a little off-axis, square up as you enter
-      const pitT = 1.2 * (1 - e) - my * .8;
+      // the pointer is smoothed heavily, so the room responds a moment after you move — never snaps
+      sx += (mx - sx) * .06; sy += (my - sy) * .06;
+      const yawT = -7 * (1 - e) + sx * 1.3 * (1 - e * .5);          // stand a little off-axis, square up as you enter
+      const pitT = 1.2 * (1 - e) - sy * .7;
       if (cz === null || reduce) { cz = czT; yaw = yawT; }
       cz += (czT - cz) * .14; yaw += (yawT - yaw) * .1;
       world.style.setProperty('--cz', cz.toFixed(2) + 'vw');
       world.style.setProperty('--yaw', yaw.toFixed(3) + 'deg');
       world.style.setProperty('--pitch', pitT.toFixed(3) + 'deg');
+      stage.style.setProperty('--mx', sx.toFixed(4));
+      stage.style.setProperty('--my', sy.toFixed(4));
       const g = clamp((cz - D - .5 * P) / (.2 * P), 0, 1);
       glass.style.setProperty('--g', g.toFixed(3));
       glass.style.visibility = g > .99 ? 'hidden' : '';
       const behind = cz > .84 * P;                                   // the façade has passed the camera
       nears.forEach(n => { n.style.visibility = behind ? 'hidden' : ''; });
       cue.style.opacity = (1 - clamp(p / .05, 0, 1)).toFixed(2);
-      if (Math.abs(czT - cz) > .02 || Math.abs(yawT - yaw) > .005) req();
+      if (Math.abs(czT - cz) > .02 || Math.abs(yawT - yaw) > .005 || Math.abs(mx - sx) > .001 || Math.abs(my - sy) > .001) req();
     }
     const req = () => { if (!raf) raf = requestAnimationFrame(frame); };
     addEventListener('scroll', req, { passive: true });
