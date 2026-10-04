@@ -179,40 +179,68 @@
     const world = $('[data-d3-world]'), glass = $('[data-glass]'), enter = $('[data-d3-enter]');
     const nears = [...d3.querySelectorAll('[data-near]')];
     const num = v => parseFloat(getComputedStyle(d3).getPropertyValue(v));
-    let D, L, P, cz = null, yaw = null, mx = 0, my = 0, sx = 0, sy = 0, raf = 0;
+    let D, L, P, IW, F, Fc, Ff, GY, IT, cz = null, yaw = null, mx = 0, my = 0, sx = 0, sy = 0, raf = 0;
     const stage = $('[data-d3-stage]');
-    const measure = () => { D = num('--D'); L = num('--L'); P = num('--P'); };
+    const measure = () => { D = num('--D'); L = num('--L'); P = num('--P'); IW = num('--w'); F = num('--F'); Fc = num('--Fc'); Ff = num('--Ff'); GY = num('--gy'); IT = num('--ty'); };
+    const PF = 420;                                                  // perspective at the end: nearly flat
     measure();
     function frame() {
       raf = 0;
       const range = d3.offsetHeight - innerHeight;
       const p = reduce ? 1 : clamp(-d3.getBoundingClientRect().top / Math.max(range, 1), 0, 1);
-      const e = .5 - .5 * Math.cos(Math.PI * clamp((p - .04) / .86, 0, 1));   // even pace: no rush at the threshold
-      const czT = -6 + (D + L - .32 * P + 6) * e;                  // outside → past the glass → before the far wall
+      // Two acts on one scroll: the walk (p .03–.52), then the transformation (p .56–.97)
+      const e = .5 - .5 * Math.cos(Math.PI * clamp((p - .03) / .49, 0, 1));
+      const t = clamp((p - .56) / .41, 0, 1);
+      const dg = ease(clamp(t / .2, 0, 1));                          // 1 · the grid draws across every surface
+      const fl = ease(clamp((t - .16) / .2, 0, 1));                  // 2 · light, shading and depth drain to flat paper
+      const uf = ease(clamp((t - .34) / .44, 0, 1));                 // 3 · the room unfolds into a page
+      const ct = ease(clamp((t - .6) / .25, 0, 1));                  //     its surfaces reveal their interface
+      const ex = 1 - ease(clamp((t - .62) / .3, 0, 1));              // 4 · the letters settle flat into type
+      // camera: walk in, then pull back as perspective flattens until the unfolded page fits the screen
+      const vw = innerWidth / 100, vh = innerHeight / 100, HDR = header ? header.offsetHeight : 64;
+      const Pe = P + (PF - P) * uf;
+      const s0 = 1 / 1.32;
+      const wPx = 2 * (IW + F) * vw, hPx = (GY - IT) * vh + (Fc + Ff) * vw;
+      const sF = Math.min(.9 * innerWidth / wPx, .86 * (innerHeight - HDR) / hPx);
+      const sc = s0 + (sF - s0) * uf;
+      const czWalk = -6 + (D + L - .32 * P + 6) * e;
+      const czT = uf > 0 ? Pe * (1 - 1 / sc) + D + L : czWalk;
+      // centre the unfolded page in the space below the header
+      const cy = ((IT * vh - Fc * vw) + (GY * vh + Ff * vw)) / 2;    // page centre, world px
+      const H = innerHeight, target = HDR + (H - HDR) / 2;
+      const oy = ((target - .46 * H) / sc - .04 * H - cy) * uf;
+      world.style.setProperty('--oy', oy.toFixed(1) + 'px');
+      stage.style.perspective = Pe.toFixed(2) + 'vw';
       // the pointer is smoothed heavily, so the room responds a moment after you move — never snaps
       sx += (mx - sx) * .06; sy += (my - sy) * .06;
-      const yawT = -7 * (1 - e) + sx * 1.3 * (1 - e * .5);          // stand a little off-axis, square up as you enter
-      const pitT = 1.2 * (1 - e) - sy * .7;
+      const calm = 1 - uf * .8;
+      const yawT = (-7 * (1 - e) + sx * 1.3 * (1 - e * .5)) * calm;  // stand a little off-axis, square up as you enter
+      const pitT = (1.2 * (1 - e) - sy * .7) * calm;
       if (cz === null || reduce) { cz = czT; yaw = yawT; }
       cz += (czT - cz) * .14; yaw += (yawT - yaw) * .1;
       world.style.setProperty('--cz', cz.toFixed(2) + 'vw');
       world.style.setProperty('--yaw', yaw.toFixed(3) + 'deg');
       world.style.setProperty('--pitch', pitT.toFixed(3) + 'deg');
-      stage.style.setProperty('--mx', sx.toFixed(4));
-      stage.style.setProperty('--my', sy.toFixed(4));
-      // the sequence, read from where the camera stands: approach → threshold wakes → leaves part → cross → interface
-      const dist = P - cz + D;                                       // camera to glass
-      const open = clamp((1.3 * P - dist) / (.42 * P), 0, 1);       // leaves part well before you reach them
-      const em = clamp((cz + 6) / (.18 * P), 0, 1) * (1 - clamp((cz - D - .5 * P) / (.3 * P), 0, 1));
-      const dg = clamp((p - .84) / .14, 0, 1);
+      stage.style.setProperty('--mx', (sx * calm).toFixed(4));
+      stage.style.setProperty('--my', (sy * calm).toFixed(4));
+      // act one, read from where the camera stands: approach → threshold wakes → leaves part → cross
+      const dist = P - czWalk + D;                                   // camera to glass
+      const open = clamp((1.3 * P - dist) / (.42 * P), 0, 1);
+      const em = clamp((czWalk + 6) / (.18 * P), 0, 1) * (1 - clamp((czWalk - D - .5 * P) / (.3 * P), 0, 1));
       stage.style.setProperty('--open', ease(open).toFixed(3));
       stage.style.setProperty('--em', em.toFixed(3));
-      stage.style.setProperty('--dg', ease(dg).toFixed(3));
+      // act two
+      stage.style.setProperty('--dg', dg.toFixed(3));
+      stage.style.setProperty('--fl', fl.toFixed(3));
+      stage.style.setProperty('--uf', uf.toFixed(4));
+      stage.style.setProperty('--ct', ct.toFixed(3));
+      stage.style.setProperty('--ex', ex.toFixed(3));
+      stage.classList.toggle('is-unfold', uf > .002);
       glass.style.visibility = dist < .05 * P ? 'hidden' : '';
-      const behind = cz > .84 * P;                                   // the façade has passed the camera
+      const behind = czWalk > .84 * P;                               // the façade has passed the camera
       nears.forEach(n => { n.style.visibility = behind ? 'hidden' : ''; });
-      enter.style.opacity = (1 - clamp(p / .06, 0, 1)).toFixed(2);
-      enter.style.visibility = p > .08 ? 'hidden' : '';
+      enter.style.opacity = (1 - clamp(p / .04, 0, 1)).toFixed(2);
+      enter.style.visibility = p > .05 ? 'hidden' : '';
       if (Math.abs(czT - cz) > .02 || Math.abs(yawT - yaw) > .005 || Math.abs(mx - sx) > .001 || Math.abs(my - sy) > .001) req();
     }
     const req = () => { if (!raf) raf = requestAnimationFrame(frame); };
@@ -222,14 +250,14 @@
       d3.addEventListener('pointermove', e => { mx = e.clientX / innerWidth * 2 - 1; my = e.clientY / innerHeight * 2 - 1; req(); });
     frame();
 
-    // ENTER: a slow, continuous walk to the far wall — the same path scrolling takes. Any wheel, touch or key
+    // ENTER: one slow, continuous take — the walk in and the transformation — on the same path scrolling takes. Any wheel, touch or key
     // hands control straight back. Reduced motion jumps there.
     let walk = 0;
     const stop = () => { cancelAnimationFrame(walk); walk = 0; };
     enter.addEventListener('click', () => {
       const from = scrollY, to = d3.offsetTop + d3.offsetHeight - innerHeight;
       if (reduce) { scrollTo(0, to); return; }
-      const dur = 6400, t0 = performance.now();
+      const dur = 9000, t0 = performance.now();
       const glide = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;   // gentle in, gentle out
       document.documentElement.style.scrollBehavior = 'auto';
       const step = now => {

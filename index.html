@@ -55,24 +55,46 @@
   <div class="d3-stage" data-d3-stage>
     <div class="d3-world" data-d3-world>
       <!-- Street -->
-      <i class="pl d3-ground"></i>
-      <i class="pl d3-spill"></i>
+      <i class="pl d3-ground d3-ext"></i>
+      <i class="pl d3-spill d3-ext"></i>
       <!-- Façade: one slab with a single opening (built from three pieces around it) -->
-      <div class="pl d3-face d3-face-l" data-near></div>
-      <div class="pl d3-face d3-face-r" data-near></div>
-      <div class="pl d3-face d3-face-t" data-near><img class="d3-mark" src="assets/wordmark-white-longslash.png" width="2504" height="552" alt="Dasigned"></div>
+      <div class="pl d3-face d3-face-l d3-ext" data-near></div>
+      <div class="pl d3-face d3-face-r d3-ext" data-near></div>
+      <div class="pl d3-face d3-face-t d3-ext" data-near><img class="d3-mark" src="assets/wordmark-white-longslash.png" width="2504" height="552" alt="Dasigned"></div>
       <!-- The recess: reveals and soffit, a step into the building -->
-      <i class="pl d3-rev d3-rev-l" data-near></i>
-      <i class="pl d3-rev d3-rev-r" data-near></i>
-      <i class="pl d3-soffit" data-near></i>
+      <i class="pl d3-rev d3-rev-l d3-ext" data-near></i>
+      <i class="pl d3-rev d3-rev-r d3-ext" data-near></i>
+      <i class="pl d3-soffit d3-ext" data-near></i>
       <!-- Inside: a gallery room, lit from a slot in the ceiling -->
-      <i class="pl d3-in d3-in-floor"></i>
-      <i class="pl d3-in d3-in-ceil"><b></b></i>
-      <i class="pl d3-in d3-in-l"></i><i class="pl d3-in d3-in-l d3-far"></i>
-      <i class="pl d3-in d3-in-r"></i><i class="pl d3-in d3-in-r d3-far"></i>
+      <i class="pl d3-in d3-in-floor d3-room"></i>
+      <i class="pl d3-in d3-in-ceil d3-room"><b></b></i>
+      <i class="pl d3-in d3-in-l d3-room"></i><i class="pl d3-in d3-in-l d3-far d3-room"></i>
+      <i class="pl d3-in d3-in-r d3-room"></i><i class="pl d3-in d3-in-r d3-far d3-room"></i>
       <!-- The statement as dimensional lettering: a dark front face standing off the wall, an extruded body
            (8 thin layers) and a soft shadow cast down the wall by the ceiling slot. The h1 is the front face. -->
       <div class="pl d3-in d3-back"></div>
+      <!-- The unfold: four flat panels hinged on the back wall's edges. Folded (--uf 0) they sit exactly where the
+           room's surfaces are; unfolded (--uf 1) they lie flat around the wall — the room becomes a page. -->
+      <div class="pl d3-fold d3-fold-l">
+        <a class="d3-card" href="work/interiorem.html">
+          <span class="d3-card-img d3-card-int"><img src="assets/work-interiorem-home.webp" alt="" loading="lazy"></span>
+          <span class="d3-card-k"><b>01</b> Interiorem <span class="arr" aria-hidden="true">→</span></span>
+          <span class="d3-card-t">Brand identity <i>/</i> Website <i>/</i> E-commerce</span>
+        </a>
+      </div>
+      <div class="pl d3-fold d3-fold-r">
+        <a class="d3-card" href="work/chair-label.html">
+          <span class="d3-card-img d3-card-chair"><img src="assets/work-chairlabel-portrait.webp" alt="" loading="lazy"></span>
+          <span class="d3-card-k"><b>02</b> Chair Label <span class="arr" aria-hidden="true">→</span></span>
+          <span class="d3-card-t">Art direction <i>/</i> Campaign <i>/</i> E-commerce</span>
+        </a>
+      </div>
+      <div class="pl d3-fold d3-fold-c" aria-hidden="true">
+        <span class="d3-chrome"><i></i><i></i><i></i><b>dasigned.studio</b></span>
+      </div>
+      <div class="pl d3-fold d3-fold-f">
+        <a class="d3-next" href="#work">See the work <span class="arr" aria-hidden="true">↓</span></a>
+      </div>
       <div class="pl d3-in d3-sign">
         <div class="d3-type">
           <span class="d3-cast" aria-hidden="true"><span>We design</span><span>differently<b>.</b></span></span>
@@ -86,12 +108,12 @@
       </div>
       <!-- The glass: one pane in a black steel frame -->
       <!-- The glass: a fixed steel frame holding two sliding leaves, which part as you approach -->
-      <div class="pl d3-glass" data-glass>
+      <div class="pl d3-glass d3-ext" data-glass>
         <i class="d3-leaf d3-leaf-l"><i class="d3-sheen"></i><i class="d3-hi"></i></i>
         <i class="d3-leaf d3-leaf-r"><i class="d3-sheen"></i></i>
       </div>
       <!-- The threshold: a line of light in the floor that wakes as you approach -->
-      <i class="pl d3-sill"></i>
+      <i class="pl d3-sill d3-ext"></i>
     </div>
     <button class="d3-enter" type="button" data-d3-enter><span>Enter</span><span class="arr" aria-hidden="true">→</span></button>
   </div>

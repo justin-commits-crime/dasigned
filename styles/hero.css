@@ -103,11 +103,11 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
      --iw  half-width of the gallery        --it  gallery ceiling
    The camera (scripts/hero.js) sets --cz (dolly), --yaw and --pitch on the world; --g fades the glass
    as you step through. Planes use transform-origin 0 0 and are placed with translate3d + one rotation. */
-.d3{--w:30vw;--gy:39vh;--ty:-33vh;--D:22vw;--L:110vw;--iw:var(--w);--it:var(--ty);--P:90vw;
-  position:relative;height:340vh;height:340svh;background:#0C0C0E}
+.d3{--w:30vw;--gy:39vh;--ty:-33vh;--D:22vw;--L:110vw;--iw:var(--w);--it:var(--ty);--P:90vw;--F:50vw;--Fc:14vw;--Ff:22vw;
+  position:relative;height:560vh;height:560svh;background:#0C0C0E}
 .d3-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;perspective:var(--P);perspective-origin:50% 46%;background:#0C0C0E}
 .d3-world{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;
-  transform:translate3d(calc(var(--mx,0) * -.9vw),calc(var(--my,0) * -.5vh),var(--cz,-6vw)) rotateX(var(--pitch,0deg)) rotateY(var(--yaw,-7deg))}
+  transform:translate3d(calc(var(--mx,0) * -.9vw),calc(var(--my,0) * -.5vh + var(--oy,0px)),var(--cz,-6vw)) rotateX(var(--pitch,0deg)) rotateY(var(--yaw,-7deg))}
 .pl{position:absolute;left:0;top:0;display:block;transform-origin:0 0;backface-visibility:visible}
 
 /* Street: wet dark stone, a few joints, a pool of light from the opening */
@@ -144,12 +144,12 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
 /* Dimensional lettering: the wall keeps 3D so the letters can stand off it */
 .d3-type{position:relative;transform-style:preserve-3d}
 .d3-h,.d3-x,.d3-cast{display:flex;flex-direction:column;margin:0;font-family:var(--font-sans);font-weight:600;font-stretch:76%;font-size:9.6vw;line-height:.84;letter-spacing:-.035em;text-transform:uppercase;white-space:nowrap}
-.d3-h{position:relative;color:#111113;transform:translateZ(1.6vw)}
+.d3-h{position:relative;color:#111113;transform:translateZ(calc(1.6vw * var(--ex,1)))}
 .d3-h b,.d3-x b{color:inherit}
 .d3-h b{color:var(--blue-600)}
-.d3-x{position:absolute;left:0;top:0;color:#3A3A3F;transform:translateZ(calc(1.6vw - var(--k) * .2vw))}
+.d3-x{position:absolute;left:0;top:0;color:#3A3A3F;transform:translateZ(calc((1.6vw - var(--k) * .2vw) * var(--ex,1)));opacity:var(--ex,1)}
 .d3-x b{color:#0A2E99}
-.d3-cast{position:absolute;left:0;top:0;color:transparent;text-shadow:calc(.4vw - var(--mx,0) * .35vw) calc(2.2vw - var(--my,0) * .25vw) .9vw rgba(40,34,26,.26)}
+.d3-cast{position:absolute;left:0;top:0;color:transparent;opacity:var(--ex,1);text-shadow:calc(.4vw - var(--mx,0) * .35vw) calc(2.2vw - var(--my,0) * .25vw) .9vw rgba(40,34,26,.26)}
 .d3-cast b{color:transparent}
 /* The descriptor: small, set on the wall like a gallery label */
 .d3-caps{margin:5vh 0 0;padding-top:1.4vh;border-top:1px solid rgba(17,17,19,.35);align-self:flex-start;font:500 .82vw/1 var(--font-wide);font-stretch:125%;letter-spacing:.3em;text-transform:uppercase;color:#4A4A50}
@@ -188,6 +188,60 @@ body{background:var(--white);color:var(--text-primary);font-family:var(--font-sa
     linear-gradient(var(--blue-600),var(--blue-600)) 100% 100%/1.6vw 1px,linear-gradient(var(--blue-600),var(--blue-600)) 100% 100%/1px 1.6vw;background-repeat:no-repeat}
 .d3-coord{position:absolute;left:3vw;top:calc(24% - 2.2vw);font:500 .7vw/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue-600);opacity:var(--dg,0)}
 .d3-coord i{font-style:normal;opacity:.5;margin:0 .4em}
+
+
+/* ── The transformation: physical → digital ───────────────────
+   --fl  materials flatten: shading, light and depth drain out to flat paper and hairlines
+   --uf  the room unfolds around the back wall into a flat page, while perspective flattens
+   --ct  the unfolded surfaces reveal their interface content
+   --ex  the dimensional letters settle flat into type */
+.d3-in::before{content:"";position:absolute;inset:0;pointer-events:none;background:#E8E5DF;opacity:var(--fl,0)}
+.d3-back::before{background:#F3F1EC}
+.d3-sign::before{display:none}
+.d3-in-ceil b{opacity:calc(1 - var(--fl,0))}
+.d3-stage.is-unfold{background:#E3E0DA}
+.d3-stage.is-unfold .d3-ext,.d3-stage.is-unfold .d3-room{visibility:hidden}
+.d3-fold{visibility:hidden;background:#E8E5DF;
+  background-image:repeating-linear-gradient(90deg,rgba(10,71,255,.16) 0 1px,transparent 1px 4vw),repeating-linear-gradient(0deg,rgba(10,71,255,.16) 0 1px,transparent 1px 4vw);
+  box-shadow:inset 0 0 0 1px rgba(10,71,255,.55)}
+.d3-stage.is-unfold .d3-fold{visibility:visible}
+.d3-fold-l{width:var(--F);height:calc(var(--gy) - var(--it));transform-origin:100% 0;
+  transform:translate3d(calc(var(--iw) * -1 - var(--F)),var(--it),calc((var(--D) + var(--L)) * -1)) rotateY(calc(90deg * (1 - var(--uf,0))))}
+.d3-fold-r{width:var(--F);height:calc(var(--gy) - var(--it));transform-origin:0 0;
+  transform:translate3d(var(--iw),var(--it),calc((var(--D) + var(--L)) * -1)) rotateY(calc(-90deg * (1 - var(--uf,0))))}
+.d3-fold-c{width:calc(var(--iw) * 2);height:var(--Fc);transform-origin:0 100%;
+  transform:translate3d(calc(var(--iw) * -1),calc(var(--it) - var(--Fc)),calc((var(--D) + var(--L)) * -1)) rotateX(calc(-90deg * (1 - var(--uf,0))))}
+.d3-fold-f{width:calc(var(--iw) * 2);height:var(--Ff);transform-origin:0 0;
+  transform:translate3d(calc(var(--iw) * -1),var(--gy),calc((var(--D) + var(--L)) * -1)) rotateX(calc(90deg * (1 - var(--uf,0))))}
+/* What each surface becomes */
+.d3-card{position:absolute;left:12%;right:12%;top:14%;bottom:12%;display:flex;flex-direction:column;gap:1.2vw;color:#111113;text-decoration:none;opacity:var(--ct,0)}
+.d3-card-img{position:relative;flex:1;overflow:hidden;background:#D9D4CB;box-shadow:0 0 0 1px rgba(17,17,19,.12)}
+.d3-card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease-out)}
+.d3-card-int img{display:none}
+.d3-card-int{background:#C9B9A6 url(../assets/work-interiorem-home.webp) 94% 78%/200% auto no-repeat}
+.d3-card-chair img{object-position:50% 20%}
+.d3-card:hover img{transform:scale(1.03)}
+.d3-card-k{display:flex;align-items:baseline;gap:.8em;font-family:var(--font-sans);font-size:2.2vw;font-weight:500;letter-spacing:-.02em}
+.d3-card-k b{font:500 1vw/1 var(--font-mono);color:var(--blue-600)}
+.d3-card-k .arr{transition:transform var(--dur-slow) var(--ease-out)}
+.d3-card:hover .d3-card-k .arr{transform:translateX(.3em)}
+.d3-card-t{font:500 .9vw/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#55555B}
+.d3-card-t i{font-style:normal;color:var(--blue-600);margin:0 .3em}
+.d3-chrome{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:.7vw;height:45%;padding:0 2vw;background:#111113;opacity:var(--ct,0)}
+.d3-chrome i{width:.8vw;height:.8vw;border-radius:50%;background:rgba(255,255,255,.28)}
+.d3-chrome b{margin:0 auto;padding:.5vw 3vw;background:rgba(255,255,255,.08);font:400 .95vw/1 var(--font-mono);color:rgba(255,255,255,.7)}
+.d3-next{position:absolute;left:50%;top:32%;transform:translateX(-50%);display:inline-flex;gap:1em;align-items:center;padding:1.2vw 2.2vw;background:#111113;color:#FFFFFF;font:600 1.1vw/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;opacity:var(--ct,0);white-space:nowrap}
+.d3-next:hover{background:var(--blue-600);color:#FFFFFF}
+@media (max-aspect-ratio:1/1){
+  .d3{--F:30vw;--Fc:10vw;--Ff:16vw}
+  .d3-card{left:8%;right:8%;gap:2vw}
+  .d3-card-k{font-size:3.6vw}.d3-card-k b{font-size:2vw}
+  .d3-card-t{display:none}
+  .d3-card-int{background-size:auto 150%;background-position:72% 84%}
+  .d3-card-k{font-size:3.2vw}
+  .d3-chrome b{font-size:2vw}
+  .d3-next{font-size:2.6vw;padding:2.4vw 4vw}
+}
 
 /* Phones (portrait): a narrower building, a taller portal */
 @media (max-aspect-ratio:1/1){
