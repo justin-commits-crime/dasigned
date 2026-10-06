@@ -1636,7 +1636,7 @@ button{font:inherit;color:inherit}
       <button type="button" sc-camel-on-click="{{ open7 }}" sc-camel-on-mouse-enter="{{ showChair }}" sc-camel-on-mouse-leave="{{ hideDisp }}" sc-camel-on-focus="{{ showChair }}" sc-camel-on-blur="{{ hideDisp }}" style="pointer-events:auto;position:relative;overflow:hidden;display:flex;align-items:center;height:38px;padding:0 20px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:{{ pillBg }};box-shadow:none;backdrop-filter:blur(28px) saturate(120%);-webkit-backdrop-filter:blur(28px) saturate(120%);color:#fff;font:500 13px/1 Arial,Helvetica,sans-serif;letter-spacing:.08em;cursor:pointer;transition:background .3s, box-shadow .3s, opacity .4s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.32)">Chair Label</button>
       <button type="button" sc-camel-on-click="{{ open8 }}" sc-camel-on-mouse-enter="{{ showMono }}" sc-camel-on-mouse-leave="{{ hideDisp }}" sc-camel-on-focus="{{ showMono }}" sc-camel-on-blur="{{ hideDisp }}" style="pointer-events:auto;position:relative;overflow:hidden;display:flex;align-items:center;height:38px;padding:0 20px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:{{ pillBg }};box-shadow:none;backdrop-filter:blur(28px) saturate(120%);-webkit-backdrop-filter:blur(28px) saturate(120%);color:#fff;font:500 13px/1 Arial,Helvetica,sans-serif;letter-spacing:.08em;cursor:pointer;transition:background .3s, box-shadow .3s, opacity .4s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.32)">Monolith Audio</button>
     </nav>
-  <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;opacity:{{ orbOp }};transform:{{ orbT }};transition:opacity .6s cubic-bezier(.16,1,.3,1){{ orbTr }}"><canvas data-scene="hero" data-texture="{{ blobTex }}" aria-hidden="true" style="position:absolute;right:-1vw;top:50%;transform:translateY(-48%);width:max(340px, min(62vw, 940px));height:max(340px, min(62vw, 940px));z-index:0;pointer-events:none;opacity:0;transition:opacity 1.8s ease"></canvas></div>
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;opacity:{{ orbOp }};transition:opacity .6s cubic-bezier(.16,1,.3,1)"><canvas data-scene="hero" data-texture="{{ blobTex }}" aria-hidden="true" style="position:absolute;right:-1vw;top:50%;transform:translateY(-48%);width:max(340px, min(62vw, 940px));height:max(340px, min(62vw, 940px));z-index:0;pointer-events:none;opacity:0;transition:opacity 1.8s ease"></canvas></div>
   <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:{{ intOp }};transition:opacity .6s cubic-bezier(.16,1,.3,1)">
     <img src="assets/v5/store-interiorem.webp" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:0% 0%;transform-origin:0% 0%;transform:{{ intOpT }};transition:transform 1.2s cubic-bezier(.16,1,.3,1)">
     
@@ -2097,7 +2097,7 @@ class Component extends DCLogic {
     requestAnimationFrame(() => this.setState({ introIn: true }));
     const findBlob = () => {
       const cv = document.querySelector('canvas[data-scene="hero"]');
-      if (cv) { const r = cv.getBoundingClientRect(); if (r.width) { const o = this._orbOff || { x: 0, y: 0 }; this.setState({ blobC: { x: r.left + r.width / 2 - o.x, y: r.top + r.height / 2 - o.y } }); return; } }
+      if (cv) { const r = cv.getBoundingClientRect(); if (r.width) { this.setState({ blobC: { x: r.left + r.width / 2, y: r.top + r.height / 2 } }); return; } }
       if (this.state.intro === 'in') this._fb = requestAnimationFrame(findBlob);
     };
     findBlob();
@@ -2385,7 +2385,7 @@ class Component extends DCLogic {
         const W = typeof window !== 'undefined' ? window.innerWidth : 1440, H = typeof window !== 'undefined' ? window.innerHeight : 900;
         const c = this.state.blobC || { x: W / 2, y: H / 2 };
         const w = narrow ? W - 40 : Math.min(W * 0.34, 560), h = Math.min(H * 0.48, 520);
-        const l = (W - w) / 2, tp = (H - h) / 2;
+        const l = Math.max(20, Math.min(W - w - 20, c.x - w / 2)), tp = Math.max(H * 0.2, Math.min(H * 0.8 - h, c.y - h / 2));
         return { iwT: tp + 'px', iwB: (H - tp - h) + 'px', iwL: l + 'px', iwR: (W - l - w) + 'px' };
       })(),
       introRowsTop: [0, 1, 2].map(i => ({ x: this.state.introIn ? (i % 2 ? '-22%' : '-6%') : (i % 2 ? '110%' : '-110%'), d: (i * 0.07) + 's' })),
@@ -2416,16 +2416,6 @@ class Component extends DCLogic {
       },
       blobTex: ({ 'Shopfront': 'assets/blob-texture.png', 'Ink marbling': 'assets/blob-ink-v2.png', 'Blue silk': 'assets/blob-silk-v2.png', 'Shop window': 'assets/blob-shop-wrap.jpg', 'Dasigned tote': 'assets/blob-bag-wrap4.jpg', 'Manifesto': 'assets/blob-manifesto.png', 'Services list': 'assets/blob-services-tint.png', 'Mark pattern': ((window.__resources||{}).r_assets_blob_mark_pattern_png||'assets/blob-mark-pattern.png'), 'Blue gradient': 'assets/blob-blue-gradient.png' })[this.props.blobTexture ?? 'Mark pattern'] || ((window.__resources||{}).r_assets_blob_mark_pattern_png||'assets/blob-mark-pattern.png'),
       orbOp: this.state.disp ? 0 : 1,
-      ...(() => {
-        // During the intro the blob is pulled into the centre of the frame; it glides back as the site opens.
-        const W = typeof window !== 'undefined' ? window.innerWidth : 1440, H = typeof window !== 'undefined' ? window.innerHeight : 900;
-        const c = this.state.blobC, inIntro = this.state.intro === 'in';
-        this._orbOff = inIntro && c ? { x: W / 2 - c.x, y: H / 2 - c.y } : { x: 0, y: 0 };
-        return {
-          orbT: 'translate3d(' + this._orbOff.x.toFixed(1) + 'px,' + this._orbOff.y.toFixed(1) + 'px,0)',
-          orbTr: this.state.intro === 'out' ? ', transform 1.1s cubic-bezier(.7,0,.2,1)' : ''
-        };
-      })(),
       intOp: this.state.disp === 'int' ? 1 : 0,
       intOpT: this.state.disp === 'int' ? 'scale(1)' : 'scale(1.05)',
       logoOp: this.state.disp ? 0 : 0.92,
