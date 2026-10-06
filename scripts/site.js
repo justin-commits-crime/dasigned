@@ -95,15 +95,21 @@
       }
     });
 
+    // The frame sits dead centre and opens out evenly. The blob is pulled into the
+    // centre for the intro and glides back to its hero position as the site opens.
+    const orb = $('.hero__orb');
     let state = 'in';
     const place = () => {
       if (state !== 'in') return;
       const W = innerWidth, H = innerHeight;
-      let c = { x: W / 2, y: H / 2 };
-      if (canvas) { const r = canvas.getBoundingClientRect(); if (r.width) c = { x: r.left + r.width / 2, y: r.top + r.height / 2 }; }
+      if (canvas && orb) {
+        orb.style.transition = 'none'; orb.style.transform = '';
+        const r = canvas.getBoundingClientRect();
+        if (r.width) orb.style.transform = `translate3d(${(W / 2 - (r.left + r.width / 2)).toFixed(1)}px,${(H / 2 - (r.top + r.height / 2)).toFixed(1)}px,0)`;
+        void orb.offsetWidth; orb.style.transition = '';
+      }
       const w = isNarrow() ? W - 40 : Math.min(W * 0.34, 560), h = Math.min(H * 0.48, 520);
-      const l = Math.max(20, Math.min(W - w - 20, c.x - w / 2));
-      const t = Math.max(H * 0.2, Math.min(H * 0.8 - h, c.y - h / 2));
+      const l = (W - w) / 2, t = (H - h) / 2;
       Object.assign(win.style, { top: t + 'px', bottom: (H - t - h) + 'px', left: l + 'px', right: (W - l - w) + 'px' });
       bands.top.style.height = t + 'px';
       bands.bot.style.height = (H - t - h) + 'px';
@@ -126,7 +132,9 @@
         de.style.overflow = '';
         state = 'out'; el.classList.add('is-out');
         Object.assign(win.style, { top: '-40px', bottom: '-40px', left: '-40px', right: '-40px' });
+        if (orb) { orb.style.transition = 'transform 1.1s cubic-bezier(.7,0,.2,1), opacity .6s cubic-bezier(.16,1,.3,1)'; orb.style.transform = ''; }
         setTimeout(() => { el.classList.add('is-done'); removeEventListener('resize', place); }, 1100);
+        if (orb) setTimeout(() => { orb.style.transition = ''; }, 1200);
       }, 350);
     };
     requestAnimationFrame(step);
