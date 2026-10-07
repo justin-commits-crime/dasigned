@@ -146,6 +146,24 @@ vec3 objectTangent = vec3(tangent.xyz);
     });
     const orbit = new THREE.Group(); orbit.rotation.set(1.18, 0.25, 0); scene.add(orbit);
     blob.receiveShadow = true;
+    const FIN = {
+      'Clear glass': { transmission: 1, metalness: 0, iridescenceIOR: 1.3, iridescenceThicknessRange: [100, 400], roughness: 0.03, thickness: 1.4, iridescence: 0.5, clearcoat: 1, clearcoatRoughness: 0.02, attenuationDistance: 3.5, envMapIntensity: 1.7 },
+      'Frosted glass': { transmission: 1, metalness: 0, iridescenceIOR: 1.3, iridescenceThicknessRange: [100, 400], roughness: 0.42, thickness: 2.4, iridescence: 0.12, clearcoat: 0.6, clearcoatRoughness: 0.35, attenuationDistance: 2.2, envMapIntensity: 1.2 },
+      'Iridescent': { transmission: 0.35, metalness: 0.6, roughness: 0.08, thickness: 0.8, iridescence: 1, iridescenceIOR: 1.8, iridescenceThicknessRange: [180, 900], clearcoat: 1, clearcoatRoughness: 0.03, attenuationDistance: 3.5, envMapIntensity: 2 },
+      'Liquid chrome': { transmission: 0, metalness: 1, iridescenceIOR: 1.3, iridescenceThicknessRange: [100, 400], roughness: 0.04, thickness: 0, iridescence: 0.08, clearcoat: 1, clearcoatRoughness: 0.02, attenuationDistance: 3.5, envMapIntensity: 2.2 }
+    };
+    const finAttr = () => { const v = cv && cv.getAttribute('data-finish'); return v && FIN[v] ? v : 'Clear glass'; };
+    let curFin = '';
+    const applyFin = () => { const f = finAttr(); if (f === curFin) return; curFin = f; Object.assign(glass, FIN[f]); glass.needsUpdate = true; };
+    applyFin();
+    const wireMat = new THREE.MeshBasicMaterial({ color: 0x6f8bff, wireframe: true, transparent: true, opacity: 0.55, depthWrite: false });
+    wireMat.onBeforeCompile = displace(false, 0);
+    const wire = new THREE.Mesh(new THREE.IcosahedronGeometry(1.226, 14), wireMat);
+    blob.add(wire);
+    const applyWire = () => { wire.visible = !!cv && cv.getAttribute('data-wire') === 'true'; };
+    applyWire();
+    if (cv) new MutationObserver(applyWire).observe(cv, { attributes: true, attributeFilter: ['data-wire'] });
+    if (cv) new MutationObserver(applyFin).observe(cv, { attributes: true, attributeFilter: ['data-finish'] });
     const stuck = new THREE.Group(); scene.add(stuck);
     const bag = makePaperBag();
     const n = new THREE.Vector3(0.5, 0.48, 0.72).normalize();
