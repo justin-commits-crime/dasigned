@@ -1,1557 +1,19 @@
 <!DOCTYPE html>
-<html><head><script>(function(m){var o={};for(var k in m)o[k]=new URL(m[k],document.baseURI).href;window.__resources=o})({"r_assets_store_interiorem_webp": "assets/v5/store-interiorem.webp", "r_assets_store_chair_jpg": "assets/v5/store-chair.jpg", "r_assets_store_monolith_png": "assets/v5/store-monolith.webp", "threeMod": "assets/v5/dasigned-3d.js", "r_assets_blob_mark_pattern_png": "assets/v5/blob-mark-pattern.png", "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "assets/v5/react.production.min.js", "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "assets/v5/react-dom.production.min.js"});</script>
+<html>
+<head>
+<script>(function(m){var o={};for(var k in m)o[k]=new URL(m[k],document.baseURI).href;window.__resources=o})({"https://unpkg.com/react@18.3.1/umd/react.production.min.js": "assets/r1/react.production.min.js", "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "assets/r1/react-dom.production.min.js"});</script>
 <meta charset="utf-8">
-<title>Dasigned</title>
+<title>Retype</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="assets/v5/f7e4bfb3.js"></script>
-
-
-
-
-
-
+<script src="assets/r1/support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="icon" type="image/png" href="assets/v5/1e1223df.png">
+<link rel="icon" type="image/png" href="assets/r1/favicon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<style>/* math */
-@font-face {
-  font-family: 'Bodoni Moda';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/54fe9fe6.woff2") format('woff2');
-  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-209F, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
-}
-/* symbols */
-@font-face {
-  font-family: 'Bodoni Moda';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/ca737d0e.woff2") format('woff2');
-  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AE, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F8D0-1F8D8, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FAC6, U+1FAC8, U+1FACC-1FADD, U+1FADF-1FAEB, U+1FAEF-1FAFA, U+1FB00-1FBFF;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Bodoni Moda';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/696ec8e7.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Bodoni Moda';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/c46d338f.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* math */
-@font-face {
-  font-family: 'Bodoni Moda';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/09aba7f9.woff2") format('woff2');
-  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-209F, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
-}
-/* symbols */
-@font-face {
-  font-family: 'Bodoni Moda';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/5ed7e052.woff2") format('woff2');
-  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AE, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F8D0-1F8D8, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FAC6, U+1FAC8, U+1FACC-1FADD, U+1FADF-1FAEB, U+1FAEF-1FAFA, U+1FB00-1FBFF;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Bodoni Moda';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/f4415a41.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Bodoni Moda';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/7e57e37a.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/2af0a79f.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/b304403b.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/74a88424.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/efc03857.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/1d4bb7d4.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/57266a51.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/1d4bb7d4.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/57266a51.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/1d4bb7d4.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/57266a51.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Serif Display';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/b9b5a471.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Serif Display';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/904ead4b.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Serif Display';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/69b8052b.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Serif Display';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/fad42368.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: italic;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("assets/v5/ea2ca8a5.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: italic;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("assets/v5/b914b31c.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: italic;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("assets/v5/355a8b90.woff2") format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: italic;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("assets/v5/39e94a9f.woff2") format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: italic;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("assets/v5/6d67ae5b.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: italic;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("assets/v5/dfeb8cf7.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: italic;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("assets/v5/efaca059.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: normal;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("assets/v5/f60e813b.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: normal;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("assets/v5/4f8f623b.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: normal;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("assets/v5/bc8e0bbb.woff2") format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: normal;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("assets/v5/96cdc48b.woff2") format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: normal;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("assets/v5/39bebc1a.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: normal;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("assets/v5/9b288829.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: normal;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("assets/v5/d4c2828e.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/d9a38eac.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/52d3124c.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/91787cf8.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/57d992a5.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/66097b67.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/d9a38eac.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/52d3124c.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/91787cf8.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/57d992a5.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/66097b67.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/d9a38eac.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/52d3124c.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/91787cf8.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/57d992a5.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/66097b67.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Geist Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/ab562b50.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Geist Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/78740333.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* symbols2 */
-@font-face {
-  font-family: 'Geist Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/f76e5919.woff2") format('woff2');
-  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Geist Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/ed545ffb.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Geist Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/d6e10d60.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Geist Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/975cff1f.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Geist Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/ab562b50.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Geist Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/78740333.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* symbols2 */
-@font-face {
-  font-family: 'Geist Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/f76e5919.woff2") format('woff2');
-  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Geist Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/ed545ffb.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Geist Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/d6e10d60.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Geist Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/975cff1f.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Hanken Grotesk';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/3a67cb51.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Hanken Grotesk';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/704415af.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Hanken Grotesk';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/94650162.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Hanken Grotesk';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/165418ff.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Hanken Grotesk';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/3a67cb51.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Hanken Grotesk';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/704415af.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Hanken Grotesk';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/94650162.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Hanken Grotesk';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/165418ff.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Hanken Grotesk';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/3a67cb51.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Hanken Grotesk';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/704415af.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Hanken Grotesk';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/94650162.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Hanken Grotesk';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/165418ff.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/9fb146a1.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/bd910605.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/ad6747b6.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/bdc41d39.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/c2b88c8a.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/4b6d4a89.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/1e1679df.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/6bea5655.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/42a047af.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/4111f955.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: italic;
-  font-weight: 400 700;
-  font-stretch: 75% 100%;
-  font-display: swap;
-  src: url("assets/v5/a43fc608.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: italic;
-  font-weight: 400 700;
-  font-stretch: 75% 100%;
-  font-display: swap;
-  src: url("assets/v5/31601a49.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-weight: 400 700;
-  font-stretch: 75% 100%;
-  font-display: swap;
-  src: url("assets/v5/43f306c0.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-weight: 400 700;
-  font-stretch: 75% 100%;
-  font-display: swap;
-  src: url("assets/v5/15fd723e.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/5bdfdd16.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/58d802ca.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/60c925a8.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/1a0c4956.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 300 600;
-  font-display: swap;
-  src: url("assets/v5/7d3a004a.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 300 600;
-  font-display: swap;
-  src: url("assets/v5/a03f0661.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 300 600;
-  font-display: swap;
-  src: url("assets/v5/b20d101b.woff2") format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 300 600;
-  font-display: swap;
-  src: url("assets/v5/75eea0fd.woff2") format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 300 600;
-  font-display: swap;
-  src: url("assets/v5/493f82b3.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 300 600;
-  font-display: swap;
-  src: url("assets/v5/6dbfbb91.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 300 600;
-  font-display: swap;
-  src: url("assets/v5/a3708a94.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300 600;
-  font-display: swap;
-  src: url("assets/v5/e02c5770.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300 600;
-  font-display: swap;
-  src: url("assets/v5/ecb33d58.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300 600;
-  font-display: swap;
-  src: url("assets/v5/c54c5201.woff2") format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300 600;
-  font-display: swap;
-  src: url("assets/v5/ff66e3a5.woff2") format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300 600;
-  font-display: swap;
-  src: url("assets/v5/0b3e7b01.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300 600;
-  font-display: swap;
-  src: url("assets/v5/844aa35c.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300 600;
-  font-display: swap;
-  src: url("assets/v5/79e661c0.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/cb5a3673.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/9d6a739c.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/eb5e197f.woff2") format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/30c96b13.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/fbe64fbe.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/499ac26d.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/cb5a3673.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/9d6a739c.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/eb5e197f.woff2") format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/30c96b13.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/fbe64fbe.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/499ac26d.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* thai */
-@font-face {
-  font-family: 'Krub';
-  font-style: italic;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/1abdf92d.woff2") format('woff2');
-  unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Krub';
-  font-style: italic;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/fd09a465.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Krub';
-  font-style: italic;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/9aa95d5f.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Krub';
-  font-style: italic;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/3a397925.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* thai */
-@font-face {
-  font-family: 'Krub';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/dad1da9e.woff2") format('woff2');
-  unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Krub';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/877239f1.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Krub';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/4b19270a.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Krub';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/d1ee0eca.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* thai */
-@font-face {
-  font-family: 'Krub';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/f74c1eaf.woff2") format('woff2');
-  unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Krub';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/7d167205.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Krub';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/de0cf5c6.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Krub';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/d6dcf5e7.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* thai */
-@font-face {
-  font-family: 'Krub';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/c969c225.woff2") format('woff2');
-  unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Krub';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/4c2f52c3.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Krub';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/1870051d.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Krub';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/b000671d.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* thai */
-@font-face {
-  font-family: 'Krub';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/fdb8efa5.woff2") format('woff2');
-  unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Krub';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/a0c4a371.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Krub';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/a3faeee7.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Krub';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/b59c89d7.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/8fa402ac.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/97791cc8.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/793dc512.woff2") format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/9b446db7.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/d56c9029.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/v5/15c36993.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/8fa402ac.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/97791cc8.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/793dc512.woff2") format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/9b446db7.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/d56c9029.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/15c36993.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/8fa402ac.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/97791cc8.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/793dc512.woff2") format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/9b446db7.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/d56c9029.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/v5/15c36993.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("assets/v5/f9119627.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("assets/v5/54713623.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("assets/v5/d034db62.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("assets/v5/e137f34f.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("assets/v5/45571adf.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("assets/v5/f9119627.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("assets/v5/54713623.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("assets/v5/d034db62.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("assets/v5/e137f34f.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("assets/v5/45571adf.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Space Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/23487f08.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Space Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/33e99741.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Space Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/v5/4a6076a6.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@300;400;500&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&amp;family=Hanken+Grotesk:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Manrope:wght@300;400;500&amp;family=Space+Mono:wght@400&amp;family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:wght@300;400;500&amp;family=DM+Mono:wght@400;500&amp;family=Inter:ital,wght@0,300..600;1,300..600&amp;family=Krub:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Nunito:wght@700;800&amp;display=swap" rel="stylesheet">
 <style>
 :root{--f-display:'Instrument Serif',serif;--f-body:'Geist','Helvetica Neue',sans-serif;--f-mono:'Geist Mono',monospace}
 html{scroll-behavior:auto;scrollbar-width:none}
@@ -1584,76 +46,76 @@ button{font:inherit;color:inherit}
 
 
 <header style="position:fixed;top:0;left:0;right:0;z-index:100;display:none;justify-content:space-between;align-items:center;min-height:72px;box-sizing:border-box;align-items:center;gap:14px;padding:22px clamp(20px,4vw,64px);color:#fff;pointer-events:none">
-  <button type="button" sc-camel-on-click="{{ openMenu }}" style="margin-right:auto;opacity:{{ hdrOp }};pointer-events:auto;position:relative;overflow:hidden;display:flex;align-items:center;height:38px;padding:0 20px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:{{ pillBg }};box-shadow:none;backdrop-filter:blur(28px) saturate(120%);-webkit-backdrop-filter:blur(28px) saturate(120%);color:#fff;font:500 13px/1 Arial,Helvetica,sans-serif;letter-spacing:.08em;cursor:pointer;transition:background .3s, box-shadow .3s, opacity .4s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.32)">Menu</button>
-  <a href="#top" sc-camel-on-click="{{ goTop }}" aria-label="Dasigned — home" style="order:-1;position:relative;pointer-events:auto;display:block;opacity:{{ logoOp }};transition:opacity .4s cubic-bezier(.16,1,.3,1)"><span style="display:block;background:#0A47FF;padding:10px 14px 9px;font:700 32px/1 Arial,sans-serif;letter-spacing:-.03em;color:#ffffff">DASIGNED</span></a>
-  <a href="#contact" sc-camel-on-click="{{ morphContact }}" sc-camel-on-mouse-enter="{{ ctOn }}" sc-camel-on-mouse-leave="{{ ctOff }}" sc-camel-on-focus="{{ ctOn }}" sc-camel-on-blur="{{ ctOff }}" aria-label="Get in touch" style="opacity:{{ hdrOp }};pointer-events:auto;display:inline-flex;align-items:center;gap:.7em;padding:.55rem 1.05rem;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:{{ pillBg }};box-shadow:none;backdrop-filter:blur(28px) saturate(120%);-webkit-backdrop-filter:blur(28px) saturate(120%);color:#fff;font:500 14px/1.2 Arial,Helvetica,sans-serif;letter-spacing:.01em;white-space:nowrap;transition:background-color .22s cubic-bezier(.16,1,.3,1), border-color .22s cubic-bezier(.16,1,.3,1), opacity .4s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.32);color:#fff"><svg sc-camel-view-box="0 0 24 24" aria-hidden="true" style="display:block;width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round"><path d="M6.6 3.5h2.6l1.5 4.2-2 1.4a12.5 12.5 0 0 0 6.2 6.2l1.4-2 4.2 1.5v2.6a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"></path></svg><svg sc-camel-view-box="0 0 24 24" aria-hidden="true" style="display:block;width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round"><rect x="3.5" y="5.5" width="17" height="13" rx="1"></rect><path d="m4 6.5 8 6.2 8-6.2"></path></svg><span aria-hidden="true" style="display:block;overflow:hidden;max-width:{{ ctW }};opacity:{{ ctOp }};margin-left:{{ ctM }};transition:max-width .42s cubic-bezier(.16,1,.3,1), opacity .3s cubic-bezier(.16,1,.3,1), margin-left .42s cubic-bezier(.16,1,.3,1)">Get in touch</span></a>
+  <button type="button" onClick="{{ openMenu }}" style="margin-right:auto;opacity:{{ hdrOp }};pointer-events:auto;position:relative;overflow:hidden;display:flex;align-items:center;height:38px;padding:0 20px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:{{ pillBg }};box-shadow:none;backdrop-filter:blur(28px) saturate(120%);-webkit-backdrop-filter:blur(28px) saturate(120%);color:#fff;font:500 13px/1 Arial,Helvetica,sans-serif;letter-spacing:.08em;cursor:pointer;transition:background .3s, box-shadow .3s, opacity .4s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.32)">Menu</button>
+  <a href="#top" onClick="{{ goTop }}" aria-label="Retype — home" style="order:-1;position:relative;pointer-events:auto;display:block;opacity:{{ logoOp }};transition:opacity .4s cubic-bezier(.16,1,.3,1)"><span style="display:block;background:#0A47FF;padding:10px 14px 9px"><img src="assets/r1/retype-logo-white.png" alt="Retype" style="display:block;height:30px;width:auto"></span></a>
+  <a href="#contact" onClick="{{ morphContact }}" onMouseEnter="{{ ctOn }}" onMouseLeave="{{ ctOff }}" onFocus="{{ ctOn }}" onBlur="{{ ctOff }}" aria-label="Get in touch" style="opacity:{{ hdrOp }};pointer-events:auto;display:inline-flex;align-items:center;gap:.7em;padding:.55rem 1.05rem;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:{{ pillBg }};box-shadow:none;backdrop-filter:blur(28px) saturate(120%);-webkit-backdrop-filter:blur(28px) saturate(120%);color:#fff;font:500 14px/1.2 Arial,Helvetica,sans-serif;letter-spacing:.01em;white-space:nowrap;transition:background-color .22s cubic-bezier(.16,1,.3,1), border-color .22s cubic-bezier(.16,1,.3,1), opacity .4s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.32);color:#fff"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block;width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round"><path d="M6.6 3.5h2.6l1.5 4.2-2 1.4a12.5 12.5 0 0 0 6.2 6.2l1.4-2 4.2 1.5v2.6a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"></path></svg><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block;width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round"><rect x="3.5" y="5.5" width="17" height="13" rx="1"></rect><path d="m4 6.5 8 6.2 8-6.2"></path></svg><span aria-hidden="true" style="display:block;overflow:hidden;max-width:{{ ctW }};opacity:{{ ctOp }};margin-left:{{ ctM }};transition:max-width .42s cubic-bezier(.16,1,.3,1), opacity .3s cubic-bezier(.16,1,.3,1), margin-left .42s cubic-bezier(.16,1,.3,1)">Get in touch</span></a>
   
 </header>
 <div ref="{{ morphRef }}" aria-hidden="true" style="position:fixed;left:0;top:0;width:44vmin;height:44vmin;margin:-22vmin 0 0 -22vmin;background:#1a3dff;z-index:150;pointer-events:none;opacity:0;border-radius:50%;will-change:transform,border-radius,opacity"></div>
 
 <div aria-hidden="true" style="position:fixed;inset:0;z-index:330;overflow:hidden;pointer-events:none;opacity:{{ gtOp }};clip-path:{{ gtClip }};transform:translateY({{ gtY }});transition:{{ gtTr }}">
-  <img src="assets/v5/37650a39.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ gtS }});transition:transform .9s cubic-bezier(.16,1,.3,1)">
+  <img src="assets/r1/get-in-touch.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ gtS }});transition:transform .9s cubic-bezier(.16,1,.3,1)">
 </div>
 <div aria-hidden="true" style="position:fixed;inset:0;z-index:330;overflow:hidden;pointer-events:none;opacity:{{ swOp }};clip-path:{{ swClip }};transform:translateY({{ swY }});transition:{{ swTr }}">
-  <img src="assets/v5/8e2d4f6f.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ swS }});transition:transform .9s cubic-bezier(.16,1,.3,1)">
+  <img src="assets/r1/selected-work.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ swS }});transition:transform .9s cubic-bezier(.16,1,.3,1)">
 </div>
 <div aria-hidden="true" style="position:fixed;inset:0;z-index:330;overflow:hidden;pointer-events:none;opacity:{{ suOp }};clip-path:{{ suClip }};transform:translateY({{ suY }});transition:{{ suTr }}">
-  <img src="assets/v5/27dde3d6.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ suS }});transition:transform .9s cubic-bezier(.16,1,.3,1)">
+  <img src="assets/r1/studio.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ suS }});transition:transform .9s cubic-bezier(.16,1,.3,1)">
 </div>
 <div aria-hidden="true" style="position:fixed;inset:0;z-index:330;overflow:hidden;pointer-events:none;opacity:{{ seOp }};clip-path:{{ seClip }};transform:translateY({{ seY }});transition:{{ seTr }}">
-  <img src="assets/v5/d385ec8f.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ seS }});transition:transform .9s cubic-bezier(.16,1,.3,1)">
+  <img src="assets/r1/services.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ seS }});transition:transform .9s cubic-bezier(.16,1,.3,1)">
 </div>
 <div role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="{{ menuHidden }}" style="position:fixed;inset:0;z-index:150;pointer-events:{{ menuPE }};visibility:{{ menuVis }};transition:visibility 0s linear {{ menuVisDelay }}">
   <div aria-hidden="true" style="position:absolute;top:{{ winT }};left:{{ winL }};right:{{ winR }};bottom:{{ winB }};border-radius:14px;box-shadow:0 0 0 200vmax #ffffff;pointer-events:none;transition:top .95s cubic-bezier(.7,0,.2,1), left .95s cubic-bezier(.7,0,.2,1), right .95s cubic-bezier(.7,0,.2,1), bottom .95s cubic-bezier(.7,0,.2,1)"></div>
   <div aria-hidden="true" style="position:absolute;inset:0;z-index:50;overflow:hidden;pointer-events:none;opacity:{{ mIntOp }};clip-path:{{ mIntClip }};transition:opacity .35s cubic-bezier(.16,1,.3,1), clip-path .85s cubic-bezier(.7,0,.2,1)">
-    <img src="assets/v5/store-interiorem.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ mIntS }});transform-origin:50% 50%;transition:transform 1s cubic-bezier(.16,1,.3,1)">
+    <img src="assets/r1/store-interiorem.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ mIntS }});transform-origin:50% 50%;transition:transform 1s cubic-bezier(.16,1,.3,1)">
   </div>
   <div aria-hidden="true" style="position:absolute;inset:0;z-index:50;overflow:hidden;pointer-events:none;opacity:{{ mChOp }};clip-path:{{ mChClip }};transition:opacity .35s cubic-bezier(.16,1,.3,1), clip-path .85s cubic-bezier(.7,0,.2,1)">
-    <img src="assets/v5/store-chair.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ mChS }});transform-origin:50% 50%;transition:transform 1s cubic-bezier(.16,1,.3,1)">
+    <img src="assets/r1/store-chair.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ mChS }});transform-origin:50% 50%;transition:transform 1s cubic-bezier(.16,1,.3,1)">
   </div>
   <div style="position:absolute;inset:0;opacity:{{ menuUiOp }};transform:translateY({{ menuUiY }});transition:opacity .5s cubic-bezier(.16,1,.3,1) {{ menuUiDelay }}, transform .7s cubic-bezier(.16,1,.3,1) {{ menuUiDelay }};color:#111113">
     <div style="position:absolute;left:0;right:0;top:0;min-height:72px;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;padding:22px clamp(20px,4vw,64px)">
       
-      <a href="#top" sc-camel-on-click="{{ goHome }}" aria-label="Dasigned — home" style="order:-1;display:flex;align-items:center;height:38px;margin-right:14px;text-decoration:none"><span style="display:block;font:700 32px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:-.03em;color:#111113">DASIGNED</span></a>
-      <div style="margin-left:auto;display:flex;align-items:center;gap:2px;padding:0 4px;height:38px;border-radius:999px;background:#0A47FF;box-shadow:inset 0 0 0 .5px #111113"><a href="#contact" sc-camel-on-click="{{ navContact }}" aria-label="Contact" style="display:flex;align-items:center;justify-content:center;width:32px;height:30px;border-radius:999px;background:transparent;color:#ffffff;transition:background .22s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16)"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.8 4.5-2.3 1.4a11 11 0 0 0 6.1 6.1l1.4-2.3 4.5 1.8V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4Z"></path></svg></a><a href="#contact" sc-camel-on-click="{{ navContact }}" sc-camel-on-mouse-enter="{{ ct2On }}" sc-camel-on-mouse-leave="{{ ct2Off }}" sc-camel-on-focus="{{ ct2On }}" sc-camel-on-blur="{{ ct2Off }}" aria-label="Get in touch" style="display:flex;align-items:center;justify-content:center;min-width:32px;box-sizing:border-box;padding:0 8px;height:30px;border-radius:999px;font:500 14px/1.2 Arial,Helvetica,sans-serif;letter-spacing:.01em;white-space:nowrap;background:transparent;color:#ffffff;transition:background .22s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16)"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="1"></rect><path d="m4 6.5 8 6.2 8-6.2"></path></svg><span aria-hidden="true" style="display:block;overflow:hidden;max-width:{{ ct2W }};opacity:{{ ct2Op }};margin-left:{{ ct2M }};transition:max-width .42s cubic-bezier(.16,1,.3,1), opacity .3s cubic-bezier(.16,1,.3,1), margin-left .42s cubic-bezier(.16,1,.3,1)">Get in touch</span></a></div>
+      <a href="#top" onClick="{{ goHome }}" aria-label="Retype — home" style="order:-1;display:flex;align-items:center;height:38px;margin-right:14px;text-decoration:none"><img src="assets/r1/retype-logo-black.png" alt="Retype" style="display:block;height:30px;width:auto"></a>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:2px;padding:0 4px;height:38px;border-radius:999px;background:#0A47FF;box-shadow:inset 0 0 0 .5px #111113"><a href="#contact" onClick="{{ navContact }}" aria-label="Contact" style="display:flex;align-items:center;justify-content:center;width:32px;height:30px;border-radius:999px;background:transparent;color:#ffffff;transition:background .22s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.8 4.5-2.3 1.4a11 11 0 0 0 6.1 6.1l1.4-2.3 4.5 1.8V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4Z"></path></svg></a><a href="#contact" onClick="{{ navContact }}" onMouseEnter="{{ ct2On }}" onMouseLeave="{{ ct2Off }}" onFocus="{{ ct2On }}" onBlur="{{ ct2Off }}" aria-label="Get in touch" style="display:flex;align-items:center;justify-content:center;min-width:32px;box-sizing:border-box;padding:0 8px;height:30px;border-radius:999px;font:500 14px/1.2 Arial,Helvetica,sans-serif;letter-spacing:.01em;white-space:nowrap;background:transparent;color:#ffffff;transition:background .22s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="1"></rect><path d="m4 6.5 8 6.2 8-6.2"></path></svg><span aria-hidden="true" style="display:block;overflow:hidden;max-width:{{ ct2W }};opacity:{{ ct2Op }};margin-left:{{ ct2M }};transition:max-width .42s cubic-bezier(.16,1,.3,1), opacity .3s cubic-bezier(.16,1,.3,1), margin-left .42s cubic-bezier(.16,1,.3,1)">Get in touch</span></a></div>
     </div>
     <div style="position:absolute;left:clamp(20px,4vw,64px);top:{{ menuNavTop }};bottom:{{ menuNavBot }};width:min(28vw,360px);min-width:240px;display:flex;flex-direction:column;gap:clamp(32px,6vh,72px);overflow:auto">
       <nav aria-label="Main" style="display:flex;flex-direction:column;gap:4px">
-        <a href="#work" sc-camel-on-click="{{ navWork }}" sc-camel-on-mouse-enter="{{ swOn }}" sc-camel-on-mouse-leave="{{ swOff }}" sc-camel-on-focus="{{ swOn }}" sc-camel-on-blur="{{ swOff }}" style="align-self:flex-start;font:400 clamp(20px,1.7vw,28px)/1.2 var(--f-display);letter-spacing:-.01em;color:#b4b4af;text-decoration:none;border-bottom:1.5px solid transparent;transition:color .2s cubic-bezier(.16,1,.3,1), border-color .2s cubic-bezier(.16,1,.3,1)" style-hover="color:#111113;border-color:#111113">Selected work</a>
-        <a href="#studio" sc-camel-on-click="{{ navStudio }}" sc-camel-on-mouse-enter="{{ stuOn }}" sc-camel-on-mouse-leave="{{ stuOff }}" sc-camel-on-focus="{{ stuOn }}" sc-camel-on-blur="{{ stuOff }}" style="align-self:flex-start;font:400 clamp(20px,1.7vw,28px)/1.2 var(--f-display);letter-spacing:-.01em;color:#b4b4af;text-decoration:none;border-bottom:1.5px solid transparent;transition:color .2s cubic-bezier(.16,1,.3,1), border-color .2s cubic-bezier(.16,1,.3,1)" style-hover="color:#111113;border-color:#111113">Studio</a>
-        <a href="#services" sc-camel-on-click="{{ navServices }}" sc-camel-on-mouse-enter="{{ svcOn }}" sc-camel-on-mouse-leave="{{ svcOff }}" sc-camel-on-focus="{{ svcOn }}" sc-camel-on-blur="{{ svcOff }}" style="align-self:flex-start;font:400 clamp(20px,1.7vw,28px)/1.2 var(--f-display);letter-spacing:-.01em;color:#b4b4af;text-decoration:none;border-bottom:1.5px solid transparent;transition:color .2s cubic-bezier(.16,1,.3,1), border-color .2s cubic-bezier(.16,1,.3,1)" style-hover="color:#111113;border-color:#111113">Services</a>
-        <a href="#contact" sc-camel-on-click="{{ navContact }}" sc-camel-on-mouse-enter="{{ gtOn }}" sc-camel-on-mouse-leave="{{ gtOff }}" sc-camel-on-focus="{{ gtOn }}" sc-camel-on-blur="{{ gtOff }}" style="align-self:flex-start;font:400 clamp(20px,1.7vw,28px)/1.2 var(--f-display);letter-spacing:-.01em;color:#b4b4af;text-decoration:none;border-bottom:1.5px solid transparent;transition:color .2s cubic-bezier(.16,1,.3,1), border-color .2s cubic-bezier(.16,1,.3,1)" style-hover="color:#111113;border-color:#111113">Get in touch</a>
+        <a href="#work" onClick="{{ navWork }}" onMouseEnter="{{ swOn }}" onMouseLeave="{{ swOff }}" onFocus="{{ swOn }}" onBlur="{{ swOff }}" style="align-self:flex-start;font:400 clamp(20px,1.7vw,28px)/1.2 var(--f-display);letter-spacing:-.01em;color:#b4b4af;text-decoration:none;border-bottom:1.5px solid transparent;transition:color .2s cubic-bezier(.16,1,.3,1), border-color .2s cubic-bezier(.16,1,.3,1)" style-hover="color:#111113;border-color:#111113">Selected work</a>
+        <a href="#studio" onClick="{{ navStudio }}" onMouseEnter="{{ stuOn }}" onMouseLeave="{{ stuOff }}" onFocus="{{ stuOn }}" onBlur="{{ stuOff }}" style="align-self:flex-start;font:400 clamp(20px,1.7vw,28px)/1.2 var(--f-display);letter-spacing:-.01em;color:#b4b4af;text-decoration:none;border-bottom:1.5px solid transparent;transition:color .2s cubic-bezier(.16,1,.3,1), border-color .2s cubic-bezier(.16,1,.3,1)" style-hover="color:#111113;border-color:#111113">Studio</a>
+        <a href="#services" onClick="{{ navServices }}" onMouseEnter="{{ svcOn }}" onMouseLeave="{{ svcOff }}" onFocus="{{ svcOn }}" onBlur="{{ svcOff }}" style="align-self:flex-start;font:400 clamp(20px,1.7vw,28px)/1.2 var(--f-display);letter-spacing:-.01em;color:#b4b4af;text-decoration:none;border-bottom:1.5px solid transparent;transition:color .2s cubic-bezier(.16,1,.3,1), border-color .2s cubic-bezier(.16,1,.3,1)" style-hover="color:#111113;border-color:#111113">Services</a>
+        <a href="#contact" onClick="{{ navContact }}" onMouseEnter="{{ gtOn }}" onMouseLeave="{{ gtOff }}" onFocus="{{ gtOn }}" onBlur="{{ gtOff }}" style="align-self:flex-start;font:400 clamp(20px,1.7vw,28px)/1.2 var(--f-display);letter-spacing:-.01em;color:#b4b4af;text-decoration:none;border-bottom:1.5px solid transparent;transition:color .2s cubic-bezier(.16,1,.3,1), border-color .2s cubic-bezier(.16,1,.3,1)" style-hover="color:#111113;border-color:#111113">Get in touch</a>
       </nav>
       <sc-if value="{{ isWide }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex;flex-direction:column;gap:14px">
           <span style="font:500 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#6b6b67">Case studies</span>
           <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
             <sc-for list="{{ menuProjects }}" as="mp" hint-placeholder-count="6">
-              <button type="button" sc-camel-on-click="{{ mp.go }}" sc-camel-on-mouse-enter="{{ mp.on }}" sc-camel-on-mouse-leave="{{ mp.off }}" sc-camel-on-focus="{{ mp.on }}" sc-camel-on-blur="{{ mp.off }}" style="display:inline-flex;align-items:center;height:38px;padding:0 20px;border:0;border-radius:999px;background:rgba(17,17,19,.1);backdrop-filter:blur(28px) saturate(120%);-webkit-backdrop-filter:blur(28px) saturate(120%);color:#111113;font:500 13px/1 Arial,Helvetica,sans-serif;cursor:pointer;transition:background .22s cubic-bezier(.16,1,.3,1);height:32px;padding:0 15px;font-size:11px" style-hover="background:rgba(17,17,19,.16)">{{ mp.name }}</button>
+              <button type="button" onClick="{{ mp.go }}" onMouseEnter="{{ mp.on }}" onMouseLeave="{{ mp.off }}" onFocus="{{ mp.on }}" onBlur="{{ mp.off }}" style="display:inline-flex;align-items:center;height:38px;padding:0 20px;border:0;border-radius:999px;background:rgba(17,17,19,.1);backdrop-filter:blur(28px) saturate(120%);-webkit-backdrop-filter:blur(28px) saturate(120%);color:#111113;font:500 13px/1 Arial,Helvetica,sans-serif;cursor:pointer;transition:background .22s cubic-bezier(.16,1,.3,1);height:32px;padding:0 15px;font-size:11px" style-hover="background:rgba(17,17,19,.16)">{{ mp.name }}</button>
             </sc-for>
           </div>
         </div>
       </sc-if>
     </div>
     <sc-if value="{{ isNarrow }}" hint-placeholder-val="{{ false }}">
-      <span style="position:absolute;right:14px;top:{{ menuNavTop }};max-width:calc(100vw - 280px);text-align:right;font:400 22px/1.05 'EB Garamond',serif;letter-spacing:-.01em;color:#111113">Websites /<br><em>Worth Seeing</em></span>
+      <span style="position:absolute;right:clamp(28px,9vw,56px);top:calc({{ menuNavTop }} + 56px);max-width:calc(100vw - 240px);text-align:right;font:400 38px/1  'EB Garamond',serif;letter-spacing:-.01em;color:#111113">Websites <span style="color:#0A47FF">/</span><br><em>Worth Seeing</em></span>
     </sc-if>
     <sc-if value="{{ isNarrow }}" hint-placeholder-val="{{ false }}">
       <div style="position:absolute;left:0;right:0;bottom:20px;display:flex;flex-direction:column;gap:8px">
         <span style="padding:0 20px;font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#6b6b67">Journal</span>
         <div style="display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:0 20px;scroll-padding:0 20px">
           <sc-for list="{{ journal }}" as="post" hint-placeholder-count="3">
-            <a href="#journal" sc-camel-on-click="{{ navJournal }}" style="flex:0 0 72vw;max-width:300px;scroll-snap-align:start;display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:12px;background:#f3f3f1;color:#111113;text-decoration:none;box-sizing:border-box"><span style="display:flex;justify-content:space-between;gap:10px;font:500 10px var(--f-mono);letter-spacing:.06em;text-transform:uppercase"><span style="color:#1a3dff">{{ post.cat }}</span><span style="color:#6b6b67">{{ post.date }}</span></span><span style="font:400 16px/1.18 var(--f-display);letter-spacing:-.01em;text-wrap:pretty">{{ post.title }}</span><span style="font:500 10px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#6b6b67">Read · {{ post.read }}</span></a>
+            <a href="#journal" onClick="{{ navJournal }}" style="flex:0 0 72vw;max-width:300px;scroll-snap-align:start;display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:12px;background:#f3f3f1;color:#111113;text-decoration:none;box-sizing:border-box"><span style="display:flex;justify-content:space-between;gap:10px;font:500 10px var(--f-mono);letter-spacing:.06em;text-transform:uppercase"><span style="color:#1a3dff">{{ post.cat }}</span><span style="color:#6b6b67">{{ post.date }}</span></span><span style="font:400 16px/1.18 var(--f-display);letter-spacing:-.01em;text-wrap:pretty">{{ post.title }}</span><span style="font:500 10px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#6b6b67">Read · {{ post.read }}</span></a>
           </sc-for>
         </div>
       </div>
     </sc-if>
     <sc-if value="{{ isWide }}" hint-placeholder-val="{{ true }}">
       <div style="position:absolute;right:clamp(20px,4vw,64px);bottom:24px;width:min(24vw,340px);display:flex;flex-direction:column;gap:10px">
-        <span style="font:400 clamp(28px,2.6vw,44px)/1 'EB Garamond',serif;letter-spacing:-.01em;color:#111113;margin-bottom:clamp(40px,10vh,120px);text-wrap:balance">Websites / <em>Worth Seeing</em></span>
+        <span style="font:400 clamp(28px,2.6vw,44px)/1 'EB Garamond',serif;letter-spacing:-.01em;color:#111113;margin-bottom:clamp(40px,10vh,120px);text-wrap:balance">Websites <span style="color:#0A47FF">/</span> <em>Worth Seeing</em></span>
         <span style="font:500 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#6b6b67;margin-bottom:4px">Journal</span>
         <sc-for list="{{ journal }}" as="post" hint-placeholder-count="3">
-          <a href="#journal" sc-camel-on-click="{{ navJournal }}" style="display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:14px;background:#f3f3f1;color:#111113;text-decoration:none;transition:background .22s cubic-bezier(.16,1,.3,1)" style-hover="background:#ebebe8"><span style="display:flex;justify-content:space-between;gap:12px;font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase"><span style="color:#1a3dff">{{ post.cat }}</span><span style="color:#6b6b67">{{ post.date }}</span></span><span style="font:400 19px/1.18 var(--f-display);letter-spacing:-.01em;text-wrap:pretty">{{ post.title }}</span><span style="font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#6b6b67">Read · {{ post.read }}</span></a>
+          <a href="#journal" onClick="{{ navJournal }}" style="display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:14px;background:#f3f3f1;color:#111113;text-decoration:none;transition:background .22s cubic-bezier(.16,1,.3,1)" style-hover="background:#ebebe8"><span style="display:flex;justify-content:space-between;gap:12px;font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase"><span style="color:#1a3dff">{{ post.cat }}</span><span style="color:#6b6b67">{{ post.date }}</span></span><span style="font:400 19px/1.18 var(--f-display);letter-spacing:-.01em;text-wrap:pretty">{{ post.title }}</span><span style="font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#6b6b67">Read · {{ post.read }}</span></a>
         </sc-for>
       </div>
     </sc-if>
@@ -1662,21 +124,21 @@ button{font:inherit;color:inherit}
 
 <section id="top" data-screen-label="Hero" style="position:relative;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding:120px clamp(20px,4vw,64px) 32px">
   <nav aria-label="Real storefronts" style="display:none;position:absolute;left:clamp(20px,4vw,64px);top:clamp(140px,22vh,220px);z-index:2;flex-direction:column;align-items:flex-start;gap:10px">
-      <button type="button" sc-camel-on-click="{{ open6 }}" sc-camel-on-mouse-enter="{{ showInt }}" sc-camel-on-mouse-leave="{{ hideDisp }}" sc-camel-on-focus="{{ showInt }}" sc-camel-on-blur="{{ hideDisp }}" style="pointer-events:auto;position:relative;overflow:hidden;display:flex;align-items:center;height:38px;padding:0 20px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:{{ pillBg }};box-shadow:none;backdrop-filter:blur(28px) saturate(120%);-webkit-backdrop-filter:blur(28px) saturate(120%);color:#fff;font:500 13px/1 Arial,Helvetica,sans-serif;letter-spacing:.08em;cursor:pointer;transition:background .3s, box-shadow .3s, opacity .4s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.32)">Interiorem</button>
-      <button type="button" sc-camel-on-click="{{ open7 }}" sc-camel-on-mouse-enter="{{ showChair }}" sc-camel-on-mouse-leave="{{ hideDisp }}" sc-camel-on-focus="{{ showChair }}" sc-camel-on-blur="{{ hideDisp }}" style="pointer-events:auto;position:relative;overflow:hidden;display:flex;align-items:center;height:38px;padding:0 20px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:{{ pillBg }};box-shadow:none;backdrop-filter:blur(28px) saturate(120%);-webkit-backdrop-filter:blur(28px) saturate(120%);color:#fff;font:500 13px/1 Arial,Helvetica,sans-serif;letter-spacing:.08em;cursor:pointer;transition:background .3s, box-shadow .3s, opacity .4s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.32)">Chair Label</button>
-      <button type="button" sc-camel-on-click="{{ open8 }}" sc-camel-on-mouse-enter="{{ showMono }}" sc-camel-on-mouse-leave="{{ hideDisp }}" sc-camel-on-focus="{{ showMono }}" sc-camel-on-blur="{{ hideDisp }}" style="pointer-events:auto;position:relative;overflow:hidden;display:flex;align-items:center;height:38px;padding:0 20px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:{{ pillBg }};box-shadow:none;backdrop-filter:blur(28px) saturate(120%);-webkit-backdrop-filter:blur(28px) saturate(120%);color:#fff;font:500 13px/1 Arial,Helvetica,sans-serif;letter-spacing:.08em;cursor:pointer;transition:background .3s, box-shadow .3s, opacity .4s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.32)">Monolith Audio</button>
+      <button type="button" onClick="{{ open0 }}" onMouseEnter="{{ showInt }}" onMouseLeave="{{ hideDisp }}" onFocus="{{ showInt }}" onBlur="{{ hideDisp }}" style="pointer-events:auto;position:relative;overflow:hidden;display:flex;align-items:center;height:38px;padding:0 20px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:{{ pillBg }};box-shadow:none;backdrop-filter:blur(28px) saturate(120%);-webkit-backdrop-filter:blur(28px) saturate(120%);color:#fff;font:500 13px/1 Arial,Helvetica,sans-serif;letter-spacing:.08em;cursor:pointer;transition:background .3s, box-shadow .3s, opacity .4s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.32)">Interiorem</button>
+      <button type="button" onClick="{{ open1 }}" onMouseEnter="{{ showChair }}" onMouseLeave="{{ hideDisp }}" onFocus="{{ showChair }}" onBlur="{{ hideDisp }}" style="pointer-events:auto;position:relative;overflow:hidden;display:flex;align-items:center;height:38px;padding:0 20px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:{{ pillBg }};box-shadow:none;backdrop-filter:blur(28px) saturate(120%);-webkit-backdrop-filter:blur(28px) saturate(120%);color:#fff;font:500 13px/1 Arial,Helvetica,sans-serif;letter-spacing:.08em;cursor:pointer;transition:background .3s, box-shadow .3s, opacity .4s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.32)">Chair Label</button>
+      <button type="button" onClick="{{ open2 }}" onMouseEnter="{{ showMono }}" onMouseLeave="{{ hideDisp }}" onFocus="{{ showMono }}" onBlur="{{ hideDisp }}" style="pointer-events:auto;position:relative;overflow:hidden;display:flex;align-items:center;height:38px;padding:0 20px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:{{ pillBg }};box-shadow:none;backdrop-filter:blur(28px) saturate(120%);-webkit-backdrop-filter:blur(28px) saturate(120%);color:#fff;font:500 13px/1 Arial,Helvetica,sans-serif;letter-spacing:.08em;cursor:pointer;transition:background .3s, box-shadow .3s, opacity .4s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.32)">Monolith Audio</button>
     </nav>
-  <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;opacity:{{ orbOp }};transition:opacity .6s cubic-bezier(.16,1,.3,1)"><canvas data-scene="hero" data-texture="{{ blobTex }}" aria-hidden="true" style="position:absolute;right:{{ cvR }};top:{{ cvT }};transform:{{ cvTf }};width:{{ cvS }};height:{{ cvS }};z-index:0;pointer-events:none;opacity:0;transition:opacity 1.8s ease"></canvas></div>
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;opacity:{{ orbOp }};transition:opacity .6s cubic-bezier(.16,1,.3,1)"><canvas data-scene="hero" data-texture="{{ blobTex }}" data-finish="{{ blobFinish }}" data-wire="{{ blobWire }}" aria-hidden="true" style="position:absolute;right:{{ cvR }};top:{{ cvT }};transform:{{ cvTf }};width:{{ cvS }};height:{{ cvS }};z-index:0;pointer-events:none;opacity:0;transition:opacity 1.8s ease"></canvas></div>
   <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:{{ intOp }};transition:opacity .6s cubic-bezier(.16,1,.3,1)">
-    <img src="assets/v5/store-interiorem.webp" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:0% 0%;transform-origin:0% 0%;transform:{{ intOpT }};transition:transform 1.2s cubic-bezier(.16,1,.3,1)">
+    <img src="assets/r1/store-interiorem.webp" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:0% 0%;transform-origin:0% 0%;transform:{{ intOpT }};transition:transform 1.2s cubic-bezier(.16,1,.3,1)">
     
   </div>
   <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:{{ chairOp }};transition:opacity .6s cubic-bezier(.16,1,.3,1)">
-    <img src="assets/v5/store-chair.jpg" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:0% 0%;transform-origin:0% 0%;transform:{{ chairOpT }};transition:transform 1.2s cubic-bezier(.16,1,.3,1)">
+    <img src="assets/r1/store-chair.jpg" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:0% 0%;transform-origin:0% 0%;transform:{{ chairOpT }};transition:transform 1.2s cubic-bezier(.16,1,.3,1)">
     
   </div>
   <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:{{ monoOp }};transition:opacity .6s cubic-bezier(.16,1,.3,1)">
-    <img src="assets/v5/store-monolith.webp" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:0% 0%;transform-origin:0% 0%;transform:{{ monoOpT }};transition:transform 1.2s cubic-bezier(.16,1,.3,1)">
+    <img src="assets/r1/store-monolith.webp" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:0% 0%;transform-origin:0% 0%;transform:{{ monoOpT }};transition:transform 1.2s cubic-bezier(.16,1,.3,1)">
   </div>
   <div aria-hidden="true"></div>
   <h1 style="display:none;opacity:{{ headOp }};transition:opacity .6s cubic-bezier(.16,1,.3,1);position:relative;z-index:1;align-self:flex-end;margin:auto clamp(170px,44vw,820px) calc(clamp(10px,3vh,50px) * -1) 0;font-weight:400;font-family:'EB Garamond',serif;font-size:clamp(36px,6.2vw,116px);line-height:.86;letter-spacing:-.035em">
@@ -1690,178 +152,39 @@ button{font:inherit;color:inherit}
 </section>
 
 <section id="work" data-screen-label="Selected work" aria-hidden="{{ wkHidden }}" style="position:fixed;inset:0;z-index:320;overflow-y:auto;box-sizing:border-box;display:{{ wkDisp }};background:#080808;color:#f2f2f0;padding:clamp(80px,12vw,180px) clamp(20px,4vw,64px) clamp(80px,10vw,140px)">
-  <button type="button" sc-camel-on-click="{{ closeWork }}" aria-label="Close selected work" style="position:fixed;top:22px;right:clamp(20px,4vw,64px);z-index:2;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 18px;border:0;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);color:#ffffff;font:500 13px/1 Arial,Helvetica,sans-serif;cursor:pointer;transition:background .22s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.24)">Close<svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
-  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px">
-    <div style="position:relative">
-      <div data-reveal="" style="font:500 12px var(--f-mono);letter-spacing:.06em;color:#5c78ff;margin-bottom:12px">(01)</div>
-      <div data-parallax="0.06"><div style="overflow:hidden;padding:.16em 0 .24em;margin:-.16em 0 -.18em"><h2 data-reveal="mask" style="margin:0;font:400 clamp(56px,10vw,180px)/.88 var(--f-display);letter-spacing:-.035em">Selected <em>work</em></h2></div></div>
-    </div>
-    <p data-reveal="" style="margin:0;max-width:300px;font:400 12px/1.6 var(--f-mono);letter-spacing:.03em;text-transform:uppercase;color:#8f8f8b">Nine projects across identity, product, art direction, motion, commerce and engineering.</p>
-  </div>
-
+  <button type="button" onClick="{{ closeWork }}" aria-label="Close selected work" style="position:fixed;top:22px;right:clamp(20px,4vw,64px);z-index:2;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 18px;border:0;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);color:#ffffff;font:500 13px/1 Arial,Helvetica,sans-serif;cursor:pointer;transition:background .22s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.24)">Close<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  <div data-parallax="0.06"><div style="overflow:hidden;padding:.16em 0 .24em;margin:-.16em 0 -.18em"><h2 data-reveal="mask" style="margin:0;font:400 clamp(56px,10vw,180px)/.88 var(--f-display);letter-spacing:-.035em">Selected <em>work</em></h2></div></div>
   <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:clamp(64px,9vw,160px) 4vw;margin-top:clamp(56px,8vw,120px)">
 
     <div data-reveal="" style="width:max(57%, min(100%, (760px - 100vw) * 999))">
-      <button type="button" sc-camel-on-click="{{ open0 }}" data-tilt="" data-cursor="View" aria-label="Open case study: Halden Ceramics" style="display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer">
-        <div data-tilt-card="" style="position:relative;aspect-ratio:5/4;overflow:hidden;transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform">
-          <div data-tilt-img="" style="position:absolute;inset:0;container-type:inline-size;background:#171716;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)">
-            <div style="position:absolute;right:9cqw;top:17cqw;width:27cqw;height:27cqw;border-radius:50%;background:#1a3dff"></div>
-            <div style="position:absolute;left:3cqw;bottom:-8cqw;font:400 56cqw/.8 var(--f-display);letter-spacing:-.05em;color:#f2f2f0">Ha</div>
-            <div style="position:absolute;left:5cqw;right:5cqw;top:4.5cqw;display:flex;justify-content:space-between;font:500 1.45cqw/1.4 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:#f2f2f0"><span>Halden Ceramic Works</span><span>Identity — Glyph set 04</span></div>
-            <div style="position:absolute;right:5cqw;bottom:5cqw;display:flex;align-items:flex-end;gap:1.6cqw">
-              <span style="width:4.4cqw;height:4.4cqw;border-radius:50%;border:.35cqw solid #f2f2f0;box-sizing:border-box"></span>
-              <span style="width:4.4cqw;height:2.2cqw;border-radius:2.2cqw 2.2cqw 0 0;background:#f2f2f0"></span>
-              <span style="width:4.4cqw;height:4.4cqw;border:.35cqw solid #f2f2f0;box-sizing:border-box"></span>
-              <span style="width:4.4cqw;height:.35cqw;background:#f2f2f0"></span>
-            </div>
-          </div>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(242,242,240,.16)">
-          <span style="display:flex;align-items:baseline;gap:14px"><span style="font:500 12px var(--f-mono);color:#5c78ff">01</span><span style="font:400 clamp(26px,2.6vw,40px)/1 var(--f-display);letter-spacing:-.01em">Halden Ceramics</span></span>
-          <span style="font:400 12px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#8f8f8b">Brand identity — 2025</span>
-        </div>
-      </button>
-    </div>
-
-    <div data-reveal="" data-delay="120" style="width:max(31%, min(100%, (760px - 100vw) * 999));margin-top:max(0px, min(18vw, (100vw - 760px) * 999))">
-      <button type="button" sc-camel-on-click="{{ open1 }}" data-tilt="" data-cursor="View" aria-label="Open case study: Tessera" style="display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer">
-        <div data-tilt-card="" style="position:relative;aspect-ratio:3/4;overflow:hidden;transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform">
-          <div data-tilt-img="" style="position:absolute;inset:0;container-type:inline-size;background:#1a3dff;color:#fff;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)">
-            <div style="position:absolute;left:6cqw;right:6cqw;top:6cqw;display:flex;justify-content:space-between;font:500 2.6cqw/1.4 var(--f-mono);letter-spacing:.08em;text-transform:uppercase"><span>Archive app</span><span>iOS — Web</span></div>
-            <div style="position:absolute;right:-7cqw;top:17cqw;width:62cqw;height:86cqw;box-sizing:border-box;border:.55cqw solid #fff;border-radius:7cqw;padding:6cqw 5cqw;display:flex;flex-direction:column;gap:3cqw">
-              <div style="height:6.5cqw;border:.4cqw solid #fff;border-radius:4cqw;box-sizing:border-box;display:flex;align-items:center;padding-left:3cqw;font:400 2.4cqw var(--f-mono)">Letters, 1890 —</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.4cqw;align-items:start">
-                <div style="height:22cqw;background:#fff"></div>
-                <div style="height:30cqw;border:.4cqw solid #fff;box-sizing:border-box"></div>
-                <div style="height:17cqw;border:.4cqw solid #fff;box-sizing:border-box;margin-top:-8cqw"></div>
-                <div style="height:14cqw;background:#fff"></div>
-              </div>
-            </div>
-            <div style="position:absolute;left:6cqw;bottom:5cqw;font:400 23cqw/.85 var(--f-display);letter-spacing:-.04em">Tessera</div>
-          </div>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(242,242,240,.16)">
-          <span style="display:flex;align-items:baseline;gap:14px"><span style="font:500 12px var(--f-mono);color:#5c78ff">02</span><span style="font:400 clamp(26px,2.6vw,40px)/1 var(--f-display);letter-spacing:-.01em">Tessera</span></span>
-          <span style="font:400 12px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#8f8f8b">Digital product — 2024</span>
-        </div>
-      </button>
-    </div>
-
-    <div data-reveal="" style="width:max(35%, min(100%, (760px - 100vw) * 999));margin-left:max(0px, min(7%, (100vw - 760px) * 999))">
-      <button type="button" sc-camel-on-click="{{ open2 }}" data-tilt="" data-cursor="View" aria-label="Open case study: Salt Mercer FW25" style="display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer">
-        <div data-tilt-card="" style="position:relative;aspect-ratio:4/5;overflow:hidden;transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform">
-          <div data-tilt-img="" style="position:absolute;inset:0;container-type:inline-size;background:#141414;color:#fff;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)">
-            <div style="position:absolute;inset:0;background-image:radial-gradient(circle, #fff .42cqw, transparent .55cqw);background-size:2.1cqw 2.1cqw;-webkit-mask-image:radial-gradient(ellipse 46% 36% at 60% 44%, #000 0%, rgba(0,0,0,.55) 45%, transparent 78%);mask-image:radial-gradient(ellipse 46% 36% at 60% 44%, #000 0%, rgba(0,0,0,.55) 45%, transparent 78%)"></div>
-            <div style="position:absolute;left:50cqw;top:0;width:.4cqw;height:44cqw;background:#1a3dff"></div>
-            <div style="position:absolute;left:6cqw;right:6cqw;top:6cqw;display:flex;justify-content:space-between;font:500 2.6cqw/1.4 var(--f-mono);letter-spacing:.08em;text-transform:uppercase"><span>FW25 — Campaign</span><span>After the storm</span></div>
-            <div style="position:absolute;left:5cqw;bottom:36cqw;font:italic 400 36cqw/.8 var(--f-display);letter-spacing:-.04em">Salt</div>
-            <div style="position:absolute;right:5cqw;bottom:7cqw;font:400 26cqw/.8 var(--f-display);letter-spacing:-.04em">Mercer</div>
-          </div>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(242,242,240,.16)">
-          <span style="display:flex;align-items:baseline;gap:14px"><span style="font:500 12px var(--f-mono);color:#5c78ff">03</span><span style="font:400 clamp(26px,2.6vw,40px)/1 var(--f-display);letter-spacing:-.01em">Salt Mercer FW25</span></span>
-          <span style="font:400 12px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#8f8f8b">Art direction — 2025</span>
-        </div>
-      </button>
-    </div>
-
-    <div data-reveal="" data-delay="120" style="width:max(47%, min(100%, (760px - 100vw) * 999));margin-top:max(0px, min(15vw, (100vw - 760px) * 999))">
-      <button type="button" sc-camel-on-click="{{ open3 }}" data-tilt="" data-cursor="View" aria-label="Open case study: Lowlight Festival" style="display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer">
+      <button type="button" onClick="{{ open0 }}" data-tilt="" data-cursor="View" aria-label="Open case study: Interiorem" style="display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer">
         <div data-tilt-card="" style="position:relative;aspect-ratio:16/10;overflow:hidden;transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform">
-          <div data-tilt-img="" style="position:absolute;inset:0;container-type:inline-size;background:#121212;color:#fff;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)">
-            <div style="position:absolute;inset:0;background:repeating-radial-gradient(circle at 70% 50%, transparent 0 2.5cqw, #1a3dff 2.5cqw 2.72cqw);-webkit-mask-image:radial-gradient(circle at 70% 50%, #000 12%, transparent 58%);mask-image:radial-gradient(circle at 70% 50%, #000 12%, transparent 58%)"></div>
-            <div style="position:absolute;left:70%;top:50%;width:3cqw;height:3cqw;margin:-1.5cqw 0 0 -1.5cqw;border-radius:50%;background:#fff"></div>
-            <div style="position:absolute;left:4cqw;top:4cqw;width:3cqw;height:3cqw;border-left:.25cqw solid #fff;border-top:.25cqw solid #fff"></div>
-            <div style="position:absolute;right:4cqw;top:4cqw;width:3cqw;height:3cqw;border-right:.25cqw solid #fff;border-top:.25cqw solid #fff"></div>
-            <div style="position:absolute;left:4cqw;bottom:4cqw;width:3cqw;height:3cqw;border-left:.25cqw solid #fff;border-bottom:.25cqw solid #fff"></div>
-            <div style="position:absolute;right:4cqw;bottom:4cqw;width:3cqw;height:3cqw;border-right:.25cqw solid #fff;border-bottom:.25cqw solid #fff"></div>
-            <div style="position:absolute;left:9cqw;right:9cqw;top:5.6cqw;display:flex;justify-content:space-between;font:500 1.5cqw/1 var(--f-mono);letter-spacing:.1em"><span>00:12:04:18</span><span>NIGHT 02 / 03</span></div>
-            <div style="position:absolute;left:9cqw;top:50%;transform:translateY(-50%)">
-              <div style="font:400 15cqw/.85 var(--f-display);letter-spacing:-.04em">Lowlight</div>
-              <div style="font:italic 400 4.4cqw/1 var(--f-display);margin-top:1.4cqw;padding-left:.6cqw">festival of slow sound</div>
-            </div>
-            <div style="position:absolute;left:9cqw;right:9cqw;bottom:6cqw;height:.22cqw;background:rgba(255,255,255,.35)"><div style="width:38%;height:100%;background:#fff"></div><div style="position:absolute;left:38%;top:-1cqw;width:.22cqw;height:2.4cqw;background:#fff"></div></div>
-          </div>
+          <div data-tilt-img="" style="position:absolute;inset:0;background:#141414;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)"><img src="assets/r1/store-interiorem.webp" alt="" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%"></div>
         </div>
         <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(242,242,240,.16)">
-          <span style="display:flex;align-items:baseline;gap:14px"><span style="font:500 12px var(--f-mono);color:#5c78ff">04</span><span style="font:400 clamp(26px,2.6vw,40px)/1 var(--f-display);letter-spacing:-.01em">Lowlight Festival</span></span>
-          <span style="font:400 12px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#8f8f8b">Motion design — 2024</span>
-        </div>
-      </button>
-    </div>
-
-    <div data-reveal="" style="width:max(27%, min(100%, (760px - 100vw) * 999));margin-top:max(0px, min(3vw, (100vw - 760px) * 999))">
-      <button type="button" sc-camel-on-click="{{ open4 }}" data-tilt="" data-cursor="View" aria-label="Open case study: Morrow Supply" style="display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer">
-        <div data-tilt-card="" style="position:relative;aspect-ratio:4/5;overflow:hidden;transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform">
-          <div data-tilt-img="" style="position:absolute;inset:0;container-type:inline-size;background:#1a1a19;color:#f2f2f0;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)">
-            <div style="position:absolute;left:6cqw;top:5cqw;font:400 19cqw/.85 var(--f-display);letter-spacing:-.04em">Morrow</div>
-            <div style="position:absolute;right:6cqw;top:7cqw;font:500 2.6cqw/1.4 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;text-align:right">Supply<br>Made to mend</div>
-            <div style="position:absolute;left:8cqw;right:8cqw;bottom:24cqw;display:flex;justify-content:space-between;align-items:flex-end">
-              <div style="display:flex;flex-direction:column;align-items:center;gap:3cqw"><div style="width:17cqw;height:50cqw;border-radius:8.5cqw 8.5cqw 2cqw 2cqw;background:#f2f2f0"></div></div>
-              <div style="width:24cqw;height:34cqw;border-radius:2cqw;background:#1a3dff"></div>
-              <div style="width:16cqw;height:42cqw;border-radius:8cqw 8cqw 2cqw 2cqw;border:.5cqw solid #f2f2f0;box-sizing:border-box"></div>
-            </div>
-            <div style="position:absolute;left:5cqw;right:5cqw;bottom:22cqw;height:.4cqw;background:#f2f2f0"></div>
-            <div style="position:absolute;left:8cqw;right:8cqw;bottom:15cqw;display:flex;justify-content:space-between;font:500 2.4cqw var(--f-mono);letter-spacing:.06em"><span>No.01</span><span>No.02</span><span>No.03</span></div>
-            <div style="position:absolute;left:6cqw;right:6cqw;bottom:5cqw;display:flex;justify-content:space-between;font:500 2.6cqw var(--f-mono);letter-spacing:.06em;text-transform:uppercase"><span>Field flask</span><span style="border-bottom:.3cqw solid #f2f2f0">Add to bag →</span></div>
-          </div>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(242,242,240,.16)">
-          <span style="display:flex;align-items:baseline;gap:14px"><span style="font:500 12px var(--f-mono);color:#5c78ff">05</span><span style="font:400 clamp(26px,2.6vw,40px)/1 var(--f-display);letter-spacing:-.01em">Morrow Supply</span></span>
-          <span style="font:400 12px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#8f8f8b">Ecommerce — 2023</span>
-        </div>
-      </button>
-    </div>
-
-    <div data-reveal="" data-delay="120" style="width:max(61%, min(100%, (760px - 100vw) * 999));margin-top:max(0px, min(19vw, (100vw - 760px) * 999))">
-      <button type="button" sc-camel-on-click="{{ open5 }}" data-tilt="" data-cursor="View" aria-label="Open case study: Atlas of Quiet" style="display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer">
-        <div data-tilt-card="" style="position:relative;aspect-ratio:16/9;overflow:hidden;transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform">
-          <div data-tilt-img="" style="position:absolute;inset:0;container-type:inline-size;background:#111111;color:#f2f2f0;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)">
-            <div style="position:absolute;inset:0;background:repeating-radial-gradient(ellipse 60% 44% at 34% 64%, transparent 0 1.6cqw, #1a3dff 1.6cqw 1.74cqw);-webkit-mask-image:radial-gradient(ellipse 40% 50% at 34% 64%, #000 30%, transparent 75%);mask-image:radial-gradient(ellipse 40% 50% at 34% 64%, #000 30%, transparent 75%)"></div>
-            <div style="position:absolute;inset:0;background:repeating-radial-gradient(ellipse 50% 62% at 78% 30%, transparent 0 1.5cqw, rgba(11,11,11,.4) 1.5cqw 1.6cqw);-webkit-mask-image:radial-gradient(ellipse 26% 42% at 78% 30%, #000 30%, transparent 80%);mask-image:radial-gradient(ellipse 26% 42% at 78% 30%, #000 30%, transparent 80%)"></div>
-            <div style="position:absolute;left:34%;top:64%;width:1.2cqw;height:1.2cqw;margin:-.6cqw;border-radius:50%;background:#f2f2f0"></div>
-            <div style="position:absolute;left:calc(34% + 2cqw);top:calc(64% - .8cqw);font:500 1.25cqw/1.4 var(--f-mono);letter-spacing:.06em;text-transform:uppercase">Rec. 041 — Night forest<br>−38 dB</div>
-            <div style="position:absolute;left:78%;top:30%;width:1.2cqw;height:1.2cqw;margin:-.6cqw;border-radius:50%;background:#1a3dff"></div>
-            <div style="position:absolute;left:calc(78% + 2cqw);top:calc(30% - .8cqw);font:500 1.25cqw/1.4 var(--f-mono);letter-spacing:.06em;text-transform:uppercase">Rec. 112 — Empty platform<br>−44 dB</div>
-            <div style="position:absolute;left:4.5cqw;top:4cqw;font:400 8.5cqw/.9 var(--f-display);letter-spacing:-.03em">Atlas of <em style="color:#5c78ff">Quiet</em></div>
-            <div style="position:absolute;right:4.5cqw;bottom:4cqw;font:500 1.3cqw/1.4 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;text-align:right">Elevation = volume<br>WebGL / Web Audio</div>
-          </div>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(242,242,240,.16)">
-          <span style="display:flex;align-items:baseline;gap:14px"><span style="font:500 12px var(--f-mono);color:#5c78ff">06</span><span style="font:400 clamp(26px,2.6vw,40px)/1 var(--f-display);letter-spacing:-.01em">Atlas of Quiet</span></span>
-          <span style="font:400 12px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#8f8f8b">Web engineering — 2026</span>
-        </div>
-      </button>
-    </div>
-    <div data-reveal="" style="width:max(50%, min(100%, (760px - 100vw) * 999));margin-left:max(0px, min(4%, (100vw - 760px) * 999));margin-top:max(0px, min(2vw, (100vw - 760px) * 999))">
-      <button type="button" sc-camel-on-click="{{ open6 }}" data-tilt="" data-cursor="View" aria-label="Open case study: Interiorem" style="display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer">
-        <div data-tilt-card="" style="position:relative;aspect-ratio:16/10;overflow:hidden;transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform">
-          <div data-tilt-img="" style="position:absolute;inset:0;background:#141414;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)"><img src="assets/v5/store-interiorem.webp" alt="" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%"></div>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(242,242,240,.16)">
-          <span style="display:flex;align-items:baseline;gap:14px"><span style="font:500 12px var(--f-mono);color:#5c78ff">07</span><span style="font:400 clamp(26px,2.6vw,40px)/1 var(--f-display);letter-spacing:-.01em">Interiorem</span></span>
+          <span style="display:flex;align-items:baseline;gap:14px"><span style="font:400 clamp(26px,2.6vw,40px)/1 var(--f-display);letter-spacing:-.01em">Interiorem</span></span>
           <span style="font:400 12px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#8f8f8b">Storefront — Marketplace</span>
         </div>
       </button>
     </div>
-    <div data-reveal="" data-delay="120" style="width:max(34%, min(100%, (760px - 100vw) * 999));margin-left:max(0px, min(0%, (100vw - 760px) * 999));margin-top:max(0px, min(14vw, (100vw - 760px) * 999))">
-      <button type="button" sc-camel-on-click="{{ open7 }}" data-tilt="" data-cursor="View" aria-label="Open case study: Chair Label" style="display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer">
+    <div data-reveal="" data-delay="120" style="width:max(34%, min(100%, (760px - 100vw) * 999));margin-top:max(0px, min(14vw, (100vw - 760px) * 999))">
+      <button type="button" onClick="{{ open1 }}" data-tilt="" data-cursor="View" aria-label="Open case study: Chair Label" style="display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer">
         <div data-tilt-card="" style="position:relative;aspect-ratio:4/5;overflow:hidden;transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform">
-          <div data-tilt-img="" style="position:absolute;inset:0;background:#141414;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)"><img src="assets/v5/store-chair.jpg" alt="" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;object-position:30% 50%"></div>
+          <div data-tilt-img="" style="position:absolute;inset:0;background:#141414;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)"><img src="assets/r1/store-chair.jpg" alt="" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;object-position:30% 50%"></div>
         </div>
         <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(242,242,240,.16)">
-          <span style="display:flex;align-items:baseline;gap:14px"><span style="font:500 12px var(--f-mono);color:#5c78ff">08</span><span style="font:400 clamp(26px,2.6vw,40px)/1 var(--f-display);letter-spacing:-.01em">Chair Label</span></span>
+          <span style="display:flex;align-items:baseline;gap:14px"><span style="font:400 clamp(26px,2.6vw,40px)/1 var(--f-display);letter-spacing:-.01em">Chair Label</span></span>
           <span style="font:400 12px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#8f8f8b">Storefront — Fashion</span>
         </div>
       </button>
     </div>
     <div data-reveal="" style="width:max(72%, min(100%, (760px - 100vw) * 999));margin-left:auto">
-      <button type="button" sc-camel-on-click="{{ open8 }}" data-tilt="" data-cursor="View" aria-label="Open case study: Monolith Audio" style="display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer">
+      <button type="button" onClick="{{ open2 }}" data-tilt="" data-cursor="View" aria-label="Open case study: Monolith Audio" style="display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer">
         <div data-tilt-card="" style="position:relative;aspect-ratio:16/9;overflow:hidden;transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform">
-          <div data-tilt-img="" style="position:absolute;inset:0;background:#0e0d0c;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)"><img src="assets/v5/store-monolith.webp" alt="" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0%"></div>
+          <div data-tilt-img="" style="position:absolute;inset:0;background:#0e0d0c;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)"><img src="assets/r1/store-monolith.webp" alt="" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0%"></div>
         </div>
         <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(242,242,240,.16)">
-          <span style="display:flex;align-items:baseline;gap:14px"><span style="font:500 12px var(--f-mono);color:#5c78ff">09</span><span style="font:400 clamp(26px,2.6vw,40px)/1 var(--f-display);letter-spacing:-.01em">Monolith Audio</span></span>
+          <span style="display:flex;align-items:baseline;gap:14px"><span style="font:400 clamp(26px,2.6vw,40px)/1 var(--f-display);letter-spacing:-.01em">Monolith Audio</span></span>
           <span style="font:400 12px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#8f8f8b">Storefront — Audio</span>
         </div>
       </button>
@@ -1871,77 +194,16 @@ button{font:inherit;color:inherit}
 </section>
 
 <section id="studio" data-screen-label="Studio" aria-hidden="{{ stHidden }}" style="position:fixed;inset:0;z-index:320;overflow-y:auto;box-sizing:border-box;display:{{ stDisp }};opacity:{{ stOp }};transform:translateY({{ stY }});transition:opacity .5s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);background:#080808;color:#f2f2f0;padding:clamp(120px,16vw,240px) clamp(20px,4vw,64px) clamp(80px,10vw,140px)">
-  <button type="button" sc-camel-on-click="{{ closeStudio }}" aria-label="Close studio" style="position:fixed;top:22px;right:clamp(20px,4vw,64px);z-index:2;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 18px;border:0;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);color:#ffffff;font:500 13px/1 Arial,Helvetica,sans-serif;cursor:pointer;transition:background .22s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.24)">Close<svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  <button type="button" onClick="{{ closeStudio }}" aria-label="Close studio" style="position:fixed;top:22px;right:clamp(20px,4vw,64px);z-index:2;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 18px;border:0;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);color:#ffffff;font:500 13px/1 Arial,Helvetica,sans-serif;cursor:pointer;transition:background .22s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.24)">Close<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
   <div style="display:flex;flex-wrap:wrap;gap:32px clamp(32px,6vw,120px);align-items:flex-start">
     <div data-reveal="" style="flex:0 0 auto;width:180px;display:flex;flex-direction:column;gap:12px;font:500 12px/1.5 var(--f-mono);letter-spacing:.06em;text-transform:uppercase">
-      <span style="color:#5c78ff">(02)</span><span>Studio</span>
-    </div>
-    <div style="flex:1 1 520px;min-width:0">
-      <div data-parallax="0.04"><p data-reveal="" style="margin:0;max-width:1080px;font:400 clamp(32px,4.4vw,72px)/1.06 var(--f-display);letter-spacing:-.02em;text-wrap:pretty">A small studio founded by designer Ines Marlowe. We work with a handful of brands at a time — <em style="color:#5c78ff">shaping how they look, move and sell</em> — and we build what we design, by hand, down to the last interaction.</p></div>
-      <div style="display:flex;flex-wrap:wrap;gap:40px clamp(32px,5vw,80px);margin-top:clamp(64px,8vw,120px)">
-        <div data-reveal="" style="flex:1 1 220px;max-width:320px;border-top:1px solid #f2f2f0;padding-top:18px">
-          <div style="font:500 12px var(--f-mono);color:#5c78ff">01</div>
-          <div style="font:400 30px/1.05 var(--f-display);margin:14px 0 10px">Fewer, better</div>
-          <p style="margin:0;font:400 15px/1.6 var(--f-body);color:#b5b5b2">A few projects a year, so the people you meet are the people doing the work.</p>
-        </div>
-        <div data-reveal="" data-delay="120" style="flex:1 1 220px;max-width:320px;border-top:1px solid #f2f2f0;padding-top:18px;margin-top:max(0px, min(5vw, (100vw - 760px) * 999))">
-          <div style="font:500 12px var(--f-mono);color:#5c78ff">02</div>
-          <div style="font:400 30px/1.05 var(--f-display);margin:14px 0 10px">Design that ships</div>
-          <p style="margin:0;font:400 15px/1.6 var(--f-body);color:#b5b5b2">Designers and engineers share one room. Nothing gets handed over a wall.</p>
-        </div>
-        <div data-reveal="" data-delay="240" style="flex:1 1 220px;max-width:320px;border-top:1px solid #f2f2f0;padding-top:18px;margin-top:max(0px, min(10vw, (100vw - 760px) * 999))">
-          <div style="font:500 12px var(--f-mono);color:#5c78ff">03</div>
-          <div style="font:400 30px/1.05 var(--f-display);margin:14px 0 10px">Quiet by default</div>
-          <p style="margin:0;font:400 15px/1.6 var(--f-body);color:#b5b5b2">Restraint is a decision. Every element has to earn its place on the page.</p>
-        </div>
-      </div>
+      <span>Studio</span>
     </div>
   </div>
 </section>
 
 <section id="services" data-screen-label="Services" aria-hidden="{{ svHidden }}" style="position:fixed;inset:0;z-index:320;overflow-y:auto;box-sizing:border-box;display:{{ svDisp }};opacity:{{ svOp }};transform:translateY({{ svY }});transition:opacity .5s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);background:#080808;color:#f2f2f0;padding-bottom:clamp(80px,10vw,140px);padding:clamp(120px,16vw,240px) clamp(20px,4vw,64px) clamp(120px,14vw,200px)">
-  <button type="button" sc-camel-on-click="{{ closeServices }}" aria-label="Close services" style="position:fixed;top:22px;right:clamp(20px,4vw,64px);z-index:2;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 18px;border:0;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);color:#ffffff;font:500 13px/1 Arial,Helvetica,sans-serif;cursor:pointer;transition:background .22s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.24)">Close<svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
-  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:clamp(40px,6vw,80px)">
-    <div>
-      <div data-reveal="" style="font:500 12px var(--f-mono);letter-spacing:.06em;color:#5c78ff;margin-bottom:12px">(03)</div>
-      <div data-parallax="0.06"><div style="overflow:hidden;padding:.16em 0 .24em;margin:-.16em 0 -.18em"><h2 data-reveal="mask" style="margin:0;font:400 clamp(56px,10vw,180px)/.88 var(--f-display);letter-spacing:-.035em">What we <em>do</em></h2></div></div>
-    </div>
-    <p data-reveal="" style="margin:0;max-width:300px;font:400 12px/1.6 var(--f-mono);letter-spacing:.03em;text-transform:uppercase;color:#8f8f8b">Four disciplines, one team. Most projects use two or more.</p>
-  </div>
-  <div style="border-top:1px solid #f2f2f0">
-    <div data-reveal="" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px clamp(20px,4vw,64px);padding:clamp(28px,3.4vw,48px) 0;border-bottom:1px solid rgba(242,242,240,.2);transition:padding .6s cubic-bezier(.2,.7,.2,1), color .4s" style-hover="padding-left:clamp(0px,2vw,32px);color:#5c78ff">
-      <span style="flex:0 0 48px;font:500 12px var(--f-mono);color:#5c78ff">01</span>
-      <span style="flex:1 1 380px;font:400 clamp(44px,6.4vw,112px)/.92 var(--f-display);letter-spacing:-.03em">Art Direction</span>
-      <div style="flex:1 1 280px;max-width:400px;display:flex;flex-direction:column;gap:14px;color:#f2f2f0">
-        <p style="margin:0;font:400 16px/1.55 var(--f-body)">Campaigns, photography and visual languages with a clear point of view.</p>
-        <span style="font:400 11.5px/1.7 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#8f8f8b">Creative direction · Campaigns · Photography direction · Editorial</span>
-      </div>
-    </div>
-    <div data-reveal="" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px clamp(20px,4vw,64px);padding:clamp(28px,3.4vw,48px) 0;border-bottom:1px solid rgba(242,242,240,.2);transition:padding .6s cubic-bezier(.2,.7,.2,1), color .4s" style-hover="padding-left:clamp(0px,2vw,32px);color:#5c78ff">
-      <span style="flex:0 0 48px;font:500 12px var(--f-mono);color:#5c78ff">02</span>
-      <span style="flex:1 1 380px;font:400 clamp(44px,6.4vw,112px)/.92 var(--f-display);letter-spacing:-.03em">Digital <em>Experiences</em></span>
-      <div style="flex:1 1 280px;max-width:400px;display:flex;flex-direction:column;gap:14px;color:#f2f2f0">
-        <p style="margin:0;font:400 16px/1.55 var(--f-body)">Websites and products designed around how people actually move through them.</p>
-        <span style="font:400 11.5px/1.7 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#8f8f8b">UX &amp; interaction · Design systems · Prototyping · Motion</span>
-      </div>
-    </div>
-    <div data-reveal="" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px clamp(20px,4vw,64px);padding:clamp(28px,3.4vw,48px) 0;border-bottom:1px solid rgba(242,242,240,.2);transition:padding .6s cubic-bezier(.2,.7,.2,1), color .4s" style-hover="padding-left:clamp(0px,2vw,32px);color:#5c78ff">
-      <span style="flex:0 0 48px;font:500 12px var(--f-mono);color:#5c78ff">03</span>
-      <span style="flex:1 1 380px;font:400 clamp(44px,6.4vw,112px)/.92 var(--f-display);letter-spacing:-.03em">Ecommerce</span>
-      <div style="flex:1 1 280px;max-width:400px;display:flex;flex-direction:column;gap:14px;color:#f2f2f0">
-        <p style="margin:0;font:400 16px/1.55 var(--f-body)">Storefronts that sell by telling the truth about what's on the shelf.</p>
-        <span style="font:400 11.5px/1.7 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#8f8f8b">Shopify &amp; headless · Product pages · Content design · Checkout</span>
-      </div>
-    </div>
-    <div data-reveal="" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px clamp(20px,4vw,64px);padding:clamp(28px,3.4vw,48px) 0;border-bottom:1px solid rgba(242,242,240,.2);transition:padding .6s cubic-bezier(.2,.7,.2,1), color .4s" style-hover="padding-left:clamp(0px,2vw,32px);color:#5c78ff">
-      <span style="flex:0 0 48px;font:500 12px var(--f-mono);color:#5c78ff">04</span>
-      <span style="flex:1 1 380px;font:400 clamp(44px,6.4vw,112px)/.92 var(--f-display);letter-spacing:-.03em">Bespoke Web <em>Engineering</em></span>
-      <div style="flex:1 1 280px;max-width:400px;display:flex;flex-direction:column;gap:14px;color:#f2f2f0">
-        <p style="margin:0;font:400 16px/1.55 var(--f-body)">Hand-built front-ends, WebGL and creative technology, engineered to last.</p>
-        <span style="font:400 11.5px/1.7 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#8f8f8b">Front-end · WebGL &amp; Web Audio · Headless CMS · Performance</span>
-      </div>
-    </div>
-  </div>
+  <button type="button" onClick="{{ closeServices }}" aria-label="Close services" style="position:fixed;top:22px;right:clamp(20px,4vw,64px);z-index:2;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 18px;border:0;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);color:#ffffff;font:500 13px/1 Arial,Helvetica,sans-serif;cursor:pointer;transition:background .22s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.24)">Close<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
 </section>
 
 <section id="journal" data-screen-label="Journal" style="display:none;padding:0 clamp(20px,4vw,64px) clamp(120px,14vw,200px)">
@@ -1965,14 +227,14 @@ button{font:inherit;color:inherit}
 </section>
 
 <section id="contact" data-screen-label="Contact" aria-hidden="{{ ctHidden }}" style="position:fixed;inset:0;z-index:320;overflow-y:auto;box-sizing:border-box;display:{{ ctDisp }};opacity:{{ ctOpS }};transform:translateY({{ ctY }});transition:opacity .5s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);background:#1a3dff;color:#fff;padding:clamp(100px,14vw,200px) clamp(20px,4vw,64px) 28px">
-  <button type="button" sc-camel-on-click="{{ closeContact }}" aria-label="Close contact" style="position:fixed;top:22px;right:clamp(20px,4vw,64px);z-index:2;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 18px;border:0;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);color:#ffffff;font:500 13px/1 Arial,Helvetica,sans-serif;cursor:pointer;transition:background .22s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.24)">Close<svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
-  <div data-reveal="" style="font:500 12px var(--f-mono);letter-spacing:.06em;color:#ffffff;margin-bottom:16px">(05) Contact</div>
+  <button type="button" onClick="{{ closeContact }}" aria-label="Close contact" style="position:fixed;top:22px;right:clamp(20px,4vw,64px);z-index:2;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 18px;border:0;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);color:#ffffff;font:500 13px/1 Arial,Helvetica,sans-serif;cursor:pointer;transition:background .22s cubic-bezier(.16,1,.3,1)" style-hover="background:rgba(255,255,255,.24)">Close<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  <div data-reveal="" style="font:500 12px var(--f-mono);letter-spacing:.06em;color:#ffffff;margin-bottom:16px">Contact</div>
   <div data-parallax="0.06"><h2 style="margin:0;font:400 clamp(56px,11vw,210px)/.86 var(--f-display);letter-spacing:-.035em">
-    <span style="display:block;overflow:hidden;padding:.16em 0 .24em;margin:-.16em 0 -.18em"><span data-reveal="mask" style="display:block">Have a project</span></span>
-    <span style="display:block;overflow:hidden;padding:.16em 0 .24em clamp(24px,14vw,280px);margin:-.16em 0 -.18em"><span data-reveal="mask" data-delay="140" style="display:block">in <em style="color:#ffffff">mind?</em></span></span>
+    <span style="display:block;overflow:hidden;padding:.16em 0 .24em;margin:-.16em 0 -.18em"><span data-reveal="mask" style="display:block">Let’s have</span></span>
+    <span style="display:block;overflow:hidden;padding:.16em 0 .24em clamp(24px,14vw,280px);margin:-.16em 0 -.18em"><span data-reveal="mask" data-delay="140" style="display:block">a <em style="color:#ffffff">chat</em></span></span>
   </h2></div>
   <div data-reveal="" style="margin-top:clamp(48px,6vw,96px);display:flex;justify-content:flex-end">
-    <a href="mailto:hello@dasigned.com" style="display:inline-flex;align-items:baseline;gap:.3em;font:400 clamp(30px,5.4vw,92px)/1 var(--f-display);letter-spacing:-.02em;color:#fff;border-bottom:2px solid #fff;padding-bottom:8px;max-width:100%;overflow-wrap:anywhere">hello@dasigned.com<span style="color:#ffffff">↗</span></a>
+    <a href="mailto:hello@retype.com.au" style="display:inline-flex;align-items:baseline;gap:.3em;font:400 clamp(30px,5.4vw,92px)/1 var(--f-display);letter-spacing:-.02em;color:#fff;border-bottom:2px solid #fff;padding-bottom:8px;max-width:100%;overflow-wrap:anywhere">hello@retype.com.au</a>
   </div>
   <div style="display:flex;flex-wrap:wrap;gap:40px clamp(32px,5vw,96px);margin-top:clamp(80px,10vw,160px);padding-top:28px;border-top:1px solid rgba(255,255,255,.2)">
     <div data-reveal="" style="flex:1 1 200px;display:flex;flex-direction:column;gap:12px">
@@ -1998,19 +260,18 @@ button{font:inherit;color:inherit}
   </div>
   <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:clamp(80px,10vw,140px);font:400 11.5px/1.5 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#dbe0ff">
     <span>© 2026 Dasigned</span>
-    <span>Projects 01–06, their clients and people are fictional</span>
-    <a href="#top" sc-camel-on-click="{{ goTop }}" style="color:#fff">Back to top ↑</a>
+    <a href="#top" onClick="{{ goTop }}" style="color:#fff">Back to top ↑</a>
   </div>
 </section>
 
-<div sc-camel-on-click="{{ backdropClick }}" role="dialog" aria-modal="true" aria-label="Case study" style="position:fixed;inset:0;z-index:340;background:rgba(0,0,0,.72);opacity:{{ mOp }};visibility:{{ mVis }};transition:opacity .55s cubic-bezier(.2,.7,.2,1), visibility .55s">
+<div onClick="{{ backdropClick }}" role="dialog" aria-modal="true" aria-label="Case study" style="position:fixed;inset:0;z-index:340;background:rgba(0,0,0,.72);opacity:{{ mOp }};visibility:{{ mVis }};transition:opacity .55s cubic-bezier(.2,.7,.2,1), visibility .55s">
   <div ref="{{ panelRef }}" style="position:absolute;inset:clamp(0px,2.2vw,28px);background:#0e0e0e;color:#f2f2f0;overflow-y:auto;overscroll-behavior:contain;transform:{{ mT }};transition:transform .7s cubic-bezier(.2,.7,.2,1)">
     <div style="position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px clamp(20px,3.4vw,48px);background:#0e0e0e;border-bottom:1px solid rgba(242,242,240,.14);font:500 12px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase">
       <span>Case {{ m.num }} <span style="color:#8f8f8b">/ 08</span></span>
       <div style="display:flex;gap:4px">
-        <button type="button" sc-camel-on-click="{{ prev }}" aria-label="Previous project" style="background:none;border:0;padding:12px 12px;letter-spacing:.06em;text-transform:uppercase;font:500 12px var(--f-mono);cursor:pointer" style-hover="color:#5c78ff">← Prev</button>
-        <button type="button" sc-camel-on-click="{{ next }}" aria-label="Next project" style="background:none;border:0;padding:12px 12px;letter-spacing:.06em;text-transform:uppercase;font:500 12px var(--f-mono);cursor:pointer" style-hover="color:#5c78ff">Next →</button>
-        <button type="button" ref="{{ closeRef }}" sc-camel-on-click="{{ close }}" aria-label="Close case study" style="background:#f2f2f0;color:#080808;border:0;padding:12px 16px;margin-left:8px;letter-spacing:.06em;text-transform:uppercase;font:500 12px var(--f-mono);cursor:pointer" style-hover="background:#1a3dff;color:#fff">Close ✕</button>
+        <button type="button" onClick="{{ prev }}" aria-label="Previous project" style="background:none;border:0;padding:12px 12px;letter-spacing:.06em;text-transform:uppercase;font:500 12px var(--f-mono);cursor:pointer" style-hover="color:#5c78ff">← Prev</button>
+        <button type="button" onClick="{{ next }}" aria-label="Next project" style="background:none;border:0;padding:12px 12px;letter-spacing:.06em;text-transform:uppercase;font:500 12px var(--f-mono);cursor:pointer" style-hover="color:#5c78ff">Next →</button>
+        <button type="button" ref="{{ closeRef }}" onClick="{{ close }}" aria-label="Close case study" style="background:#f2f2f0;color:#080808;border:0;padding:12px 16px;margin-left:8px;letter-spacing:.06em;text-transform:uppercase;font:500 12px var(--f-mono);cursor:pointer" style-hover="background:#1a3dff;color:#fff">Close ✕</button>
       </div>
     </div>
     <div style="min-height:min(62vh,640px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding:clamp(28px,4vw,56px) clamp(20px,3.4vw,48px);background:{{ m.bg }};color:{{ m.fg }}">
@@ -2022,7 +283,7 @@ button{font:inherit;color:inherit}
         <p style="margin:24px 0 0;max-width:720px;font:italic 400 clamp(22px,2.2vw,32px)/1.25 var(--f-display)">{{ m.summary }}</p>
       </div>
     </div>
-    <sc-if value="{{ m.isInt }}" hint-placeholder-val="{{ false }}"><img src="assets/v5/store-interiorem.webp" alt="" style="display:block;width:100%;height:auto"></sc-if><sc-if value="{{ m.isChair }}" hint-placeholder-val="{{ false }}"><img src="assets/v5/store-chair.jpg" alt="" style="display:block;width:100%;height:auto"></sc-if><sc-if value="{{ m.isMono }}" hint-placeholder-val="{{ false }}"><img src="assets/v5/store-monolith.webp" alt="" style="display:block;width:100%;height:auto"></sc-if>
+    <sc-if value="{{ m.isInt }}" hint-placeholder-val="{{ false }}"><img src="assets/r1/store-interiorem.webp" alt="" style="display:block;width:100%;height:auto"></sc-if><sc-if value="{{ m.isChair }}" hint-placeholder-val="{{ false }}"><img src="assets/r1/store-chair.jpg" alt="" style="display:block;width:100%;height:auto"></sc-if><sc-if value="{{ m.isMono }}" hint-placeholder-val="{{ false }}"><img src="assets/r1/store-monolith.webp" alt="" style="display:block;width:100%;height:auto"></sc-if>
     <div style="padding:clamp(48px,6vw,96px) clamp(20px,3.4vw,48px);display:flex;flex-direction:column;gap:clamp(56px,7vw,104px)">
       <div style="display:flex;flex-wrap:wrap;gap:16px clamp(32px,6vw,120px)">
         <span style="flex:0 0 200px;font:500 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#5c78ff">Background</span>
@@ -2055,7 +316,7 @@ button{font:inherit;color:inherit}
         </div>
       </sc-if>
     </div>
-    <button type="button" sc-camel-on-click="{{ next }}" data-cursor="Next" style="display:block;width:100%;text-align:left;border:0;background:#161616;color:#fff;padding:clamp(40px,6vw,88px) clamp(20px,3.4vw,48px);cursor:pointer" style-hover="background:#1a3dff">
+    <button type="button" onClick="{{ next }}" data-cursor="Next" style="display:block;width:100%;text-align:left;border:0;background:#161616;color:#fff;padding:clamp(40px,6vw,88px) clamp(20px,3.4vw,48px);cursor:pointer" style-hover="background:#1a3dff">
       <span style="display:block;font:500 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px">Next project — {{ m.nextNum }}</span>
       <span style="display:block;font:400 clamp(48px,8vw,140px)/.9 var(--f-display);letter-spacing:-.035em">{{ m.nextName }} →</span>
     </button>
@@ -2067,7 +328,7 @@ button{font:inherit;color:inherit}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script="" data-props="{&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Interaction&quot;},&quot;fontSet&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Garamond + Arial&quot;,&quot;Krub + Inter&quot;,&quot;Inter + Krub&quot;,&quot;Garamond + DM&quot;,&quot;Garamond + Geist&quot;,&quot;Literary Garamond&quot;,&quot;Garamond + Instrument Sans&quot;,&quot;Editorial (current)&quot;,&quot;High-contrast Bodoni&quot;,&quot;Soft display&quot;,&quot;Swiss grotesk&quot;],&quot;default&quot;:&quot;Garamond + Arial&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Type&quot;},&quot;blobTexture&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Mark pattern&quot;,&quot;Services list&quot;,&quot;Blue gradient&quot;,&quot;Manifesto&quot;,&quot;Dasigned tote&quot;,&quot;Shop window&quot;,&quot;Blue silk&quot;,&quot;Ink marbling&quot;,&quot;Shopfront&quot;],&quot;default&quot;:&quot;Mark pattern&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;intro&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Interaction&quot;},&quot;autoMenu&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Interaction&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Interaction&quot;},&quot;fontSet&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Garamond + Arial&quot;,&quot;Krub + Inter&quot;,&quot;Inter + Krub&quot;,&quot;Garamond + DM&quot;,&quot;Garamond + Geist&quot;,&quot;Literary Garamond&quot;,&quot;Garamond + Instrument Sans&quot;,&quot;Editorial (current)&quot;,&quot;High-contrast Bodoni&quot;,&quot;Soft display&quot;,&quot;Swiss grotesk&quot;],&quot;default&quot;:&quot;Garamond + Arial&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Type&quot;},&quot;blobWireframe&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;blobFinish&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Iridescent&quot;,&quot;Liquid chrome&quot;,&quot;Frosted glass&quot;,&quot;Clear glass&quot;],&quot;default&quot;:&quot;Clear glass&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;blobTexture&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Mark pattern&quot;,&quot;Services list&quot;,&quot;Blue gradient&quot;,&quot;Manifesto&quot;,&quot;Dasigned tote&quot;,&quot;Shop window&quot;,&quot;Blue silk&quot;,&quot;Ink marbling&quot;,&quot;Shopfront&quot;],&quot;default&quot;:&quot;Mark pattern&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;intro&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Interaction&quot;},&quot;autoMenu&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Interaction&quot;}}">
 class Component extends DCLogic {
   applyFonts() {
     const sets = {
@@ -2152,54 +413,18 @@ class Component extends DCLogic {
   }
 
   projects = [
-    { name: 'Halden Ceramics', category: 'Brand identity', year: '2025', client: 'Halden Ceramic Works', bg: '#171716', fg: '#f2f2f0',
-      summary: 'An identity built from the marks a potter leaves behind.',
-      background: 'Halden had made stoneware for three generations without ever having a name people could find. A second workshop and a first online shop meant the brand suddenly had to work far beyond the kiln room — on packaging, signage and a screen.',
-      concept: 'Glaze as grammar. We reduced the thumbprint, the rim, the foot ring and the drip line to four glyphs that combine into a modular monogram. One cobalt, borrowed from their oldest glaze, carries everything else.',
-      resp: ['Brand strategy', 'Naming architecture', 'Logotype & glyph system', 'Packaging', 'Signage & wayfinding', 'Brand guidelines'],
-      out: ['A system the team applies themselves, from kiln labels to shipping boxes.', 'Glyphs cut as stamps, so the identity is pressed into the clay itself.', 'Guidelines delivered as a pocket-sized printed field manual.'] },
-    { name: 'Tessera', category: 'Digital product', year: '2024', client: 'Tessera Library Network', bg: '#1a3dff', fg: '#ffffff',
-      summary: 'One calm place to search a dozen scattered archives.',
-      background: 'A network of independent libraries needed a single way to search their digitised collections — letters, maps, photographs — without flattening what makes each archive distinct.',
-      concept: 'Mosaic, not feed. Every result is a tile that keeps its source’s character, and the interface steps back so the material can speak. Search reads like a conversation with a librarian; filters behave like a card catalogue.',
-      resp: ['Product strategy', 'User research', 'Interaction design', 'Design system', 'iOS & web UI', 'Prototyping'],
-      out: ['One design system shared across iOS and web.', 'Core flows shaped in sessions with archivists and researchers.', 'A tile pattern new partner libraries plug into without redesign.'] },
-    { name: 'Salt Mercer FW25', category: 'Art direction', year: '2025', client: 'Salt Mercer Knitwear', bg: '#141414', fg: '#ffffff',
-      summary: 'A campaign shot in the hour after the storm.',
-      background: 'Salt Mercer makes heavy knitwear on a stretch of coast known mostly for its weather. For FW25 they wanted a campaign that felt like the place — not a postcard of it.',
-      concept: 'We shot only in the hour after storms and printed everything as coarse halftone, echoing the stitch of the knit. Type is set loose and wet: oversized italics that crowd the frame the way fog does.',
-      resp: ['Creative direction', 'Campaign concept', 'Casting & styling direction', 'Photography direction', 'Typography', 'Print & OOH layouts'],
-      out: ['A campaign toolkit spanning print, social and in-store.', 'A halftone treatment the in-house team now carries into new seasons.', 'A lookbook printed on uncoated stock at a small coastal press.'] },
-    { name: 'Lowlight Festival', category: 'Motion design', year: '2024', client: 'Lowlight Festival', bg: '#121212', fg: '#ffffff',
-      summary: 'A visual voice that moves at the speed of the music.',
-      background: 'Lowlight is a three-night festival of ambient and electronic music held in a former observatory. It needed a visual language that could fill a stage screen and still work on a phone.',
-      concept: 'Sound as orbit. A generative ring system responds to tempo and frequency — slowing to near-stillness for drone sets, tightening for the late shows. Type breathes with the music along a single variable axis.',
-      resp: ['Motion identity', 'Generative system design', 'Title sequences', 'Stage visuals', 'Social motion templates', 'Variable type animation'],
-      out: ['A live-reactive system operated by the festival’s own visual team.', 'A template library for artists and partners to announce sets.', 'Visuals that scale from large-format projection down to vertical stories.'] },
-    { name: 'Morrow Supply', category: 'Ecommerce', year: '2023', client: 'Morrow Supply Co.', bg: '#1a1a19', fg: '#f2f2f0',
-      summary: 'A shop that explains why things last.',
-      background: 'Morrow Supply sells a small range of outdoor goods built to be repaired. Their old shop sold products well enough, but never told the story of how they are made — or how to mend them.',
-      concept: 'A shop that reads like a field guide. Each product page opens with how it’s made and how to fix it, while the cart waits quietly to the side. Repair parts are first-class products, not an afterthought.',
-      resp: ['Ecommerce strategy', 'Information architecture', 'Art direction', 'Headless Shopify build', 'Product photography direction', 'Content design'],
-      out: ['A headless storefront the team edits without developer help.', 'Repair guides woven into every product page.', 'Accessibility reviewed against WCAG 2.2 AA throughout.'] },
-    { name: 'Atlas of Quiet', category: 'Bespoke web engineering', year: '2026', client: 'The Quiet Places Collective', bg: '#111111', fg: '#f2f2f0',
-      summary: 'An archive you explore by ear.',
-      background: 'A collective of field recordists spent a decade capturing quiet places — forests at night, empty stations, snowfields. They wanted an archive that felt like listening, not browsing.',
-      concept: 'A topographic map where elevation is volume. Each recording rises as a contour peak, and moving across the map crossfades between places in real time, so the archive unfolds as sound.',
-      resp: ['Creative technology', 'WebGL engineering', 'Web Audio engineering', 'Custom CMS', 'Performance engineering', 'Accessibility'],
-      out: ['Spatial crossfading built natively on the Web Audio API.', 'A complete non-visual listening mode with keyboard navigation.', 'Progressive streaming keeps it smooth on mid-range phones.'] },
     { name: 'Interiorem', category: 'Storefront 01 — Marketplace', year: '', client: 'Interiorem', bg: '#111113', fg: '#ffffff', real: true,
-      img: ((window.__resources||{}).r_assets_store_interiorem_webp||'assets/store-interiorem.webp'), link: 'https://dasigned-4-dasigned-0a08.wix-site-host.com/work/interiorem.html',
+      img: 'assets/r1/store-interiorem.webp', link: 'https://dasigned-4-dasigned-0a08.wix-site-host.com/work/interiorem.html',
       summary: 'Furniture with a previous life.',
       background: 'A marketplace storefront for furniture with a previous life, listed by Melbourne dealers and collectors.',
       concept: '', resp: ['Brand & art direction', 'Commerce engineering'], out: [] },
     { name: 'Chair Label', category: 'Storefront 02 — Fashion', year: '', client: 'Chair Label', bg: '#111113', fg: '#ffffff', real: true,
-      img: ((window.__resources||{}).r_assets_store_chair_jpg||'assets/store-chair.jpg'), link: 'https://dasigned-4-dasigned-0a08.wix-site-host.com/work/chair-label.html',
+      img: 'assets/r1/store-chair.jpg', link: 'https://dasigned-4-dasigned-0a08.wix-site-host.com/work/chair-label.html',
       summary: 'Collection 01, Uniform.',
       background: 'Collection 01, launched as a campaign you can shop.',
       concept: '', resp: ['Brand & art direction', 'Storefront design'], out: [] },
     { name: 'Monolith Audio', category: 'Storefront 03 — Audio', year: '', client: 'Monolith Audio', bg: '#0e0d0c', fg: '#ffffff', real: true,
-      img: ((window.__resources||{}).r_assets_store_monolith_png||'assets/v5/store-monolith.webp'), link: '',
+      img: 'assets/r1/store-monolith.webp', link: '',
       summary: 'Sound, sculpted.',
       background: 'A storefront for active loudspeakers carved from solid timber and tuned by hand in Melbourne.',
       concept: '', resp: ['Brand & art direction', 'Storefront design'], out: [] }
@@ -2234,7 +459,7 @@ class Component extends DCLogic {
     });
 
     if (!root) return;
-    import((window.__resources||{}).threeMod||new URL('./dasigned-3d-v4.js', document.baseURI).href)
+    import(new URL('assets/r1/dasigned-3d.js', document.baseURI).href)
       .then(mod => { if (this.rootRef.current) this.three = mod.mount(root, { anim: this.anim }); })
       .catch(err => console.warn('3D unavailable', err));
 
@@ -2434,9 +659,9 @@ class Component extends DCLogic {
       menuNavTop: narrow ? 'calc(92px + clamp(130px, calc(100vh - 490px), 44vh) + 16px)' : 'clamp(110px,17vh,180px)',
       winL: menu ? (narrow ? '14px' : '34.5vw') : '-40px', winR: menu ? (narrow ? '14px' : '34.5vw') : '-40px',
       menuUiOp: menu ? 1 : 0, menuUiY: menu ? '0px' : '10px', menuUiDelay: menu ? '.5s' : '0s',
-      menuProjects: [6, 7, 8, 0, 1, 2, 3, 4, 5].filter(i => this.projects[i]).map(i => ({ name: this.projects[i].name, on: () => this.setState({ mHov: i }), off: () => this.setState(s => s.mHov === i ? { mHov: -1 } : null), go: () => { this.setState({ menu: false, mHov: -1 }); this.open(i); } })),
-      ...(() => { const on = menu && this.state.mHov === 6; const wt = narrow ? '102px' : '14vh', wb = narrow ? 'calc(100vh - 102px - clamp(130px, calc(100vh - 490px), 44vh))' : '6vh', wl = narrow ? '14px' : '34.5vw';
-        const ch = menu && this.state.mHov === 7, full = 'inset(0px 0px 0px 0px round 0px)', win = 'inset(' + wt + ' ' + wl + ' ' + wb + ' ' + wl + ' round 14px)';
+      menuProjects: [0, 1, 2].filter(i => this.projects[i]).map(i => ({ name: this.projects[i].name, on: () => this.setState({ mHov: i }), off: () => this.setState(s => s.mHov === i ? { mHov: -1 } : null), go: () => { this.setState({ menu: false, mHov: -1 }); this.open(i); } })),
+      ...(() => { const on = menu && this.state.mHov === 0; const wt = narrow ? '102px' : '14vh', wb = narrow ? 'calc(100vh - 102px - clamp(130px, calc(100vh - 490px), 44vh))' : '6vh', wl = narrow ? '14px' : '34.5vw';
+        const ch = menu && this.state.mHov === 1, full = 'inset(0px 0px 0px 0px round 0px)', win = 'inset(' + wt + ' ' + wl + ' ' + wb + ' ' + wl + ' round 14px)';
         return { mIntOp: on ? 1 : 0, mIntS: on ? 1 : 1.12, mIntClip: on ? full : win, mChOp: ch ? 1 : 0, mChS: ch ? 1 : 1.12, mChClip: ch ? full : win,
           ...(() => { const ph0 = this.state.gtPh || '', ph = ph0 === 'reset' ? '' : ph0, hov = ph0 !== 'reset' && !this.state.ctShow && menu && (this.state.gtHov || this.state.ct2);
             const q0 = this.state.swPh || '', q = q0 === 'reset' ? '' : q0, sh = q0 !== 'reset' && !this.state.wkShow && menu && this.state.swHov;
@@ -2447,7 +672,7 @@ class Component extends DCLogic {
             return { ...su, ...se, swOp: q || sh ? 1 : 0, swS: q || sh ? 1 : 1.08, swClip: q ? full : win, swY: q === 'drop' ? '100%' : '0%', swTr: q0 === 'reset' ? 'none' : 'opacity .5s cubic-bezier(.16,1,.3,1), clip-path .85s cubic-bezier(.7,0,.2,1), transform .85s cubic-bezier(.7,0,.2,1)',
               gtOp: ph || hov ? 1 : 0, gtS: ph || hov ? 1 : 1.08, gtClip: ph ? full : win, gtY: ph === 'drop' ? '100%' : '0%',
               gtTr: ph0 === 'reset' ? 'none' : 'opacity .5s cubic-bezier(.16,1,.3,1), clip-path .85s cubic-bezier(.7,0,.2,1), transform .85s cubic-bezier(.7,0,.2,1)' }; })() }; })(),
-      menuOpen6: () => { this.setState({ menu: false }); this.open(6); }, menuOpen7: () => { this.setState({ menu: false }); this.open(7); }, closeMenu: () => {},
+      menuOpen6: () => { this.setState({ menu: false }); this.open(0); }, menuOpen7: () => { this.setState({ menu: false }); this.open(1); }, closeMenu: () => {},
       goTop: this.scrollToId('top'),
       goHome: e => { if (e) e.preventDefault(); if (this.state.open >= 0) this.close(); this.setState({ menu: true }); window.scrollTo({ top: 0, behavior: 'instant' }); }, navWork: e => { if (e) e.preventDefault(); (this._swT || []).forEach(clearTimeout);
         const T = (f, ms) => (this._swT = [...(this._swT || []), setTimeout(f, ms)]);
@@ -2499,7 +724,9 @@ class Component extends DCLogic {
         out: p.out.map((t, i) => ({ n: pad(i + 1), t })),
         hasConcept: !!p.concept, hasOut: p.out.length > 0, isInt: p.name === 'Interiorem', isChair: p.name === 'Chair Label', isMono: p.name === 'Monolith Audio', hasLink: !!p.link
       },
-      blobTex: ({ 'Shopfront': 'assets/blob-texture.png', 'Ink marbling': 'assets/blob-ink-v2.png', 'Blue silk': 'assets/blob-silk-v2.png', 'Shop window': 'assets/blob-shop-wrap.jpg', 'Dasigned tote': 'assets/blob-bag-wrap4.jpg', 'Manifesto': 'assets/blob-manifesto.png', 'Services list': 'assets/blob-services-tint.png', 'Mark pattern': ((window.__resources||{}).r_assets_blob_mark_pattern_png||'assets/blob-mark-pattern.png'), 'Blue gradient': 'assets/blob-blue-gradient.png' })[this.props.blobTexture ?? 'Mark pattern'] || ((window.__resources||{}).r_assets_blob_mark_pattern_png||'assets/blob-mark-pattern.png'),
+      blobTex: ({ 'Shopfront': 'assets/r1/blob-texture.png', 'Ink marbling': 'assets/r1/blob-ink-v2.png', 'Blue silk': 'assets/r1/blob-silk-v2.png', 'Shop window': 'assets/r1/blob-shop-wrap.jpg', 'Dasigned tote': 'assets/r1/blob-bag-wrap4.jpg', 'Manifesto': 'assets/r1/blob-manifesto.png', 'Services list': 'assets/r1/blob-services-tint.png', 'Mark pattern': 'assets/r1/blob-mark-pattern.png', 'Blue gradient': 'assets/r1/blob-blue-gradient.png' })[this.props.blobTexture ?? 'Mark pattern'] || 'assets/r1/blob-mark-pattern.png',
+      blobFinish: this.props.blobFinish ?? 'Liquid chrome',
+      blobWire: String(this.props.blobWireframe ?? true),
       orbOp: this.state.disp ? 0 : 1,
       intOp: this.state.disp === 'int' ? 1 : 0,
       intOpT: this.state.disp === 'int' ? 'scale(1)' : 'scale(1.05)',
@@ -2535,6 +762,5 @@ class Component extends DCLogic {
   }
 }
 </script>
-
-
-</body></html>
+</body>
+</html>
